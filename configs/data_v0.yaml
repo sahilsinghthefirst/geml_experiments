@@ -1,5 +1,11 @@
-# Goal 1 data generation config placeholder.
 seed: 0
+count: 1000
+max_depth: 4
 output_dir: outputs/v0
 jsonl_path: outputs/v0/dataset.jsonl
 csv_path: outputs/v0/dataset.csv
+operator_probabilities:
+  add: 0.3
+  mul: 0.3
+  exp: 0.2
+  log: 0.2
