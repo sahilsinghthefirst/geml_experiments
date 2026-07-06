@@ -1,0 +1,4 @@
+# Future AST equivalence experiment config placeholder.
+seed: 0
+representation: ast
+output_dir: outputs/v0

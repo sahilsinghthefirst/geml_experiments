@@ -1,0 +1,5 @@
+# Goal 1 data generation config placeholder.
+seed: 0
+output_dir: outputs/v0
+jsonl_path: outputs/v0/dataset.jsonl
+csv_path: outputs/v0/dataset.csv

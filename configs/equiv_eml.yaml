@@ -1,0 +1,4 @@
+# Future EML equivalence experiment config placeholder.
+seed: 0
+representation: eml
+output_dir: outputs/v0

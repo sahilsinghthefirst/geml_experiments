@@ -1,0 +1,4 @@
+# Goal 1 expansion statistics config placeholder.
+seed: 0
+output_dir: outputs/v0
+stats_csv_path: outputs/v0/expansion_stats.csv

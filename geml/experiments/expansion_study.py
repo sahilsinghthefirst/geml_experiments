@@ -1,0 +1,1 @@
+"""Expansion-factor study placeholder."""
