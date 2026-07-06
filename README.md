@@ -29,3 +29,9 @@ python -m geml.data.generate_exprs --config configs/data_v0.yaml
 ```
 
 The generator supports `x`, `y`, `1`, `Add`, `Mul`, `Exp`, and `Log`, with configurable depth, seed, expression count, and operator probabilities. It writes JSONL and CSV outputs under `outputs/v0/` by default.
+
+## AST Binary Trees
+
+`geml.symbolic.ast_graph.sympy_to_ast_tree` converts supported SymPy expressions into a serializable rooted tree with nodes, directed edges, root id, node labels, metadata, and structural statistics.
+
+Supported AST nodes are symbols, integer constants, `Add`, `Mul`, `Pow`, `exp`, and `log`. N-ary `Add` and `Mul` nodes are normalized into deterministic binary operator trees.
