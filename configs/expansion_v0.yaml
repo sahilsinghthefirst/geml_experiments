@@ -1,4 +1,54 @@
-# Goal 1 expansion statistics config placeholder.
 seed: 0
+count: 10000
+max_depth: 4
+representation_mode: restricted_eml_pure
 output_dir: outputs/v0
-stats_csv_path: outputs/v0/expansion_stats.csv
+input_jsonl_path: outputs/v0/expansion_inputs.jsonl
+raw_metrics_jsonl_path: outputs/v0/expansion_raw_metrics.jsonl
+raw_metrics_csv_path: outputs/v0/expansion_raw_metrics.csv
+summary_json_path: outputs/v0/official_eml_compiler_summary.json
+alpha_summary_csv_path: outputs/v0/expansion_alpha_summary.csv
+alpha_summary_json_path: outputs/v0/expansion_alpha_summary.json
+alpha_by_ast_depth_csv_path: outputs/v0/alpha_by_ast_depth.csv
+alpha_by_ast_size_bucket_csv_path: outputs/v0/alpha_by_ast_size_bucket.csv
+alpha_by_operator_family_csv_path: outputs/v0/alpha_by_operator_family.csv
+alpha_by_operator_signature_csv_path: outputs/v0/alpha_by_operator_signature.csv
+alpha_by_boolean_features_csv_path: outputs/v0/alpha_by_boolean_features.csv
+plots_dir: outputs/v0/plots
+top_20_alpha_csv_path: outputs/v0/top_20_alpha_expressions.csv
+top_20_eml_node_csv_path: outputs/v0/top_20_eml_node_expressions.csv
+top_20_eml_depth_csv_path: outputs/v0/top_20_eml_depth_expressions.csv
+top_alpha_explosions_csv_path: outputs/v0/top_alpha_explosions.csv
+top_eml_node_explosions_csv_path: outputs/v0/top_eml_node_explosions.csv
+top_eml_depth_explosions_csv_path: outputs/v0/top_eml_depth_explosions.csv
+worst_operator_signatures_csv_path: outputs/v0/worst_operator_signatures.csv
+safest_operator_signatures_csv_path: outputs/v0/safest_operator_signatures.csv
+depth_failure_modes_csv_path: outputs/v0/depth_failure_modes.csv
+safe_eml_regime_candidates_csv_path: outputs/v0/safe_eml_regime_candidates.csv
+failure_report_md_path: outputs/v0/GOAL2_FAILURE_CASES.md
+final_report_path: docs/GOAL2_EXPANSION_STUDY.md
+failure_top_n: 20
+snippet_max_chars: 1200
+top_alpha_json_path: outputs/v0/official_eml_top20_alpha.json
+top_depth_json_path: outputs/v0/official_eml_top20_depth.json
+simple_examples_json_path: outputs/v0/official_eml_simple_examples.json
+alpha_threshold_k: 4
+alpha_threshold_l: 3
+threshold_scenarios:
+  - name: current_grammar
+    k: 4
+    l: 3
+  - name: generous_operator_vocab
+    k: 20
+    l: 3
+  - name: larger_operator_vocab
+    k: 50
+    l: 3
+operator_probabilities:
+  add: 0.3
+  mul: 0.3
+  exp: 0.2
+  log: 0.2
+symbol_names:
+  - x
+  - y

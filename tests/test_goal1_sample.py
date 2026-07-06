@@ -34,12 +34,16 @@ def test_goal1_sample_pipeline_writes_expected_outputs(tmp_path: Path) -> None:
     assert len(rows) == 10
     assert len(jsonl_rows) == 10
     assert len(csv_rows) == 10
-    assert all(row.supported for row in rows)
+    assert all(row.representation_mode == "restricted_eml_pure" for row in rows)
+    assert all(row.alpha_valid == (row.alpha is not None) for row in rows)
     assert {
         "expression",
         "srepr",
+        "source_serialization",
+        "representation_mode",
         "ast_stats",
         "eml_stats",
+        "alpha_valid",
         "alpha",
         "supported",
         "error",
@@ -47,8 +51,11 @@ def test_goal1_sample_pipeline_writes_expected_outputs(tmp_path: Path) -> None:
     assert {
         "expression",
         "srepr",
+        "source_serialization",
+        "representation_mode",
         "ast_node_count",
         "eml_node_count",
+        "alpha_valid",
         "alpha",
         "supported",
         "error",

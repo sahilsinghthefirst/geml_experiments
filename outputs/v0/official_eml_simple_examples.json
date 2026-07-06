@@ -1,0 +1,67 @@
+[
+  {
+    "alpha": 9.0,
+    "ast_node_count": 3,
+    "derived_leaf_count": 0,
+    "eml_depth": 9,
+    "eml_node_count": 27,
+    "expression": "x + y",
+    "has_derived_leaves": false,
+    "hidden_compound_leaf_count": 0,
+    "name": "x+y",
+    "official_eml": "EML[EML[1,EML[EML[1,x],1]],EML[EML[EML[1,EML[EML[1,EML[1,EML[EML[1,1],1]]],1]],EML[y,1]],1]]",
+    "srepr": "Add(Symbol('x'), Symbol('y'))"
+  },
+  {
+    "alpha": 13.666666666666666,
+    "ast_node_count": 3,
+    "derived_leaf_count": 0,
+    "eml_depth": 10,
+    "eml_node_count": 41,
+    "expression": "x*y",
+    "has_derived_leaves": false,
+    "hidden_compound_leaf_count": 0,
+    "name": "x*y",
+    "official_eml": "EML[EML[EML[1,EML[EML[1,EML[1,EML[EML[1,x],1]]],1]],EML[EML[EML[1,EML[EML[1,EML[1,EML[EML[1,1],1]]],1]],EML[EML[1,EML[EML[1,y],1]],1]],1]],1]",
+    "srepr": "Mul(Symbol('x'), Symbol('y'))"
+  },
+  {
+    "alpha": 3.5,
+    "ast_node_count": 2,
+    "derived_leaf_count": 0,
+    "eml_depth": 3,
+    "eml_node_count": 7,
+    "expression": "log(x)",
+    "has_derived_leaves": false,
+    "hidden_compound_leaf_count": 0,
+    "name": "log(x)",
+    "official_eml": "EML[1,EML[EML[1,x],1]]",
+    "srepr": "log(Symbol('x'))"
+  },
+  {
+    "alpha": 1.5,
+    "ast_node_count": 2,
+    "derived_leaf_count": 0,
+    "eml_depth": 1,
+    "eml_node_count": 3,
+    "expression": "exp(x)",
+    "has_derived_leaves": false,
+    "hidden_compound_leaf_count": 0,
+    "name": "exp(x)",
+    "official_eml": "EML[x,1]",
+    "srepr": "exp(Symbol('x'))"
+  },
+  {
+    "alpha": 25.0,
+    "ast_node_count": 3,
+    "derived_leaf_count": 0,
+    "eml_depth": 18,
+    "eml_node_count": 75,
+    "expression": "x**2",
+    "has_derived_leaves": false,
+    "hidden_compound_leaf_count": 0,
+    "name": "x**2",
+    "official_eml": "EML[EML[EML[EML[1,EML[EML[1,EML[1,EML[EML[1,EML[EML[1,EML[EML[1,1],1]],EML[EML[EML[1,EML[EML[1,EML[1,EML[EML[1,1],1]]],1]],EML[1,1]],1]]],1]]],1]],EML[EML[EML[1,EML[EML[1,EML[1,EML[EML[1,1],1]]],1]],EML[EML[1,EML[EML[1,EML[1,EML[EML[1,x],1]]],1]],1]],1]],1],1]",
+    "srepr": "Pow(Symbol('x'), Integer(2))"
+  }
+]

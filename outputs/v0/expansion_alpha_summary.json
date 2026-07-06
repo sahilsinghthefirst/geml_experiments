@@ -1,0 +1,50 @@
+[
+  {
+    "above_threshold_count": 10000,
+    "alpha_threshold": 1.5578858913022597,
+    "alpha_valid_count": 10000,
+    "below_threshold_count": 0,
+    "k": 4,
+    "l": 3,
+    "max_alpha": 17.366666666666667,
+    "mean_alpha": 10.648995087903057,
+    "median_alpha": 11.375,
+    "p90_alpha": 14.208333333333334,
+    "p95_alpha": 14.733333333333333,
+    "percent_above_threshold": 100.0,
+    "percent_below_threshold": 0.0,
+    "scenario": "current_grammar"
+  },
+  {
+    "above_threshold_count": 9975,
+    "alpha_threshold": 2.2055713536802566,
+    "alpha_valid_count": 10000,
+    "below_threshold_count": 25,
+    "k": 20,
+    "l": 3,
+    "max_alpha": 17.366666666666667,
+    "mean_alpha": 10.648995087903057,
+    "median_alpha": 11.375,
+    "p90_alpha": 14.208333333333334,
+    "p95_alpha": 14.733333333333333,
+    "percent_above_threshold": 99.75,
+    "percent_below_threshold": 0.25,
+    "scenario": "generous_operator_vocab"
+  },
+  {
+    "above_threshold_count": 9975,
+    "alpha_threshold": 2.574313870407124,
+    "alpha_valid_count": 10000,
+    "below_threshold_count": 25,
+    "k": 50,
+    "l": 3,
+    "max_alpha": 17.366666666666667,
+    "mean_alpha": 10.648995087903057,
+    "median_alpha": 11.375,
+    "p90_alpha": 14.208333333333334,
+    "p95_alpha": 14.733333333333333,
+    "percent_above_threshold": 99.75,
+    "percent_below_threshold": 0.25,
+    "scenario": "larger_operator_vocab"
+  }
+]

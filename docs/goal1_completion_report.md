@@ -228,20 +228,24 @@ EML operator:
 eml(x, y) = exp(x) - log(y)
 ```
 
-Supported EML input subset:
+Supported official pure EML input subset:
 
 - variables
+- integer constants
+- rational constants
+- floats through decimal-string rationalization
 - constant `1`
 - `Add`
 - `Mul`
+- `Pow`
 - `exp`
 - `log`
+
+Diagnostic derived mode additionally accepts `Add` and `Mul` through the old lift rule, but those trees are not valid for alpha.
 
 Unsupported in the restricted EML converter:
 
 - trig functions
-- integer constants other than `1`
-- `Pow`
 - unsupported SymPy node types
 
 EML output structure:
@@ -252,8 +256,12 @@ EML output structure:
 - `node_labels`
 - `metadata`
 - `statistics`
+- `normal_leaf_count`
+- `derived_leaf_count`
+- `hidden_compound_leaf_count`
 - `ast_statistics`
 - `alpha`
+- `alpha_valid`
 
 EML node kinds:
 
@@ -267,9 +275,11 @@ Implemented restricted rules:
 - `x -> x`
 - `y -> y`
 - `1 -> 1`
-- `exp(a) -> eml(a, 1)`
-- `log(a)` is represented through a derived construction that evaluates back to `log(a)` under formal inverse simplification.
-- `Add` and `Mul` currently use the restricted lift rule:
+- official recursive macro definitions ported from `VA00/SymbolicRegressionPackage/EML_toolkit/EmL_compiler/eml_compiler_v4.py`
+- `exp(a) -> EML(a, 1)`
+- `log(a) -> EML(1, EML(EML(1, a), 1))`
+- `Add`, `Mul`, `Pow`, subtraction, division, inverse, negation, integers, and rationals expand through official recursive macros.
+- `restricted_eml_with_derived` can still use the diagnostic lift rule:
 
 ```text
 E -> eml(log(E), 1)
@@ -283,19 +293,25 @@ alpha = |T_EML| / |T_AST|
 
 where `|T_*|` is the tree node count.
 
+Alpha is valid only when `representation_mode=restricted_eml_pure`, `alpha_valid=true`, and there are no derived leaves.
+
 Tested behavior:
 
 - variable leaf conversion
 - constant `1` conversion
-- `x + 1`
-- `x * y`
 - `exp(x)`
-- `log(x + 1)`
-- `(x + 1) * (y + 1)`
-- alpha ratio calculation
+- `log(x)`
+- official pure conversion of `x + 1`
+- official pure conversion of `x * y`
+- official pure conversion of `log(x + 1)`
+- official pure conversion of `Pow`
+- official pure conversion of integer constants other than `1`
+- derived-mode classification of `x + 1`
+- derived-mode classification of `(x + 1) * (y + 1)`
+- valid pure alpha ratio calculation
+- derived-mode alpha rejection
 - unsupported `sin(x)`
-- unsupported `Pow`
-- unsupported integer constant `2`
+- hidden compound derived leaves are not counted as normal EML leaves
 - all internal nodes with children are `eml`
 - converted structures are connected trees
 
@@ -336,9 +352,14 @@ Per-expression JSONL fields:
 - `index`
 - `expression`
 - `srepr`
+- `representation_mode`
 - `ast_stats`
 - `eml_stats`
+- `eml_normal_leaf_count`
+- `eml_derived_leaf_count`
+- `eml_hidden_compound_leaf_count`
 - `alpha`
+- `alpha_valid`
 - `supported`
 - `error`
 - `metadata`
@@ -348,6 +369,7 @@ CSV summary fields:
 - `index`
 - `expression`
 - `srepr`
+- `representation_mode`
 - `supported`
 - `error`
 - `ast_node_count`
@@ -359,14 +381,19 @@ CSV summary fields:
 - `eml_edge_count`
 - `eml_depth`
 - `eml_leaf_count`
+- `eml_normal_leaf_count`
+- `eml_derived_leaf_count`
+- `eml_hidden_compound_leaf_count`
 - `eml_operator_count`
 - `alpha`
+- `alpha_valid`
 
 Unsupported-row behavior:
 
 - If parsing fails, both AST and EML stats are empty.
 - If AST conversion fails, both AST and EML stats are empty.
 - If AST conversion succeeds but EML conversion fails, AST stats are retained and EML stats/alpha are empty.
+- If derived-mode conversion succeeds with hidden compound leaves, EML stats are retained but alpha is empty and `alpha_valid=false`.
 - Unsupported rows are retained with `supported=false` and an error message.
 
 ## Goal 1 Sample Pipeline
@@ -495,24 +522,28 @@ python -m geml.experiments.goal1_sample
 
 ## Known Uncertainties And Potential Issues
 
-### Restricted EML Add/Mul Encoding Is Not Fully Expanded
+### Restricted EML Add/Mul Encoding Is Classified And Superseded
 
-The largest technical uncertainty is the current restricted EML conversion for `Add` and `Mul`.
+Goal 2.0 initially resolved the largest technical uncertainty in the Goal 1 converter by splitting EML conversion into pure and derived modes.
 
-Current rule:
+The old diagnostic rule:
 
 ```text
 E -> eml(log(E), 1)
 ```
 
-This keeps every internal tree node as `eml`, but it introduces a `derived` leaf labeled `log(expr)` that can contain a compound expression. If the intended scientific representation requires leaves to be only variables and constant `1`, then the current `Add`/`Mul` conversion is not a valid fully expanded EML representation.
+keeps every internal tree node as `eml`, but it introduces a `derived` leaf labeled `log(expr)` that can contain a compound expression. This is not a valid pure EML representation because pure leaves must be only variables and constant `1`.
 
-Consequences:
+Current decision:
 
-- EML node counts can be artificially small.
-- Alpha can be less than `1`.
-- Expansion-factor conclusions from this representation would be misleading.
-- This should be resolved before using alpha values for serious claims.
+- Goal 2.1b ports the official recursive pure compiler from `VA00/SymbolicRegressionPackage/EML_toolkit/EmL_compiler/eml_compiler_v4.py`.
+- `restricted_eml_pure` now compiles `Add`, `Mul`, `Pow`, numeric constants, `exp`, and `log` through official pure recursive macros.
+- `restricted_eml_with_derived` keeps the old lift only for diagnostic inspection.
+- Derived hidden compound leaves are counted separately and are not normal EML leaves.
+- Alpha is empty and `alpha_valid=false` for derived-mode trees.
+- Goal 2 serious alpha plots must use only `restricted_eml_pure` rows with `alpha_valid=true`.
+
+The locked semantics are documented in `docs/goal2_representation_semantics.md` and the official compiler port is documented in `docs/GOAL2_OFFICIAL_EML_COMPILER.md`.
 
 ### EML Simplification Uses Formal Inverse Rules
 
@@ -539,9 +570,9 @@ Observed consequence:
 - The parsed expression may be semantically equivalent but structurally different from the original generated tree.
 - AST stats and alpha computed from reparsed strings may differ from stats computed from the original generated object.
 
-Mitigation needed:
+Mitigation implemented in Goal 2.1:
 
-- Use `srepr` or a custom structural serialization as the authoritative dataset input if exact generated-tree structure matters.
+- Metrics export now prefers `srepr` as the authoritative structural input and falls back to `expression` only when no `srepr` is available.
 
 ### Python Version Mismatch In Local Verification
 
@@ -552,15 +583,17 @@ Consequences:
 - Tests pass locally, but CI or future runs should verify Python 3.12 specifically.
 - Any Python 3.14-specific behavior should be avoided.
 
-### EML Support Is Narrower Than AST Support
+### Remaining EML Support Gaps
 
-The AST converter supports `Pow`, but the restricted EML converter rejects `Pow`.
+Goal 2.1b added official pure EML support for `Pow`, arithmetic, and numeric constants.
 
-This is intentional for Goal 1, but it means:
+Remaining unsupported cases include:
 
-- some AST-supported expressions will be EML-unsupported
-- dataset rows may contain partial metrics only
-- `Pow` support must be implemented before polynomial identities such as `(x + 1)^2`
+- trigonometric functions
+- inverse trigonometric functions
+- hyperbolic functions
+- `Abs`
+- arbitrary unsupported SymPy nodes
 
 ### Log-Argument Validity Is Structural, Not Domain-Proven
 
@@ -612,10 +645,7 @@ Consequences:
 
 Before moving to serious experiments:
 
-1. Define the exact formal restricted EML grammar.
-2. Decide whether derived leaves such as `log(expr)` are allowed.
-3. If derived leaves are not allowed, replace the `Add`/`Mul` lift rule with a real expansion or explicitly report unsupported.
-4. Make `srepr` or another structural format the authoritative dataset representation.
-5. Run verification on Python 3.12.
-6. Scale-test generation and metrics export at 10,000+ expressions.
-7. Add equivalence-pair generation only after representation semantics are locked.
+1. Make `srepr` or another structural format the authoritative dataset representation.
+2. Run verification on Python 3.12.
+3. Scale-test generation and metrics export at 10,000+ expressions.
+4. Add equivalence-pair generation only after representation semantics are locked.

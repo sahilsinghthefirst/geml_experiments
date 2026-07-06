@@ -22,6 +22,7 @@ from geml.data.generate_exprs import (
     ExpressionGeneratorConfig,
     SympyExpressionGenerator,
 )
+from geml.symbolic.representations import EML_REPRESENTATION_MODES, EmlRepresentationMode
 
 
 class Goal1SampleConfig(BaseModel):
@@ -32,6 +33,7 @@ class Goal1SampleConfig(BaseModel):
     max_depth: int = Field(default=4, ge=0)
     output_jsonl_path: Path = Path("outputs/v0/goal1_sample.jsonl")
     output_csv_path: Path = Path("outputs/v0/goal1_summary.csv")
+    representation_mode: EmlRepresentationMode = "restricted_eml_pure"
     operator_probabilities: dict[str, float] = Field(
         default_factory=lambda: DEFAULT_OPERATOR_PROBABILITIES.copy()
     )
@@ -63,7 +65,11 @@ def run_goal1_sample(config: Goal1SampleConfig) -> list[DatasetMetricsRow]:
         )
         for record in generated_records
     ]
-    metrics_rows = compute_metrics_rows(input_rows, symbol_names=config.symbol_names)
+    metrics_rows = compute_metrics_rows(
+        input_rows,
+        symbol_names=config.symbol_names,
+        representation_mode=config.representation_mode,
+    )
     write_metrics_jsonl(metrics_rows, config.output_jsonl_path)
     write_metrics_csv(metrics_rows, config.output_csv_path)
     return metrics_rows
@@ -89,6 +95,12 @@ def build_parser() -> argparse.ArgumentParser:
         default=Path("outputs/v0/goal1_summary.csv"),
         help="Goal 1 summary CSV output path.",
     )
+    parser.add_argument(
+        "--representation-mode",
+        choices=EML_REPRESENTATION_MODES,
+        default="restricted_eml_pure",
+        help="EML representation mode used for sample metrics and alpha.",
+    )
     return parser
 
 
@@ -101,6 +113,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         max_depth=args.max_depth,
         output_jsonl_path=args.output_jsonl,
         output_csv_path=args.output_csv,
+        representation_mode=args.representation_mode,
     )
     rows = run_goal1_sample(config)
     supported_count = sum(1 for row in rows if row.supported)

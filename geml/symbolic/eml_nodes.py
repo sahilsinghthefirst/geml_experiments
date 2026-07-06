@@ -7,6 +7,7 @@ from typing import Literal
 from pydantic import BaseModel, Field
 
 from geml.symbolic.metrics import TreeStatistics
+from geml.symbolic.representations import EmlRepresentationMode
 
 type MetadataValue = str | int | float | bool | list[str]
 
@@ -33,11 +34,16 @@ class EmlEdge(BaseModel):
 class EmlTree(BaseModel):
     """Serializable restricted EML tree representation."""
 
+    representation_mode: EmlRepresentationMode
     nodes: list[EmlNode]
     edges: list[EmlEdge]
     root_id: int
     node_labels: dict[int, str]
     metadata: dict[str, MetadataValue]
     statistics: TreeStatistics
+    normal_leaf_count: int = Field(ge=0)
+    derived_leaf_count: int = Field(ge=0)
+    hidden_compound_leaf_count: int = Field(ge=0)
     ast_statistics: TreeStatistics
-    alpha: float
+    alpha: float | None
+    alpha_valid: bool

@@ -1,4 +1,4 @@
 # Future EML equivalence experiment config placeholder.
 seed: 0
-representation: eml
+representation_mode: restricted_eml_pure
 output_dir: outputs/v0

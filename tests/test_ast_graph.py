@@ -27,6 +27,8 @@ def test_convert_x_plus_one() -> None:
 
     tree = sympy_to_ast_tree(sp.Add(x, 1, evaluate=False))
 
+    assert tree.representation_mode == "ast"
+    assert tree.metadata["representation_mode"] == "ast"
     assert tree.node_labels[tree.root_id] == "add"
     assert child_labels(tree, tree.root_id) == ["x", "1"]
     assert tree.statistics.node_count == 3
@@ -126,3 +128,13 @@ def test_convert_pow() -> None:
     assert tree.statistics.depth == 2
     assert tree.statistics.leaf_count == 3
     assert tree.statistics.operator_count == 2
+
+
+def test_convert_rational_and_float_constants() -> None:
+    rational_tree = sympy_to_ast_tree(sp.Rational(1, 2))
+    float_tree = sympy_to_ast_tree(sp.Float("0.5"))
+
+    assert rational_tree.node_labels[rational_tree.root_id] == "1/2"
+    assert rational_tree.statistics.node_count == 1
+    assert float_tree.node_labels[float_tree.root_id] == "0.500000000000000"
+    assert float_tree.statistics.node_count == 1

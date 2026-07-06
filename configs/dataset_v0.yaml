@@ -1,6 +1,7 @@
 input_jsonl_path: outputs/v0/dataset.jsonl
 output_jsonl_path: outputs/v0/dataset_metrics.jsonl
 output_csv_path: outputs/v0/dataset_metrics.csv
+representation_mode: restricted_eml_pure
 symbol_names:
   - x
   - y

@@ -8,6 +8,7 @@ import sympy as sp
 from pydantic import BaseModel, Field
 
 from geml.symbolic.metrics import TreeStatistics, compute_tree_statistics
+from geml.symbolic.representations import RepresentationMode
 
 type MetadataValue = str | int | float | bool | list[str]
 
@@ -38,6 +39,7 @@ class AstEdge(BaseModel):
 class AstTree(BaseModel):
     """Serializable normal AST tree representation."""
 
+    representation_mode: RepresentationMode = "ast"
     nodes: list[AstNode]
     edges: list[AstEdge]
     root_id: int
@@ -67,6 +69,7 @@ def sympy_to_ast_tree(expr: sp.Expr | str | int) -> AstTree:
         node_labels={node.id: node.label for node in builder.nodes},
         metadata={
             "converter": "ast_binary_v0",
+            "representation_mode": "ast",
             "expression": str(sympy_expr),
             "srepr": sp.srepr(sympy_expr),
             "supported_operators": ["add", "mul", "pow", "exp", "log"],
@@ -94,6 +97,24 @@ class _AstTreeBuilder:
                 label=str(expr),
                 kind="constant",
                 metadata={"sympy_func": expr.func.__name__, "value": int(expr)},
+            )
+
+        if isinstance(expr, sp.Rational):
+            return self._add_node(
+                label=str(expr),
+                kind="constant",
+                metadata={
+                    "denominator": int(expr.q),
+                    "numerator": int(expr.p),
+                    "sympy_func": expr.func.__name__,
+                },
+            )
+
+        if isinstance(expr, sp.Float):
+            return self._add_node(
+                label=str(expr),
+                kind="constant",
+                metadata={"sympy_func": expr.func.__name__, "value": float(expr)},
             )
 
         if expr.func == sp.Add:
