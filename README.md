@@ -35,3 +35,13 @@ The generator supports `x`, `y`, `1`, `Add`, `Mul`, `Exp`, and `Log`, with confi
 `geml.symbolic.ast_graph.sympy_to_ast_tree` converts supported SymPy expressions into a serializable rooted tree with nodes, directed edges, root id, node labels, metadata, and structural statistics.
 
 Supported AST nodes are symbols, integer constants, `Add`, `Mul`, `Pow`, `exp`, and `log`. N-ary `Add` and `Mul` nodes are normalized into deterministic binary operator trees.
+
+## Restricted EML Trees
+
+`geml.symbolic.eml_transpile.sympy_to_eml_tree` converts the initial supported expression subset into a rooted binary tree whose internal nodes are all `eml`, where:
+
+```text
+eml(x, y) = exp(x) - log(y)
+```
+
+The current restricted converter supports variables, constant `1`, `Add`, `Mul`, `exp`, and `log`. Direct rules are used for `exp` and `log`; `Add` and `Mul` use a restricted lift rule `E -> eml(log(E), 1)` so the EML evaluator simplifies back to the source expression. The converter reports EML tree statistics and `alpha = |T_EML| / |T_AST|`.
