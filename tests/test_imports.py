@@ -21,6 +21,7 @@ MODULES = [
     "geml.train.eval_equiv",
     "geml.experiments.expansion_study",
     "geml.experiments.baseline_grid",
+    "geml.experiments.goal1_sample",
 ]
 
 

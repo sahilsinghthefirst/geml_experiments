@@ -8,7 +8,7 @@ The project compares standard expression representations against restricted EML 
 
 This repository is currently scaffolded for Goal 1: core expression representation and data generation.
 
-The initial scaffold includes:
+The Goal 1 implementation includes:
 
 - Python 3.12 package metadata
 - pytest configuration
@@ -16,9 +16,9 @@ The initial scaffold includes:
 - YAML configs
 - package directories for data generation, symbolic graph conversion, models, training, and experiments
 - JSONL/CSV output directories under `outputs/v0/`
-- placeholder tests that verify imports work
+- tests covering imports, generation, AST conversion, EML conversion, dataset export, and the sample pipeline
 
-Expression generation and dataset export are implemented. Graph conversion, EML transpilation, metrics, and model logic will be implemented in later stages.
+Expression generation, AST conversion, restricted EML conversion, metrics, and dataset export are implemented. Model logic will be implemented in later goals.
 
 ## Expression Generation
 
@@ -55,3 +55,26 @@ python -m geml.data.dataset --config configs/dataset_v0.yaml
 ```
 
 This writes one JSONL row per expression plus a flattened CSV summary under `outputs/v0/`. Unsupported expressions are retained with `supported=false` and an error message.
+
+## Goal 1 Sample Pipeline
+
+Run the small end-to-end Goal 1 pipeline with:
+
+```bash
+python -m geml.experiments.goal1_sample
+```
+
+By default this:
+
+- generates 100 expressions
+- converts each expression to the normal AST binary tree
+- converts supported expressions to the restricted EML binary tree
+- computes `alpha = |T_EML| / |T_AST|`
+- writes `outputs/v0/goal1_sample.jsonl`
+- writes `outputs/v0/goal1_summary.csv`
+
+Optional arguments:
+
+```bash
+python -m geml.experiments.goal1_sample --count 100 --seed 0 --max-depth 4
+```
