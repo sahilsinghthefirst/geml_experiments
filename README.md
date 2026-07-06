@@ -45,3 +45,13 @@ eml(x, y) = exp(x) - log(y)
 ```
 
 The current restricted converter supports variables, constant `1`, `Add`, `Mul`, `exp`, and `log`. Direct rules are used for `exp` and `log`; `Add` and `Mul` use a restricted lift rule `E -> eml(log(E), 1)` so the EML evaluator simplifies back to the source expression. The converter reports EML tree statistics and `alpha = |T_EML| / |T_AST|`.
+
+## Dataset Metrics Export
+
+After generating expressions, export integrated AST/EML metrics with:
+
+```bash
+python -m geml.data.dataset --config configs/dataset_v0.yaml
+```
+
+This writes one JSONL row per expression plus a flattened CSV summary under `outputs/v0/`. Unsupported expressions are retained with `supported=false` and an error message.
