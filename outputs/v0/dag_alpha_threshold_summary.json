@@ -1,0 +1,32 @@
+[
+  {
+    "alpha_threshold": 1.5578858913022597,
+    "k": 4,
+    "l": 3,
+    "percent_below_dag_alpha_vs_ast_dag": 1.06,
+    "percent_below_dag_alpha_vs_ast_tree": 1.06,
+    "percent_below_tree_alpha": 0.0,
+    "row_count": 10000,
+    "scenario": "current_grammar"
+  },
+  {
+    "alpha_threshold": 2.2055713536802566,
+    "k": 20,
+    "l": 3,
+    "percent_below_dag_alpha_vs_ast_dag": 8.54,
+    "percent_below_dag_alpha_vs_ast_tree": 9.3,
+    "percent_below_tree_alpha": 0.25,
+    "row_count": 10000,
+    "scenario": "generous_operator_vocab"
+  },
+  {
+    "alpha_threshold": 2.574313870407124,
+    "k": 50,
+    "l": 3,
+    "percent_below_dag_alpha_vs_ast_dag": 8.87,
+    "percent_below_dag_alpha_vs_ast_tree": 11.48,
+    "percent_below_tree_alpha": 0.25,
+    "row_count": 10000,
+    "scenario": "larger_operator_vocab"
+  }
+]

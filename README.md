@@ -84,7 +84,7 @@ Run the complete Goal 2 expansion-factor study with:
 python -m geml.experiments.run_goal2_expansion_pipeline --config configs/expansion_v0.yaml
 ```
 
-This generates the fixed-seed expression set, computes AST and official pure EML metrics, computes alpha-threshold summaries, runs stratified analysis, writes plots, mines failure cases, and refreshes `docs/GOAL2_EXPANSION_STUDY.md`.
+This generates the fixed-seed expression set, computes AST and official pure EML metrics, computes alpha-threshold summaries, runs stratified analysis, writes plots, mines failure cases, and refreshes `docs/goal2/GOAL2_EXPANSION_STUDY.md`.
 
 The component raw expansion-factor scale pipeline can be run with:
 
@@ -113,6 +113,37 @@ python -m geml.experiments.plot_expansion_study
 python -m geml.experiments.expansion_failure_mining
 ```
 
+## Goal 3 DAG Compression Pipeline
+
+Run the complete Goal 3 exact structural DAG compression study with:
+
+```bash
+.venv/bin/python -m geml.experiments.run_goal3_dag_pipeline --config configs/dag_compression_v0.yaml
+```
+
+This regenerates the fixed-seed Goal 2 expression distribution, computes AST tree,
+AST DAG, official pure EML tree, and official pure EML DAG metrics, writes DAG
+threshold summaries and stratified analyses, generates plots, mines compression
+successes/failures, runs the semantic audit, and refreshes:
+
+- `docs/goal3/GOAL3_DAG_COMPRESSION_STUDY.md`
+- `docs/goal3/GOAL3_SUMMARY.md`
+- `docs/goal3/GOAL3_DAG_SEMANTIC_AUDIT.md`
+
+Goal 3 DAG sharing is exact structural sharing only. It does not introduce derived
+leaves, macro/template nodes, parameterized sharing, algebraic simplification, or
+pattern sharing with holes.
+
+Additional Goal 3 component commands:
+
+```bash
+.venv/bin/python -m geml.experiments.dag_compression_study --config configs/dag_compression_v0.yaml
+.venv/bin/python -m geml.experiments.stratified_dag_compression --config configs/dag_compression_v0.yaml
+.venv/bin/python -m geml.experiments.plot_dag_compression
+.venv/bin/python -m geml.experiments.dag_compression_mining
+.venv/bin/python -m geml.experiments.dag_semantic_audit
+```
+
 ## Goal 1 Sample Pipeline
 
 Run the small end-to-end Goal 1 pipeline with:
@@ -136,4 +167,4 @@ Optional arguments:
 python -m geml.experiments.goal1_sample --count 100 --seed 0 --max-depth 4
 ```
 
-See `docs/GOAL2_OFFICIAL_EML_COMPILER.md` for the official compiler port and `docs/goal2_representation_semantics.md` for the representation-mode policy.
+See `docs/goal2/GOAL2_OFFICIAL_EML_COMPILER.md` for the official compiler port and `docs/goal2/goal2_representation_semantics.md` for the representation-mode policy.

@@ -183,6 +183,57 @@ Sharing reduces duplicated nodes, but it does not shorten a path unless the
 underlying structural path is shorter. A leaf has depth `0`, matching the
 existing tree metric convention.
 
+## Goal 3.2 Single-Expression Metrics
+
+Goal 3.2 computes tree and DAG metrics for individual SymPy expressions before
+adding any full-dataset pipeline. The implementation lives in
+`geml/symbolic/dag_metrics.py` and must construct all four representations for
+the same source expression:
+
+- AST tree from the existing AST converter
+- AST DAG from exact structural sharing over the AST tree
+- official pure EML tree from the existing pure EML compiler
+- official pure EML DAG from exact structural sharing over the pure EML tree
+
+The single-expression metric row uses concrete field names:
+
+- `ast_tree_node_count`
+- `ast_tree_edge_count`
+- `ast_tree_depth`
+- `ast_dag_node_count`
+- `ast_dag_child_ref_count`
+- `ast_dag_depth`
+- `ast_dag_compression = ast_tree_node_count / ast_dag_node_count`
+- `eml_tree_node_count`
+- `eml_tree_edge_count`
+- `eml_tree_depth`
+- `eml_dag_node_count`
+- `eml_dag_child_ref_count`
+- `eml_dag_depth`
+- `eml_dag_compression = eml_tree_node_count / eml_dag_node_count`
+- `tree_alpha = eml_tree_node_count / ast_tree_node_count`
+- `dag_alpha_vs_ast_tree = eml_dag_node_count / ast_tree_node_count`
+- `dag_alpha_vs_ast_dag = eml_dag_node_count / ast_dag_node_count`
+
+`tree_alpha` intentionally preserves the Goal 2 alpha definition. DAG metrics
+add new ratios but do not redefine raw tree alpha.
+
+Goal 3.2 also maintains a simple-expression audit with these expressions:
+
+- `x+y`
+- `x*y`
+- `log(x)`
+- `exp(x)`
+- `x**2`
+- `(x+1)*(x+1)`
+- `(x*x)*(x*x)`
+
+For each audit expression, the compact audit row reports AST tree nodes, AST DAG
+nodes, EML tree nodes, EML DAG nodes, `tree_alpha`,
+`dag_alpha_vs_ast_tree`, `dag_alpha_vs_ast_dag`, and
+`eml_dag_compression`. The audit is still per-expression only; it is not the
+Goal 3 full 10k pipeline.
+
 ## Later Implementation Checklist
 
 When Goal 3 compression is implemented, tests or documentation checks should

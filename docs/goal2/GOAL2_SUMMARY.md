@@ -92,7 +92,7 @@ Implementation/docs:
 - `geml/symbolic/representations.py`
 - `geml/symbolic/eml_nodes.py`
 - `geml/symbolic/eml_transpile.py`
-- `docs/goal2_representation_semantics.md`
+- `docs/goal2/goal2_representation_semantics.md`
 
 ## Goal 2.1: Scale-Test Expression Generation And Metrics Export
 
@@ -212,7 +212,7 @@ Implementation/tests/docs:
 
 - `geml/symbolic/official_eml_compiler.py`
 - `tests/test_official_eml_compiler.py`
-- `docs/GOAL2_OFFICIAL_EML_COMPILER.md`
+- `docs/goal2/GOAL2_OFFICIAL_EML_COMPILER.md`
 
 The tests cover structural purity, tree-not-DAG invariants, official-style string emission, exact small formulas, and numeric equivalence over safe positive real inputs.
 
@@ -424,7 +424,7 @@ Outputs:
 - `outputs/v0/safest_operator_signatures.csv`
 - `outputs/v0/depth_failure_modes.csv`
 - `outputs/v0/safe_eml_regime_candidates.csv`
-- `outputs/v0/GOAL2_FAILURE_CASES.md`
+- `docs/goal2/GOAL2_FAILURE_CASES.md`
 
 Top expression failure tables include:
 
@@ -509,7 +509,7 @@ Pipeline order:
 
 Final report:
 
-- `docs/GOAL2_EXPANSION_STUDY.md`
+- `docs/goal2/GOAL2_EXPANSION_STUDY.md`
 
 The final report includes:
 
@@ -543,7 +543,7 @@ Goal 2.7 distilled the research decision before moving to the next phase.
 
 Memo:
 
-- `docs/GOAL2_DECISION_MEMO.md`
+- `docs/goal2/GOAL2_DECISION_MEMO.md`
 
 Central decision:
 
@@ -609,12 +609,12 @@ Top and failure-mining tables:
 
 Reports and docs:
 
-- `docs/goal2_representation_semantics.md`
-- `docs/GOAL2_OFFICIAL_EML_COMPILER.md`
-- `docs/GOAL2_EXPANSION_STUDY.md`
-- `docs/GOAL2_DECISION_MEMO.md`
-- `docs/GOAL2_SUMMARY.md`
-- `outputs/v0/GOAL2_FAILURE_CASES.md`
+- `docs/goal2/goal2_representation_semantics.md`
+- `docs/goal2/GOAL2_OFFICIAL_EML_COMPILER.md`
+- `docs/goal2/GOAL2_EXPANSION_STUDY.md`
+- `docs/goal2/GOAL2_DECISION_MEMO.md`
+- `docs/goal2/GOAL2_SUMMARY.md`
+- `docs/goal2/GOAL2_FAILURE_CASES.md`
 
 ## Implementation Inventory
 

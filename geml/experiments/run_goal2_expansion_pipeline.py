@@ -50,8 +50,8 @@ class Goal2ExpansionPipelineConfig(ExpansionStudyConfig):
     safest_operator_signatures_csv_path: Path = Path("outputs/v0/safest_operator_signatures.csv")
     depth_failure_modes_csv_path: Path = Path("outputs/v0/depth_failure_modes.csv")
     safe_eml_regime_candidates_csv_path: Path = Path("outputs/v0/safe_eml_regime_candidates.csv")
-    failure_report_md_path: Path = Path("outputs/v0/GOAL2_FAILURE_CASES.md")
-    final_report_path: Path = Path("docs/GOAL2_EXPANSION_STUDY.md")
+    failure_report_md_path: Path = Path("docs/goal2/GOAL2_FAILURE_CASES.md")
+    final_report_path: Path = Path("docs/goal2/GOAL2_EXPANSION_STUDY.md")
     failure_top_n: int = Field(default=20, gt=0)
     snippet_max_chars: int = Field(default=1200, gt=0)
 

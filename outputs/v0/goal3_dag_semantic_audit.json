@@ -1,0 +1,1395 @@
+{
+  "audit_name": "goal3_dag_semantic_audit",
+  "expression_count": 12,
+  "rows": [
+    {
+      "ast_dag_node_count": 3,
+      "ast_tree_node_count": 3,
+      "dag_alpha_vs_ast_dag": 5.333333333333333,
+      "dag_alpha_vs_ast_tree": 5.333333333333333,
+      "derived_leaf_count": 0,
+      "duplicate_child_ref_parent_count": 1,
+      "eml_dag_compression": 1.6875,
+      "eml_dag_node_count": 16,
+      "eml_tree_node_count": 27,
+      "error": null,
+      "expression": "x + y",
+      "hidden_compound_leaf_count": 0,
+      "macro_template_node_count": 0,
+      "max_abs_error_dag": 4.440892098500626e-16,
+      "max_abs_error_tree": 4.440892098500626e-16,
+      "name": "x+y",
+      "semantic_evaluations": [
+        {
+          "dag_abs_error": 0.0,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 2.5999999999999996,
+          "eml_tree_value": 2.5999999999999996,
+          "inputs": {
+            "x": 1.2,
+            "y": 1.4,
+            "z": 1.6
+          },
+          "sympy_value": 2.5999999999999996,
+          "tree_abs_error": 0.0,
+          "tree_matches_sympy": true
+        },
+        {
+          "dag_abs_error": 4.440892098500626e-16,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 3.4,
+          "eml_tree_value": 3.4,
+          "inputs": {
+            "x": 1.3,
+            "y": 2.1,
+            "z": 3.2
+          },
+          "sympy_value": 3.4000000000000004,
+          "tree_abs_error": 4.440892098500626e-16,
+          "tree_matches_sympy": true
+        },
+        {
+          "dag_abs_error": 0.0,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 3.7,
+          "eml_tree_value": 3.7,
+          "inputs": {
+            "x": 2.0,
+            "y": 1.7,
+            "z": 1.5
+          },
+          "sympy_value": 3.7,
+          "tree_abs_error": 0.0,
+          "tree_matches_sympy": true
+        }
+      ],
+      "semantic_numeric_valid": true,
+      "srepr": "Add(Symbol('x'), Symbol('y'))",
+      "structural_errors": [],
+      "structural_valid": true,
+      "top_shared_subtree_signatures": [
+        {
+          "incoming_child_ref_count": 12,
+          "kind": "constant",
+          "label": "1",
+          "node_id": 0,
+          "rank": 1,
+          "reuse_count": 12,
+          "signature": "('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))"
+        }
+      ],
+      "tree_alpha": 9.0,
+      "unsupported_final_label_count": 0
+    },
+    {
+      "ast_dag_node_count": 3,
+      "ast_tree_node_count": 3,
+      "dag_alpha_vs_ast_dag": 7.666666666666667,
+      "dag_alpha_vs_ast_tree": 7.666666666666667,
+      "derived_leaf_count": 0,
+      "duplicate_child_ref_parent_count": 1,
+      "eml_dag_compression": 1.7826086956521738,
+      "eml_dag_node_count": 23,
+      "eml_tree_node_count": 41,
+      "error": null,
+      "expression": "x*y",
+      "hidden_compound_leaf_count": 0,
+      "macro_template_node_count": 0,
+      "max_abs_error_dag": 1.7763568394002505e-15,
+      "max_abs_error_tree": 1.7763568394002505e-15,
+      "name": "x*y",
+      "semantic_evaluations": [
+        {
+          "dag_abs_error": 4.440892098500626e-16,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 1.6800000000000002,
+          "eml_tree_value": 1.6800000000000002,
+          "inputs": {
+            "x": 1.2,
+            "y": 1.4,
+            "z": 1.6
+          },
+          "sympy_value": 1.6799999999999997,
+          "tree_abs_error": 4.440892098500626e-16,
+          "tree_matches_sympy": true
+        },
+        {
+          "dag_abs_error": 1.7763568394002505e-15,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 2.7299999999999986,
+          "eml_tree_value": 2.7299999999999986,
+          "inputs": {
+            "x": 1.3,
+            "y": 2.1,
+            "z": 3.2
+          },
+          "sympy_value": 2.7300000000000004,
+          "tree_abs_error": 1.7763568394002505e-15,
+          "tree_matches_sympy": true
+        },
+        {
+          "dag_abs_error": 0.0,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 3.4,
+          "eml_tree_value": 3.4,
+          "inputs": {
+            "x": 2.0,
+            "y": 1.7,
+            "z": 1.5
+          },
+          "sympy_value": 3.4,
+          "tree_abs_error": 0.0,
+          "tree_matches_sympy": true
+        }
+      ],
+      "semantic_numeric_valid": true,
+      "srepr": "Mul(Symbol('x'), Symbol('y'))",
+      "structural_errors": [],
+      "structural_valid": true,
+      "top_shared_subtree_signatures": [
+        {
+          "incoming_child_ref_count": 19,
+          "kind": "constant",
+          "label": "1",
+          "node_id": 0,
+          "rank": 1,
+          "reuse_count": 19,
+          "signature": "('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))"
+        }
+      ],
+      "tree_alpha": 13.666666666666666,
+      "unsupported_final_label_count": 0
+    },
+    {
+      "ast_dag_node_count": 2,
+      "ast_tree_node_count": 2,
+      "dag_alpha_vs_ast_dag": 2.5,
+      "dag_alpha_vs_ast_tree": 2.5,
+      "derived_leaf_count": 0,
+      "duplicate_child_ref_parent_count": 0,
+      "eml_dag_compression": 1.4,
+      "eml_dag_node_count": 5,
+      "eml_tree_node_count": 7,
+      "error": null,
+      "expression": "log(x)",
+      "hidden_compound_leaf_count": 0,
+      "macro_template_node_count": 0,
+      "max_abs_error_dag": 2.220446049250313e-16,
+      "max_abs_error_tree": 2.220446049250313e-16,
+      "name": "log(x)",
+      "semantic_evaluations": [
+        {
+          "dag_abs_error": 1.3877787807814457e-16,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 0.18232155679395445,
+          "eml_tree_value": 0.18232155679395445,
+          "inputs": {
+            "x": 1.2,
+            "y": 1.4,
+            "z": 1.6
+          },
+          "sympy_value": 0.1823215567939546,
+          "tree_abs_error": 1.3877787807814457e-16,
+          "tree_matches_sympy": true
+        },
+        {
+          "dag_abs_error": 2.220446049250313e-16,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 0.26236426446749084,
+          "eml_tree_value": 0.26236426446749084,
+          "inputs": {
+            "x": 1.3,
+            "y": 2.1,
+            "z": 3.2
+          },
+          "sympy_value": 0.26236426446749106,
+          "tree_abs_error": 2.220446049250313e-16,
+          "tree_matches_sympy": true
+        },
+        {
+          "dag_abs_error": 1.1102230246251565e-16,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 0.6931471805599454,
+          "eml_tree_value": 0.6931471805599454,
+          "inputs": {
+            "x": 2.0,
+            "y": 1.7,
+            "z": 1.5
+          },
+          "sympy_value": 0.6931471805599453,
+          "tree_abs_error": 1.1102230246251565e-16,
+          "tree_matches_sympy": true
+        }
+      ],
+      "semantic_numeric_valid": true,
+      "srepr": "log(Symbol('x'))",
+      "structural_errors": [],
+      "structural_valid": true,
+      "top_shared_subtree_signatures": [
+        {
+          "incoming_child_ref_count": 3,
+          "kind": "constant",
+          "label": "1",
+          "node_id": 0,
+          "rank": 1,
+          "reuse_count": 3,
+          "signature": "('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))"
+        }
+      ],
+      "tree_alpha": 3.5,
+      "unsupported_final_label_count": 0
+    },
+    {
+      "ast_dag_node_count": 2,
+      "ast_tree_node_count": 2,
+      "dag_alpha_vs_ast_dag": 1.5,
+      "dag_alpha_vs_ast_tree": 1.5,
+      "derived_leaf_count": 0,
+      "duplicate_child_ref_parent_count": 0,
+      "eml_dag_compression": 1.0,
+      "eml_dag_node_count": 3,
+      "eml_tree_node_count": 3,
+      "error": null,
+      "expression": "exp(x)",
+      "hidden_compound_leaf_count": 0,
+      "macro_template_node_count": 0,
+      "max_abs_error_dag": 0.0,
+      "max_abs_error_tree": 0.0,
+      "name": "exp(x)",
+      "semantic_evaluations": [
+        {
+          "dag_abs_error": 0.0,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 3.3201169227365472,
+          "eml_tree_value": 3.3201169227365472,
+          "inputs": {
+            "x": 1.2,
+            "y": 1.4,
+            "z": 1.6
+          },
+          "sympy_value": 3.3201169227365472,
+          "tree_abs_error": 0.0,
+          "tree_matches_sympy": true
+        },
+        {
+          "dag_abs_error": 0.0,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 3.6692966676192444,
+          "eml_tree_value": 3.6692966676192444,
+          "inputs": {
+            "x": 1.3,
+            "y": 2.1,
+            "z": 3.2
+          },
+          "sympy_value": 3.6692966676192444,
+          "tree_abs_error": 0.0,
+          "tree_matches_sympy": true
+        },
+        {
+          "dag_abs_error": 0.0,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 7.38905609893065,
+          "eml_tree_value": 7.38905609893065,
+          "inputs": {
+            "x": 2.0,
+            "y": 1.7,
+            "z": 1.5
+          },
+          "sympy_value": 7.38905609893065,
+          "tree_abs_error": 0.0,
+          "tree_matches_sympy": true
+        }
+      ],
+      "semantic_numeric_valid": true,
+      "srepr": "exp(Symbol('x'))",
+      "structural_errors": [],
+      "structural_valid": true,
+      "top_shared_subtree_signatures": [],
+      "tree_alpha": 1.5,
+      "unsupported_final_label_count": 0
+    },
+    {
+      "ast_dag_node_count": 3,
+      "ast_tree_node_count": 3,
+      "dag_alpha_vs_ast_dag": 9.666666666666666,
+      "dag_alpha_vs_ast_tree": 9.666666666666666,
+      "derived_leaf_count": 0,
+      "duplicate_child_ref_parent_count": 1,
+      "eml_dag_compression": 2.586206896551724,
+      "eml_dag_node_count": 29,
+      "eml_tree_node_count": 75,
+      "error": null,
+      "expression": "x**2",
+      "hidden_compound_leaf_count": 0,
+      "macro_template_node_count": 0,
+      "max_abs_error_dag": 4.440892098500626e-15,
+      "max_abs_error_tree": 4.440892098500626e-15,
+      "name": "x**2",
+      "semantic_evaluations": [
+        {
+          "dag_abs_error": 2.220446049250313e-16,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 1.4399999999999997,
+          "eml_tree_value": 1.4399999999999997,
+          "inputs": {
+            "x": 1.2,
+            "y": 1.4,
+            "z": 1.6
+          },
+          "sympy_value": 1.44,
+          "tree_abs_error": 2.220446049250313e-16,
+          "tree_matches_sympy": true
+        },
+        {
+          "dag_abs_error": 1.1102230246251565e-15,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 1.689999999999999,
+          "eml_tree_value": 1.689999999999999,
+          "inputs": {
+            "x": 1.3,
+            "y": 2.1,
+            "z": 3.2
+          },
+          "sympy_value": 1.6900000000000002,
+          "tree_abs_error": 1.1102230246251565e-15,
+          "tree_matches_sympy": true
+        },
+        {
+          "dag_abs_error": 4.440892098500626e-15,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 4.000000000000004,
+          "eml_tree_value": 4.000000000000004,
+          "inputs": {
+            "x": 2.0,
+            "y": 1.7,
+            "z": 1.5
+          },
+          "sympy_value": 4.0,
+          "tree_abs_error": 4.440892098500626e-15,
+          "tree_matches_sympy": true
+        }
+      ],
+      "semantic_numeric_valid": true,
+      "srepr": "Pow(Symbol('x'), Integer(2))",
+      "structural_errors": [],
+      "structural_valid": true,
+      "top_shared_subtree_signatures": [
+        {
+          "incoming_child_ref_count": 24,
+          "kind": "constant",
+          "label": "1",
+          "node_id": 0,
+          "rank": 1,
+          "reuse_count": 37,
+          "signature": "('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))"
+        },
+        {
+          "incoming_child_ref_count": 2,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 1,
+          "rank": 2,
+          "reuse_count": 4,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))"
+        },
+        {
+          "incoming_child_ref_count": 2,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 3,
+          "rank": 3,
+          "reuse_count": 3,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 2,
+          "rank": 4,
+          "reuse_count": 3,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))"
+        },
+        {
+          "incoming_child_ref_count": 2,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 6,
+          "rank": 5,
+          "reuse_count": 2,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 4,
+          "rank": 6,
+          "reuse_count": 2,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 5,
+          "rank": 7,
+          "reuse_count": 2,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))"
+        }
+      ],
+      "tree_alpha": 25.0,
+      "unsupported_final_label_count": 0
+    },
+    {
+      "ast_dag_node_count": 2,
+      "ast_tree_node_count": 3,
+      "dag_alpha_vs_ast_dag": 7.5,
+      "dag_alpha_vs_ast_tree": 5.0,
+      "derived_leaf_count": 0,
+      "duplicate_child_ref_parent_count": 1,
+      "eml_dag_compression": 1.8,
+      "eml_dag_node_count": 15,
+      "eml_tree_node_count": 27,
+      "error": null,
+      "expression": "x + x",
+      "hidden_compound_leaf_count": 0,
+      "macro_template_node_count": 0,
+      "max_abs_error_dag": 4.440892098500626e-16,
+      "max_abs_error_tree": 4.440892098500626e-16,
+      "name": "x+x",
+      "semantic_evaluations": [
+        {
+          "dag_abs_error": 4.440892098500626e-16,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 2.3999999999999995,
+          "eml_tree_value": 2.3999999999999995,
+          "inputs": {
+            "x": 1.2,
+            "y": 1.4,
+            "z": 1.6
+          },
+          "sympy_value": 2.4,
+          "tree_abs_error": 4.440892098500626e-16,
+          "tree_matches_sympy": true
+        },
+        {
+          "dag_abs_error": 4.440892098500626e-16,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 2.5999999999999996,
+          "eml_tree_value": 2.5999999999999996,
+          "inputs": {
+            "x": 1.3,
+            "y": 2.1,
+            "z": 3.2
+          },
+          "sympy_value": 2.6,
+          "tree_abs_error": 4.440892098500626e-16,
+          "tree_matches_sympy": true
+        },
+        {
+          "dag_abs_error": 0.0,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 4.0,
+          "eml_tree_value": 4.0,
+          "inputs": {
+            "x": 2.0,
+            "y": 1.7,
+            "z": 1.5
+          },
+          "sympy_value": 4.0,
+          "tree_abs_error": 0.0,
+          "tree_matches_sympy": true
+        }
+      ],
+      "semantic_numeric_valid": true,
+      "srepr": "Add(Symbol('x'), Symbol('x'))",
+      "structural_errors": [],
+      "structural_valid": true,
+      "top_shared_subtree_signatures": [
+        {
+          "incoming_child_ref_count": 12,
+          "kind": "constant",
+          "label": "1",
+          "node_id": 0,
+          "rank": 1,
+          "reuse_count": 12,
+          "signature": "('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))"
+        },
+        {
+          "incoming_child_ref_count": 2,
+          "kind": "variable",
+          "label": "x",
+          "node_id": 1,
+          "rank": 2,
+          "reuse_count": 2,
+          "signature": "('restricted_eml_pure', 'leaf', 'variable', 'x', ())"
+        }
+      ],
+      "tree_alpha": 9.0,
+      "unsupported_final_label_count": 0
+    },
+    {
+      "ast_dag_node_count": 2,
+      "ast_tree_node_count": 3,
+      "dag_alpha_vs_ast_dag": 9.5,
+      "dag_alpha_vs_ast_tree": 6.333333333333333,
+      "derived_leaf_count": 0,
+      "duplicate_child_ref_parent_count": 1,
+      "eml_dag_compression": 2.1578947368421053,
+      "eml_dag_node_count": 19,
+      "eml_tree_node_count": 41,
+      "error": null,
+      "expression": "x*x",
+      "hidden_compound_leaf_count": 0,
+      "macro_template_node_count": 0,
+      "max_abs_error_dag": 1.1102230246251565e-15,
+      "max_abs_error_tree": 1.1102230246251565e-15,
+      "name": "x*x",
+      "semantic_evaluations": [
+        {
+          "dag_abs_error": 4.440892098500626e-16,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 1.4399999999999995,
+          "eml_tree_value": 1.4399999999999995,
+          "inputs": {
+            "x": 1.2,
+            "y": 1.4,
+            "z": 1.6
+          },
+          "sympy_value": 1.44,
+          "tree_abs_error": 4.440892098500626e-16,
+          "tree_matches_sympy": true
+        },
+        {
+          "dag_abs_error": 1.1102230246251565e-15,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 1.689999999999999,
+          "eml_tree_value": 1.689999999999999,
+          "inputs": {
+            "x": 1.3,
+            "y": 2.1,
+            "z": 3.2
+          },
+          "sympy_value": 1.6900000000000002,
+          "tree_abs_error": 1.1102230246251565e-15,
+          "tree_matches_sympy": true
+        },
+        {
+          "dag_abs_error": 8.881784197001252e-16,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 4.000000000000001,
+          "eml_tree_value": 4.000000000000001,
+          "inputs": {
+            "x": 2.0,
+            "y": 1.7,
+            "z": 1.5
+          },
+          "sympy_value": 4.0,
+          "tree_abs_error": 8.881784197001252e-16,
+          "tree_matches_sympy": true
+        }
+      ],
+      "semantic_numeric_valid": true,
+      "srepr": "Mul(Symbol('x'), Symbol('x'))",
+      "structural_errors": [],
+      "structural_valid": true,
+      "top_shared_subtree_signatures": [
+        {
+          "incoming_child_ref_count": 16,
+          "kind": "constant",
+          "label": "1",
+          "node_id": 0,
+          "rank": 1,
+          "reuse_count": 19,
+          "signature": "('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))"
+        },
+        {
+          "incoming_child_ref_count": 2,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 4,
+          "rank": 2,
+          "reuse_count": 2,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'variable', 'x', ())))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 2,
+          "rank": 3,
+          "reuse_count": 2,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'variable', 'x', ())))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 3,
+          "rank": 4,
+          "reuse_count": 2,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'variable', 'x', ())))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "variable",
+          "label": "x",
+          "node_id": 1,
+          "rank": 5,
+          "reuse_count": 2,
+          "signature": "('restricted_eml_pure', 'leaf', 'variable', 'x', ())"
+        }
+      ],
+      "tree_alpha": 13.666666666666666,
+      "unsupported_final_label_count": 0
+    },
+    {
+      "ast_dag_node_count": 4,
+      "ast_tree_node_count": 7,
+      "dag_alpha_vs_ast_dag": 6.25,
+      "dag_alpha_vs_ast_tree": 3.5714285714285716,
+      "derived_leaf_count": 0,
+      "duplicate_child_ref_parent_count": 1,
+      "eml_dag_compression": 3.72,
+      "eml_dag_node_count": 25,
+      "eml_tree_node_count": 93,
+      "error": null,
+      "expression": "(x + 1)*(x + 1)",
+      "hidden_compound_leaf_count": 0,
+      "macro_template_node_count": 0,
+      "max_abs_error_dag": 2.6645352591003757e-15,
+      "max_abs_error_tree": 2.6645352591003757e-15,
+      "name": "(x+1)*(x+1)",
+      "semantic_evaluations": [
+        {
+          "dag_abs_error": 0.0,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 4.84,
+          "eml_tree_value": 4.84,
+          "inputs": {
+            "x": 1.2,
+            "y": 1.4,
+            "z": 1.6
+          },
+          "sympy_value": 4.84,
+          "tree_abs_error": 0.0,
+          "tree_matches_sympy": true
+        },
+        {
+          "dag_abs_error": 2.6645352591003757e-15,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 5.289999999999997,
+          "eml_tree_value": 5.289999999999997,
+          "inputs": {
+            "x": 1.3,
+            "y": 2.1,
+            "z": 3.2
+          },
+          "sympy_value": 5.29,
+          "tree_abs_error": 2.6645352591003757e-15,
+          "tree_matches_sympy": true
+        },
+        {
+          "dag_abs_error": 1.7763568394002505e-15,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 8.999999999999998,
+          "eml_tree_value": 8.999999999999998,
+          "inputs": {
+            "x": 2.0,
+            "y": 1.7,
+            "z": 1.5
+          },
+          "sympy_value": 9.0,
+          "tree_abs_error": 1.7763568394002505e-15,
+          "tree_matches_sympy": true
+        }
+      ],
+      "semantic_numeric_valid": true,
+      "srepr": "Mul(Add(Symbol('x'), Integer(1)), Add(Symbol('x'), Integer(1)))",
+      "structural_errors": [],
+      "structural_valid": true,
+      "top_shared_subtree_signatures": [
+        {
+          "incoming_child_ref_count": 20,
+          "kind": "constant",
+          "label": "1",
+          "node_id": 0,
+          "rank": 1,
+          "reuse_count": 45,
+          "signature": "('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))"
+        },
+        {
+          "incoming_child_ref_count": 2,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 5,
+          "rank": 2,
+          "reuse_count": 5,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))"
+        },
+        {
+          "incoming_child_ref_count": 2,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 10,
+          "rank": 3,
+          "reuse_count": 3,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 6,
+          "rank": 4,
+          "reuse_count": 3,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 7,
+          "rank": 5,
+          "reuse_count": 3,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 8,
+          "rank": 6,
+          "reuse_count": 3,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 9,
+          "rank": 7,
+          "reuse_count": 3,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))"
+        },
+        {
+          "incoming_child_ref_count": 2,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 16,
+          "rank": 8,
+          "reuse_count": 2,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'variable', 'x', ())))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 2,
+          "rank": 9,
+          "reuse_count": 2,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'variable', 'x', ())))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 3,
+          "rank": 10,
+          "reuse_count": 2,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'variable', 'x', ())))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))"
+        }
+      ],
+      "tree_alpha": 13.285714285714286,
+      "unsupported_final_label_count": 0
+    },
+    {
+      "ast_dag_node_count": 3,
+      "ast_tree_node_count": 7,
+      "dag_alpha_vs_ast_dag": 10.0,
+      "dag_alpha_vs_ast_tree": 4.285714285714286,
+      "derived_leaf_count": 0,
+      "duplicate_child_ref_parent_count": 1,
+      "eml_dag_compression": 4.033333333333333,
+      "eml_dag_node_count": 30,
+      "eml_tree_node_count": 121,
+      "error": null,
+      "expression": "(x*x)*(x*x)",
+      "hidden_compound_leaf_count": 0,
+      "macro_template_node_count": 0,
+      "max_abs_error_dag": 7.105427357601002e-15,
+      "max_abs_error_tree": 7.105427357601002e-15,
+      "name": "(x*x)*(x*x)",
+      "semantic_evaluations": [
+        {
+          "dag_abs_error": 8.881784197001252e-16,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 2.073599999999999,
+          "eml_tree_value": 2.073599999999999,
+          "inputs": {
+            "x": 1.2,
+            "y": 1.4,
+            "z": 1.6
+          },
+          "sympy_value": 2.0736,
+          "tree_abs_error": 8.881784197001252e-16,
+          "tree_matches_sympy": true
+        },
+        {
+          "dag_abs_error": 3.1086244689504383e-15,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 2.8560999999999974,
+          "eml_tree_value": 2.8560999999999974,
+          "inputs": {
+            "x": 1.3,
+            "y": 2.1,
+            "z": 3.2
+          },
+          "sympy_value": 2.8561000000000005,
+          "tree_abs_error": 3.1086244689504383e-15,
+          "tree_matches_sympy": true
+        },
+        {
+          "dag_abs_error": 7.105427357601002e-15,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 16.000000000000007,
+          "eml_tree_value": 16.000000000000007,
+          "inputs": {
+            "x": 2.0,
+            "y": 1.7,
+            "z": 1.5
+          },
+          "sympy_value": 16.0,
+          "tree_abs_error": 7.105427357601002e-15,
+          "tree_matches_sympy": true
+        }
+      ],
+      "semantic_numeric_valid": true,
+      "srepr": "Mul(Mul(Symbol('x'), Symbol('x')), Mul(Symbol('x'), Symbol('x')))",
+      "structural_errors": [],
+      "structural_valid": true,
+      "top_shared_subtree_signatures": [
+        {
+          "incoming_child_ref_count": 25,
+          "kind": "constant",
+          "label": "1",
+          "node_id": 0,
+          "rank": 1,
+          "reuse_count": 57,
+          "signature": "('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))"
+        },
+        {
+          "incoming_child_ref_count": 2,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 4,
+          "rank": 2,
+          "reuse_count": 4,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'variable', 'x', ())))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 2,
+          "rank": 3,
+          "reuse_count": 4,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'variable', 'x', ())))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 3,
+          "rank": 4,
+          "reuse_count": 4,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'variable', 'x', ())))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "variable",
+          "label": "x",
+          "node_id": 1,
+          "rank": 5,
+          "reuse_count": 4,
+          "signature": "('restricted_eml_pure', 'leaf', 'variable', 'x', ())"
+        },
+        {
+          "incoming_child_ref_count": 2,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 13,
+          "rank": 6,
+          "reuse_count": 3,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 8,
+          "rank": 7,
+          "reuse_count": 3,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 9,
+          "rank": 8,
+          "reuse_count": 3,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 10,
+          "rank": 9,
+          "reuse_count": 3,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 11,
+          "rank": 10,
+          "reuse_count": 3,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))))"
+        }
+      ],
+      "tree_alpha": 17.285714285714285,
+      "unsupported_final_label_count": 0
+    },
+    {
+      "ast_dag_node_count": 3,
+      "ast_tree_node_count": 5,
+      "dag_alpha_vs_ast_dag": 6.0,
+      "dag_alpha_vs_ast_tree": 3.6,
+      "derived_leaf_count": 0,
+      "duplicate_child_ref_parent_count": 1,
+      "eml_dag_compression": 2.1666666666666665,
+      "eml_dag_node_count": 18,
+      "eml_tree_node_count": 39,
+      "error": null,
+      "expression": "log(x) + log(x)",
+      "hidden_compound_leaf_count": 0,
+      "macro_template_node_count": 0,
+      "max_abs_error_dag": 5.551115123125783e-16,
+      "max_abs_error_tree": 5.551115123125783e-16,
+      "name": "log(x)+log(x)",
+      "semantic_evaluations": [
+        {
+          "dag_abs_error": 2.220446049250313e-16,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 0.36464311358790896,
+          "eml_tree_value": 0.36464311358790896,
+          "inputs": {
+            "x": 1.2,
+            "y": 1.4,
+            "z": 1.6
+          },
+          "sympy_value": 0.3646431135879092,
+          "tree_abs_error": 2.220446049250313e-16,
+          "tree_matches_sympy": true
+        },
+        {
+          "dag_abs_error": 5.551115123125783e-16,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 0.5247285289349816,
+          "eml_tree_value": 0.5247285289349816,
+          "inputs": {
+            "x": 1.3,
+            "y": 2.1,
+            "z": 3.2
+          },
+          "sympy_value": 0.5247285289349821,
+          "tree_abs_error": 5.551115123125783e-16,
+          "tree_matches_sympy": true
+        },
+        {
+          "dag_abs_error": 2.220446049250313e-16,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 1.3862943611198908,
+          "eml_tree_value": 1.3862943611198908,
+          "inputs": {
+            "x": 2.0,
+            "y": 1.7,
+            "z": 1.5
+          },
+          "sympy_value": 1.3862943611198906,
+          "tree_abs_error": 2.220446049250313e-16,
+          "tree_matches_sympy": true
+        }
+      ],
+      "semantic_numeric_valid": true,
+      "srepr": "Add(log(Symbol('x')), log(Symbol('x')))",
+      "structural_errors": [],
+      "structural_valid": true,
+      "top_shared_subtree_signatures": [
+        {
+          "incoming_child_ref_count": 15,
+          "kind": "constant",
+          "label": "1",
+          "node_id": 0,
+          "rank": 1,
+          "reuse_count": 18,
+          "signature": "('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))"
+        },
+        {
+          "incoming_child_ref_count": 2,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 4,
+          "rank": 2,
+          "reuse_count": 2,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'variable', 'x', ())))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 2,
+          "rank": 3,
+          "reuse_count": 2,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'variable', 'x', ())))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 3,
+          "rank": 4,
+          "reuse_count": 2,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'variable', 'x', ())))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "variable",
+          "label": "x",
+          "node_id": 1,
+          "rank": 5,
+          "reuse_count": 2,
+          "signature": "('restricted_eml_pure', 'leaf', 'variable', 'x', ())"
+        }
+      ],
+      "tree_alpha": 7.8,
+      "unsupported_final_label_count": 0
+    },
+    {
+      "ast_dag_node_count": 3,
+      "ast_tree_node_count": 5,
+      "dag_alpha_vs_ast_dag": 5.333333333333333,
+      "dag_alpha_vs_ast_tree": 3.2,
+      "derived_leaf_count": 0,
+      "duplicate_child_ref_parent_count": 1,
+      "eml_dag_compression": 1.9375,
+      "eml_dag_node_count": 16,
+      "eml_tree_node_count": 31,
+      "error": null,
+      "expression": "exp(x) + exp(x)",
+      "hidden_compound_leaf_count": 0,
+      "macro_template_node_count": 0,
+      "max_abs_error_dag": 0.0,
+      "max_abs_error_tree": 0.0,
+      "name": "exp(x)+exp(x)",
+      "semantic_evaluations": [
+        {
+          "dag_abs_error": 0.0,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 6.6402338454730945,
+          "eml_tree_value": 6.6402338454730945,
+          "inputs": {
+            "x": 1.2,
+            "y": 1.4,
+            "z": 1.6
+          },
+          "sympy_value": 6.6402338454730945,
+          "tree_abs_error": 0.0,
+          "tree_matches_sympy": true
+        },
+        {
+          "dag_abs_error": 0.0,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 7.338593335238489,
+          "eml_tree_value": 7.338593335238489,
+          "inputs": {
+            "x": 1.3,
+            "y": 2.1,
+            "z": 3.2
+          },
+          "sympy_value": 7.338593335238489,
+          "tree_abs_error": 0.0,
+          "tree_matches_sympy": true
+        },
+        {
+          "dag_abs_error": 0.0,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 14.7781121978613,
+          "eml_tree_value": 14.7781121978613,
+          "inputs": {
+            "x": 2.0,
+            "y": 1.7,
+            "z": 1.5
+          },
+          "sympy_value": 14.7781121978613,
+          "tree_abs_error": 0.0,
+          "tree_matches_sympy": true
+        }
+      ],
+      "semantic_numeric_valid": true,
+      "srepr": "Add(exp(Symbol('x')), exp(Symbol('x')))",
+      "structural_errors": [],
+      "structural_valid": true,
+      "top_shared_subtree_signatures": [
+        {
+          "incoming_child_ref_count": 13,
+          "kind": "constant",
+          "label": "1",
+          "node_id": 0,
+          "rank": 1,
+          "reuse_count": 14,
+          "signature": "('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))"
+        },
+        {
+          "incoming_child_ref_count": 2,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 2,
+          "rank": 2,
+          "reuse_count": 2,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'variable', 'x', ())), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "variable",
+          "label": "x",
+          "node_id": 1,
+          "rank": 3,
+          "reuse_count": 2,
+          "signature": "('restricted_eml_pure', 'leaf', 'variable', 'x', ())"
+        }
+      ],
+      "tree_alpha": 6.2,
+      "unsupported_final_label_count": 0
+    },
+    {
+      "ast_dag_node_count": 9,
+      "ast_tree_node_count": 15,
+      "dag_alpha_vs_ast_dag": 7.777777777777778,
+      "dag_alpha_vs_ast_tree": 4.666666666666667,
+      "derived_leaf_count": 0,
+      "duplicate_child_ref_parent_count": 1,
+      "eml_dag_compression": 3.8142857142857145,
+      "eml_dag_node_count": 70,
+      "eml_tree_node_count": 267,
+      "error": null,
+      "expression": "((x*x)*(y*y))*((x*x)*(x + 1))",
+      "hidden_compound_leaf_count": 0,
+      "macro_template_node_count": 0,
+      "max_abs_error_dag": 5.684341886080802e-14,
+      "max_abs_error_tree": 5.684341886080802e-14,
+      "name": "((x*x)*(y*y))*((x*x)*(x+1))",
+      "semantic_evaluations": [
+        {
+          "dag_abs_error": 0.0,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 8.941363199999998,
+          "eml_tree_value": 8.941363199999998,
+          "inputs": {
+            "x": 1.2,
+            "y": 1.4,
+            "z": 1.6
+          },
+          "sympy_value": 8.941363199999998,
+          "tree_abs_error": 0.0,
+          "tree_matches_sympy": true
+        },
+        {
+          "dag_abs_error": 5.3290705182007514e-14,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 28.969422299999955,
+          "eml_tree_value": 28.969422299999955,
+          "inputs": {
+            "x": 1.3,
+            "y": 2.1,
+            "z": 3.2
+          },
+          "sympy_value": 28.96942230000001,
+          "tree_abs_error": 5.3290705182007514e-14,
+          "tree_matches_sympy": true
+        },
+        {
+          "dag_abs_error": 5.684341886080802e-14,
+          "dag_matches_sympy": true,
+          "dag_matches_tree": true,
+          "eml_dag_value": 138.71999999999994,
+          "eml_tree_value": 138.71999999999994,
+          "inputs": {
+            "x": 2.0,
+            "y": 1.7,
+            "z": 1.5
+          },
+          "sympy_value": 138.72,
+          "tree_abs_error": 5.684341886080802e-14,
+          "tree_matches_sympy": true
+        }
+      ],
+      "semantic_numeric_valid": true,
+      "srepr": "Mul(Mul(Mul(Symbol('x'), Symbol('x')), Mul(Symbol('y'), Symbol('y'))), Mul(Mul(Symbol('x'), Symbol('x')), Add(Symbol('x'), Integer(1))))",
+      "structural_errors": [],
+      "structural_valid": true,
+      "top_shared_subtree_signatures": [
+        {
+          "incoming_child_ref_count": 56,
+          "kind": "constant",
+          "label": "1",
+          "node_id": 0,
+          "rank": 1,
+          "reuse_count": 127,
+          "signature": "('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))"
+        },
+        {
+          "incoming_child_ref_count": 2,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 8,
+          "rank": 2,
+          "reuse_count": 8,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))"
+        },
+        {
+          "incoming_child_ref_count": 6,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 13,
+          "rank": 3,
+          "reuse_count": 7,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 9,
+          "rank": 4,
+          "reuse_count": 7,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 10,
+          "rank": 5,
+          "reuse_count": 7,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 11,
+          "rank": 6,
+          "reuse_count": 7,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 12,
+          "rank": 7,
+          "reuse_count": 7,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))"
+        },
+        {
+          "incoming_child_ref_count": 3,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 4,
+          "rank": 8,
+          "reuse_count": 5,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'variable', 'x', ())))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 2,
+          "rank": 9,
+          "reuse_count": 5,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'variable', 'x', ())))"
+        },
+        {
+          "incoming_child_ref_count": 1,
+          "kind": "eml",
+          "label": "eml",
+          "node_id": 3,
+          "rank": 10,
+          "reuse_count": 5,
+          "signature": "('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'binary', 'eml', 'eml', (0, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))), (1, ('restricted_eml_pure', 'leaf', 'variable', 'x', ())))), (1, ('restricted_eml_pure', 'leaf', 'constant', '1', (('value', 1),))))"
+        }
+      ],
+      "tree_alpha": 17.8,
+      "unsupported_final_label_count": 0
+    }
+  ],
+  "safe_positive_inputs": [
+    {
+      "x": 1.2,
+      "y": 1.4,
+      "z": 1.6
+    },
+    {
+      "x": 1.3,
+      "y": 2.1,
+      "z": 3.2
+    },
+    {
+      "x": 2.0,
+      "y": 1.7,
+      "z": 1.5
+    }
+  ],
+  "semantic_numeric_valid_count": 12,
+  "structural_valid_count": 12
+}

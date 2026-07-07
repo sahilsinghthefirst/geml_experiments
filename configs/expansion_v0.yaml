@@ -25,8 +25,8 @@ worst_operator_signatures_csv_path: outputs/v0/worst_operator_signatures.csv
 safest_operator_signatures_csv_path: outputs/v0/safest_operator_signatures.csv
 depth_failure_modes_csv_path: outputs/v0/depth_failure_modes.csv
 safe_eml_regime_candidates_csv_path: outputs/v0/safe_eml_regime_candidates.csv
-failure_report_md_path: outputs/v0/GOAL2_FAILURE_CASES.md
-final_report_path: docs/GOAL2_EXPANSION_STUDY.md
+failure_report_md_path: docs/goal2/GOAL2_FAILURE_CASES.md
+final_report_path: docs/goal2/GOAL2_EXPANSION_STUDY.md
 failure_top_n: 20
 snippet_max_chars: 1200
 top_alpha_json_path: outputs/v0/official_eml_top20_alpha.json

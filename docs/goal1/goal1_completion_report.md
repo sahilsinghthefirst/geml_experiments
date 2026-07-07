@@ -543,7 +543,7 @@ Current decision:
 - Alpha is empty and `alpha_valid=false` for derived-mode trees.
 - Goal 2 serious alpha plots must use only `restricted_eml_pure` rows with `alpha_valid=true`.
 
-The locked semantics are documented in `docs/goal2_representation_semantics.md` and the official compiler port is documented in `docs/GOAL2_OFFICIAL_EML_COMPILER.md`.
+The locked semantics are documented in `docs/goal2/goal2_representation_semantics.md` and the official compiler port is documented in `docs/goal2/GOAL2_OFFICIAL_EML_COMPILER.md`.
 
 ### EML Simplification Uses Formal Inverse Rules
 

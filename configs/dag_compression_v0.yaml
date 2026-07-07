@@ -1,0 +1,18 @@
+seed: 0
+count: 10000
+max_depth: 4
+output_dir: outputs/v0
+input_jsonl_path: outputs/v0/dag_compression_inputs.jsonl
+metrics_jsonl_path: outputs/v0/dag_compression_metrics.jsonl
+metrics_csv_path: outputs/v0/dag_compression_metrics.csv
+summary_json_path: outputs/v0/dag_compression_summary.json
+alpha_threshold_k: 4
+alpha_threshold_l: 3
+operator_probabilities:
+  add: 0.3
+  mul: 0.3
+  exp: 0.2
+  log: 0.2
+symbol_names:
+  - x
+  - y
