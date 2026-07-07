@@ -1,0 +1,3892 @@
+{
+  "complex_domain_claim": false,
+  "rows": [
+    {
+      "assumptions": null,
+      "branch_sensitive_rule_names_applied": [],
+      "branch_sensitive_rules_applied": false,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 3,
+          "ast_tree_nodes": 3,
+          "eml_dag_nodes": 16,
+          "eml_tree_nodes": 27,
+          "expression": "Add(x,y)",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            16,
+            27,
+            3,
+            3,
+            "Add(x,y)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 3,
+          "ast_tree_nodes": 3,
+          "eml_dag_nodes": 16,
+          "eml_tree_nodes": 27,
+          "expression": "Add(y,x)",
+          "integrity_valid": true,
+          "rank": 2,
+          "tie_break_key": [
+            16,
+            27,
+            3,
+            3,
+            "Add(y,x)"
+          ]
+        }
+      ],
+      "compression_gain": 1.0,
+      "eclass_count": 3,
+      "eml_dag_max_abs_error": 4.440892098500626e-16,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        3.4,
+        5.1,
+        5.800000000000001
+      ],
+      "enode_count": 4,
+      "extracted_eml_dag_nodes": 16,
+      "extracted_expression": "Add(x,y)",
+      "extracted_value_samples": [
+        3.4000000000000004,
+        5.1,
+        5.800000000000001
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 16,
+      "original_expression": "x+y",
+      "original_value_samples": [
+        3.4000000000000004,
+        5.1,
+        5.800000000000001
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "safe",
+      "rules_applied_by_name": {
+        "add_commutativity": 1
+      },
+      "rules_applied_by_tier": {
+        "safe": 1
+      },
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": "positive_real_formal",
+      "branch_sensitive_rule_names_applied": [],
+      "branch_sensitive_rules_applied": false,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 3,
+          "ast_tree_nodes": 3,
+          "eml_dag_nodes": 16,
+          "eml_tree_nodes": 27,
+          "expression": "Add(x,y)",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            16,
+            27,
+            3,
+            3,
+            "Add(x,y)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 3,
+          "ast_tree_nodes": 3,
+          "eml_dag_nodes": 16,
+          "eml_tree_nodes": 27,
+          "expression": "Add(y,x)",
+          "integrity_valid": true,
+          "rank": 2,
+          "tie_break_key": [
+            16,
+            27,
+            3,
+            3,
+            "Add(y,x)"
+          ]
+        }
+      ],
+      "compression_gain": 1.0,
+      "eclass_count": 3,
+      "eml_dag_max_abs_error": 4.440892098500626e-16,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        3.4,
+        5.1,
+        5.800000000000001
+      ],
+      "enode_count": 4,
+      "extracted_eml_dag_nodes": 16,
+      "extracted_expression": "Add(x,y)",
+      "extracted_value_samples": [
+        3.4000000000000004,
+        5.1,
+        5.800000000000001
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 16,
+      "original_expression": "x+y",
+      "original_value_samples": [
+        3.4000000000000004,
+        5.1,
+        5.800000000000001
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "positive_real_formal",
+      "rules_applied_by_name": {
+        "add_commutativity": 1
+      },
+      "rules_applied_by_tier": {
+        "safe": 1
+      },
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": null,
+      "branch_sensitive_rule_names_applied": [],
+      "branch_sensitive_rules_applied": false,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 3,
+          "ast_tree_nodes": 3,
+          "eml_dag_nodes": 16,
+          "eml_tree_nodes": 27,
+          "expression": "Add(x,y)",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            16,
+            27,
+            3,
+            3,
+            "Add(x,y)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 3,
+          "ast_tree_nodes": 3,
+          "eml_dag_nodes": 16,
+          "eml_tree_nodes": 27,
+          "expression": "Add(y,x)",
+          "integrity_valid": true,
+          "rank": 2,
+          "tie_break_key": [
+            16,
+            27,
+            3,
+            3,
+            "Add(y,x)"
+          ]
+        }
+      ],
+      "compression_gain": 1.0,
+      "eclass_count": 3,
+      "eml_dag_max_abs_error": 4.440892098500626e-16,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        3.4,
+        5.1,
+        5.800000000000001
+      ],
+      "enode_count": 4,
+      "extracted_eml_dag_nodes": 16,
+      "extracted_expression": "Add(x,y)",
+      "extracted_value_samples": [
+        3.4000000000000004,
+        5.1,
+        5.800000000000001
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 16,
+      "original_expression": "y+x",
+      "original_value_samples": [
+        3.4000000000000004,
+        5.1,
+        5.800000000000001
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "safe",
+      "rules_applied_by_name": {
+        "add_commutativity": 1
+      },
+      "rules_applied_by_tier": {
+        "safe": 1
+      },
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": "positive_real_formal",
+      "branch_sensitive_rule_names_applied": [],
+      "branch_sensitive_rules_applied": false,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 3,
+          "ast_tree_nodes": 3,
+          "eml_dag_nodes": 16,
+          "eml_tree_nodes": 27,
+          "expression": "Add(x,y)",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            16,
+            27,
+            3,
+            3,
+            "Add(x,y)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 3,
+          "ast_tree_nodes": 3,
+          "eml_dag_nodes": 16,
+          "eml_tree_nodes": 27,
+          "expression": "Add(y,x)",
+          "integrity_valid": true,
+          "rank": 2,
+          "tie_break_key": [
+            16,
+            27,
+            3,
+            3,
+            "Add(y,x)"
+          ]
+        }
+      ],
+      "compression_gain": 1.0,
+      "eclass_count": 3,
+      "eml_dag_max_abs_error": 4.440892098500626e-16,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        3.4,
+        5.1,
+        5.800000000000001
+      ],
+      "enode_count": 4,
+      "extracted_eml_dag_nodes": 16,
+      "extracted_expression": "Add(x,y)",
+      "extracted_value_samples": [
+        3.4000000000000004,
+        5.1,
+        5.800000000000001
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 16,
+      "original_expression": "y+x",
+      "original_value_samples": [
+        3.4000000000000004,
+        5.1,
+        5.800000000000001
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "positive_real_formal",
+      "rules_applied_by_name": {
+        "add_commutativity": 1
+      },
+      "rules_applied_by_tier": {
+        "safe": 1
+      },
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": null,
+      "branch_sensitive_rule_names_applied": [],
+      "branch_sensitive_rules_applied": false,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 3,
+          "ast_tree_nodes": 3,
+          "eml_dag_nodes": 14,
+          "eml_tree_nodes": 27,
+          "expression": "Add(1,x)",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            14,
+            27,
+            3,
+            3,
+            "Add(1,x)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 3,
+          "ast_tree_nodes": 3,
+          "eml_dag_nodes": 14,
+          "eml_tree_nodes": 27,
+          "expression": "Add(x,1)",
+          "integrity_valid": true,
+          "rank": 2,
+          "tie_break_key": [
+            14,
+            27,
+            3,
+            3,
+            "Add(x,1)"
+          ]
+        }
+      ],
+      "compression_gain": 1.0,
+      "eclass_count": 3,
+      "eml_dag_max_abs_error": 4.440892098500626e-16,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        2.3,
+        2.6999999999999997,
+        5.2
+      ],
+      "enode_count": 4,
+      "extracted_eml_dag_nodes": 14,
+      "extracted_expression": "Add(1,x)",
+      "extracted_value_samples": [
+        2.3,
+        2.7,
+        5.2
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 14,
+      "original_expression": "x+1",
+      "original_value_samples": [
+        2.3,
+        2.7,
+        5.2
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "safe",
+      "rules_applied_by_name": {
+        "add_commutativity": 1
+      },
+      "rules_applied_by_tier": {
+        "safe": 1
+      },
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": "positive_real_formal",
+      "branch_sensitive_rule_names_applied": [],
+      "branch_sensitive_rules_applied": false,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 3,
+          "ast_tree_nodes": 3,
+          "eml_dag_nodes": 14,
+          "eml_tree_nodes": 27,
+          "expression": "Add(1,x)",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            14,
+            27,
+            3,
+            3,
+            "Add(1,x)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 3,
+          "ast_tree_nodes": 3,
+          "eml_dag_nodes": 14,
+          "eml_tree_nodes": 27,
+          "expression": "Add(x,1)",
+          "integrity_valid": true,
+          "rank": 2,
+          "tie_break_key": [
+            14,
+            27,
+            3,
+            3,
+            "Add(x,1)"
+          ]
+        }
+      ],
+      "compression_gain": 1.0,
+      "eclass_count": 3,
+      "eml_dag_max_abs_error": 4.440892098500626e-16,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        2.3,
+        2.6999999999999997,
+        5.2
+      ],
+      "enode_count": 4,
+      "extracted_eml_dag_nodes": 14,
+      "extracted_expression": "Add(1,x)",
+      "extracted_value_samples": [
+        2.3,
+        2.7,
+        5.2
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 14,
+      "original_expression": "x+1",
+      "original_value_samples": [
+        2.3,
+        2.7,
+        5.2
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "positive_real_formal",
+      "rules_applied_by_name": {
+        "add_commutativity": 1
+      },
+      "rules_applied_by_tier": {
+        "safe": 1
+      },
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": null,
+      "branch_sensitive_rule_names_applied": [],
+      "branch_sensitive_rules_applied": false,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 3,
+          "ast_tree_nodes": 3,
+          "eml_dag_nodes": 14,
+          "eml_tree_nodes": 27,
+          "expression": "Add(1,x)",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            14,
+            27,
+            3,
+            3,
+            "Add(1,x)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 3,
+          "ast_tree_nodes": 3,
+          "eml_dag_nodes": 14,
+          "eml_tree_nodes": 27,
+          "expression": "Add(x,1)",
+          "integrity_valid": true,
+          "rank": 2,
+          "tie_break_key": [
+            14,
+            27,
+            3,
+            3,
+            "Add(x,1)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(-1,Add(2,x))",
+          "integrity_valid": true,
+          "rank": 3,
+          "tie_break_key": [
+            22,
+            63,
+            5,
+            5,
+            "Add(-1,Add(2,x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(-1,Add(x,2))",
+          "integrity_valid": true,
+          "rank": 4,
+          "tie_break_key": [
+            22,
+            63,
+            5,
+            5,
+            "Add(-1,Add(x,2))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(2,Add(-1,x))",
+          "integrity_valid": true,
+          "rank": 5,
+          "tie_break_key": [
+            22,
+            63,
+            5,
+            5,
+            "Add(2,Add(-1,x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(2,Add(x,-1))",
+          "integrity_valid": true,
+          "rank": 6,
+          "tie_break_key": [
+            22,
+            63,
+            5,
+            5,
+            "Add(2,Add(x,-1))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(Add(-1,2),x)",
+          "integrity_valid": true,
+          "rank": 7,
+          "tie_break_key": [
+            22,
+            63,
+            5,
+            5,
+            "Add(Add(-1,2),x)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(Add(-1,x),2)",
+          "integrity_valid": true,
+          "rank": 8,
+          "tie_break_key": [
+            22,
+            63,
+            5,
+            5,
+            "Add(Add(-1,x),2)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(Add(2,-1),x)",
+          "integrity_valid": true,
+          "rank": 9,
+          "tie_break_key": [
+            22,
+            63,
+            5,
+            5,
+            "Add(Add(2,-1),x)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(Add(2,x),-1)",
+          "integrity_valid": true,
+          "rank": 10,
+          "tie_break_key": [
+            22,
+            63,
+            5,
+            5,
+            "Add(Add(2,x),-1)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(Add(x,-1),2)",
+          "integrity_valid": true,
+          "rank": 11,
+          "tie_break_key": [
+            22,
+            63,
+            5,
+            5,
+            "Add(Add(x,-1),2)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(Add(x,2),-1)",
+          "integrity_valid": true,
+          "rank": 12,
+          "tie_break_key": [
+            22,
+            63,
+            5,
+            5,
+            "Add(Add(x,2),-1)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(x,Add(-1,2))",
+          "integrity_valid": true,
+          "rank": 13,
+          "tie_break_key": [
+            22,
+            63,
+            5,
+            5,
+            "Add(x,Add(-1,2))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(x,Add(2,-1))",
+          "integrity_valid": true,
+          "rank": 14,
+          "tie_break_key": [
+            22,
+            63,
+            5,
+            5,
+            "Add(x,Add(2,-1))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 7,
+          "ast_tree_nodes": 7,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(Add(2,x),Neg(1))",
+          "integrity_valid": true,
+          "rank": 15,
+          "tie_break_key": [
+            22,
+            63,
+            7,
+            7,
+            "Add(Add(2,x),Neg(1))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 7,
+          "ast_tree_nodes": 7,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(Add(x,2),Neg(1))",
+          "integrity_valid": true,
+          "rank": 16,
+          "tie_break_key": [
+            22,
+            63,
+            7,
+            7,
+            "Add(Add(x,2),Neg(1))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 7,
+          "ast_tree_nodes": 7,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(Neg(1),Add(2,x))",
+          "integrity_valid": true,
+          "rank": 17,
+          "tie_break_key": [
+            22,
+            63,
+            7,
+            7,
+            "Add(Neg(1),Add(2,x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 7,
+          "ast_tree_nodes": 7,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(Neg(1),Add(x,2))",
+          "integrity_valid": true,
+          "rank": 18,
+          "tie_break_key": [
+            22,
+            63,
+            7,
+            7,
+            "Add(Neg(1),Add(x,2))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 7,
+          "ast_tree_nodes": 7,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Sub(Add(2,x),1)",
+          "integrity_valid": true,
+          "rank": 19,
+          "tie_break_key": [
+            22,
+            63,
+            7,
+            7,
+            "Sub(Add(2,x),1)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 7,
+          "ast_tree_nodes": 7,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Sub(Add(x,2),1)",
+          "integrity_valid": true,
+          "rank": 20,
+          "tie_break_key": [
+            22,
+            63,
+            7,
+            7,
+            "Sub(Add(x,2),1)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 7,
+          "ast_tree_nodes": 9,
+          "eml_dag_nodes": 27,
+          "eml_tree_nodes": 99,
+          "expression": "Sub(Add(2,x),Add(-1,2))",
+          "integrity_valid": true,
+          "rank": 21,
+          "tie_break_key": [
+            27,
+            99,
+            7,
+            9,
+            "Sub(Add(2,x),Add(-1,2))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 7,
+          "ast_tree_nodes": 9,
+          "eml_dag_nodes": 27,
+          "eml_tree_nodes": 99,
+          "expression": "Sub(Add(2,x),Add(2,-1))",
+          "integrity_valid": true,
+          "rank": 22,
+          "tie_break_key": [
+            27,
+            99,
+            7,
+            9,
+            "Sub(Add(2,x),Add(2,-1))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 7,
+          "ast_tree_nodes": 9,
+          "eml_dag_nodes": 27,
+          "eml_tree_nodes": 99,
+          "expression": "Sub(Add(x,2),Add(-1,2))",
+          "integrity_valid": true,
+          "rank": 23,
+          "tie_break_key": [
+            27,
+            99,
+            7,
+            9,
+            "Sub(Add(x,2),Add(-1,2))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 7,
+          "ast_tree_nodes": 9,
+          "eml_dag_nodes": 27,
+          "eml_tree_nodes": 99,
+          "expression": "Sub(Add(x,2),Add(2,-1))",
+          "integrity_valid": true,
+          "rank": 24,
+          "tie_break_key": [
+            27,
+            99,
+            7,
+            9,
+            "Sub(Add(x,2),Add(2,-1))"
+          ]
+        }
+      ],
+      "compression_gain": 1.5714285714285714,
+      "eclass_count": 7,
+      "eml_dag_max_abs_error": 4.440892098500626e-16,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        2.3,
+        2.6999999999999997,
+        5.2
+      ],
+      "enode_count": 18,
+      "extracted_eml_dag_nodes": 14,
+      "extracted_expression": "Add(1,x)",
+      "extracted_value_samples": [
+        2.3,
+        2.7,
+        5.2
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 22,
+      "original_expression": "x+2-1",
+      "original_value_samples": [
+        2.3,
+        2.7,
+        5.2
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "safe",
+      "rules_applied_by_name": {
+        "add_associativity": 4,
+        "add_commutativity": 5,
+        "fold_add_constants": 2,
+        "fold_neg_constant": 1,
+        "sub_lowering": 1
+      },
+      "rules_applied_by_tier": {
+        "safe": 13
+      },
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": "positive_real_formal",
+      "branch_sensitive_rule_names_applied": [],
+      "branch_sensitive_rules_applied": false,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 3,
+          "ast_tree_nodes": 3,
+          "eml_dag_nodes": 14,
+          "eml_tree_nodes": 27,
+          "expression": "Add(1,x)",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            14,
+            27,
+            3,
+            3,
+            "Add(1,x)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 3,
+          "ast_tree_nodes": 3,
+          "eml_dag_nodes": 14,
+          "eml_tree_nodes": 27,
+          "expression": "Add(x,1)",
+          "integrity_valid": true,
+          "rank": 2,
+          "tie_break_key": [
+            14,
+            27,
+            3,
+            3,
+            "Add(x,1)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(-1,Add(2,x))",
+          "integrity_valid": true,
+          "rank": 3,
+          "tie_break_key": [
+            22,
+            63,
+            5,
+            5,
+            "Add(-1,Add(2,x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(-1,Add(x,2))",
+          "integrity_valid": true,
+          "rank": 4,
+          "tie_break_key": [
+            22,
+            63,
+            5,
+            5,
+            "Add(-1,Add(x,2))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(2,Add(-1,x))",
+          "integrity_valid": true,
+          "rank": 5,
+          "tie_break_key": [
+            22,
+            63,
+            5,
+            5,
+            "Add(2,Add(-1,x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(2,Add(x,-1))",
+          "integrity_valid": true,
+          "rank": 6,
+          "tie_break_key": [
+            22,
+            63,
+            5,
+            5,
+            "Add(2,Add(x,-1))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(Add(-1,2),x)",
+          "integrity_valid": true,
+          "rank": 7,
+          "tie_break_key": [
+            22,
+            63,
+            5,
+            5,
+            "Add(Add(-1,2),x)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(Add(-1,x),2)",
+          "integrity_valid": true,
+          "rank": 8,
+          "tie_break_key": [
+            22,
+            63,
+            5,
+            5,
+            "Add(Add(-1,x),2)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(Add(2,-1),x)",
+          "integrity_valid": true,
+          "rank": 9,
+          "tie_break_key": [
+            22,
+            63,
+            5,
+            5,
+            "Add(Add(2,-1),x)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(Add(2,x),-1)",
+          "integrity_valid": true,
+          "rank": 10,
+          "tie_break_key": [
+            22,
+            63,
+            5,
+            5,
+            "Add(Add(2,x),-1)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(Add(x,-1),2)",
+          "integrity_valid": true,
+          "rank": 11,
+          "tie_break_key": [
+            22,
+            63,
+            5,
+            5,
+            "Add(Add(x,-1),2)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(Add(x,2),-1)",
+          "integrity_valid": true,
+          "rank": 12,
+          "tie_break_key": [
+            22,
+            63,
+            5,
+            5,
+            "Add(Add(x,2),-1)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(x,Add(-1,2))",
+          "integrity_valid": true,
+          "rank": 13,
+          "tie_break_key": [
+            22,
+            63,
+            5,
+            5,
+            "Add(x,Add(-1,2))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(x,Add(2,-1))",
+          "integrity_valid": true,
+          "rank": 14,
+          "tie_break_key": [
+            22,
+            63,
+            5,
+            5,
+            "Add(x,Add(2,-1))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 7,
+          "ast_tree_nodes": 7,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(Add(2,x),Neg(1))",
+          "integrity_valid": true,
+          "rank": 15,
+          "tie_break_key": [
+            22,
+            63,
+            7,
+            7,
+            "Add(Add(2,x),Neg(1))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 7,
+          "ast_tree_nodes": 7,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(Add(x,2),Neg(1))",
+          "integrity_valid": true,
+          "rank": 16,
+          "tie_break_key": [
+            22,
+            63,
+            7,
+            7,
+            "Add(Add(x,2),Neg(1))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 7,
+          "ast_tree_nodes": 7,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(Neg(1),Add(2,x))",
+          "integrity_valid": true,
+          "rank": 17,
+          "tie_break_key": [
+            22,
+            63,
+            7,
+            7,
+            "Add(Neg(1),Add(2,x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 7,
+          "ast_tree_nodes": 7,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Add(Neg(1),Add(x,2))",
+          "integrity_valid": true,
+          "rank": 18,
+          "tie_break_key": [
+            22,
+            63,
+            7,
+            7,
+            "Add(Neg(1),Add(x,2))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 7,
+          "ast_tree_nodes": 7,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Sub(Add(2,x),1)",
+          "integrity_valid": true,
+          "rank": 19,
+          "tie_break_key": [
+            22,
+            63,
+            7,
+            7,
+            "Sub(Add(2,x),1)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 7,
+          "ast_tree_nodes": 7,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 63,
+          "expression": "Sub(Add(x,2),1)",
+          "integrity_valid": true,
+          "rank": 20,
+          "tie_break_key": [
+            22,
+            63,
+            7,
+            7,
+            "Sub(Add(x,2),1)"
+          ]
+        },
+        {
+          "ast_dag_nodes": 7,
+          "ast_tree_nodes": 9,
+          "eml_dag_nodes": 27,
+          "eml_tree_nodes": 99,
+          "expression": "Sub(Add(2,x),Add(-1,2))",
+          "integrity_valid": true,
+          "rank": 21,
+          "tie_break_key": [
+            27,
+            99,
+            7,
+            9,
+            "Sub(Add(2,x),Add(-1,2))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 7,
+          "ast_tree_nodes": 9,
+          "eml_dag_nodes": 27,
+          "eml_tree_nodes": 99,
+          "expression": "Sub(Add(2,x),Add(2,-1))",
+          "integrity_valid": true,
+          "rank": 22,
+          "tie_break_key": [
+            27,
+            99,
+            7,
+            9,
+            "Sub(Add(2,x),Add(2,-1))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 7,
+          "ast_tree_nodes": 9,
+          "eml_dag_nodes": 27,
+          "eml_tree_nodes": 99,
+          "expression": "Sub(Add(x,2),Add(-1,2))",
+          "integrity_valid": true,
+          "rank": 23,
+          "tie_break_key": [
+            27,
+            99,
+            7,
+            9,
+            "Sub(Add(x,2),Add(-1,2))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 7,
+          "ast_tree_nodes": 9,
+          "eml_dag_nodes": 27,
+          "eml_tree_nodes": 99,
+          "expression": "Sub(Add(x,2),Add(2,-1))",
+          "integrity_valid": true,
+          "rank": 24,
+          "tie_break_key": [
+            27,
+            99,
+            7,
+            9,
+            "Sub(Add(x,2),Add(2,-1))"
+          ]
+        }
+      ],
+      "compression_gain": 1.5714285714285714,
+      "eclass_count": 7,
+      "eml_dag_max_abs_error": 4.440892098500626e-16,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        2.3,
+        2.6999999999999997,
+        5.2
+      ],
+      "enode_count": 18,
+      "extracted_eml_dag_nodes": 14,
+      "extracted_expression": "Add(1,x)",
+      "extracted_value_samples": [
+        2.3,
+        2.7,
+        5.2
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 22,
+      "original_expression": "x+2-1",
+      "original_value_samples": [
+        2.3,
+        2.7,
+        5.2
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "positive_real_formal",
+      "rules_applied_by_name": {
+        "add_associativity": 4,
+        "add_commutativity": 5,
+        "fold_add_constants": 2,
+        "fold_neg_constant": 1,
+        "sub_lowering": 1
+      },
+      "rules_applied_by_tier": {
+        "safe": 13
+      },
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": null,
+      "branch_sensitive_rule_names_applied": [],
+      "branch_sensitive_rules_applied": false,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 1,
+          "ast_tree_nodes": 1,
+          "eml_dag_nodes": 1,
+          "eml_tree_nodes": 1,
+          "expression": "x",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            1,
+            1,
+            1,
+            1,
+            "x"
+          ]
+        }
+      ],
+      "compression_gain": 19.0,
+      "eclass_count": 2,
+      "eml_dag_max_abs_error": 0.0,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        1.3,
+        1.7,
+        4.2
+      ],
+      "enode_count": 5,
+      "extracted_eml_dag_nodes": 1,
+      "extracted_expression": "x",
+      "extracted_value_samples": [
+        1.3,
+        1.7,
+        4.2
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 19,
+      "original_expression": "x*1",
+      "original_value_samples": [
+        1.3,
+        1.7,
+        4.2
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "safe",
+      "rules_applied_by_name": {
+        "mul_associativity": 2,
+        "mul_commutativity": 1,
+        "mul_identity_right": 2
+      },
+      "rules_applied_by_tier": {
+        "safe": 5
+      },
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": "positive_real_formal",
+      "branch_sensitive_rule_names_applied": [],
+      "branch_sensitive_rules_applied": false,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 1,
+          "ast_tree_nodes": 1,
+          "eml_dag_nodes": 1,
+          "eml_tree_nodes": 1,
+          "expression": "x",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            1,
+            1,
+            1,
+            1,
+            "x"
+          ]
+        }
+      ],
+      "compression_gain": 19.0,
+      "eclass_count": 2,
+      "eml_dag_max_abs_error": 0.0,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        1.3,
+        1.7,
+        4.2
+      ],
+      "enode_count": 5,
+      "extracted_eml_dag_nodes": 1,
+      "extracted_expression": "x",
+      "extracted_value_samples": [
+        1.3,
+        1.7,
+        4.2
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 19,
+      "original_expression": "x*1",
+      "original_value_samples": [
+        1.3,
+        1.7,
+        4.2
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "positive_real_formal",
+      "rules_applied_by_name": {
+        "mul_associativity": 2,
+        "mul_commutativity": 1,
+        "mul_identity_right": 2
+      },
+      "rules_applied_by_tier": {
+        "safe": 5
+      },
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": null,
+      "branch_sensitive_rule_names_applied": [],
+      "branch_sensitive_rules_applied": false,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 2,
+          "ast_tree_nodes": 3,
+          "eml_dag_nodes": 19,
+          "eml_tree_nodes": 41,
+          "expression": "Mul(x,x)",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            19,
+            41,
+            2,
+            3,
+            "Mul(x,x)"
+          ]
+        }
+      ],
+      "compression_gain": 1.0,
+      "eclass_count": 2,
+      "eml_dag_max_abs_error": 3.552713678800501e-15,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        1.689999999999999,
+        2.889999999999999,
+        17.640000000000004
+      ],
+      "enode_count": 2,
+      "extracted_eml_dag_nodes": 19,
+      "extracted_expression": "Mul(x,x)",
+      "extracted_value_samples": [
+        1.6900000000000002,
+        2.8899999999999997,
+        17.64
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 19,
+      "original_expression": "x*x",
+      "original_value_samples": [
+        1.6900000000000002,
+        2.8899999999999997,
+        17.64
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "safe",
+      "rules_applied_by_name": {},
+      "rules_applied_by_tier": {},
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": "positive_real_formal",
+      "branch_sensitive_rule_names_applied": [],
+      "branch_sensitive_rules_applied": false,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 2,
+          "ast_tree_nodes": 3,
+          "eml_dag_nodes": 19,
+          "eml_tree_nodes": 41,
+          "expression": "Mul(x,x)",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            19,
+            41,
+            2,
+            3,
+            "Mul(x,x)"
+          ]
+        }
+      ],
+      "compression_gain": 1.0,
+      "eclass_count": 2,
+      "eml_dag_max_abs_error": 3.552713678800501e-15,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        1.689999999999999,
+        2.889999999999999,
+        17.640000000000004
+      ],
+      "enode_count": 2,
+      "extracted_eml_dag_nodes": 19,
+      "extracted_expression": "Mul(x,x)",
+      "extracted_value_samples": [
+        1.6900000000000002,
+        2.8899999999999997,
+        17.64
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 19,
+      "original_expression": "x*x",
+      "original_value_samples": [
+        1.6900000000000002,
+        2.8899999999999997,
+        17.64
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "positive_real_formal",
+      "rules_applied_by_name": {},
+      "rules_applied_by_tier": {},
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": null,
+      "branch_sensitive_rule_names_applied": [],
+      "branch_sensitive_rules_applied": false,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 3,
+          "ast_tree_nodes": 3,
+          "eml_dag_nodes": 29,
+          "eml_tree_nodes": 75,
+          "expression": "Pow(x,2)",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            29,
+            75,
+            3,
+            3,
+            "Pow(x,2)"
+          ]
+        }
+      ],
+      "compression_gain": 1.0,
+      "eclass_count": 3,
+      "eml_dag_max_abs_error": 1.7763568394002505e-14,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        1.689999999999999,
+        2.8899999999999992,
+        17.64000000000002
+      ],
+      "enode_count": 3,
+      "extracted_eml_dag_nodes": 29,
+      "extracted_expression": "Pow(x,2)",
+      "extracted_value_samples": [
+        1.6900000000000002,
+        2.8899999999999997,
+        17.64
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 29,
+      "original_expression": "x**2",
+      "original_value_samples": [
+        1.6900000000000002,
+        2.8899999999999997,
+        17.64
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "safe",
+      "rules_applied_by_name": {},
+      "rules_applied_by_tier": {},
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": "positive_real_formal",
+      "branch_sensitive_rule_names_applied": [],
+      "branch_sensitive_rules_applied": false,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 3,
+          "ast_tree_nodes": 3,
+          "eml_dag_nodes": 29,
+          "eml_tree_nodes": 75,
+          "expression": "Pow(x,2)",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            29,
+            75,
+            3,
+            3,
+            "Pow(x,2)"
+          ]
+        }
+      ],
+      "compression_gain": 1.0,
+      "eclass_count": 3,
+      "eml_dag_max_abs_error": 1.7763568394002505e-14,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        1.689999999999999,
+        2.8899999999999992,
+        17.64000000000002
+      ],
+      "enode_count": 3,
+      "extracted_eml_dag_nodes": 29,
+      "extracted_expression": "Pow(x,2)",
+      "extracted_value_samples": [
+        1.6900000000000002,
+        2.8899999999999997,
+        17.64
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 29,
+      "original_expression": "x**2",
+      "original_value_samples": [
+        1.6900000000000002,
+        2.8899999999999997,
+        17.64
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "positive_real_formal",
+      "rules_applied_by_name": {},
+      "rules_applied_by_tier": {},
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": null,
+      "branch_sensitive_rule_names_applied": [],
+      "branch_sensitive_rules_applied": false,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 4,
+          "ast_tree_nodes": 7,
+          "eml_dag_nodes": 25,
+          "eml_tree_nodes": 93,
+          "expression": "Mul(Add(1,x),Add(1,x))",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            25,
+            93,
+            4,
+            7,
+            "Mul(Add(1,x),Add(1,x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 4,
+          "ast_tree_nodes": 7,
+          "eml_dag_nodes": 25,
+          "eml_tree_nodes": 93,
+          "expression": "Mul(Add(x,1),Add(x,1))",
+          "integrity_valid": true,
+          "rank": 2,
+          "tie_break_key": [
+            25,
+            93,
+            4,
+            7,
+            "Mul(Add(x,1),Add(x,1))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 7,
+          "eml_dag_nodes": 25,
+          "eml_tree_nodes": 93,
+          "expression": "Mul(Add(1,x),Add(x,1))",
+          "integrity_valid": true,
+          "rank": 3,
+          "tie_break_key": [
+            25,
+            93,
+            5,
+            7,
+            "Mul(Add(1,x),Add(x,1))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 7,
+          "eml_dag_nodes": 25,
+          "eml_tree_nodes": 93,
+          "expression": "Mul(Add(x,1),Add(1,x))",
+          "integrity_valid": true,
+          "rank": 4,
+          "tie_break_key": [
+            25,
+            93,
+            5,
+            7,
+            "Mul(Add(x,1),Add(1,x))"
+          ]
+        }
+      ],
+      "compression_gain": 1.0,
+      "eclass_count": 4,
+      "eml_dag_max_abs_error": 3.552713678800501e-15,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        5.289999999999997,
+        7.289999999999997,
+        27.04
+      ],
+      "enode_count": 5,
+      "extracted_eml_dag_nodes": 25,
+      "extracted_expression": "Mul(Add(1,x),Add(1,x))",
+      "extracted_value_samples": [
+        5.29,
+        7.29,
+        27.040000000000003
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 25,
+      "original_expression": "(x+1)*(x+1)",
+      "original_value_samples": [
+        5.29,
+        7.29,
+        27.040000000000003
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "safe",
+      "rules_applied_by_name": {
+        "add_commutativity": 1
+      },
+      "rules_applied_by_tier": {
+        "safe": 1
+      },
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": "positive_real_formal",
+      "branch_sensitive_rule_names_applied": [],
+      "branch_sensitive_rules_applied": false,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 4,
+          "ast_tree_nodes": 7,
+          "eml_dag_nodes": 25,
+          "eml_tree_nodes": 93,
+          "expression": "Mul(Add(1,x),Add(1,x))",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            25,
+            93,
+            4,
+            7,
+            "Mul(Add(1,x),Add(1,x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 4,
+          "ast_tree_nodes": 7,
+          "eml_dag_nodes": 25,
+          "eml_tree_nodes": 93,
+          "expression": "Mul(Add(x,1),Add(x,1))",
+          "integrity_valid": true,
+          "rank": 2,
+          "tie_break_key": [
+            25,
+            93,
+            4,
+            7,
+            "Mul(Add(x,1),Add(x,1))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 7,
+          "eml_dag_nodes": 25,
+          "eml_tree_nodes": 93,
+          "expression": "Mul(Add(1,x),Add(x,1))",
+          "integrity_valid": true,
+          "rank": 3,
+          "tie_break_key": [
+            25,
+            93,
+            5,
+            7,
+            "Mul(Add(1,x),Add(x,1))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 7,
+          "eml_dag_nodes": 25,
+          "eml_tree_nodes": 93,
+          "expression": "Mul(Add(x,1),Add(1,x))",
+          "integrity_valid": true,
+          "rank": 4,
+          "tie_break_key": [
+            25,
+            93,
+            5,
+            7,
+            "Mul(Add(x,1),Add(1,x))"
+          ]
+        }
+      ],
+      "compression_gain": 1.0,
+      "eclass_count": 4,
+      "eml_dag_max_abs_error": 3.552713678800501e-15,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        5.289999999999997,
+        7.289999999999997,
+        27.04
+      ],
+      "enode_count": 5,
+      "extracted_eml_dag_nodes": 25,
+      "extracted_expression": "Mul(Add(1,x),Add(1,x))",
+      "extracted_value_samples": [
+        5.29,
+        7.29,
+        27.040000000000003
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 25,
+      "original_expression": "(x+1)*(x+1)",
+      "original_value_samples": [
+        5.29,
+        7.29,
+        27.040000000000003
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "positive_real_formal",
+      "rules_applied_by_name": {
+        "add_commutativity": 1
+      },
+      "rules_applied_by_tier": {
+        "safe": 1
+      },
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": null,
+      "branch_sensitive_rule_names_applied": [],
+      "branch_sensitive_rules_applied": false,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 3,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 18,
+          "eml_tree_nodes": 39,
+          "expression": "Add(Log(x),Log(x))",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            18,
+            39,
+            3,
+            5,
+            "Add(Log(x),Log(x))"
+          ]
+        }
+      ],
+      "compression_gain": 1.0,
+      "eclass_count": 3,
+      "eml_dag_max_abs_error": 5.551115123125783e-16,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        0.5247285289349816,
+        1.0612565021243403,
+        2.8701690505786455
+      ],
+      "enode_count": 3,
+      "extracted_eml_dag_nodes": 18,
+      "extracted_expression": "Add(Log(x),Log(x))",
+      "extracted_value_samples": [
+        0.5247285289349821,
+        1.0612565021243408,
+        2.8701690505786455
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 18,
+      "original_expression": "log(x)+log(x)",
+      "original_value_samples": [
+        0.5247285289349821,
+        1.0612565021243408,
+        2.8701690505786455
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "safe",
+      "rules_applied_by_name": {},
+      "rules_applied_by_tier": {},
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": "positive_real_formal",
+      "branch_sensitive_rule_names_applied": [
+        "log_product"
+      ],
+      "branch_sensitive_rules_applied": true,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 3,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 18,
+          "eml_tree_nodes": 39,
+          "expression": "Add(Log(x),Log(x))",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            18,
+            39,
+            3,
+            5,
+            "Add(Log(x),Log(x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 3,
+          "ast_tree_nodes": 4,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 47,
+          "expression": "Log(Mul(x,x))",
+          "integrity_valid": true,
+          "rank": 2,
+          "tie_break_key": [
+            22,
+            47,
+            3,
+            4,
+            "Log(Mul(x,x))"
+          ]
+        }
+      ],
+      "compression_gain": 1.0,
+      "eclass_count": 4,
+      "eml_dag_max_abs_error": 5.551115123125783e-16,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        0.5247285289349816,
+        1.0612565021243403,
+        2.8701690505786455
+      ],
+      "enode_count": 5,
+      "extracted_eml_dag_nodes": 18,
+      "extracted_expression": "Add(Log(x),Log(x))",
+      "extracted_value_samples": [
+        0.5247285289349821,
+        1.0612565021243408,
+        2.8701690505786455
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 18,
+      "original_expression": "log(x)+log(x)",
+      "original_value_samples": [
+        0.5247285289349821,
+        1.0612565021243408,
+        2.8701690505786455
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "positive_real_formal",
+      "rules_applied_by_name": {
+        "log_product": 1
+      },
+      "rules_applied_by_tier": {
+        "positive_real_formal_rules": 1
+      },
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": null,
+      "branch_sensitive_rule_names_applied": [],
+      "branch_sensitive_rules_applied": false,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 3,
+          "ast_tree_nodes": 3,
+          "eml_dag_nodes": 6,
+          "eml_tree_nodes": 9,
+          "expression": "Log(Exp(x))",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            6,
+            9,
+            3,
+            3,
+            "Log(Exp(x))"
+          ]
+        }
+      ],
+      "compression_gain": 1.0,
+      "eclass_count": 3,
+      "eml_dag_max_abs_error": 0.0,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        1.3,
+        1.7,
+        4.2
+      ],
+      "enode_count": 3,
+      "extracted_eml_dag_nodes": 6,
+      "extracted_expression": "Log(Exp(x))",
+      "extracted_value_samples": [
+        1.3,
+        1.7,
+        4.2
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 6,
+      "original_expression": "log(exp(x))",
+      "original_value_samples": [
+        1.3,
+        1.7,
+        4.2
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "safe",
+      "rules_applied_by_name": {},
+      "rules_applied_by_tier": {},
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": "positive_real_formal",
+      "branch_sensitive_rule_names_applied": [
+        "log_exp_inverse"
+      ],
+      "branch_sensitive_rules_applied": true,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 1,
+          "ast_tree_nodes": 1,
+          "eml_dag_nodes": 1,
+          "eml_tree_nodes": 1,
+          "expression": "x",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            1,
+            1,
+            1,
+            1,
+            "x"
+          ]
+        }
+      ],
+      "compression_gain": 6.0,
+      "eclass_count": 2,
+      "eml_dag_max_abs_error": 0.0,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        1.3,
+        1.7,
+        4.2
+      ],
+      "enode_count": 3,
+      "extracted_eml_dag_nodes": 1,
+      "extracted_expression": "x",
+      "extracted_value_samples": [
+        1.3,
+        1.7,
+        4.2
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 6,
+      "original_expression": "log(exp(x))",
+      "original_value_samples": [
+        1.3,
+        1.7,
+        4.2
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "positive_real_formal",
+      "rules_applied_by_name": {
+        "log_exp_inverse": 1
+      },
+      "rules_applied_by_tier": {
+        "positive_real_formal_rules": 1
+      },
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": null,
+      "branch_sensitive_rule_names_applied": [],
+      "branch_sensitive_rules_applied": false,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 3,
+          "ast_tree_nodes": 3,
+          "eml_dag_nodes": 6,
+          "eml_tree_nodes": 9,
+          "expression": "Exp(Log(x))",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            6,
+            9,
+            3,
+            3,
+            "Exp(Log(x))"
+          ]
+        }
+      ],
+      "compression_gain": 1.0,
+      "eclass_count": 3,
+      "eml_dag_max_abs_error": 2.220446049250313e-16,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        1.2999999999999998,
+        1.6999999999999997,
+        4.2
+      ],
+      "enode_count": 3,
+      "extracted_eml_dag_nodes": 6,
+      "extracted_expression": "Exp(Log(x))",
+      "extracted_value_samples": [
+        1.3,
+        1.7,
+        4.2
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 6,
+      "original_expression": "exp(log(x))",
+      "original_value_samples": [
+        1.3,
+        1.7,
+        4.2
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "safe",
+      "rules_applied_by_name": {},
+      "rules_applied_by_tier": {},
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": "positive_real_formal",
+      "branch_sensitive_rule_names_applied": [
+        "exp_log_inverse"
+      ],
+      "branch_sensitive_rules_applied": true,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 1,
+          "ast_tree_nodes": 1,
+          "eml_dag_nodes": 1,
+          "eml_tree_nodes": 1,
+          "expression": "x",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            1,
+            1,
+            1,
+            1,
+            "x"
+          ]
+        }
+      ],
+      "compression_gain": 6.0,
+      "eclass_count": 2,
+      "eml_dag_max_abs_error": 0.0,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        1.3,
+        1.7,
+        4.2
+      ],
+      "enode_count": 3,
+      "extracted_eml_dag_nodes": 1,
+      "extracted_expression": "x",
+      "extracted_value_samples": [
+        1.3,
+        1.7,
+        4.2
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 6,
+      "original_expression": "exp(log(x))",
+      "original_value_samples": [
+        1.3,
+        1.7,
+        4.2
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "positive_real_formal",
+      "rules_applied_by_name": {
+        "exp_log_inverse": 1
+      },
+      "rules_applied_by_tier": {
+        "positive_real_formal_rules": 1
+      },
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": null,
+      "branch_sensitive_rule_names_applied": [],
+      "branch_sensitive_rules_applied": false,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 4,
+          "ast_tree_nodes": 4,
+          "eml_dag_nodes": 26,
+          "eml_tree_nodes": 47,
+          "expression": "Log(Mul(x,y))",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            26,
+            47,
+            4,
+            4,
+            "Log(Mul(x,y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 4,
+          "ast_tree_nodes": 4,
+          "eml_dag_nodes": 26,
+          "eml_tree_nodes": 47,
+          "expression": "Log(Mul(y,x))",
+          "integrity_valid": true,
+          "rank": 2,
+          "tie_break_key": [
+            26,
+            47,
+            4,
+            4,
+            "Log(Mul(y,x))"
+          ]
+        }
+      ],
+      "compression_gain": 1.0,
+      "eclass_count": 4,
+      "eml_dag_max_abs_error": 4.440892098500626e-16,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        1.004301609196868,
+        1.754403682684286,
+        1.9050881545350586
+      ],
+      "enode_count": 5,
+      "extracted_eml_dag_nodes": 26,
+      "extracted_expression": "Log(Mul(x,y))",
+      "extracted_value_samples": [
+        1.0043016091968684,
+        1.7544036826842861,
+        1.9050881545350582
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 26,
+      "original_expression": "log(x*y)",
+      "original_value_samples": [
+        1.0043016091968684,
+        1.7544036826842861,
+        1.9050881545350582
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "safe",
+      "rules_applied_by_name": {
+        "mul_commutativity": 1
+      },
+      "rules_applied_by_tier": {
+        "safe": 1
+      },
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": "positive_real_formal",
+      "branch_sensitive_rule_names_applied": [
+        "log_product"
+      ],
+      "branch_sensitive_rules_applied": true,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 39,
+          "expression": "Add(Log(x),Log(y))",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            22,
+            39,
+            5,
+            5,
+            "Add(Log(x),Log(y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 22,
+          "eml_tree_nodes": 39,
+          "expression": "Add(Log(y),Log(x))",
+          "integrity_valid": true,
+          "rank": 2,
+          "tie_break_key": [
+            22,
+            39,
+            5,
+            5,
+            "Add(Log(y),Log(x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 4,
+          "ast_tree_nodes": 4,
+          "eml_dag_nodes": 26,
+          "eml_tree_nodes": 47,
+          "expression": "Log(Mul(x,y))",
+          "integrity_valid": true,
+          "rank": 3,
+          "tie_break_key": [
+            26,
+            47,
+            4,
+            4,
+            "Log(Mul(x,y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 4,
+          "ast_tree_nodes": 4,
+          "eml_dag_nodes": 26,
+          "eml_tree_nodes": 47,
+          "expression": "Log(Mul(y,x))",
+          "integrity_valid": true,
+          "rank": 4,
+          "tie_break_key": [
+            26,
+            47,
+            4,
+            4,
+            "Log(Mul(y,x))"
+          ]
+        }
+      ],
+      "compression_gain": 1.1818181818181819,
+      "eclass_count": 6,
+      "eml_dag_max_abs_error": 4.440892098500626e-16,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        1.004301609196868,
+        1.754403682684286,
+        1.9050881545350584
+      ],
+      "enode_count": 9,
+      "extracted_eml_dag_nodes": 22,
+      "extracted_expression": "Add(Log(x),Log(y))",
+      "extracted_value_samples": [
+        1.0043016091968684,
+        1.7544036826842861,
+        1.9050881545350582
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 26,
+      "original_expression": "log(x*y)",
+      "original_value_samples": [
+        1.0043016091968684,
+        1.7544036826842861,
+        1.9050881545350582
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "positive_real_formal",
+      "rules_applied_by_name": {
+        "log_product": 2,
+        "mul_commutativity": 1
+      },
+      "rules_applied_by_tier": {
+        "positive_real_formal_rules": 2,
+        "safe": 1
+      },
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": null,
+      "branch_sensitive_rule_names_applied": [],
+      "branch_sensitive_rules_applied": false,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 4,
+          "ast_tree_nodes": 4,
+          "eml_dag_nodes": 17,
+          "eml_tree_nodes": 29,
+          "expression": "Exp(Add(x,y))",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            17,
+            29,
+            4,
+            4,
+            "Exp(Add(x,y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 4,
+          "ast_tree_nodes": 4,
+          "eml_dag_nodes": 17,
+          "eml_tree_nodes": 29,
+          "expression": "Exp(Add(y,x))",
+          "integrity_valid": true,
+          "rank": 2,
+          "tie_break_key": [
+            17,
+            29,
+            4,
+            4,
+            "Exp(Add(y,x))"
+          ]
+        }
+      ],
+      "compression_gain": 1.0,
+      "eclass_count": 4,
+      "eml_dag_max_abs_error": 1.7053025658242404e-13,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        29.96410004739701,
+        164.0219072999017,
+        330.2995599096489
+      ],
+      "enode_count": 5,
+      "extracted_eml_dag_nodes": 17,
+      "extracted_expression": "Exp(Add(x,y))",
+      "extracted_value_samples": [
+        29.964100047397018,
+        164.02190729990173,
+        330.29955990964874
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 17,
+      "original_expression": "exp(x+y)",
+      "original_value_samples": [
+        29.964100047397018,
+        164.02190729990173,
+        330.29955990964874
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "safe",
+      "rules_applied_by_name": {
+        "add_commutativity": 1
+      },
+      "rules_applied_by_tier": {
+        "safe": 1
+      },
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": "positive_real_formal",
+      "branch_sensitive_rule_names_applied": [
+        "exp_sum"
+      ],
+      "branch_sensitive_rules_applied": true,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 4,
+          "ast_tree_nodes": 4,
+          "eml_dag_nodes": 17,
+          "eml_tree_nodes": 29,
+          "expression": "Exp(Add(x,y))",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            17,
+            29,
+            4,
+            4,
+            "Exp(Add(x,y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 4,
+          "ast_tree_nodes": 4,
+          "eml_dag_nodes": 17,
+          "eml_tree_nodes": 29,
+          "expression": "Exp(Add(y,x))",
+          "integrity_valid": true,
+          "rank": 2,
+          "tie_break_key": [
+            17,
+            29,
+            4,
+            4,
+            "Exp(Add(y,x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 25,
+          "eml_tree_nodes": 45,
+          "expression": "Mul(Exp(x),Exp(y))",
+          "integrity_valid": true,
+          "rank": 3,
+          "tie_break_key": [
+            25,
+            45,
+            5,
+            5,
+            "Mul(Exp(x),Exp(y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 5,
+          "ast_tree_nodes": 5,
+          "eml_dag_nodes": 25,
+          "eml_tree_nodes": 45,
+          "expression": "Mul(Exp(y),Exp(x))",
+          "integrity_valid": true,
+          "rank": 4,
+          "tie_break_key": [
+            25,
+            45,
+            5,
+            5,
+            "Mul(Exp(y),Exp(x))"
+          ]
+        }
+      ],
+      "compression_gain": 1.0,
+      "eclass_count": 6,
+      "eml_dag_max_abs_error": 1.7053025658242404e-13,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        29.96410004739701,
+        164.0219072999017,
+        330.2995599096489
+      ],
+      "enode_count": 9,
+      "extracted_eml_dag_nodes": 17,
+      "extracted_expression": "Exp(Add(x,y))",
+      "extracted_value_samples": [
+        29.964100047397018,
+        164.02190729990173,
+        330.29955990964874
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 17,
+      "original_expression": "exp(x+y)",
+      "original_value_samples": [
+        29.964100047397018,
+        164.02190729990173,
+        330.29955990964874
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "positive_real_formal",
+      "rules_applied_by_name": {
+        "add_commutativity": 1,
+        "exp_sum": 2
+      },
+      "rules_applied_by_tier": {
+        "positive_real_formal_rules": 2,
+        "safe": 1
+      },
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": null,
+      "branch_sensitive_rule_names_applied": [],
+      "branch_sensitive_rules_applied": false,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 9,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 70,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(x,x)),y),y))",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            70,
+            267,
+            9,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(x,x)),y),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,x),x),x),y),y))",
+          "integrity_valid": true,
+          "rank": 2,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,x),x),x),y),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,x),x),y),x),y))",
+          "integrity_valid": true,
+          "rank": 3,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,x),x),y),x),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,x),x),y),y),x))",
+          "integrity_valid": true,
+          "rank": 4,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,x),x),y),y),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,x),y),x),x),y))",
+          "integrity_valid": true,
+          "rank": 5,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,x),y),x),x),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,x),y),x),y),x))",
+          "integrity_valid": true,
+          "rank": 6,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,x),y),x),y),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,x),y),y),x),x))",
+          "integrity_valid": true,
+          "rank": 7,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,x),y),y),x),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,y),x),x),x),y))",
+          "integrity_valid": true,
+          "rank": 8,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,y),x),x),x),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,y),x),x),y),x))",
+          "integrity_valid": true,
+          "rank": 9,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,y),x),x),y),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,y),x),y),x),x))",
+          "integrity_valid": true,
+          "rank": 10,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,y),x),y),x),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,y),y),x),x),x))",
+          "integrity_valid": true,
+          "rank": 11,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,y),y),x),x),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(y,x),x),x),x),y))",
+          "integrity_valid": true,
+          "rank": 12,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(y,x),x),x),x),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(y,x),x),x),y),x))",
+          "integrity_valid": true,
+          "rank": 13,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(y,x),x),x),y),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(y,x),x),y),x),x))",
+          "integrity_valid": true,
+          "rank": 14,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(y,x),x),y),x),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(y,x),y),x),x),x))",
+          "integrity_valid": true,
+          "rank": 15,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(y,x),y),x),x),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(y,y),x),x),x),x))",
+          "integrity_valid": true,
+          "rank": 16,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(y,y),x),x),x),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(x,x)),x),y),y))",
+          "integrity_valid": true,
+          "rank": 17,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(x,x)),x),y),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(x,x)),y),x),y))",
+          "integrity_valid": true,
+          "rank": 18,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(x,x)),y),x),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(x,x)),y),y),x))",
+          "integrity_valid": true,
+          "rank": 19,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(x,x)),y),y),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(x,y)),x),x),y))",
+          "integrity_valid": true,
+          "rank": 20,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(x,y)),x),x),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(x,y)),x),y),x))",
+          "integrity_valid": true,
+          "rank": 21,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(x,y)),x),y),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(x,y)),y),x),x))",
+          "integrity_valid": true,
+          "rank": 22,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(x,y)),y),x),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(x,y)),x),y))",
+          "integrity_valid": true,
+          "rank": 23,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(x,y)),x),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(x,y)),y),x))",
+          "integrity_valid": true,
+          "rank": 24,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(x,y)),y),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),x),Mul(x,y)),y))",
+          "integrity_valid": true,
+          "rank": 25,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),x),Mul(x,y)),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 78,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(y,x)),x),x),y))",
+          "integrity_valid": true,
+          "rank": 26,
+          "tie_break_key": [
+            78,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(y,x)),x),x),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 78,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(y,x)),x),y),x))",
+          "integrity_valid": true,
+          "rank": 27,
+          "tie_break_key": [
+            78,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(y,x)),x),y),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 78,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(y,x)),y),x),x))",
+          "integrity_valid": true,
+          "rank": 28,
+          "tie_break_key": [
+            78,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(y,x)),y),x),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 78,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(y,y)),x),x),x))",
+          "integrity_valid": true,
+          "rank": 29,
+          "tie_break_key": [
+            78,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(y,y)),x),x),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 78,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(y,x)),x),y))",
+          "integrity_valid": true,
+          "rank": 30,
+          "tie_break_key": [
+            78,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(y,x)),x),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 78,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(y,x)),y),x))",
+          "integrity_valid": true,
+          "rank": 31,
+          "tie_break_key": [
+            78,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(y,x)),y),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 78,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(y,y)),x),x))",
+          "integrity_valid": true,
+          "rank": 32,
+          "tie_break_key": [
+            78,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(y,y)),x),x))"
+          ]
+        }
+      ],
+      "compression_gain": 1.0,
+      "eclass_count": 30,
+      "eml_dag_max_abs_error": 9.094947017729282e-13,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        28.969422299999984,
+        260.6857451999998,
+        4142.2897152000005
+      ],
+      "enode_count": 216,
+      "extracted_eml_dag_nodes": 70,
+      "extracted_expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(x,x)),y),y))",
+      "extracted_value_samples": [
+        28.96942230000001,
+        260.68574519999993,
+        4142.289715200001
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 70,
+      "original_expression": "((x*x)*(y*y))*((x*x)*(x + 1))",
+      "original_value_samples": [
+        28.96942230000001,
+        260.68574519999993,
+        4142.289715200001
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "safe",
+      "rules_applied_by_name": {
+        "add_commutativity": 1,
+        "mul_associativity": 276,
+        "mul_commutativity": 84
+      },
+      "rules_applied_by_tier": {
+        "safe": 361
+      },
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    },
+    {
+      "assumptions": "positive_real_formal",
+      "branch_sensitive_rule_names_applied": [],
+      "branch_sensitive_rules_applied": false,
+      "candidate_eml_dag_metrics": [
+        {
+          "ast_dag_nodes": 9,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 70,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(x,x)),y),y))",
+          "integrity_valid": true,
+          "rank": 1,
+          "tie_break_key": [
+            70,
+            267,
+            9,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(x,x)),y),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,x),x),x),y),y))",
+          "integrity_valid": true,
+          "rank": 2,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,x),x),x),y),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,x),x),y),x),y))",
+          "integrity_valid": true,
+          "rank": 3,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,x),x),y),x),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,x),x),y),y),x))",
+          "integrity_valid": true,
+          "rank": 4,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,x),x),y),y),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,x),y),x),x),y))",
+          "integrity_valid": true,
+          "rank": 5,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,x),y),x),x),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,x),y),x),y),x))",
+          "integrity_valid": true,
+          "rank": 6,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,x),y),x),y),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,x),y),y),x),x))",
+          "integrity_valid": true,
+          "rank": 7,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,x),y),y),x),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,y),x),x),x),y))",
+          "integrity_valid": true,
+          "rank": 8,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,y),x),x),x),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,y),x),x),y),x))",
+          "integrity_valid": true,
+          "rank": 9,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,y),x),x),y),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,y),x),y),x),x))",
+          "integrity_valid": true,
+          "rank": 10,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,y),x),y),x),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,y),y),x),x),x))",
+          "integrity_valid": true,
+          "rank": 11,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(x,y),y),x),x),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(y,x),x),x),x),y))",
+          "integrity_valid": true,
+          "rank": 12,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(y,x),x),x),x),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(y,x),x),x),y),x))",
+          "integrity_valid": true,
+          "rank": 13,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(y,x),x),x),y),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(y,x),x),y),x),x))",
+          "integrity_valid": true,
+          "rank": 14,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(y,x),x),y),x),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(y,x),y),x),x),x))",
+          "integrity_valid": true,
+          "rank": 15,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(y,x),y),x),x),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(y,y),x),x),x),x))",
+          "integrity_valid": true,
+          "rank": 16,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(Mul(y,y),x),x),x),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(x,x)),x),y),y))",
+          "integrity_valid": true,
+          "rank": 17,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(x,x)),x),y),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(x,x)),y),x),y))",
+          "integrity_valid": true,
+          "rank": 18,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(x,x)),y),x),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(x,x)),y),y),x))",
+          "integrity_valid": true,
+          "rank": 19,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(x,x)),y),y),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(x,y)),x),x),y))",
+          "integrity_valid": true,
+          "rank": 20,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(x,y)),x),x),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(x,y)),x),y),x))",
+          "integrity_valid": true,
+          "rank": 21,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(x,y)),x),y),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(x,y)),y),x),x))",
+          "integrity_valid": true,
+          "rank": 22,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(x,y)),y),x),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(x,y)),x),y))",
+          "integrity_valid": true,
+          "rank": 23,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(x,y)),x),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(x,y)),y),x))",
+          "integrity_valid": true,
+          "rank": 24,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(x,y)),y),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 75,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),x),Mul(x,y)),y))",
+          "integrity_valid": true,
+          "rank": 25,
+          "tie_break_key": [
+            75,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),x),Mul(x,y)),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 78,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(y,x)),x),x),y))",
+          "integrity_valid": true,
+          "rank": 26,
+          "tie_break_key": [
+            78,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(y,x)),x),x),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 78,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(y,x)),x),y),x))",
+          "integrity_valid": true,
+          "rank": 27,
+          "tie_break_key": [
+            78,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(y,x)),x),y),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 78,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(y,x)),y),x),x))",
+          "integrity_valid": true,
+          "rank": 28,
+          "tie_break_key": [
+            78,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(y,x)),y),x),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 78,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(y,y)),x),x),x))",
+          "integrity_valid": true,
+          "rank": 29,
+          "tie_break_key": [
+            78,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,Mul(y,y)),x),x),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 78,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(y,x)),x),y))",
+          "integrity_valid": true,
+          "rank": 30,
+          "tie_break_key": [
+            78,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(y,x)),x),y))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 78,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(y,x)),y),x))",
+          "integrity_valid": true,
+          "rank": 31,
+          "tie_break_key": [
+            78,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(y,x)),y),x))"
+          ]
+        },
+        {
+          "ast_dag_nodes": 10,
+          "ast_tree_nodes": 15,
+          "eml_dag_nodes": 78,
+          "eml_tree_nodes": 267,
+          "expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(y,y)),x),x))",
+          "integrity_valid": true,
+          "rank": 32,
+          "tie_break_key": [
+            78,
+            267,
+            10,
+            15,
+            "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(y,y)),x),x))"
+          ]
+        }
+      ],
+      "compression_gain": 1.0,
+      "eclass_count": 30,
+      "eml_dag_max_abs_error": 9.094947017729282e-13,
+      "eml_dag_validation_status": "valid",
+      "eml_dag_value_samples": [
+        28.969422299999984,
+        260.6857451999998,
+        4142.2897152000005
+      ],
+      "enode_count": 216,
+      "extracted_eml_dag_nodes": 70,
+      "extracted_expression": "Mul(Add(1,x),Mul(Mul(Mul(Mul(x,x),Mul(x,x)),y),y))",
+      "extracted_value_samples": [
+        28.96942230000001,
+        260.68574519999993,
+        4142.289715200001
+      ],
+      "extraction_status": "completed",
+      "max_abs_error": 0.0,
+      "original_eml_dag_nodes": 70,
+      "original_expression": "((x*x)*(y*y))*((x*x)*(x + 1))",
+      "original_value_samples": [
+        28.96942230000001,
+        260.68574519999993,
+        4142.289715200001
+      ],
+      "provenance_validation_status": "valid",
+      "purity_failure_reason": null,
+      "rule_mode": "positive_real_formal",
+      "rules_applied_by_name": {
+        "add_commutativity": 1,
+        "mul_associativity": 276,
+        "mul_commutativity": 84
+      },
+      "rules_applied_by_tier": {
+        "safe": 361
+      },
+      "saturation_status": "saturated",
+      "selected_candidate_rank": 1,
+      "structural_purity_valid": true,
+      "sympy_simplify_rewrite_path_free": true,
+      "validation_status": "valid"
+    }
+  ],
+  "samples": [
+    {
+      "x": 1.3,
+      "y": 2.1
+    },
+    {
+      "x": 1.7,
+      "y": 3.4
+    },
+    {
+      "x": 4.2,
+      "y": 1.6
+    }
+  ],
+  "summary": {
+    "all_eml_dag_validation_valid": true,
+    "all_outputs_under_outputs_v1": true,
+    "all_semantic_validation_valid": true,
+    "all_structural_purity_valid": true,
+    "best_compression": [
+      {
+        "compression_gain": 19.0,
+        "extracted_expression": "x",
+        "original_expression": "x*1",
+        "rule_mode": "safe"
+      },
+      {
+        "compression_gain": 19.0,
+        "extracted_expression": "x",
+        "original_expression": "x*1",
+        "rule_mode": "positive_real_formal"
+      },
+      {
+        "compression_gain": 6.0,
+        "extracted_expression": "x",
+        "original_expression": "log(exp(x))",
+        "rule_mode": "positive_real_formal"
+      },
+      {
+        "compression_gain": 6.0,
+        "extracted_expression": "x",
+        "original_expression": "exp(log(x))",
+        "rule_mode": "positive_real_formal"
+      },
+      {
+        "compression_gain": 1.5714285714285714,
+        "extracted_expression": "Add(1,x)",
+        "original_expression": "x+2-1",
+        "rule_mode": "safe"
+      }
+    ],
+    "positive_real_branch_sensitive_application_count": 5,
+    "provenance_invalid_count": 0,
+    "row_count": 28,
+    "safe_branch_sensitive_application_count": 0,
+    "sympy_simplify_rewrite_path_free": true
+  }
+}

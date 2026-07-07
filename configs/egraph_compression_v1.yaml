@@ -1,0 +1,37 @@
+seed: 0
+count: 10000
+max_depth: 4
+operator_set:
+  - add
+  - mul
+  - exp
+  - log
+symbol_names:
+  - x
+  - y
+source_serialization: srepr
+input_jsonl_path: outputs/v1/dag_compression_inputs.jsonl
+goal3_metrics_csv_path: outputs/v1/dag_compression_metrics.csv
+goal3_summary_json_path: outputs/v1/dag_compression_summary.json
+v0_v1_comparison_summary_json_path: outputs/v1/v0_v1_comparison_summary.json
+run_modes:
+  - safe
+  - positive_real_formal
+extractor_mode: exact_eml_dag_beam_cost
+max_iterations: 4
+max_enodes: 5000
+max_eclasses: 5000
+timeout_seconds: 0.5
+row_timeout_seconds: 2.0
+beam_size: 12
+max_candidate_depth: 7
+max_candidates_evaluated: 12
+checkpoint_interval: 100
+resume: true
+output_dir: outputs/v1
+safe_metrics_csv_path: outputs/v1/egraph_compression_metrics_safe.csv
+safe_metrics_jsonl_path: outputs/v1/egraph_compression_metrics_safe.jsonl
+positive_real_metrics_csv_path: outputs/v1/egraph_compression_metrics_positive_real.csv
+positive_real_metrics_jsonl_path: outputs/v1/egraph_compression_metrics_positive_real.jsonl
+summary_json_path: outputs/v1/egraph_compression_summary.json
+run_metadata_json_path: outputs/v1/egraph_compression_run_metadata.json

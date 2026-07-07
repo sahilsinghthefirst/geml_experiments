@@ -24,10 +24,11 @@ from geml.data.dataset import (
 )
 from geml.data.generate_exprs import (
     DEFAULT_OPERATOR_PROBABILITIES,
+    DEFAULT_POSITIVE_LOG_ARGUMENT_PROBABILITIES,
     DEFAULT_SYMBOL_NAMES,
     ExpressionGeneratorConfig,
-    SympyExpressionGenerator,
-    write_jsonl,
+    LogArgumentStrategy,
+    generate_dataset,
 )
 from geml.symbolic.eml_transpile import sympy_to_eml_tree
 from geml.symbolic.official_eml_compiler import emit_official_eml_string
@@ -55,6 +56,7 @@ class ExpansionStudyConfig(BaseModel):
     summary_json_path: Path = Path("outputs/v0/official_eml_compiler_summary.json")
     alpha_summary_csv_path: Path = Path("outputs/v0/expansion_alpha_summary.csv")
     alpha_summary_json_path: Path = Path("outputs/v0/expansion_alpha_summary.json")
+    generation_summary_json_path: Path | None = None
     top_alpha_json_path: Path = Path("outputs/v0/official_eml_top20_alpha.json")
     top_depth_json_path: Path = Path("outputs/v0/official_eml_top20_depth.json")
     simple_examples_json_path: Path = Path("outputs/v0/official_eml_simple_examples.json")
@@ -71,6 +73,15 @@ class ExpansionStudyConfig(BaseModel):
     operator_probabilities: dict[str, float] = Field(
         default_factory=lambda: DEFAULT_OPERATOR_PROBABILITIES.copy()
     )
+    target_depth_probabilities: dict[int, float] | None = None
+    intermediate_leaf_probability: float = Field(default=0.0, ge=0.0, le=1.0)
+    deduplicate_srepr: bool = False
+    max_generation_attempts: int | None = Field(default=None, gt=0)
+    log_argument_strategy: LogArgumentStrategy = "exp_wrap"
+    positive_log_argument_probabilities: dict[str, float] = Field(
+        default_factory=lambda: DEFAULT_POSITIVE_LOG_ARGUMENT_PROBABILITIES.copy()
+    )
+    max_triviality_score: int | None = Field(default=None, ge=0)
     symbol_names: tuple[str, ...] = DEFAULT_SYMBOL_NAMES
 
     @model_validator(mode="after")
@@ -86,11 +97,21 @@ def run_expansion_study(config: ExpansionStudyConfig) -> list[DatasetMetricsRow]
         seed=config.seed,
         count=config.count,
         max_depth=config.max_depth,
+        output_dir=config.output_dir,
+        jsonl_path=config.input_jsonl_path,
+        csv_path=None,
+        summary_json_path=config.generation_summary_json_path,
         operator_probabilities=config.operator_probabilities,
+        target_depth_probabilities=config.target_depth_probabilities,
+        intermediate_leaf_probability=config.intermediate_leaf_probability,
+        deduplicate_srepr=config.deduplicate_srepr,
+        max_generation_attempts=config.max_generation_attempts,
+        log_argument_strategy=config.log_argument_strategy,
+        positive_log_argument_probabilities=config.positive_log_argument_probabilities,
+        max_triviality_score=config.max_triviality_score,
         symbol_names=config.symbol_names,
     )
-    records = SympyExpressionGenerator(generator_config).generate()
-    write_jsonl(records, config.input_jsonl_path)
+    generate_dataset(generator_config)
 
     input_rows = load_generated_expressions(config.input_jsonl_path)
     metrics_rows = compute_metrics_rows(

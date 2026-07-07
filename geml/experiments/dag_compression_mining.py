@@ -207,6 +207,13 @@ def run_dag_compression_mining(
         worst_signatures=worst_signatures,
         safe_candidates=safe_candidates,
         threshold_summary=threshold_summary,
+        output_paths=(
+            config.top_successes_csv_path,
+            config.top_failures_csv_path,
+            config.best_operator_signatures_csv_path,
+            config.worst_operator_signatures_csv_path,
+            config.safe_regime_candidates_csv_path,
+        ),
     )
 
     return DagCompressionMiningResult(
@@ -496,6 +503,7 @@ def write_findings_report(
     worst_signatures: Sequence[dict[str, object]],
     safe_candidates: Sequence[dict[str, object]],
     threshold_summary: Sequence[dict[str, Any]],
+    output_paths: Sequence[Path],
 ) -> None:
     """Write the Goal 3.5 DAG compression findings report."""
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -507,6 +515,7 @@ def write_findings_report(
             worst_signatures=worst_signatures,
             safe_candidates=safe_candidates,
             threshold_summary=threshold_summary,
+            output_paths=output_paths,
         ),
         encoding="utf-8",
     )
@@ -520,6 +529,7 @@ def build_findings_report_markdown(
     worst_signatures: Sequence[dict[str, object]],
     safe_candidates: Sequence[dict[str, object]],
     threshold_summary: Sequence[dict[str, Any]],
+    output_paths: Sequence[Path],
 ) -> str:
     """Build the markdown body for Goal 3.5 DAG compression findings."""
     current = find_threshold_summary(threshold_summary, "current_grammar")
@@ -602,12 +612,7 @@ def build_findings_report_markdown(
             "",
             "## Output Files",
             "",
-            "- `outputs/v0/top_dag_compression_successes.csv`",
-            "- `outputs/v0/top_dag_compression_failures.csv`",
-            "- `outputs/v0/best_dag_operator_signatures.csv`",
-            "- `outputs/v0/worst_dag_operator_signatures.csv`",
-            "- `outputs/v0/dag_safe_regime_candidates.csv`",
-            "- `outputs/v0/plots_goal3/`",
+            *[f"- `{path}`" for path in output_paths],
         ]
     )
     return "\n".join(sections) + "\n"

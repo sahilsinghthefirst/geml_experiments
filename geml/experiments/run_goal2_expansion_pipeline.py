@@ -140,11 +140,15 @@ def run_goal2_expansion_pipeline(
     alpha_summaries = tuple(load_json_list(config.alpha_summary_json_path))
     final_report = build_final_goal2_report(config)
     write_text(config.final_report_path, final_report)
+    generation_summary_paths = (
+        [config.generation_summary_json_path] if config.generation_summary_json_path else []
+    )
 
     generated_files = tuple(
         dict.fromkeys(
             [
                 config.input_jsonl_path,
+                *generation_summary_paths,
                 config.raw_metrics_jsonl_path,
                 config.raw_metrics_csv_path,
                 config.alpha_summary_csv_path,
@@ -290,11 +294,11 @@ def build_final_goal2_report(config: Goal2ExpansionPipelineConfig) -> str:
         "",
         "The top failure-mode tables are:",
         "",
-        "- `outputs/v0/top_alpha_explosions.csv`",
-        "- `outputs/v0/top_eml_node_explosions.csv`",
-        "- `outputs/v0/top_eml_depth_explosions.csv`",
-        "- `outputs/v0/worst_operator_signatures.csv`",
-        "- `outputs/v0/depth_failure_modes.csv`",
+        f"- `{config.top_alpha_explosions_csv_path}`",
+        f"- `{config.top_eml_node_explosions_csv_path}`",
+        f"- `{config.top_eml_depth_explosions_csv_path}`",
+        f"- `{config.worst_operator_signatures_csv_path}`",
+        f"- `{config.depth_failure_modes_csv_path}`",
         "",
         "Worst signature preview:",
         "",

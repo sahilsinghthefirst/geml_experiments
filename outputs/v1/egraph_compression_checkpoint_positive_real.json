@@ -1,0 +1,9 @@
+{
+  "complete": true,
+  "expected_count": 10000,
+  "jsonl_path": "outputs/v1/egraph_compression_metrics_positive_real.jsonl",
+  "last_index": 9999,
+  "processed_count": 10000,
+  "rule_mode": "positive_real_formal",
+  "updated_at_unix": 1783446622.5075572
+}

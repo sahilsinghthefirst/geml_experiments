@@ -1,0 +1,270 @@
+{
+  "config": {
+    "beam_size": 12,
+    "checkpoint_interval": 100,
+    "count": 10000,
+    "extractor_mode": "exact_eml_dag_beam_cost",
+    "goal3_metrics_csv_path": "outputs/v1/dag_compression_metrics.csv",
+    "goal3_summary_json_path": "outputs/v1/dag_compression_summary.json",
+    "input_jsonl_path": "outputs/v1/dag_compression_inputs.jsonl",
+    "max_candidate_depth": 7,
+    "max_candidates_evaluated": 12,
+    "max_depth": 4,
+    "max_eclasses": 5000,
+    "max_enodes": 5000,
+    "max_iterations": 4,
+    "operator_set": [
+      "add",
+      "mul",
+      "exp",
+      "log"
+    ],
+    "output_dir": "outputs/v1",
+    "positive_real_metrics_csv_path": "outputs/v1/egraph_compression_metrics_positive_real.csv",
+    "positive_real_metrics_jsonl_path": "outputs/v1/egraph_compression_metrics_positive_real.jsonl",
+    "resume": true,
+    "row_timeout_seconds": 2.0,
+    "run_metadata_json_path": "outputs/v1/egraph_compression_run_metadata.json",
+    "run_modes": [
+      "safe",
+      "positive_real_formal"
+    ],
+    "safe_metrics_csv_path": "outputs/v1/egraph_compression_metrics_safe.csv",
+    "safe_metrics_jsonl_path": "outputs/v1/egraph_compression_metrics_safe.jsonl",
+    "seed": 0,
+    "source_serialization": "srepr",
+    "summary_json_path": "outputs/v1/egraph_compression_summary.json",
+    "symbol_names": [
+      "x",
+      "y"
+    ],
+    "timeout_seconds": 0.5,
+    "v0_v1_comparison_summary_json_path": "outputs/v1/v0_v1_comparison_summary.json"
+  },
+  "rule_modes": {
+    "positive_real_formal": {
+      "compression_gain_vs_goal3_dag": {
+        "mean": 1.9271824068465238,
+        "median": 1.1692307692307693,
+        "p90": 1.6785714285714286
+      },
+      "extracted_eml_dag_nodes": {
+        "mean": 35.94541997539425,
+        "median": 34.0,
+        "p90": 57.0
+      },
+      "goal3_dag_alpha": {
+        "mean": 4.036107723777943,
+        "median": 4.0,
+        "p90": 4.9
+      },
+      "optimized_dag_alpha": {
+        "mean": 3.29253021783729,
+        "median": 3.3636363636363638,
+        "p90": 4.461538461538462
+      },
+      "original_eml_dag_nodes": {
+        "mean": 44.8998,
+        "median": 42.0,
+        "p90": 68.0
+      },
+      "percent_below_threshold_after_egraph": 5.827088692539984,
+      "percent_below_threshold_before_egraph": 0.22,
+      "percent_improved": 72.933676322559,
+      "percent_unchanged": 25.79129851247064,
+      "percent_worse": 1.2750251649703612,
+      "processed_count": 10000,
+      "results_by_subset_label": {
+        "all_v1": {
+          "compression_gain_vs_goal3_dag": {
+            "mean": 1.9271824068465238,
+            "median": 1.1692307692307693,
+            "p90": 1.6785714285714286
+          },
+          "goal3_dag_alpha": {
+            "mean": 4.036107723777943,
+            "median": 4.0,
+            "p90": 4.9
+          },
+          "optimized_dag_alpha": {
+            "mean": 3.29253021783729,
+            "median": 3.3636363636363638,
+            "p90": 4.461538461538462
+          },
+          "percent_improved": 72.933676322559,
+          "percent_unchanged": 25.79129851247064,
+          "percent_worse": 1.2750251649703612,
+          "processed_count": 10000,
+          "success_count": 8941,
+          "timeout_count": 522
+        },
+        "identity_heavy_v1": {
+          "compression_gain_vs_goal3_dag": {
+            "mean": 2.4390239657897306,
+            "median": 1.2666666666666666,
+            "p90": 2.0819397993311037
+          },
+          "goal3_dag_alpha": {
+            "mean": 3.9727028542406257,
+            "median": 3.95,
+            "p90": 4.75
+          },
+          "optimized_dag_alpha": {
+            "mean": 2.885763574145515,
+            "median": 3.0434782608695654,
+            "p90": 3.888888888888889
+          },
+          "percent_improved": 93.60609280906837,
+          "percent_unchanged": 6.269925611052073,
+          "percent_worse": 0.12398157987956075,
+          "processed_count": 6334,
+          "success_count": 5646,
+          "timeout_count": 475
+        },
+        "nontrivial_v1": {
+          "compression_gain_vs_goal3_dag": {
+            "mean": 1.0501391771672073,
+            "median": 1.0,
+            "p90": 1.1538461538461537
+          },
+          "goal3_dag_alpha": {
+            "mean": 4.145656671854692,
+            "median": 4.111111111111111,
+            "p90": 5.1
+          },
+          "optimized_dag_alpha": {
+            "mean": 3.989527022172271,
+            "median": 4.0,
+            "p90": 4.9
+          },
+          "percent_improved": 37.51138088012139,
+          "percent_unchanged": 59.241274658573595,
+          "percent_worse": 3.2473444613050075,
+          "processed_count": 3666,
+          "success_count": 3295,
+          "timeout_count": 47
+        }
+      },
+      "runtime_seconds": {
+        "mean_per_expression": 0.14658737937592958,
+        "median_per_expression": 0.04460766648116987,
+        "p90_per_expression": 0.21848141629889145
+      },
+      "success_count": 8941,
+      "timeout_count": 522,
+      "validation_failure_count": 878
+    },
+    "safe": {
+      "compression_gain_vs_goal3_dag": {
+        "mean": 1.1589821466888275,
+        "median": 1.0454545454545454,
+        "p90": 1.3478260869565217
+      },
+      "extracted_eml_dag_nodes": {
+        "mean": 40.10004293688278,
+        "median": 38.0,
+        "p90": 62.0
+      },
+      "goal3_dag_alpha": {
+        "mean": 4.036107723777943,
+        "median": 4.0,
+        "p90": 4.9
+      },
+      "optimized_dag_alpha": {
+        "mean": 3.659716785692619,
+        "median": 3.6363636363636362,
+        "p90": 4.666666666666667
+      },
+      "original_eml_dag_nodes": {
+        "mean": 44.8998,
+        "median": 42.0,
+        "p90": 68.0
+      },
+      "percent_below_threshold_after_egraph": 1.0197509660798627,
+      "percent_below_threshold_before_egraph": 0.22,
+      "percent_improved": 53.02705023615285,
+      "percent_unchanged": 45.29841133533706,
+      "percent_worse": 1.6745384285100902,
+      "processed_count": 10000,
+      "results_by_subset_label": {
+        "all_v1": {
+          "compression_gain_vs_goal3_dag": {
+            "mean": 1.1589821466888275,
+            "median": 1.0454545454545454,
+            "p90": 1.3478260869565217
+          },
+          "goal3_dag_alpha": {
+            "mean": 4.036107723777943,
+            "median": 4.0,
+            "p90": 4.9
+          },
+          "optimized_dag_alpha": {
+            "mean": 3.659716785692619,
+            "median": 3.6363636363636362,
+            "p90": 4.666666666666667
+          },
+          "percent_improved": 53.02705023615285,
+          "percent_unchanged": 45.29841133533706,
+          "percent_worse": 1.6745384285100902,
+          "processed_count": 10000,
+          "success_count": 9316,
+          "timeout_count": 241
+        },
+        "identity_heavy_v1": {
+          "compression_gain_vs_goal3_dag": {
+            "mean": 1.2386241941333505,
+            "median": 1.1521464646464645,
+            "p90": 1.4210526315789473
+          },
+          "goal3_dag_alpha": {
+            "mean": 3.9727028542406257,
+            "median": 3.95,
+            "p90": 4.75
+          },
+          "optimized_dag_alpha": {
+            "mean": 3.410508678389637,
+            "median": 3.4166666666666665,
+            "p90": 4.277777777777778
+          },
+          "percent_improved": 68.49798387096774,
+          "percent_unchanged": 30.796370967741936,
+          "percent_worse": 0.7056451612903226,
+          "processed_count": 6334,
+          "success_count": 5952,
+          "timeout_count": 209
+        },
+        "nontrivial_v1": {
+          "compression_gain_vs_goal3_dag": {
+            "mean": 1.0180697012697428,
+            "median": 1.0,
+            "p90": 1.0789473684210527
+          },
+          "goal3_dag_alpha": {
+            "mean": 4.145656671854692,
+            "median": 4.111111111111111,
+            "p90": 5.1
+          },
+          "optimized_dag_alpha": {
+            "mean": 4.100646231194208,
+            "median": 4.080128205128204,
+            "p90": 5.0
+          },
+          "percent_improved": 25.65398335315101,
+          "percent_unchanged": 70.95719381688465,
+          "percent_worse": 3.388822829964328,
+          "processed_count": 3666,
+          "success_count": 3364,
+          "timeout_count": 32
+        }
+      },
+      "runtime_seconds": {
+        "mean_per_expression": 0.09217351757819124,
+        "median_per_expression": 0.03714627100271173,
+        "p90_per_expression": 0.12285696220642425
+      },
+      "success_count": 9316,
+      "timeout_count": 241,
+      "validation_failure_count": 607
+    }
+  }
+}

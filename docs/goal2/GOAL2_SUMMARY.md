@@ -31,6 +31,19 @@ Central conclusion:
 
 Goal 2 does not kill GEML. It rules out the naive claim that raw pure EML trees are compact by themselves. The remaining plausible hypothesis is that EML may become useful after graph sharing, DAG compression, and fair learned baselines.
 
+## Post-Goal 3R Corpus Status
+
+The v0 fixed-seed corpus used in this Goal 2 report is now a pilot corpus and is
+deprecated for new result claims. Goal 3R found that v0 had exact max-depth
+generation, duplicate srepr rows, exp-wrapped log-argument bias, and frequent
+trivial identities.
+
+The repaired v1 corpus under `outputs/v1/` is the default corpus for all future
+compression and ML-facing experiments. The v0 Goal 2 numbers remain useful as
+historical diagnostics, but Goal 4 e-graph compression, Goal 5 ML-facing
+compression, and Goal 6 GNN training/evaluation must use v1 unless explicitly
+labeled as diagnostic-only.
+
 ## Scope And Non-Scope
 
 Goal 2 includes:

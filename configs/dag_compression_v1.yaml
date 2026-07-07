@@ -1,0 +1,57 @@
+seed: 0
+count: 10000
+max_depth: 4
+output_dir: outputs/v1
+input_jsonl_path: outputs/v1/dag_compression_inputs.jsonl
+metrics_jsonl_path: outputs/v1/dag_compression_metrics.jsonl
+metrics_csv_path: outputs/v1/dag_compression_metrics.csv
+summary_json_path: outputs/v1/dag_compression_summary.json
+generation_summary_json_path: outputs/v1/dag_generation_summary.json
+dag_alpha_threshold_summary_csv_path: outputs/v1/dag_alpha_threshold_summary.csv
+dag_alpha_threshold_summary_json_path: outputs/v1/dag_alpha_threshold_summary.json
+dag_alpha_by_ast_size_bucket_csv_path: outputs/v1/dag_alpha_by_ast_size_bucket.csv
+dag_alpha_by_ast_depth_csv_path: outputs/v1/dag_alpha_by_ast_depth.csv
+dag_alpha_by_operator_family_csv_path: outputs/v1/dag_alpha_by_operator_family.csv
+dag_alpha_by_operator_signature_csv_path: outputs/v1/dag_alpha_by_operator_signature.csv
+dag_alpha_by_boolean_features_csv_path: outputs/v1/dag_alpha_by_boolean_features.csv
+plots_dir: outputs/v1/plots_goal3
+top_successes_csv_path: outputs/v1/top_dag_compression_successes.csv
+top_failures_csv_path: outputs/v1/top_dag_compression_failures.csv
+best_operator_signatures_csv_path: outputs/v1/best_dag_operator_signatures.csv
+worst_operator_signatures_csv_path: outputs/v1/worst_dag_operator_signatures.csv
+safe_regime_candidates_csv_path: outputs/v1/dag_safe_regime_candidates.csv
+findings_report_md_path: docs/goal3/GOAL3_DAG_COMPRESSION_FINDINGS_V1.md
+semantic_audit_json_path: outputs/v1/goal3_dag_semantic_audit.json
+semantic_audit_csv_path: outputs/v1/goal3_dag_semantic_audit.csv
+semantic_audit_docs_path: docs/goal3/GOAL3_DAG_SEMANTIC_AUDIT_V1.md
+final_report_path: docs/goal3/GOAL3_DAG_COMPRESSION_STUDY_V1.md
+summary_doc_path: docs/goal3/GOAL3_SUMMARY_V1.md
+alpha_threshold_k: 4
+alpha_threshold_l: 3
+mining_top_n: 20
+semantic_top_shared_limit: 10
+semantic_tolerance: 1.0e-9
+intermediate_leaf_probability: 0.15
+target_depth_probabilities:
+  0: 0.03
+  1: 0.12
+  2: 0.22
+  3: 0.28
+  4: 0.35
+deduplicate_srepr: true
+max_generation_attempts: 250000
+log_argument_strategy: positive_domain
+positive_log_argument_probabilities:
+  leaf: 0.3
+  add: 0.3
+  mul: 0.25
+  exp: 0.15
+max_triviality_score: 2
+operator_probabilities:
+  add: 0.3
+  mul: 0.3
+  exp: 0.2
+  log: 0.2
+symbol_names:
+  - x
+  - y

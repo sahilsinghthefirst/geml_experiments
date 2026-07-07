@@ -1,4 +1,11 @@
 # Future EML equivalence experiment config placeholder.
 seed: 0
 representation_mode: restricted_eml_pure
-output_dir: outputs/v0
+corpus_version: v1
+corpus_label: all_v1
+output_dir: outputs/v1
+input_jsonl_path: outputs/v1/expansion_inputs.jsonl
+available_subset_labels:
+  - all_v1
+  - nontrivial_v1
+  - identity_heavy_v1

@@ -1,0 +1,9 @@
+{
+  "complete": true,
+  "expected_count": 10000,
+  "jsonl_path": "outputs/v1/egraph_compression_metrics_safe.jsonl",
+  "last_index": 9999,
+  "processed_count": 10000,
+  "rule_mode": "safe",
+  "updated_at_unix": 1783445154.828594
+}

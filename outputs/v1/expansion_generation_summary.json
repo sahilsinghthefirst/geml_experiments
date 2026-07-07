@@ -1,0 +1,49 @@
+{
+  "actual_depth_histogram": {
+    "0": 3,
+    "1": 18,
+    "2": 466,
+    "3": 3919,
+    "4": 5594
+  },
+  "attempts": 30524,
+  "duplicate_rejection_count": 18817,
+  "duplicate_rejection_rate": 0.6164657318831084,
+  "generated_count": 10000,
+  "log_argument_distribution": {
+    "add": 1742,
+    "exp": 637,
+    "mul": 1363,
+    "one": 1444,
+    "symbol": 4067
+  },
+  "max_depth": 4,
+  "nontriviality_rates": {
+    "constant_only_add_mul_count": 0.1415,
+    "exp_log_count": 0.0783,
+    "log_exp_count": 0.0637,
+    "log_one_count": 0.1444,
+    "mul_by_one_count": 0.4368
+  },
+  "nontriviality_totals": {
+    "constant_only_add_mul_count": 1415,
+    "exp_log_count": 783,
+    "log_exp_count": 637,
+    "log_one_count": 1444,
+    "mul_by_one_count": 4368
+  },
+  "output_duplicate_count": 0,
+  "output_duplicate_rate": 0.0,
+  "requested_count": 10000,
+  "seed": 0,
+  "target_depth_histogram": {
+    "0": 1,
+    "1": 14,
+    "2": 429,
+    "3": 3796,
+    "4": 5760
+  },
+  "triviality_rejection_count": 1707,
+  "triviality_rejection_rate": 0.055923207967500985,
+  "unique_srepr_count": 10000
+}

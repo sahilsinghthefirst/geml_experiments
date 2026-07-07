@@ -7,7 +7,7 @@ import csv
 import json
 from collections.abc import Iterable, Sequence
 from pathlib import Path
-from typing import Any, Literal, Self
+from typing import Any, Self
 
 import sympy as sp
 import yaml
@@ -19,9 +19,18 @@ from geml.symbolic.eml_transpile import UnsupportedExpressionError as EmlUnsuppo
 from geml.symbolic.eml_transpile import sympy_to_eml_tree
 from geml.symbolic.metrics import TreeStatistics
 from geml.symbolic.representations import REPRESENTATION_MODES, RepresentationMode
+from geml.symbolic.srepr import (
+    SourceSerialization,
+    parse_expression_or_srepr,
+)
+from geml.symbolic.srepr import (
+    build_srepr_locals as _build_srepr_locals,
+)
+from geml.symbolic.srepr import (
+    build_symbol_locals as _build_symbol_locals,
+)
 
 type MetadataValue = str | int | float | bool | None | dict[str, Any] | list[Any]
-type SourceSerialization = Literal["srepr", "expression"]
 
 
 class DatasetExportConfig(BaseModel):
@@ -90,34 +99,12 @@ def load_generated_expressions(path: Path) -> list[GeneratedExpressionInput]:
 
 def build_symbol_locals(symbol_names: Iterable[str]) -> dict[str, sp.Symbol]:
     """Build SymPy parser locals for generated symbol names."""
-    return {name: sp.Symbol(name) for name in symbol_names}
+    return _build_symbol_locals(symbol_names)
 
 
 def build_srepr_locals() -> dict[str, Any]:
     """Build locals that reconstruct generated srepr without evaluating operators."""
-
-    def add(*args: sp.Expr, **_: object) -> sp.Expr:
-        return sp.Add(*args, evaluate=False)
-
-    def mul(*args: sp.Expr, **_: object) -> sp.Expr:
-        return sp.Mul(*args, evaluate=False)
-
-    def exp(arg: sp.Expr, **_: object) -> sp.Expr:
-        return sp.exp(arg, evaluate=False)
-
-    def log(arg: sp.Expr, **_: object) -> sp.Expr:
-        return sp.log(arg, evaluate=False)
-
-    return {
-        "Add": add,
-        "Float": sp.Float,
-        "Integer": sp.Integer,
-        "Mul": mul,
-        "Rational": sp.Rational,
-        "Symbol": sp.Symbol,
-        "exp": exp,
-        "log": log,
-    }
+    return _build_srepr_locals()
 
 
 def parse_generated_expression(
@@ -126,9 +113,11 @@ def parse_generated_expression(
     symbol_locals: dict[str, sp.Symbol],
 ) -> tuple[sp.Expr, SourceSerialization]:
     """Parse generated input, preferring structural srepr over display strings."""
-    if row.srepr:
-        return sp.sympify(row.srepr, locals=build_srepr_locals(), evaluate=False), "srepr"
-    return sp.sympify(row.expression, locals=symbol_locals, evaluate=False), "expression"
+    return parse_expression_or_srepr(
+        expression=row.expression,
+        srepr=row.srepr,
+        symbol_locals=symbol_locals,
+    )
 
 
 def compute_metrics_rows(

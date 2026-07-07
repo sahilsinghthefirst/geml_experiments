@@ -22,10 +22,11 @@ from geml.data.dataset import (
 )
 from geml.data.generate_exprs import (
     DEFAULT_OPERATOR_PROBABILITIES,
+    DEFAULT_POSITIVE_LOG_ARGUMENT_PROBABILITIES,
     DEFAULT_SYMBOL_NAMES,
     ExpressionGeneratorConfig,
-    SympyExpressionGenerator,
-    write_jsonl,
+    LogArgumentStrategy,
+    generate_dataset,
 )
 from geml.experiments.expansion_study import compute_alpha_threshold
 from geml.symbolic.dag_metrics import compute_expression_dag_analysis
@@ -75,11 +76,21 @@ class DagCompressionStudyConfig(BaseModel):
     metrics_jsonl_path: Path = Path("outputs/v0/dag_compression_metrics.jsonl")
     metrics_csv_path: Path = Path("outputs/v0/dag_compression_metrics.csv")
     summary_json_path: Path = Path("outputs/v0/dag_compression_summary.json")
+    generation_summary_json_path: Path | None = None
     alpha_threshold_k: int = Field(default=4, gt=0)
     alpha_threshold_l: int = Field(default=3, gt=0)
     operator_probabilities: dict[str, float] = Field(
         default_factory=lambda: DEFAULT_OPERATOR_PROBABILITIES.copy()
     )
+    target_depth_probabilities: dict[int, float] | None = None
+    intermediate_leaf_probability: float = Field(default=0.0, ge=0.0, le=1.0)
+    deduplicate_srepr: bool = False
+    max_generation_attempts: int | None = Field(default=None, gt=0)
+    log_argument_strategy: LogArgumentStrategy = "exp_wrap"
+    positive_log_argument_probabilities: dict[str, float] = Field(
+        default_factory=lambda: DEFAULT_POSITIVE_LOG_ARGUMENT_PROBABILITIES.copy()
+    )
+    max_triviality_score: int | None = Field(default=None, ge=0)
     symbol_names: tuple[str, ...] = DEFAULT_SYMBOL_NAMES
 
     @model_validator(mode="after")
@@ -164,11 +175,18 @@ def generate_dag_compression_inputs(config: DagCompressionStudyConfig) -> None:
         output_dir=config.output_dir,
         jsonl_path=config.input_jsonl_path,
         csv_path=None,
+        summary_json_path=config.generation_summary_json_path,
         operator_probabilities=config.operator_probabilities,
+        target_depth_probabilities=config.target_depth_probabilities,
+        intermediate_leaf_probability=config.intermediate_leaf_probability,
+        deduplicate_srepr=config.deduplicate_srepr,
+        max_generation_attempts=config.max_generation_attempts,
+        log_argument_strategy=config.log_argument_strategy,
+        positive_log_argument_probabilities=config.positive_log_argument_probabilities,
+        max_triviality_score=config.max_triviality_score,
         symbol_names=config.symbol_names,
     )
-    records = SympyExpressionGenerator(generator_config).generate()
-    write_jsonl(records, config.input_jsonl_path)
+    generate_dataset(generator_config)
 
 
 def compute_dag_compression_rows(

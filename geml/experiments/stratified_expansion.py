@@ -16,6 +16,8 @@ import sympy as sp
 import yaml
 from pydantic import BaseModel, model_validator
 
+from geml.symbolic.srepr import parse_srepr as _parse_srepr
+
 OPERATOR_ORDER = ("Add", "Mul", "Pow", "exp", "log")
 BOOLEAN_FEATURES = ("contains_log", "contains_exp", "contains_Mul", "contains_Add")
 AST_NODE_BUCKETS = (
@@ -292,37 +294,7 @@ def count_operator_features(srepr: str) -> OperatorFeatures:
 
 def parse_srepr(srepr: str) -> sp.Expr:
     """Parse generated SymPy ``srepr`` while preserving unevaluated operators."""
-
-    def add(*args: sp.Expr, **_: object) -> sp.Expr:
-        return sp.Add(*args, evaluate=False)
-
-    def mul(*args: sp.Expr, **_: object) -> sp.Expr:
-        return sp.Mul(*args, evaluate=False)
-
-    def pow_expr(base: sp.Expr, exponent: sp.Expr, **_: object) -> sp.Expr:
-        return sp.Pow(base, exponent, evaluate=False)
-
-    def exp_expr(arg: sp.Expr, **_: object) -> sp.Expr:
-        return sp.exp(arg, evaluate=False)
-
-    def log_expr(arg: sp.Expr, **_: object) -> sp.Expr:
-        return sp.log(arg, evaluate=False)
-
-    return sp.sympify(
-        srepr,
-        locals={
-            "Add": add,
-            "Float": sp.Float,
-            "Integer": sp.Integer,
-            "Mul": mul,
-            "Pow": pow_expr,
-            "Rational": sp.Rational,
-            "Symbol": sp.Symbol,
-            "exp": exp_expr,
-            "log": log_expr,
-        },
-        evaluate=False,
-    )
+    return _parse_srepr(srepr)
 
 
 def operator_signature(features: OperatorFeatures) -> str:

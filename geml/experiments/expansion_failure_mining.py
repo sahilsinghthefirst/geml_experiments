@@ -213,6 +213,15 @@ def run_failure_mining(config: FailureMiningConfig) -> FailureMiningResult:
         depth_failure_modes=depth_failure_modes,
         operator_family_rows=operator_family_rows,
         threshold=primary_threshold,
+        output_paths=(
+            config.top_alpha_csv_path,
+            config.top_eml_node_csv_path,
+            config.top_eml_depth_csv_path,
+            config.worst_operator_signatures_csv_path,
+            config.safest_operator_signatures_csv_path,
+            config.depth_failure_modes_csv_path,
+            config.safe_eml_regime_candidates_csv_path,
+        ),
     )
 
     return FailureMiningResult(
@@ -570,6 +579,7 @@ def write_failure_report(
     depth_failure_modes: Sequence[dict[str, object]],
     operator_family_rows: Sequence[GroupMetricRow],
     threshold: float,
+    output_paths: Sequence[Path],
 ) -> None:
     """Write the Goal 2.5 markdown failure-case report."""
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -583,6 +593,7 @@ def write_failure_report(
             depth_failure_modes=depth_failure_modes,
             operator_family_rows=operator_family_rows,
             threshold=threshold,
+            output_paths=output_paths,
         ),
         encoding="utf-8",
     )
@@ -598,6 +609,7 @@ def build_failure_report_markdown(
     depth_failure_modes: Sequence[dict[str, object]],
     operator_family_rows: Sequence[GroupMetricRow],
     threshold: float,
+    output_paths: Sequence[Path],
 ) -> str:
     """Build the markdown body for Goal 2.5 failure mining."""
     worst_preview = list(worst_signatures[:5])
@@ -675,13 +687,7 @@ def build_failure_report_markdown(
             "",
             "## Output Files",
             "",
-            "- `outputs/v0/top_alpha_explosions.csv`",
-            "- `outputs/v0/top_eml_node_explosions.csv`",
-            "- `outputs/v0/top_eml_depth_explosions.csv`",
-            "- `outputs/v0/worst_operator_signatures.csv`",
-            "- `outputs/v0/safest_operator_signatures.csv`",
-            "- `outputs/v0/depth_failure_modes.csv`",
-            "- `outputs/v0/safe_eml_regime_candidates.csv`",
+            *[f"- `{path}`" for path in output_paths],
         ]
     )
     return "\n".join(sections) + "\n"

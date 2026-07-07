@@ -205,10 +205,14 @@ def run_goal3_dag_pipeline(config: Goal3DagPipelineConfig) -> Goal3DagPipelineRe
     summary = load_json_object(config.summary_json_path)
     best_signatures = load_csv_rows(config.best_operator_signatures_csv_path)
     worst_signatures = load_csv_rows(config.worst_operator_signatures_csv_path)
+    generation_summary_paths = (
+        [config.generation_summary_json_path] if config.generation_summary_json_path else []
+    )
     generated_files = tuple(
         dict.fromkeys(
             [
                 config.input_jsonl_path,
+                *generation_summary_paths,
                 config.metrics_jsonl_path,
                 config.metrics_csv_path,
                 config.summary_json_path,
