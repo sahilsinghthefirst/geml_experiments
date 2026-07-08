@@ -1,0 +1,25 @@
+seed: 0
+count: 10000
+max_depth: 4
+operator_set:
+  - add
+  - mul
+  - exp
+  - log
+symbol_names:
+  - x
+  - y
+source_serialization: srepr
+train_fraction: 0.7
+validation_fraction: 0.15
+min_motif_nodes: 1
+max_motif_nodes: 2
+input_jsonl_path: outputs/v1/dag_compression_inputs.jsonl
+frequent_motif_vocab_json_path: outputs/v1/goal5_frequent_motif_vocab.json
+learned_motif_vocab_json_path: outputs/v1/goal5_learned_motif_vocab.json
+egraph_safe_metrics_csv_path: outputs/v1/egraph_compression_metrics_safe.csv
+egraph_positive_real_metrics_csv_path: outputs/v1/egraph_compression_metrics_positive_real.csv
+graphs_jsonl_path: outputs/v1/goal5_hierarchical_graphs.jsonl
+splits_json_path: outputs/v1/goal5_graph_splits.json
+schema_json_path: outputs/v1/goal5_graph_schema.json
+summary_json_path: outputs/v1/goal5_hierarchical_export_summary.json

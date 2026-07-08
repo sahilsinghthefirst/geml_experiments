@@ -1,0 +1,23 @@
+seed: 0
+count: 10000
+max_depth: 4
+operator_set:
+  - add
+  - mul
+  - exp
+  - log
+symbol_names:
+  - x
+  - y
+source_serialization: srepr
+min_motif_nodes: 1
+max_motif_nodes: 2
+min_support: 50
+max_vocab_size: 90
+input_jsonl_path: outputs/v1/dag_compression_inputs.jsonl
+goal3_metrics_csv_path: outputs/v1/dag_compression_metrics.csv
+macro_graph_metrics_csv_path: outputs/v1/goal5_macro_graph_metrics.csv
+vocab_json_path: outputs/v1/goal5_frequent_motif_vocab.json
+metrics_csv_path: outputs/v1/goal5_frequent_motif_metrics.csv
+metrics_jsonl_path: outputs/v1/goal5_frequent_motif_metrics.jsonl
+summary_json_path: outputs/v1/goal5_frequent_motif_summary.json

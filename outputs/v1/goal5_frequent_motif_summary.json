@@ -1,0 +1,2462 @@
+{
+  "completed_at_unix": 1783487465.8415308,
+  "compression_gain_vs_goal3_eml_dag": {
+    "mean": 7.441744999722499,
+    "median": 7.4,
+    "p90": 9.333333333333334
+  },
+  "compression_gain_vs_macro_graph": {
+    "mean": 1.424852729215229,
+    "median": 1.4,
+    "p90": 1.625
+  },
+  "config": {
+    "count": 10000,
+    "goal3_metrics_csv_path": "outputs/v1/dag_compression_metrics.csv",
+    "input_jsonl_path": "outputs/v1/dag_compression_inputs.jsonl",
+    "macro_graph_metrics_csv_path": "outputs/v1/goal5_macro_graph_metrics.csv",
+    "max_depth": 4,
+    "max_motif_nodes": 2,
+    "max_vocab_size": 90,
+    "metrics_csv_path": "outputs/v1/goal5_frequent_motif_metrics.csv",
+    "metrics_jsonl_path": "outputs/v1/goal5_frequent_motif_metrics.jsonl",
+    "min_motif_nodes": 1,
+    "min_support": 50,
+    "operator_set": [
+      "add",
+      "mul",
+      "exp",
+      "log"
+    ],
+    "seed": 0,
+    "source_serialization": "srepr",
+    "summary_json_path": "outputs/v1/goal5_frequent_motif_summary.json",
+    "symbol_names": [
+      "x",
+      "y"
+    ],
+    "vocab_json_path": "outputs/v1/goal5_frequent_motif_vocab.json"
+  },
+  "elapsed_seconds": 334.42300391197205,
+  "expansion_validation_failure_count": 0,
+  "motif_compressed_nodes": {
+    "mean": 6.0409,
+    "median": 6.0,
+    "p90": 9.0
+  },
+  "motif_counts_by_type": {
+    "macro_graph": 30,
+    "mixed_macro_expansion": 30,
+    "pure_eml_dag": 10
+  },
+  "motif_coverage_percent": {
+    "mean": 58.04783634665988,
+    "median": 57.142857142857146,
+    "p90": 76.92307692307692
+  },
+  "motif_vocab_size": 70,
+  "motifs_not_obvious_official_macros": [
+    {
+      "compression_score": 250481.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 336720,
+        "nontrivial_v1": 164242
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": false,
+      "motif_id": "pure_eml_dag_0000",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": null,
+      "support_by_subset_label": {
+        "identity_heavy_v1": 168360,
+        "nontrivial_v1": 82121
+      },
+      "support_count": 250481,
+      "support_graph_count": 9994,
+      "total_covered_nodes": 500962
+    },
+    {
+      "compression_score": 216562.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 286982,
+        "nontrivial_v1": 146142
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": false,
+      "motif_id": "pure_eml_dag_0001",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": null,
+      "support_by_subset_label": {
+        "identity_heavy_v1": 143491,
+        "nontrivial_v1": 73071
+      },
+      "support_count": 216562,
+      "support_graph_count": 9985,
+      "total_covered_nodes": 433124
+    },
+    {
+      "compression_score": 8000.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 9996,
+        "nontrivial_v1": 6004
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": false,
+      "motif_id": "pure_eml_dag_0005",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": null,
+      "support_by_subset_label": {
+        "identity_heavy_v1": 4998,
+        "nontrivial_v1": 3002
+      },
+      "support_count": 8000,
+      "support_graph_count": 8000,
+      "total_covered_nodes": 16000
+    },
+    {
+      "compression_score": 7424.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 9262,
+        "nontrivial_v1": 5586
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": false,
+      "motif_id": "pure_eml_dag_0006",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": null,
+      "support_by_subset_label": {
+        "identity_heavy_v1": 4631,
+        "nontrivial_v1": 2793
+      },
+      "support_count": 7424,
+      "support_graph_count": 7424,
+      "total_covered_nodes": 14848
+    },
+    {
+      "compression_score": 4143.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 4806,
+        "nontrivial_v1": 3480
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": false,
+      "motif_id": "pure_eml_dag_0007",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": null,
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2403,
+        "nontrivial_v1": 1740
+      },
+      "support_count": 4143,
+      "support_graph_count": 4143,
+      "total_covered_nodes": 8286
+    },
+    {
+      "compression_score": 2711.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 3170,
+        "nontrivial_v1": 2252
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": false,
+      "motif_id": "pure_eml_dag_0008",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": null,
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1585,
+        "nontrivial_v1": 1126
+      },
+      "support_count": 2711,
+      "support_graph_count": 2711,
+      "total_covered_nodes": 5422
+    },
+    {
+      "compression_score": 0.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 279694,
+        "nontrivial_v1": 142283
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": false,
+      "motif_id": "pure_eml_dag_0009",
+      "motif_type": "pure_eml_dag",
+      "node_count": 1,
+      "official_macro_name": null,
+      "support_by_subset_label": {
+        "identity_heavy_v1": 279694,
+        "nontrivial_v1": 142283
+      },
+      "support_count": 421977,
+      "support_graph_count": 9997,
+      "total_covered_nodes": 421977
+    }
+  ],
+  "motifs_that_correspond_to_official_macros": [
+    {
+      "compression_score": 180024.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 240520,
+        "nontrivial_v1": 119528
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "pure_eml_dag_0002",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": "eml_exp",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 120260,
+        "nontrivial_v1": 59764
+      },
+      "support_count": 180024,
+      "support_graph_count": 9996,
+      "total_covered_nodes": 360048
+    },
+    {
+      "compression_score": 154675.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 202064,
+        "nontrivial_v1": 107286
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "pure_eml_dag_0003",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": "eml_exp",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 101032,
+        "nontrivial_v1": 53643
+      },
+      "support_count": 154675,
+      "support_graph_count": 9985,
+      "total_covered_nodes": 309350
+    },
+    {
+      "compression_score": 9967.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 12628,
+        "nontrivial_v1": 7306
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "pure_eml_dag_0004",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": "eml_exp",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 6314,
+        "nontrivial_v1": 3653
+      },
+      "support_count": 9967,
+      "support_graph_count": 9967,
+      "total_covered_nodes": 19934
+    },
+    {
+      "compression_score": 4699.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 5328,
+        "nontrivial_v1": 4070
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0000",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2664,
+        "nontrivial_v1": 2035
+      },
+      "support_count": 4699,
+      "support_graph_count": 4030,
+      "total_covered_nodes": 9398
+    },
+    {
+      "compression_score": 4635.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 5220,
+        "nontrivial_v1": 4050
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0001",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2610,
+        "nontrivial_v1": 2025
+      },
+      "support_count": 4635,
+      "support_graph_count": 4016,
+      "total_covered_nodes": 9270
+    },
+    {
+      "compression_score": 4618.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 6796,
+        "nontrivial_v1": 2440
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0002",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 3398,
+        "nontrivial_v1": 1220
+      },
+      "support_count": 4618,
+      "support_graph_count": 3964,
+      "total_covered_nodes": 9236
+    },
+    {
+      "compression_score": 4422.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 6514,
+        "nontrivial_v1": 2330
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0003",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 3257,
+        "nontrivial_v1": 1165
+      },
+      "support_count": 4422,
+      "support_graph_count": 3243,
+      "total_covered_nodes": 8844
+    },
+    {
+      "compression_score": 3830.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 7660
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0004",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 3830
+      },
+      "support_count": 3830,
+      "support_graph_count": 3471,
+      "total_covered_nodes": 7660
+    },
+    {
+      "compression_score": 3504.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 4738,
+        "nontrivial_v1": 2270
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0005",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2369,
+        "nontrivial_v1": 1135
+      },
+      "support_count": 3504,
+      "support_graph_count": 3074,
+      "total_covered_nodes": 7008
+    },
+    {
+      "compression_score": 3389.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 4246,
+        "nontrivial_v1": 2532
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0006",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2123,
+        "nontrivial_v1": 1266
+      },
+      "support_count": 3389,
+      "support_graph_count": 2666,
+      "total_covered_nodes": 6778
+    },
+    {
+      "compression_score": 3369.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 4724,
+        "nontrivial_v1": 2014
+      },
+      "edge_count": 3,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0007",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2362,
+        "nontrivial_v1": 1007
+      },
+      "support_count": 3369,
+      "support_graph_count": 3026,
+      "total_covered_nodes": 6738
+    },
+    {
+      "compression_score": 3324.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 5096,
+        "nontrivial_v1": 1552
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0008",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2548,
+        "nontrivial_v1": 776
+      },
+      "support_count": 3324,
+      "support_graph_count": 3049,
+      "total_covered_nodes": 6648
+    },
+    {
+      "compression_score": 3313.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 4368,
+        "nontrivial_v1": 2258
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0009",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2184,
+        "nontrivial_v1": 1129
+      },
+      "support_count": 3313,
+      "support_graph_count": 2607,
+      "total_covered_nodes": 6626
+    },
+    {
+      "compression_score": 3231.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 4146,
+        "nontrivial_v1": 2316
+      },
+      "edge_count": 3,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0010",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2073,
+        "nontrivial_v1": 1158
+      },
+      "support_count": 3231,
+      "support_graph_count": 2875,
+      "total_covered_nodes": 6462
+    },
+    {
+      "compression_score": 3099.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 3818,
+        "nontrivial_v1": 2380
+      },
+      "edge_count": 3,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0011",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1909,
+        "nontrivial_v1": 1190
+      },
+      "support_count": 3099,
+      "support_graph_count": 2759,
+      "total_covered_nodes": 6198
+    },
+    {
+      "compression_score": 3076.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 4350,
+        "nontrivial_v1": 1802
+      },
+      "edge_count": 3,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0012",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2175,
+        "nontrivial_v1": 901
+      },
+      "support_count": 3076,
+      "support_graph_count": 2753,
+      "total_covered_nodes": 6152
+    },
+    {
+      "compression_score": 3057.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 3486,
+        "nontrivial_v1": 2628
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0013",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1743,
+        "nontrivial_v1": 1314
+      },
+      "support_count": 3057,
+      "support_graph_count": 2819,
+      "total_covered_nodes": 6114
+    },
+    {
+      "compression_score": 2995.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 3430,
+        "nontrivial_v1": 2560
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0014",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1715,
+        "nontrivial_v1": 1280
+      },
+      "support_count": 2995,
+      "support_graph_count": 2787,
+      "total_covered_nodes": 5990
+    },
+    {
+      "compression_score": 2971.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 3834,
+        "nontrivial_v1": 2108
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0015",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1917,
+        "nontrivial_v1": 1054
+      },
+      "support_count": 2971,
+      "support_graph_count": 2781,
+      "total_covered_nodes": 5942
+    },
+    {
+      "compression_score": 2091.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 2466,
+        "nontrivial_v1": 1716
+      },
+      "edge_count": 3,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0016",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_exp",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1233,
+        "nontrivial_v1": 858
+      },
+      "support_count": 2091,
+      "support_graph_count": 1984,
+      "total_covered_nodes": 4182
+    },
+    {
+      "compression_score": 1954.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 2726,
+        "nontrivial_v1": 1182
+      },
+      "edge_count": 3,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0017",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_exp",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1363,
+        "nontrivial_v1": 591
+      },
+      "support_count": 1954,
+      "support_graph_count": 1873,
+      "total_covered_nodes": 3908
+    },
+    {
+      "compression_score": 1876.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 2214,
+        "nontrivial_v1": 1538
+      },
+      "edge_count": 1,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0018",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_exp",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1107,
+        "nontrivial_v1": 769
+      },
+      "support_count": 1876,
+      "support_graph_count": 1876,
+      "total_covered_nodes": 3752
+    },
+    {
+      "compression_score": 1868.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 2360,
+        "nontrivial_v1": 1376
+      },
+      "edge_count": 1,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0019",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_log",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1180,
+        "nontrivial_v1": 688
+      },
+      "support_count": 1868,
+      "support_graph_count": 1868,
+      "total_covered_nodes": 3736
+    },
+    {
+      "compression_score": 1821.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 2154,
+        "nontrivial_v1": 1488
+      },
+      "edge_count": 1,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0020",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_exp",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1077,
+        "nontrivial_v1": 744
+      },
+      "support_count": 1821,
+      "support_graph_count": 1821,
+      "total_covered_nodes": 3642
+    },
+    {
+      "compression_score": 1815.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 2116,
+        "nontrivial_v1": 1514
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0021",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1058,
+        "nontrivial_v1": 757
+      },
+      "support_count": 1815,
+      "support_graph_count": 1808,
+      "total_covered_nodes": 3630
+    },
+    {
+      "compression_score": 1814.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 2314,
+        "nontrivial_v1": 1314
+      },
+      "edge_count": 1,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0022",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_log",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1157,
+        "nontrivial_v1": 657
+      },
+      "support_count": 1814,
+      "support_graph_count": 1814,
+      "total_covered_nodes": 3628
+    },
+    {
+      "compression_score": 1740.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 2096,
+        "nontrivial_v1": 1384
+      },
+      "edge_count": 1,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0023",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_exp",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1048,
+        "nontrivial_v1": 692
+      },
+      "support_count": 1740,
+      "support_graph_count": 1740,
+      "total_covered_nodes": 3480
+    },
+    {
+      "compression_score": 1738.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 1978,
+        "nontrivial_v1": 1498
+      },
+      "edge_count": 3,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0024",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_log",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 989,
+        "nontrivial_v1": 749
+      },
+      "support_count": 1738,
+      "support_graph_count": 1674,
+      "total_covered_nodes": 3476
+    },
+    {
+      "compression_score": 1688.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 2556,
+        "nontrivial_v1": 820
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0025",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1278,
+        "nontrivial_v1": 410
+      },
+      "support_count": 1688,
+      "support_graph_count": 1488,
+      "total_covered_nodes": 3376
+    },
+    {
+      "compression_score": 1538.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 2272,
+        "nontrivial_v1": 804
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0026",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1136,
+        "nontrivial_v1": 402
+      },
+      "support_count": 1538,
+      "support_graph_count": 1493,
+      "total_covered_nodes": 3076
+    },
+    {
+      "compression_score": 1515.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 3030
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0027",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1515
+      },
+      "support_count": 1515,
+      "support_graph_count": 1505,
+      "total_covered_nodes": 3030
+    },
+    {
+      "compression_score": 1398.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 2796
+      },
+      "edge_count": 1,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0028",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_log",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1398
+      },
+      "support_count": 1398,
+      "support_graph_count": 1398,
+      "total_covered_nodes": 2796
+    },
+    {
+      "compression_score": 1356.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 1872,
+        "nontrivial_v1": 840
+      },
+      "edge_count": 3,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0029",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_log",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 936,
+        "nontrivial_v1": 420
+      },
+      "support_count": 1356,
+      "support_graph_count": 1323,
+      "total_covered_nodes": 2712
+    },
+    {
+      "compression_score": 4699.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 5328,
+        "nontrivial_v1": 4070
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0000",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2664,
+        "nontrivial_v1": 2035
+      },
+      "support_count": 4699,
+      "support_graph_count": 4030,
+      "total_covered_nodes": 9398
+    },
+    {
+      "compression_score": 4635.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 5220,
+        "nontrivial_v1": 4050
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0001",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2610,
+        "nontrivial_v1": 2025
+      },
+      "support_count": 4635,
+      "support_graph_count": 4016,
+      "total_covered_nodes": 9270
+    },
+    {
+      "compression_score": 4618.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 6796,
+        "nontrivial_v1": 2440
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0002",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 3398,
+        "nontrivial_v1": 1220
+      },
+      "support_count": 4618,
+      "support_graph_count": 3964,
+      "total_covered_nodes": 9236
+    },
+    {
+      "compression_score": 4422.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 6514,
+        "nontrivial_v1": 2330
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0003",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 3257,
+        "nontrivial_v1": 1165
+      },
+      "support_count": 4422,
+      "support_graph_count": 3243,
+      "total_covered_nodes": 8844
+    },
+    {
+      "compression_score": 3830.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 7660
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0004",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 3830
+      },
+      "support_count": 3830,
+      "support_graph_count": 3471,
+      "total_covered_nodes": 7660
+    },
+    {
+      "compression_score": 3504.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 4738,
+        "nontrivial_v1": 2270
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0005",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2369,
+        "nontrivial_v1": 1135
+      },
+      "support_count": 3504,
+      "support_graph_count": 3074,
+      "total_covered_nodes": 7008
+    },
+    {
+      "compression_score": 3389.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 4246,
+        "nontrivial_v1": 2532
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0006",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2123,
+        "nontrivial_v1": 1266
+      },
+      "support_count": 3389,
+      "support_graph_count": 2666,
+      "total_covered_nodes": 6778
+    },
+    {
+      "compression_score": 3369.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 4724,
+        "nontrivial_v1": 2014
+      },
+      "edge_count": 3,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0007",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2362,
+        "nontrivial_v1": 1007
+      },
+      "support_count": 3369,
+      "support_graph_count": 3026,
+      "total_covered_nodes": 6738
+    },
+    {
+      "compression_score": 3324.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 5096,
+        "nontrivial_v1": 1552
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0008",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2548,
+        "nontrivial_v1": 776
+      },
+      "support_count": 3324,
+      "support_graph_count": 3049,
+      "total_covered_nodes": 6648
+    },
+    {
+      "compression_score": 3313.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 4368,
+        "nontrivial_v1": 2258
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0009",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2184,
+        "nontrivial_v1": 1129
+      },
+      "support_count": 3313,
+      "support_graph_count": 2607,
+      "total_covered_nodes": 6626
+    },
+    {
+      "compression_score": 3231.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 4146,
+        "nontrivial_v1": 2316
+      },
+      "edge_count": 3,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0010",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2073,
+        "nontrivial_v1": 1158
+      },
+      "support_count": 3231,
+      "support_graph_count": 2875,
+      "total_covered_nodes": 6462
+    },
+    {
+      "compression_score": 3099.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 3818,
+        "nontrivial_v1": 2380
+      },
+      "edge_count": 3,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0011",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1909,
+        "nontrivial_v1": 1190
+      },
+      "support_count": 3099,
+      "support_graph_count": 2759,
+      "total_covered_nodes": 6198
+    },
+    {
+      "compression_score": 3076.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 4350,
+        "nontrivial_v1": 1802
+      },
+      "edge_count": 3,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0012",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2175,
+        "nontrivial_v1": 901
+      },
+      "support_count": 3076,
+      "support_graph_count": 2753,
+      "total_covered_nodes": 6152
+    },
+    {
+      "compression_score": 3057.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 3486,
+        "nontrivial_v1": 2628
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0013",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1743,
+        "nontrivial_v1": 1314
+      },
+      "support_count": 3057,
+      "support_graph_count": 2819,
+      "total_covered_nodes": 6114
+    },
+    {
+      "compression_score": 2995.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 3430,
+        "nontrivial_v1": 2560
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0014",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1715,
+        "nontrivial_v1": 1280
+      },
+      "support_count": 2995,
+      "support_graph_count": 2787,
+      "total_covered_nodes": 5990
+    },
+    {
+      "compression_score": 2971.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 3834,
+        "nontrivial_v1": 2108
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0015",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1917,
+        "nontrivial_v1": 1054
+      },
+      "support_count": 2971,
+      "support_graph_count": 2781,
+      "total_covered_nodes": 5942
+    },
+    {
+      "compression_score": 2091.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 2466,
+        "nontrivial_v1": 1716
+      },
+      "edge_count": 3,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0016",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_exp",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1233,
+        "nontrivial_v1": 858
+      },
+      "support_count": 2091,
+      "support_graph_count": 1984,
+      "total_covered_nodes": 4182
+    }
+  ],
+  "processed_count": 10000,
+  "representation_contract": {
+    "every_motif_has_expansion_map_to_original_graph": true,
+    "motif_nodes_are_pure_eml": false,
+    "reports_motif_metrics_separately": true,
+    "trained_neural_models": false
+  },
+  "results_by_subset_label": {
+    "all_v1": {
+      "compression_gain_vs_goal3_eml_dag": {
+        "mean": 7.441744999722499,
+        "median": 7.4,
+        "p90": 9.333333333333334
+      },
+      "compression_gain_vs_macro_graph": {
+        "mean": 1.424852729215229,
+        "median": 1.4,
+        "p90": 1.625
+      },
+      "expansion_validation_failure_count": 0,
+      "motif_coverage_percent": {
+        "mean": 58.04783634665988,
+        "median": 57.142857142857146,
+        "p90": 76.92307692307692
+      },
+      "processed_count": 10000,
+      "success_count": 10000
+    },
+    "identity_heavy_v1": {
+      "compression_gain_vs_goal3_eml_dag": {
+        "mean": 7.226648211890554,
+        "median": 7.222222222222222,
+        "p90": 9.0
+      },
+      "compression_gain_vs_macro_graph": {
+        "mean": 1.4111395849002417,
+        "median": 1.4,
+        "p90": 1.6
+      },
+      "expansion_validation_failure_count": 0,
+      "motif_coverage_percent": {
+        "mean": 56.80766589828794,
+        "median": 57.142857142857146,
+        "p90": 75.0
+      },
+      "processed_count": 6334,
+      "success_count": 6334
+    },
+    "nontrivial_v1": {
+      "compression_gain_vs_goal3_eml_dag": {
+        "mean": 7.813382494028975,
+        "median": 7.75,
+        "p90": 10.0
+      },
+      "compression_gain_vs_macro_graph": {
+        "mean": 1.4485458705385055,
+        "median": 1.4285714285714286,
+        "p90": 1.6666666666666667
+      },
+      "expansion_validation_failure_count": 0,
+      "motif_coverage_percent": {
+        "mean": 60.19056401168657,
+        "median": 60.0,
+        "p90": 80.0
+      },
+      "processed_count": 3666,
+      "success_count": 3666
+    }
+  },
+  "success_count": 10000,
+  "top_motifs_by_compression_saved": [
+    {
+      "compression_score": 250481.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 336720,
+        "nontrivial_v1": 164242
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": false,
+      "motif_id": "pure_eml_dag_0000",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": null,
+      "support_by_subset_label": {
+        "identity_heavy_v1": 168360,
+        "nontrivial_v1": 82121
+      },
+      "support_count": 250481,
+      "support_graph_count": 9994,
+      "total_covered_nodes": 500962
+    },
+    {
+      "compression_score": 216562.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 286982,
+        "nontrivial_v1": 146142
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": false,
+      "motif_id": "pure_eml_dag_0001",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": null,
+      "support_by_subset_label": {
+        "identity_heavy_v1": 143491,
+        "nontrivial_v1": 73071
+      },
+      "support_count": 216562,
+      "support_graph_count": 9985,
+      "total_covered_nodes": 433124
+    },
+    {
+      "compression_score": 180024.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 240520,
+        "nontrivial_v1": 119528
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "pure_eml_dag_0002",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": "eml_exp",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 120260,
+        "nontrivial_v1": 59764
+      },
+      "support_count": 180024,
+      "support_graph_count": 9996,
+      "total_covered_nodes": 360048
+    },
+    {
+      "compression_score": 154675.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 202064,
+        "nontrivial_v1": 107286
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "pure_eml_dag_0003",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": "eml_exp",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 101032,
+        "nontrivial_v1": 53643
+      },
+      "support_count": 154675,
+      "support_graph_count": 9985,
+      "total_covered_nodes": 309350
+    },
+    {
+      "compression_score": 9967.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 12628,
+        "nontrivial_v1": 7306
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "pure_eml_dag_0004",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": "eml_exp",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 6314,
+        "nontrivial_v1": 3653
+      },
+      "support_count": 9967,
+      "support_graph_count": 9967,
+      "total_covered_nodes": 19934
+    },
+    {
+      "compression_score": 8000.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 9996,
+        "nontrivial_v1": 6004
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": false,
+      "motif_id": "pure_eml_dag_0005",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": null,
+      "support_by_subset_label": {
+        "identity_heavy_v1": 4998,
+        "nontrivial_v1": 3002
+      },
+      "support_count": 8000,
+      "support_graph_count": 8000,
+      "total_covered_nodes": 16000
+    },
+    {
+      "compression_score": 7424.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 9262,
+        "nontrivial_v1": 5586
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": false,
+      "motif_id": "pure_eml_dag_0006",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": null,
+      "support_by_subset_label": {
+        "identity_heavy_v1": 4631,
+        "nontrivial_v1": 2793
+      },
+      "support_count": 7424,
+      "support_graph_count": 7424,
+      "total_covered_nodes": 14848
+    },
+    {
+      "compression_score": 4699.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 5328,
+        "nontrivial_v1": 4070
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0000",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2664,
+        "nontrivial_v1": 2035
+      },
+      "support_count": 4699,
+      "support_graph_count": 4030,
+      "total_covered_nodes": 9398
+    },
+    {
+      "compression_score": 4699.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 5328,
+        "nontrivial_v1": 4070
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0000",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2664,
+        "nontrivial_v1": 2035
+      },
+      "support_count": 4699,
+      "support_graph_count": 4030,
+      "total_covered_nodes": 9398
+    },
+    {
+      "compression_score": 4635.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 5220,
+        "nontrivial_v1": 4050
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0001",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2610,
+        "nontrivial_v1": 2025
+      },
+      "support_count": 4635,
+      "support_graph_count": 4016,
+      "total_covered_nodes": 9270
+    },
+    {
+      "compression_score": 4635.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 5220,
+        "nontrivial_v1": 4050
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0001",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2610,
+        "nontrivial_v1": 2025
+      },
+      "support_count": 4635,
+      "support_graph_count": 4016,
+      "total_covered_nodes": 9270
+    },
+    {
+      "compression_score": 4618.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 6796,
+        "nontrivial_v1": 2440
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0002",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 3398,
+        "nontrivial_v1": 1220
+      },
+      "support_count": 4618,
+      "support_graph_count": 3964,
+      "total_covered_nodes": 9236
+    },
+    {
+      "compression_score": 4618.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 6796,
+        "nontrivial_v1": 2440
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0002",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 3398,
+        "nontrivial_v1": 1220
+      },
+      "support_count": 4618,
+      "support_graph_count": 3964,
+      "total_covered_nodes": 9236
+    },
+    {
+      "compression_score": 4422.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 6514,
+        "nontrivial_v1": 2330
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0003",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 3257,
+        "nontrivial_v1": 1165
+      },
+      "support_count": 4422,
+      "support_graph_count": 3243,
+      "total_covered_nodes": 8844
+    },
+    {
+      "compression_score": 4422.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 6514,
+        "nontrivial_v1": 2330
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0003",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 3257,
+        "nontrivial_v1": 1165
+      },
+      "support_count": 4422,
+      "support_graph_count": 3243,
+      "total_covered_nodes": 8844
+    },
+    {
+      "compression_score": 4143.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 4806,
+        "nontrivial_v1": 3480
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": false,
+      "motif_id": "pure_eml_dag_0007",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": null,
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2403,
+        "nontrivial_v1": 1740
+      },
+      "support_count": 4143,
+      "support_graph_count": 4143,
+      "total_covered_nodes": 8286
+    },
+    {
+      "compression_score": 3830.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 7660
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0004",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 3830
+      },
+      "support_count": 3830,
+      "support_graph_count": 3471,
+      "total_covered_nodes": 7660
+    },
+    {
+      "compression_score": 3830.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 7660
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0004",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 3830
+      },
+      "support_count": 3830,
+      "support_graph_count": 3471,
+      "total_covered_nodes": 7660
+    },
+    {
+      "compression_score": 3504.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 4738,
+        "nontrivial_v1": 2270
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0005",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2369,
+        "nontrivial_v1": 1135
+      },
+      "support_count": 3504,
+      "support_graph_count": 3074,
+      "total_covered_nodes": 7008
+    },
+    {
+      "compression_score": 3504.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 4738,
+        "nontrivial_v1": 2270
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0005",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2369,
+        "nontrivial_v1": 1135
+      },
+      "support_count": 3504,
+      "support_graph_count": 3074,
+      "total_covered_nodes": 7008
+    }
+  ],
+  "top_motifs_by_nontrivial_v1_coverage": [
+    {
+      "compression_score": 250481.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 336720,
+        "nontrivial_v1": 164242
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": false,
+      "motif_id": "pure_eml_dag_0000",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": null,
+      "support_by_subset_label": {
+        "identity_heavy_v1": 168360,
+        "nontrivial_v1": 82121
+      },
+      "support_count": 250481,
+      "support_graph_count": 9994,
+      "total_covered_nodes": 500962
+    },
+    {
+      "compression_score": 216562.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 286982,
+        "nontrivial_v1": 146142
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": false,
+      "motif_id": "pure_eml_dag_0001",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": null,
+      "support_by_subset_label": {
+        "identity_heavy_v1": 143491,
+        "nontrivial_v1": 73071
+      },
+      "support_count": 216562,
+      "support_graph_count": 9985,
+      "total_covered_nodes": 433124
+    },
+    {
+      "compression_score": 0.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 279694,
+        "nontrivial_v1": 142283
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": false,
+      "motif_id": "pure_eml_dag_0009",
+      "motif_type": "pure_eml_dag",
+      "node_count": 1,
+      "official_macro_name": null,
+      "support_by_subset_label": {
+        "identity_heavy_v1": 279694,
+        "nontrivial_v1": 142283
+      },
+      "support_count": 421977,
+      "support_graph_count": 9997,
+      "total_covered_nodes": 421977
+    },
+    {
+      "compression_score": 180024.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 240520,
+        "nontrivial_v1": 119528
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "pure_eml_dag_0002",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": "eml_exp",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 120260,
+        "nontrivial_v1": 59764
+      },
+      "support_count": 180024,
+      "support_graph_count": 9996,
+      "total_covered_nodes": 360048
+    },
+    {
+      "compression_score": 154675.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 202064,
+        "nontrivial_v1": 107286
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "pure_eml_dag_0003",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": "eml_exp",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 101032,
+        "nontrivial_v1": 53643
+      },
+      "support_count": 154675,
+      "support_graph_count": 9985,
+      "total_covered_nodes": 309350
+    },
+    {
+      "compression_score": 9967.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 12628,
+        "nontrivial_v1": 7306
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "pure_eml_dag_0004",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": "eml_exp",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 6314,
+        "nontrivial_v1": 3653
+      },
+      "support_count": 9967,
+      "support_graph_count": 9967,
+      "total_covered_nodes": 19934
+    },
+    {
+      "compression_score": 8000.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 9996,
+        "nontrivial_v1": 6004
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": false,
+      "motif_id": "pure_eml_dag_0005",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": null,
+      "support_by_subset_label": {
+        "identity_heavy_v1": 4998,
+        "nontrivial_v1": 3002
+      },
+      "support_count": 8000,
+      "support_graph_count": 8000,
+      "total_covered_nodes": 16000
+    },
+    {
+      "compression_score": 7424.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 9262,
+        "nontrivial_v1": 5586
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": false,
+      "motif_id": "pure_eml_dag_0006",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": null,
+      "support_by_subset_label": {
+        "identity_heavy_v1": 4631,
+        "nontrivial_v1": 2793
+      },
+      "support_count": 7424,
+      "support_graph_count": 7424,
+      "total_covered_nodes": 14848
+    },
+    {
+      "compression_score": 4699.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 5328,
+        "nontrivial_v1": 4070
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0000",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2664,
+        "nontrivial_v1": 2035
+      },
+      "support_count": 4699,
+      "support_graph_count": 4030,
+      "total_covered_nodes": 9398
+    },
+    {
+      "compression_score": 4699.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 5328,
+        "nontrivial_v1": 4070
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0000",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2664,
+        "nontrivial_v1": 2035
+      },
+      "support_count": 4699,
+      "support_graph_count": 4030,
+      "total_covered_nodes": 9398
+    },
+    {
+      "compression_score": 4635.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 5220,
+        "nontrivial_v1": 4050
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0001",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2610,
+        "nontrivial_v1": 2025
+      },
+      "support_count": 4635,
+      "support_graph_count": 4016,
+      "total_covered_nodes": 9270
+    },
+    {
+      "compression_score": 4635.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 5220,
+        "nontrivial_v1": 4050
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0001",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2610,
+        "nontrivial_v1": 2025
+      },
+      "support_count": 4635,
+      "support_graph_count": 4016,
+      "total_covered_nodes": 9270
+    },
+    {
+      "compression_score": 4143.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 4806,
+        "nontrivial_v1": 3480
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": false,
+      "motif_id": "pure_eml_dag_0007",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": null,
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2403,
+        "nontrivial_v1": 1740
+      },
+      "support_count": 4143,
+      "support_graph_count": 4143,
+      "total_covered_nodes": 8286
+    },
+    {
+      "compression_score": 3057.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 3486,
+        "nontrivial_v1": 2628
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0013",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1743,
+        "nontrivial_v1": 1314
+      },
+      "support_count": 3057,
+      "support_graph_count": 2819,
+      "total_covered_nodes": 6114
+    },
+    {
+      "compression_score": 3057.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 3486,
+        "nontrivial_v1": 2628
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0013",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1743,
+        "nontrivial_v1": 1314
+      },
+      "support_count": 3057,
+      "support_graph_count": 2819,
+      "total_covered_nodes": 6114
+    },
+    {
+      "compression_score": 2995.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 3430,
+        "nontrivial_v1": 2560
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0014",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1715,
+        "nontrivial_v1": 1280
+      },
+      "support_count": 2995,
+      "support_graph_count": 2787,
+      "total_covered_nodes": 5990
+    },
+    {
+      "compression_score": 2995.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 3430,
+        "nontrivial_v1": 2560
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0014",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 1715,
+        "nontrivial_v1": 1280
+      },
+      "support_count": 2995,
+      "support_graph_count": 2787,
+      "total_covered_nodes": 5990
+    },
+    {
+      "compression_score": 3389.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 4246,
+        "nontrivial_v1": 2532
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0006",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2123,
+        "nontrivial_v1": 1266
+      },
+      "support_count": 3389,
+      "support_graph_count": 2666,
+      "total_covered_nodes": 6778
+    },
+    {
+      "compression_score": 3389.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 4246,
+        "nontrivial_v1": 2532
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0006",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2123,
+        "nontrivial_v1": 1266
+      },
+      "support_count": 3389,
+      "support_graph_count": 2666,
+      "total_covered_nodes": 6778
+    },
+    {
+      "compression_score": 4618.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 6796,
+        "nontrivial_v1": 2440
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0002",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 3398,
+        "nontrivial_v1": 1220
+      },
+      "support_count": 4618,
+      "support_graph_count": 3964,
+      "total_covered_nodes": 9236
+    }
+  ],
+  "top_motifs_by_support": [
+    {
+      "compression_score": 0.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 279694,
+        "nontrivial_v1": 142283
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": false,
+      "motif_id": "pure_eml_dag_0009",
+      "motif_type": "pure_eml_dag",
+      "node_count": 1,
+      "official_macro_name": null,
+      "support_by_subset_label": {
+        "identity_heavy_v1": 279694,
+        "nontrivial_v1": 142283
+      },
+      "support_count": 421977,
+      "support_graph_count": 9997,
+      "total_covered_nodes": 421977
+    },
+    {
+      "compression_score": 250481.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 336720,
+        "nontrivial_v1": 164242
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": false,
+      "motif_id": "pure_eml_dag_0000",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": null,
+      "support_by_subset_label": {
+        "identity_heavy_v1": 168360,
+        "nontrivial_v1": 82121
+      },
+      "support_count": 250481,
+      "support_graph_count": 9994,
+      "total_covered_nodes": 500962
+    },
+    {
+      "compression_score": 216562.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 286982,
+        "nontrivial_v1": 146142
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": false,
+      "motif_id": "pure_eml_dag_0001",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": null,
+      "support_by_subset_label": {
+        "identity_heavy_v1": 143491,
+        "nontrivial_v1": 73071
+      },
+      "support_count": 216562,
+      "support_graph_count": 9985,
+      "total_covered_nodes": 433124
+    },
+    {
+      "compression_score": 180024.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 240520,
+        "nontrivial_v1": 119528
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "pure_eml_dag_0002",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": "eml_exp",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 120260,
+        "nontrivial_v1": 59764
+      },
+      "support_count": 180024,
+      "support_graph_count": 9996,
+      "total_covered_nodes": 360048
+    },
+    {
+      "compression_score": 154675.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 202064,
+        "nontrivial_v1": 107286
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "pure_eml_dag_0003",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": "eml_exp",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 101032,
+        "nontrivial_v1": 53643
+      },
+      "support_count": 154675,
+      "support_graph_count": 9985,
+      "total_covered_nodes": 309350
+    },
+    {
+      "compression_score": 9967.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 12628,
+        "nontrivial_v1": 7306
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "pure_eml_dag_0004",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": "eml_exp",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 6314,
+        "nontrivial_v1": 3653
+      },
+      "support_count": 9967,
+      "support_graph_count": 9967,
+      "total_covered_nodes": 19934
+    },
+    {
+      "compression_score": 8000.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 9996,
+        "nontrivial_v1": 6004
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": false,
+      "motif_id": "pure_eml_dag_0005",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": null,
+      "support_by_subset_label": {
+        "identity_heavy_v1": 4998,
+        "nontrivial_v1": 3002
+      },
+      "support_count": 8000,
+      "support_graph_count": 8000,
+      "total_covered_nodes": 16000
+    },
+    {
+      "compression_score": 7424.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 9262,
+        "nontrivial_v1": 5586
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": false,
+      "motif_id": "pure_eml_dag_0006",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": null,
+      "support_by_subset_label": {
+        "identity_heavy_v1": 4631,
+        "nontrivial_v1": 2793
+      },
+      "support_count": 7424,
+      "support_graph_count": 7424,
+      "total_covered_nodes": 14848
+    },
+    {
+      "compression_score": 4699.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 5328,
+        "nontrivial_v1": 4070
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0000",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2664,
+        "nontrivial_v1": 2035
+      },
+      "support_count": 4699,
+      "support_graph_count": 4030,
+      "total_covered_nodes": 9398
+    },
+    {
+      "compression_score": 4699.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 5328,
+        "nontrivial_v1": 4070
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0000",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2664,
+        "nontrivial_v1": 2035
+      },
+      "support_count": 4699,
+      "support_graph_count": 4030,
+      "total_covered_nodes": 9398
+    },
+    {
+      "compression_score": 4635.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 5220,
+        "nontrivial_v1": 4050
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0001",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2610,
+        "nontrivial_v1": 2025
+      },
+      "support_count": 4635,
+      "support_graph_count": 4016,
+      "total_covered_nodes": 9270
+    },
+    {
+      "compression_score": 4635.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 5220,
+        "nontrivial_v1": 4050
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0001",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2610,
+        "nontrivial_v1": 2025
+      },
+      "support_count": 4635,
+      "support_graph_count": 4016,
+      "total_covered_nodes": 9270
+    },
+    {
+      "compression_score": 4618.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 6796,
+        "nontrivial_v1": 2440
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0002",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 3398,
+        "nontrivial_v1": 1220
+      },
+      "support_count": 4618,
+      "support_graph_count": 3964,
+      "total_covered_nodes": 9236
+    },
+    {
+      "compression_score": 4618.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 6796,
+        "nontrivial_v1": 2440
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0002",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_add",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 3398,
+        "nontrivial_v1": 1220
+      },
+      "support_count": 4618,
+      "support_graph_count": 3964,
+      "total_covered_nodes": 9236
+    },
+    {
+      "compression_score": 4422.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 6514,
+        "nontrivial_v1": 2330
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0003",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 3257,
+        "nontrivial_v1": 1165
+      },
+      "support_count": 4422,
+      "support_graph_count": 3243,
+      "total_covered_nodes": 8844
+    },
+    {
+      "compression_score": 4422.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 6514,
+        "nontrivial_v1": 2330
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0003",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 3257,
+        "nontrivial_v1": 1165
+      },
+      "support_count": 4422,
+      "support_graph_count": 3243,
+      "total_covered_nodes": 8844
+    },
+    {
+      "compression_score": 4143.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 4806,
+        "nontrivial_v1": 3480
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": false,
+      "motif_id": "pure_eml_dag_0007",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "official_macro_name": null,
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2403,
+        "nontrivial_v1": 1740
+      },
+      "support_count": 4143,
+      "support_graph_count": 4143,
+      "total_covered_nodes": 8286
+    },
+    {
+      "compression_score": 3830.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 7660
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0004",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 3830
+      },
+      "support_count": 3830,
+      "support_graph_count": 3471,
+      "total_covered_nodes": 7660
+    },
+    {
+      "compression_score": 3830.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 7660
+      },
+      "edge_count": 2,
+      "is_obvious_official_macro": true,
+      "motif_id": "mixed_macro_expansion_0004",
+      "motif_type": "mixed_macro_expansion",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 3830
+      },
+      "support_count": 3830,
+      "support_graph_count": 3471,
+      "total_covered_nodes": 7660
+    },
+    {
+      "compression_score": 3504.0,
+      "covered_nodes_by_subset_label": {
+        "identity_heavy_v1": 4738,
+        "nontrivial_v1": 2270
+      },
+      "edge_count": 4,
+      "is_obvious_official_macro": true,
+      "motif_id": "macro_graph_0005",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "official_macro_name": "eml_mul",
+      "support_by_subset_label": {
+        "identity_heavy_v1": 2369,
+        "nontrivial_v1": 1135
+      },
+      "support_count": 3504,
+      "support_graph_count": 3074,
+      "total_covered_nodes": 7008
+    }
+  ]
+}

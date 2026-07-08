@@ -1,0 +1,1339 @@
+{
+  "artifact_load_checks": {
+    "csv_headers_loaded": [
+      "frequent_motif_metrics",
+      "goal3_metrics",
+      "goal4_positive_real_metrics",
+      "goal4_safe_metrics",
+      "learned_motif_metrics",
+      "macro_graph_metrics",
+      "neural_egraph_metrics"
+    ],
+    "json_artifacts_loaded": [
+      "frequent_motif_vocab",
+      "hierarchical_schema",
+      "hierarchical_splits",
+      "learned_motif_train_log",
+      "learned_motif_vocab",
+      "neural_egraph_train_log"
+    ]
+  },
+  "comparison_rows": [
+    {
+      "compressed_nodes_are_pure_eml": true,
+      "expansion_validation_rate_percent": null,
+      "failure_count": 0,
+      "is_pure_eml_metric": true,
+      "median_alpha_or_size_ratio": null,
+      "median_child_refs_or_edges": null,
+      "median_compression_gain_vs_goal3_eml_dag": 1.0,
+      "median_nodes": 42.0,
+      "mode": "Goal 3 pure EML-DAG",
+      "nontrivial_median_gain_vs_goal3_eml_dag": null,
+      "nontrivial_median_nodes": null,
+      "nontrivial_processed_count": null,
+      "nontrivial_success_count": null,
+      "notes": "Official pure EML-DAG baseline from Goal 3.",
+      "processed_count": 10000,
+      "reconstruction_failure_count": null,
+      "reconstruction_validation_rate_percent": null,
+      "representation_mode": "pure_eml_dag_graph",
+      "size_metric_is_compression_metric": true,
+      "stage": "Goal 3",
+      "success_count": 10000,
+      "validation_failure_count": null,
+      "validation_rate_percent": null
+    },
+    {
+      "compressed_nodes_are_pure_eml": true,
+      "expansion_validation_rate_percent": null,
+      "failure_count": 684,
+      "is_pure_eml_metric": true,
+      "median_alpha_or_size_ratio": null,
+      "median_child_refs_or_edges": null,
+      "median_compression_gain_vs_goal3_eml_dag": 1.0454545454545454,
+      "median_nodes": 38.0,
+      "mode": "Goal 4 safe e-graph optimized EML-DAG",
+      "nontrivial_median_gain_vs_goal3_eml_dag": 1.0,
+      "nontrivial_median_nodes": null,
+      "nontrivial_processed_count": 3666,
+      "nontrivial_success_count": 3364,
+      "notes": "Non-ML e-graph extraction with safe rules.",
+      "processed_count": 10000,
+      "reconstruction_failure_count": null,
+      "reconstruction_validation_rate_percent": null,
+      "representation_mode": "egraph_safe_eml_dag_graph",
+      "size_metric_is_compression_metric": true,
+      "stage": "Goal 4",
+      "success_count": 9316,
+      "validation_failure_count": 607,
+      "validation_rate_percent": 93.16
+    },
+    {
+      "compressed_nodes_are_pure_eml": true,
+      "expansion_validation_rate_percent": null,
+      "failure_count": 1059,
+      "is_pure_eml_metric": true,
+      "median_alpha_or_size_ratio": null,
+      "median_child_refs_or_edges": null,
+      "median_compression_gain_vs_goal3_eml_dag": 1.1692307692307693,
+      "median_nodes": 34.0,
+      "mode": "Goal 4 positive-real optimized EML-DAG",
+      "nontrivial_median_gain_vs_goal3_eml_dag": 1.0,
+      "nontrivial_median_nodes": null,
+      "nontrivial_processed_count": 3666,
+      "nontrivial_success_count": 3295,
+      "notes": "Non-ML e-graph extraction with positive-real assumptions.",
+      "processed_count": 10000,
+      "reconstruction_failure_count": null,
+      "reconstruction_validation_rate_percent": null,
+      "representation_mode": "egraph_positive_real_eml_dag_graph",
+      "size_metric_is_compression_metric": true,
+      "stage": "Goal 4",
+      "success_count": 8941,
+      "validation_failure_count": 878,
+      "validation_rate_percent": 89.41
+    },
+    {
+      "compressed_nodes_are_pure_eml": false,
+      "expansion_validation_rate_percent": 100.0,
+      "failure_count": 0,
+      "is_pure_eml_metric": false,
+      "median_alpha_or_size_ratio": 0.7777777777777778,
+      "median_child_refs_or_edges": null,
+      "median_compression_gain_vs_goal3_eml_dag": 5.25,
+      "median_nodes": 8.0,
+      "mode": "Goal 5 macro graph",
+      "nontrivial_median_gain_vs_goal3_eml_dag": 5.375,
+      "nontrivial_median_nodes": 7.0,
+      "nontrivial_processed_count": 3666,
+      "nontrivial_success_count": 3666,
+      "notes": "Transparent compiler macro nodes; not pure EML alpha.",
+      "processed_count": 10000,
+      "reconstruction_failure_count": 0,
+      "reconstruction_validation_rate_percent": 100.0,
+      "representation_mode": "macro_graph",
+      "size_metric_is_compression_metric": true,
+      "stage": "Goal 5.1",
+      "success_count": 10000,
+      "validation_failure_count": null,
+      "validation_rate_percent": null
+    },
+    {
+      "compressed_nodes_are_pure_eml": false,
+      "expansion_validation_rate_percent": 100.0,
+      "failure_count": 0,
+      "is_pure_eml_metric": false,
+      "median_alpha_or_size_ratio": null,
+      "median_child_refs_or_edges": null,
+      "median_compression_gain_vs_goal3_eml_dag": 7.4,
+      "median_nodes": 6.0,
+      "mode": "Goal 5 frequent motif graph",
+      "nontrivial_median_gain_vs_goal3_eml_dag": 7.75,
+      "nontrivial_median_nodes": null,
+      "nontrivial_processed_count": 3666,
+      "nontrivial_success_count": 3666,
+      "notes": "Greedy motif replacement from mined frequent motifs.",
+      "processed_count": 10000,
+      "reconstruction_failure_count": 0,
+      "reconstruction_validation_rate_percent": 100.0,
+      "representation_mode": "frequent_motif_graph",
+      "size_metric_is_compression_metric": true,
+      "stage": "Goal 5.2",
+      "success_count": 10000,
+      "validation_failure_count": null,
+      "validation_rate_percent": null
+    },
+    {
+      "compressed_nodes_are_pure_eml": false,
+      "expansion_validation_rate_percent": null,
+      "failure_count": 0,
+      "is_pure_eml_metric": false,
+      "median_alpha_or_size_ratio": null,
+      "median_child_refs_or_edges": null,
+      "median_compression_gain_vs_goal3_eml_dag": 7.125,
+      "median_nodes": 6.0,
+      "mode": "Goal 5 learned motif graph",
+      "nontrivial_median_gain_vs_goal3_eml_dag": 7.428571428571429,
+      "nontrivial_median_nodes": 5.0,
+      "nontrivial_processed_count": 3666,
+      "nontrivial_success_count": 3666,
+      "notes": "Deterministic learned motif selection; exact reconstruction required.",
+      "processed_count": 10000,
+      "reconstruction_failure_count": 0,
+      "reconstruction_validation_rate_percent": 100.0,
+      "representation_mode": "learned_motif_graph",
+      "size_metric_is_compression_metric": true,
+      "stage": "Goal 5.3",
+      "success_count": 10000,
+      "validation_failure_count": null,
+      "validation_rate_percent": null
+    },
+    {
+      "compressed_nodes_are_pure_eml": true,
+      "expansion_validation_rate_percent": null,
+      "failure_count": 1129,
+      "is_pure_eml_metric": true,
+      "median_alpha_or_size_ratio": null,
+      "median_child_refs_or_edges": null,
+      "median_compression_gain_vs_goal3_eml_dag": 1.0740740740740742,
+      "median_nodes": 37.0,
+      "mode": "Goal 5 neural e-graph extractor",
+      "nontrivial_median_gain_vs_goal3_eml_dag": 1.0,
+      "nontrivial_median_nodes": null,
+      "nontrivial_processed_count": 7332,
+      "nontrivial_success_count": 6688,
+      "notes": "Learned ranking model; output still compiled to official pure EML-DAG.",
+      "processed_count": 20000,
+      "reconstruction_failure_count": null,
+      "reconstruction_validation_rate_percent": null,
+      "representation_mode": "neural_selected_eml_dag_graph",
+      "size_metric_is_compression_metric": true,
+      "stage": "Goal 5.4",
+      "success_count": 18871,
+      "validation_failure_count": 1129,
+      "validation_rate_percent": 94.355
+    },
+    {
+      "compressed_nodes_are_pure_eml": false,
+      "expansion_validation_rate_percent": 100.0,
+      "failure_count": 0,
+      "is_pure_eml_metric": false,
+      "median_alpha_or_size_ratio": null,
+      "median_child_refs_or_edges": 128.0,
+      "median_compression_gain_vs_goal3_eml_dag": null,
+      "median_nodes": 73.0,
+      "mode": "Goal 5 hierarchical graph",
+      "nontrivial_median_gain_vs_goal3_eml_dag": null,
+      "nontrivial_median_nodes": null,
+      "nontrivial_processed_count": null,
+      "nontrivial_success_count": null,
+      "notes": "Audit/export container spanning AST, macro, EML-DAG, and motif levels.",
+      "processed_count": 88257,
+      "reconstruction_failure_count": 0,
+      "reconstruction_validation_rate_percent": 100.0,
+      "representation_mode": "hierarchical_eml_graph",
+      "size_metric_is_compression_metric": false,
+      "stage": "Goal 5.5",
+      "success_count": 88257,
+      "validation_failure_count": null,
+      "validation_rate_percent": null
+    }
+  ],
+  "completed_at_unix": 1783503017.177072,
+  "config": {
+    "comparison_csv_path": "outputs/v1/goal5_compression_comparison.csv",
+    "count": 10000,
+    "final_report_path": "docs/goal5/GOAL5_ML_FACING_COMPRESSION_STUDY.md",
+    "findings_report_path": "outputs/v1/GOAL5_COMPRESSION_FINDINGS.md",
+    "force_rerun_frequent_motifs": false,
+    "force_rerun_hierarchical_export": false,
+    "force_rerun_learned_motifs": false,
+    "force_rerun_macro_graph": false,
+    "force_rerun_neural_egraph": false,
+    "frequent_motif_config_path": "configs/frequent_motifs_v1.yaml",
+    "frequent_motif_metrics_csv_path": "outputs/v1/goal5_frequent_motif_metrics.csv",
+    "frequent_motif_metrics_jsonl_path": "outputs/v1/goal5_frequent_motif_metrics.jsonl",
+    "frequent_motif_summary_json_path": "outputs/v1/goal5_frequent_motif_summary.json",
+    "frequent_motif_vocab_json_path": "outputs/v1/goal5_frequent_motif_vocab.json",
+    "goal3_metrics_csv_path": "outputs/v1/dag_compression_metrics.csv",
+    "goal3_summary_json_path": "outputs/v1/dag_compression_summary.json",
+    "goal4_positive_real_metrics_csv_path": "outputs/v1/egraph_compression_metrics_positive_real.csv",
+    "goal4_safe_metrics_csv_path": "outputs/v1/egraph_compression_metrics_safe.csv",
+    "goal4_summary_json_path": "outputs/v1/egraph_compression_summary.json",
+    "hierarchical_export_config_path": "configs/hierarchical_graph_export_v1.yaml",
+    "hierarchical_graphs_jsonl_path": "outputs/v1/goal5_hierarchical_graphs.jsonl",
+    "hierarchical_schema_json_path": "outputs/v1/goal5_graph_schema.json",
+    "hierarchical_splits_json_path": "outputs/v1/goal5_graph_splits.json",
+    "hierarchical_summary_json_path": "outputs/v1/goal5_hierarchical_export_summary.json",
+    "learned_motif_config_path": "configs/learned_motifs_v1.yaml",
+    "learned_motif_metrics_csv_path": "outputs/v1/goal5_learned_motif_metrics.csv",
+    "learned_motif_metrics_jsonl_path": "outputs/v1/goal5_learned_motif_metrics.jsonl",
+    "learned_motif_summary_json_path": "outputs/v1/goal5_learned_motif_summary.json",
+    "learned_motif_train_log_json_path": "outputs/v1/goal5_learned_motif_train_log.json",
+    "learned_motif_vocab_json_path": "outputs/v1/goal5_learned_motif_vocab.json",
+    "macro_config_path": "configs/macro_graph_v1.yaml",
+    "macro_metrics_csv_path": "outputs/v1/goal5_macro_graph_metrics.csv",
+    "macro_metrics_jsonl_path": "outputs/v1/goal5_macro_graph_metrics.jsonl",
+    "macro_summary_json_path": "outputs/v1/goal5_macro_graph_summary.json",
+    "neural_egraph_candidate_dataset_jsonl_path": "outputs/v1/goal5_neural_egraph_candidate_dataset.jsonl",
+    "neural_egraph_config_path": "configs/neural_egraph_extractor_v1.yaml",
+    "neural_egraph_metrics_csv_path": "outputs/v1/goal5_neural_egraph_metrics.csv",
+    "neural_egraph_summary_json_path": "outputs/v1/goal5_neural_egraph_summary.json",
+    "neural_egraph_train_log_json_path": "outputs/v1/goal5_neural_egraph_train_log.json",
+    "require_large_jsonl_artifacts": false,
+    "reuse_existing_artifacts": true,
+    "run_missing_artifacts": true,
+    "seed": 0,
+    "summary_doc_path": "docs/goal5/GOAL5_SUMMARY.md",
+    "summary_json_path": "outputs/v1/goal5_compression_summary.json"
+  },
+  "elapsed_seconds": 0.022124052047729492,
+  "frequent_motifs": {
+    "expansion_validation_failure_count": 0,
+    "median_gain_vs_goal3": 7.4,
+    "median_motif_coverage_percent": 57.142857142857146,
+    "motif_counts_by_type": {
+      "macro_graph": 30,
+      "mixed_macro_expansion": 30,
+      "pure_eml_dag": 10
+    },
+    "motif_vocab_size": 70,
+    "motifs_not_obvious_official_macros": [
+      {
+        "compression_score": 250481.0,
+        "covered_nodes_by_subset_label": {
+          "identity_heavy_v1": 336720,
+          "nontrivial_v1": 164242
+        },
+        "edge_count": 4,
+        "is_obvious_official_macro": false,
+        "motif_id": "pure_eml_dag_0000",
+        "motif_type": "pure_eml_dag",
+        "node_count": 2,
+        "official_macro_name": null,
+        "support_by_subset_label": {
+          "identity_heavy_v1": 168360,
+          "nontrivial_v1": 82121
+        },
+        "support_count": 250481,
+        "support_graph_count": 9994,
+        "total_covered_nodes": 500962
+      },
+      {
+        "compression_score": 216562.0,
+        "covered_nodes_by_subset_label": {
+          "identity_heavy_v1": 286982,
+          "nontrivial_v1": 146142
+        },
+        "edge_count": 4,
+        "is_obvious_official_macro": false,
+        "motif_id": "pure_eml_dag_0001",
+        "motif_type": "pure_eml_dag",
+        "node_count": 2,
+        "official_macro_name": null,
+        "support_by_subset_label": {
+          "identity_heavy_v1": 143491,
+          "nontrivial_v1": 73071
+        },
+        "support_count": 216562,
+        "support_graph_count": 9985,
+        "total_covered_nodes": 433124
+      },
+      {
+        "compression_score": 8000.0,
+        "covered_nodes_by_subset_label": {
+          "identity_heavy_v1": 9996,
+          "nontrivial_v1": 6004
+        },
+        "edge_count": 2,
+        "is_obvious_official_macro": false,
+        "motif_id": "pure_eml_dag_0005",
+        "motif_type": "pure_eml_dag",
+        "node_count": 2,
+        "official_macro_name": null,
+        "support_by_subset_label": {
+          "identity_heavy_v1": 4998,
+          "nontrivial_v1": 3002
+        },
+        "support_count": 8000,
+        "support_graph_count": 8000,
+        "total_covered_nodes": 16000
+      },
+      {
+        "compression_score": 7424.0,
+        "covered_nodes_by_subset_label": {
+          "identity_heavy_v1": 9262,
+          "nontrivial_v1": 5586
+        },
+        "edge_count": 2,
+        "is_obvious_official_macro": false,
+        "motif_id": "pure_eml_dag_0006",
+        "motif_type": "pure_eml_dag",
+        "node_count": 2,
+        "official_macro_name": null,
+        "support_by_subset_label": {
+          "identity_heavy_v1": 4631,
+          "nontrivial_v1": 2793
+        },
+        "support_count": 7424,
+        "support_graph_count": 7424,
+        "total_covered_nodes": 14848
+      },
+      {
+        "compression_score": 4143.0,
+        "covered_nodes_by_subset_label": {
+          "identity_heavy_v1": 4806,
+          "nontrivial_v1": 3480
+        },
+        "edge_count": 2,
+        "is_obvious_official_macro": false,
+        "motif_id": "pure_eml_dag_0007",
+        "motif_type": "pure_eml_dag",
+        "node_count": 2,
+        "official_macro_name": null,
+        "support_by_subset_label": {
+          "identity_heavy_v1": 2403,
+          "nontrivial_v1": 1740
+        },
+        "support_count": 4143,
+        "support_graph_count": 4143,
+        "total_covered_nodes": 8286
+      }
+    ],
+    "motifs_that_correspond_to_official_macros": [
+      {
+        "compression_score": 180024.0,
+        "covered_nodes_by_subset_label": {
+          "identity_heavy_v1": 240520,
+          "nontrivial_v1": 119528
+        },
+        "edge_count": 2,
+        "is_obvious_official_macro": true,
+        "motif_id": "pure_eml_dag_0002",
+        "motif_type": "pure_eml_dag",
+        "node_count": 2,
+        "official_macro_name": "eml_exp",
+        "support_by_subset_label": {
+          "identity_heavy_v1": 120260,
+          "nontrivial_v1": 59764
+        },
+        "support_count": 180024,
+        "support_graph_count": 9996,
+        "total_covered_nodes": 360048
+      },
+      {
+        "compression_score": 154675.0,
+        "covered_nodes_by_subset_label": {
+          "identity_heavy_v1": 202064,
+          "nontrivial_v1": 107286
+        },
+        "edge_count": 2,
+        "is_obvious_official_macro": true,
+        "motif_id": "pure_eml_dag_0003",
+        "motif_type": "pure_eml_dag",
+        "node_count": 2,
+        "official_macro_name": "eml_exp",
+        "support_by_subset_label": {
+          "identity_heavy_v1": 101032,
+          "nontrivial_v1": 53643
+        },
+        "support_count": 154675,
+        "support_graph_count": 9985,
+        "total_covered_nodes": 309350
+      },
+      {
+        "compression_score": 9967.0,
+        "covered_nodes_by_subset_label": {
+          "identity_heavy_v1": 12628,
+          "nontrivial_v1": 7306
+        },
+        "edge_count": 2,
+        "is_obvious_official_macro": true,
+        "motif_id": "pure_eml_dag_0004",
+        "motif_type": "pure_eml_dag",
+        "node_count": 2,
+        "official_macro_name": "eml_exp",
+        "support_by_subset_label": {
+          "identity_heavy_v1": 6314,
+          "nontrivial_v1": 3653
+        },
+        "support_count": 9967,
+        "support_graph_count": 9967,
+        "total_covered_nodes": 19934
+      },
+      {
+        "compression_score": 4699.0,
+        "covered_nodes_by_subset_label": {
+          "identity_heavy_v1": 5328,
+          "nontrivial_v1": 4070
+        },
+        "edge_count": 2,
+        "is_obvious_official_macro": true,
+        "motif_id": "macro_graph_0000",
+        "motif_type": "macro_graph",
+        "node_count": 2,
+        "official_macro_name": "eml_add",
+        "support_by_subset_label": {
+          "identity_heavy_v1": 2664,
+          "nontrivial_v1": 2035
+        },
+        "support_count": 4699,
+        "support_graph_count": 4030,
+        "total_covered_nodes": 9398
+      },
+      {
+        "compression_score": 4635.0,
+        "covered_nodes_by_subset_label": {
+          "identity_heavy_v1": 5220,
+          "nontrivial_v1": 4050
+        },
+        "edge_count": 2,
+        "is_obvious_official_macro": true,
+        "motif_id": "macro_graph_0001",
+        "motif_type": "macro_graph",
+        "node_count": 2,
+        "official_macro_name": "eml_add",
+        "support_by_subset_label": {
+          "identity_heavy_v1": 2610,
+          "nontrivial_v1": 2025
+        },
+        "support_count": 4635,
+        "support_graph_count": 4016,
+        "total_covered_nodes": 9270
+      }
+    ],
+    "nontrivial_v1": {
+      "expansion_validation_failure_count": 0,
+      "median_coverage_percent": 60.0,
+      "median_gain_vs_goal3": 7.75,
+      "processed_count": 3666,
+      "success_count": 3666
+    },
+    "top_motifs_by_compression_saved": [
+      {
+        "compression_score": 250481.0,
+        "covered_nodes_by_subset_label": {
+          "identity_heavy_v1": 336720,
+          "nontrivial_v1": 164242
+        },
+        "edge_count": 4,
+        "is_obvious_official_macro": false,
+        "motif_id": "pure_eml_dag_0000",
+        "motif_type": "pure_eml_dag",
+        "node_count": 2,
+        "official_macro_name": null,
+        "support_by_subset_label": {
+          "identity_heavy_v1": 168360,
+          "nontrivial_v1": 82121
+        },
+        "support_count": 250481,
+        "support_graph_count": 9994,
+        "total_covered_nodes": 500962
+      },
+      {
+        "compression_score": 216562.0,
+        "covered_nodes_by_subset_label": {
+          "identity_heavy_v1": 286982,
+          "nontrivial_v1": 146142
+        },
+        "edge_count": 4,
+        "is_obvious_official_macro": false,
+        "motif_id": "pure_eml_dag_0001",
+        "motif_type": "pure_eml_dag",
+        "node_count": 2,
+        "official_macro_name": null,
+        "support_by_subset_label": {
+          "identity_heavy_v1": 143491,
+          "nontrivial_v1": 73071
+        },
+        "support_count": 216562,
+        "support_graph_count": 9985,
+        "total_covered_nodes": 433124
+      },
+      {
+        "compression_score": 180024.0,
+        "covered_nodes_by_subset_label": {
+          "identity_heavy_v1": 240520,
+          "nontrivial_v1": 119528
+        },
+        "edge_count": 2,
+        "is_obvious_official_macro": true,
+        "motif_id": "pure_eml_dag_0002",
+        "motif_type": "pure_eml_dag",
+        "node_count": 2,
+        "official_macro_name": "eml_exp",
+        "support_by_subset_label": {
+          "identity_heavy_v1": 120260,
+          "nontrivial_v1": 59764
+        },
+        "support_count": 180024,
+        "support_graph_count": 9996,
+        "total_covered_nodes": 360048
+      },
+      {
+        "compression_score": 154675.0,
+        "covered_nodes_by_subset_label": {
+          "identity_heavy_v1": 202064,
+          "nontrivial_v1": 107286
+        },
+        "edge_count": 2,
+        "is_obvious_official_macro": true,
+        "motif_id": "pure_eml_dag_0003",
+        "motif_type": "pure_eml_dag",
+        "node_count": 2,
+        "official_macro_name": "eml_exp",
+        "support_by_subset_label": {
+          "identity_heavy_v1": 101032,
+          "nontrivial_v1": 53643
+        },
+        "support_count": 154675,
+        "support_graph_count": 9985,
+        "total_covered_nodes": 309350
+      },
+      {
+        "compression_score": 9967.0,
+        "covered_nodes_by_subset_label": {
+          "identity_heavy_v1": 12628,
+          "nontrivial_v1": 7306
+        },
+        "edge_count": 2,
+        "is_obvious_official_macro": true,
+        "motif_id": "pure_eml_dag_0004",
+        "motif_type": "pure_eml_dag",
+        "node_count": 2,
+        "official_macro_name": "eml_exp",
+        "support_by_subset_label": {
+          "identity_heavy_v1": 6314,
+          "nontrivial_v1": 3653
+        },
+        "support_count": 9967,
+        "support_graph_count": 9967,
+        "total_covered_nodes": 19934
+      }
+    ],
+    "top_motifs_by_support": [
+      {
+        "compression_score": 0.0,
+        "covered_nodes_by_subset_label": {
+          "identity_heavy_v1": 279694,
+          "nontrivial_v1": 142283
+        },
+        "edge_count": 2,
+        "is_obvious_official_macro": false,
+        "motif_id": "pure_eml_dag_0009",
+        "motif_type": "pure_eml_dag",
+        "node_count": 1,
+        "official_macro_name": null,
+        "support_by_subset_label": {
+          "identity_heavy_v1": 279694,
+          "nontrivial_v1": 142283
+        },
+        "support_count": 421977,
+        "support_graph_count": 9997,
+        "total_covered_nodes": 421977
+      },
+      {
+        "compression_score": 250481.0,
+        "covered_nodes_by_subset_label": {
+          "identity_heavy_v1": 336720,
+          "nontrivial_v1": 164242
+        },
+        "edge_count": 4,
+        "is_obvious_official_macro": false,
+        "motif_id": "pure_eml_dag_0000",
+        "motif_type": "pure_eml_dag",
+        "node_count": 2,
+        "official_macro_name": null,
+        "support_by_subset_label": {
+          "identity_heavy_v1": 168360,
+          "nontrivial_v1": 82121
+        },
+        "support_count": 250481,
+        "support_graph_count": 9994,
+        "total_covered_nodes": 500962
+      },
+      {
+        "compression_score": 216562.0,
+        "covered_nodes_by_subset_label": {
+          "identity_heavy_v1": 286982,
+          "nontrivial_v1": 146142
+        },
+        "edge_count": 4,
+        "is_obvious_official_macro": false,
+        "motif_id": "pure_eml_dag_0001",
+        "motif_type": "pure_eml_dag",
+        "node_count": 2,
+        "official_macro_name": null,
+        "support_by_subset_label": {
+          "identity_heavy_v1": 143491,
+          "nontrivial_v1": 73071
+        },
+        "support_count": 216562,
+        "support_graph_count": 9985,
+        "total_covered_nodes": 433124
+      },
+      {
+        "compression_score": 180024.0,
+        "covered_nodes_by_subset_label": {
+          "identity_heavy_v1": 240520,
+          "nontrivial_v1": 119528
+        },
+        "edge_count": 2,
+        "is_obvious_official_macro": true,
+        "motif_id": "pure_eml_dag_0002",
+        "motif_type": "pure_eml_dag",
+        "node_count": 2,
+        "official_macro_name": "eml_exp",
+        "support_by_subset_label": {
+          "identity_heavy_v1": 120260,
+          "nontrivial_v1": 59764
+        },
+        "support_count": 180024,
+        "support_graph_count": 9996,
+        "total_covered_nodes": 360048
+      },
+      {
+        "compression_score": 154675.0,
+        "covered_nodes_by_subset_label": {
+          "identity_heavy_v1": 202064,
+          "nontrivial_v1": 107286
+        },
+        "edge_count": 2,
+        "is_obvious_official_macro": true,
+        "motif_id": "pure_eml_dag_0003",
+        "motif_type": "pure_eml_dag",
+        "node_count": 2,
+        "official_macro_name": "eml_exp",
+        "support_by_subset_label": {
+          "identity_heavy_v1": 101032,
+          "nontrivial_v1": 53643
+        },
+        "support_count": 154675,
+        "support_graph_count": 9985,
+        "total_covered_nodes": 309350
+      }
+    ]
+  },
+  "generated_files": [
+    "outputs/v1/goal5_compression_comparison.csv",
+    "outputs/v1/goal5_compression_summary.json",
+    "docs/goal5/GOAL5_ML_FACING_COMPRESSION_STUDY.md",
+    "docs/goal5/GOAL5_SUMMARY.md",
+    "outputs/v1/GOAL5_COMPRESSION_FINDINGS.md"
+  ],
+  "hierarchical_export": {
+    "expansion_validation_rate": 100.0,
+    "graph_count": 88257,
+    "missing_expansion_count": 0,
+    "node_edge_stats_by_mode": {
+      "ast_dag_graph": {
+        "edge_count": {
+          "mean": 9.9825,
+          "median": 9.0,
+          "p90": 16.0
+        },
+        "expansion_validation_rate": 100.0,
+        "graph_count": 10000,
+        "missing_expansion_count": 0,
+        "node_count": {
+          "mean": 8.5095,
+          "median": 8.0,
+          "p90": 12.0
+        },
+        "reconstruction_validation_rate": 100.0
+      },
+      "ast_tree_graph": {
+        "edge_count": {
+          "mean": 10.2606,
+          "median": 9.0,
+          "p90": 17.0
+        },
+        "expansion_validation_rate": 100.0,
+        "graph_count": 10000,
+        "missing_expansion_count": 0,
+        "node_count": {
+          "mean": 11.2606,
+          "median": 10.0,
+          "p90": 18.0
+        },
+        "reconstruction_validation_rate": 100.0
+      },
+      "egraph_positive_real_eml_dag_graph": {
+        "edge_count": {
+          "mean": 67.01375685046415,
+          "median": 64.0,
+          "p90": 110.0
+        },
+        "expansion_validation_rate": 100.0,
+        "graph_count": 8941,
+        "missing_expansion_count": 0,
+        "node_count": {
+          "mean": 36.141371211273906,
+          "median": 35.0,
+          "p90": 58.0
+        },
+        "reconstruction_validation_rate": 100.0
+      },
+      "egraph_safe_eml_dag_graph": {
+        "edge_count": {
+          "mean": 75.25397166165736,
+          "median": 70.0,
+          "p90": 118.0
+        },
+        "expansion_validation_rate": 100.0,
+        "graph_count": 9316,
+        "missing_expansion_count": 0,
+        "node_count": {
+          "mean": 40.3215972520395,
+          "median": 38.0,
+          "p90": 62.0
+        },
+        "reconstruction_validation_rate": 100.0
+      },
+      "frequent_motif_graph": {
+        "edge_count": {
+          "mean": 9.9829,
+          "median": 9.0,
+          "p90": 16.0
+        },
+        "expansion_validation_rate": 100.0,
+        "graph_count": 10000,
+        "missing_expansion_count": 0,
+        "node_count": {
+          "mean": 6.0409,
+          "median": 6.0,
+          "p90": 9.0
+        },
+        "reconstruction_validation_rate": 100.0
+      },
+      "hierarchical_eml_graph": {
+        "edge_count": {
+          "mean": 137.1159,
+          "median": 128.0,
+          "p90": 211.0
+        },
+        "expansion_validation_rate": 100.0,
+        "graph_count": 10000,
+        "missing_expansion_count": 0,
+        "node_count": {
+          "mean": 77.0118,
+          "median": 73.0,
+          "p90": 116.0
+        },
+        "reconstruction_validation_rate": 100.0
+      },
+      "learned_motif_graph": {
+        "edge_count": {
+          "mean": 9.985,
+          "median": 9.0,
+          "p90": 16.0
+        },
+        "expansion_validation_rate": 100.0,
+        "graph_count": 10000,
+        "missing_expansion_count": 0,
+        "node_count": {
+          "mean": 6.301,
+          "median": 6.0,
+          "p90": 9.0
+        },
+        "reconstruction_validation_rate": 100.0
+      },
+      "macro_graph": {
+        "edge_count": {
+          "mean": 18.492,
+          "median": 17.0,
+          "p90": 29.0
+        },
+        "expansion_validation_rate": 100.0,
+        "graph_count": 10000,
+        "missing_expansion_count": 0,
+        "node_count": {
+          "mean": 8.5095,
+          "median": 8.0,
+          "p90": 12.0
+        },
+        "reconstruction_validation_rate": 100.0
+      },
+      "pure_eml_dag_graph": {
+        "edge_count": {
+          "mean": 84.3954,
+          "median": 79.0,
+          "p90": 130.0
+        },
+        "expansion_validation_rate": 100.0,
+        "graph_count": 10000,
+        "missing_expansion_count": 0,
+        "node_count": {
+          "mean": 44.8998,
+          "median": 42.0,
+          "p90": 68.0
+        },
+        "reconstruction_validation_rate": 100.0
+      }
+    },
+    "reconstruction_validation_rate": 100.0,
+    "representation_modes_exported": [
+      "ast_dag_graph",
+      "ast_tree_graph",
+      "egraph_positive_real_eml_dag_graph",
+      "egraph_safe_eml_dag_graph",
+      "frequent_motif_graph",
+      "hierarchical_eml_graph",
+      "learned_motif_graph",
+      "macro_graph",
+      "pure_eml_dag_graph"
+    ],
+    "train_val_test_counts": {
+      "test": {
+        "expression_count": 1488,
+        "graph_count": 13114
+      },
+      "train": {
+        "expression_count": 7021,
+        "graph_count": 61979
+      },
+      "validation": {
+        "expression_count": 1491,
+        "graph_count": 13164
+      }
+    }
+  },
+  "integrity": {
+    "compressed_graph_metrics_are_pure_eml_alpha": false,
+    "compressed_hierarchical_nodes_are_pure_eml": false,
+    "downstream_reasoning_improvement_claimed": false,
+    "learned_motif_ids_are_pure_eml_nodes": false,
+    "macro_nodes_are_pure_eml": false,
+    "missing_expansion_count": 0,
+    "modified_official_eml_compiler": false,
+    "motif_nodes_are_pure_eml": false,
+    "no_hidden_pure_eml_violations": true,
+    "no_missing_expansion_maps": true,
+    "reconstruction_failure_count": 0,
+    "safe_and_positive_real_modes_separately_labeled": true,
+    "trained_final_symbolic_reasoning_gnn": false,
+    "v0_is_diagnostic_only": true,
+    "v1_is_result_bearing_corpus": true
+  },
+  "learned_motifs": {
+    "learned_vocab_size": 30,
+    "median_gain_vs_goal3": 7.125,
+    "median_learned_vs_frequent": 1.0,
+    "median_learned_vs_random": 1.0,
+    "median_random_gain_vs_goal3": 7.25,
+    "nontrivial_v1": {
+      "median_coverage_percent": 54.54545454545455,
+      "median_gain_vs_goal3": 7.428571428571429,
+      "median_nodes": 5.0,
+      "processed_count": 3666,
+      "reconstruction_failure_count": 0,
+      "success_count": 3666
+    },
+    "random_vocab_size": 30,
+    "reconstruction_failure_count": 0,
+    "results_by_split": {
+      "test": {
+        "learned_gain_vs_frequent_motif": {
+          "mean": 0.9605325155728381,
+          "median": 1.0,
+          "p90": 1.0
+        },
+        "learned_gain_vs_goal3_eml_dag": {
+          "mean": 7.131705902371225,
+          "median": 7.0,
+          "p90": 9.0
+        },
+        "learned_gain_vs_macro_graph": {
+          "mean": 1.3590625604234476,
+          "median": 1.3333333333333333,
+          "p90": 1.5
+        },
+        "learned_motif_nodes": {
+          "mean": 6.280913978494624,
+          "median": 6.0,
+          "p90": 9.0
+        },
+        "learned_vs_random_motif_compression": {
+          "mean": 0.9853962625636012,
+          "median": 1.0,
+          "p90": 1.125
+        },
+        "motif_coverage_percent": {
+          "mean": 51.18953711488105,
+          "median": 50.0,
+          "p90": 66.66666666666667
+        },
+        "processed_count": 1488,
+        "random_gain_vs_goal3_eml_dag": {
+          "mean": 7.281342257652741,
+          "median": 7.2,
+          "p90": 9.166666666666666
+        },
+        "random_motif_nodes": {
+          "mean": 6.160618279569892,
+          "median": 6.0,
+          "p90": 9.0
+        },
+        "reconstruction_failure_count": 0,
+        "success_count": 1488
+      },
+      "train": {
+        "learned_gain_vs_frequent_motif": {
+          "mean": 0.9599786661138321,
+          "median": 1.0,
+          "p90": 1.0
+        },
+        "learned_gain_vs_goal3_eml_dag": {
+          "mean": 7.132022439571222,
+          "median": 7.142857142857143,
+          "p90": 9.0
+        },
+        "learned_gain_vs_macro_graph": {
+          "mean": 1.3629889951318523,
+          "median": 1.3333333333333333,
+          "p90": 1.5
+        },
+        "learned_motif_nodes": {
+          "mean": 6.30878792194844,
+          "median": 6.0,
+          "p90": 9.0
+        },
+        "learned_vs_random_motif_compression": {
+          "mean": 0.9879724296972553,
+          "median": 1.0,
+          "p90": 1.125
+        },
+        "motif_coverage_percent": {
+          "mean": 51.672709696306974,
+          "median": 50.0,
+          "p90": 66.66666666666667
+        },
+        "processed_count": 7021,
+        "random_gain_vs_goal3_eml_dag": {
+          "mean": 7.25529287492327,
+          "median": 7.25,
+          "p90": 9.0
+        },
+        "random_motif_nodes": {
+          "mean": 6.21449935906566,
+          "median": 6.0,
+          "p90": 9.0
+        },
+        "reconstruction_failure_count": 0,
+        "success_count": 7021
+      },
+      "validation": {
+        "learned_gain_vs_frequent_motif": {
+          "mean": 0.9605723176145711,
+          "median": 1.0,
+          "p90": 1.0
+        },
+        "learned_gain_vs_goal3_eml_dag": {
+          "mean": 7.107997597082104,
+          "median": 7.0,
+          "p90": 9.0
+        },
+        "learned_gain_vs_macro_graph": {
+          "mean": 1.367314485574043,
+          "median": 1.3333333333333333,
+          "p90": 1.5714285714285714
+        },
+        "learned_motif_nodes": {
+          "mean": 6.284372904091214,
+          "median": 6.0,
+          "p90": 9.0
+        },
+        "learned_vs_random_motif_compression": {
+          "mean": 0.9864738008098168,
+          "median": 1.0,
+          "p90": 1.125
+        },
+        "motif_coverage_percent": {
+          "mean": 52.1343541411005,
+          "median": 50.0,
+          "p90": 72.72727272727273
+        },
+        "processed_count": 1491,
+        "random_gain_vs_goal3_eml_dag": {
+          "mean": 7.243328253086805,
+          "median": 7.2,
+          "p90": 9.0
+        },
+        "random_motif_nodes": {
+          "mean": 6.179745137491617,
+          "median": 6.0,
+          "p90": 9.0
+        },
+        "reconstruction_failure_count": 0,
+        "success_count": 1491
+      }
+    }
+  },
+  "macro_graph": {
+    "expansion_validation_failure_count": 0,
+    "median_alpha": 0.7777777777777778,
+    "median_gain_vs_goal3": 5.25,
+    "nontrivial_v1": {
+      "expansion_validation_failure_count": 0,
+      "median_gain_vs_goal3": 5.375,
+      "median_nodes": 7.0,
+      "processed_count": 3666,
+      "success_count": 3666
+    }
+  },
+  "neural_egraph": {
+    "median_compression_gain_vs_goal3": 1.0740740740740742,
+    "median_regret_vs_exact_best": 0.0,
+    "median_speedup_vs_exact_scoring": 109.30469053882588,
+    "nontrivial_v1": {
+      "median_compression_gain_vs_goal3": 1.0,
+      "median_regret": 0.0,
+      "median_speedup": 112.93371004523428,
+      "percent_matching_exact_best": 62.58971291866029,
+      "processed_count": 7332,
+      "success_count": 6688,
+      "validation_failure_count": 644
+    },
+    "p90_regret_vs_exact_best": 3.0,
+    "percent_matching_exact_best": 64.23612951088973,
+    "results_by_rule_mode": {
+      "positive_real_formal": {
+        "ast_regret_vs_exact_best": {
+          "mean": 0.7917422383441801,
+          "median": 0.0,
+          "p90": 3.0
+        },
+        "estimated_regret_vs_exact_best": {
+          "mean": 0.5899925317401046,
+          "median": 0.0,
+          "p90": 3.0
+        },
+        "exact_best_eml_dag_nodes": {
+          "mean": 37.53035314200363,
+          "median": 35.0,
+          "p90": 61.0
+        },
+        "median_compression_gain": 1.1388888888888888,
+        "neural_regret_vs_exact_best": {
+          "mean": 0.49663928304705,
+          "median": 0.0,
+          "p90": 3.0
+        },
+        "neural_speedup_vs_exact_scoring": {
+          "mean": 188.86090114691586,
+          "median": 103.56983663676442,
+          "p90": 316.3841471162782
+        },
+        "neural_top1_eml_dag_nodes": {
+          "mean": 38.02699242505068,
+          "median": 36.0,
+          "p90": 62.0
+        },
+        "percent_matching_exact_best": 63.938973647711514,
+        "processed_count": 10000,
+        "success_count": 9373,
+        "validation_failure_count": 627
+      },
+      "safe": {
+        "ast_regret_vs_exact_best": {
+          "mean": 0.6048641819330385,
+          "median": 0.0,
+          "p90": 3.0
+        },
+        "estimated_regret_vs_exact_best": {
+          "mean": 0.6048641819330385,
+          "median": 0.0,
+          "p90": 3.0
+        },
+        "exact_best_eml_dag_nodes": {
+          "mean": 40.95957043588124,
+          "median": 38.0,
+          "p90": 64.0
+        },
+        "median_compression_gain": 1.0,
+        "neural_regret_vs_exact_best": {
+          "mean": 0.5162139397767951,
+          "median": 0.0,
+          "p90": 3.0
+        },
+        "neural_speedup_vs_exact_scoring": {
+          "mean": 206.07835472916383,
+          "median": 114.70386166658446,
+          "p90": 346.37970057080884
+        },
+        "neural_top1_eml_dag_nodes": {
+          "mean": 41.47578437565803,
+          "median": 39.0,
+          "p90": 65.0
+        },
+        "percent_matching_exact_best": 64.52937460518004,
+        "processed_count": 10000,
+        "success_count": 9498,
+        "validation_failure_count": 502
+      }
+    },
+    "results_by_split": {
+      "test": {
+        "ast_regret_vs_exact_best": {
+          "mean": 0.6814921090387375,
+          "median": 0.0,
+          "p90": 3.0
+        },
+        "estimated_regret_vs_exact_best": {
+          "mean": 0.5613342898134863,
+          "median": 0.0,
+          "p90": 3.0
+        },
+        "exact_best_eml_dag_nodes": {
+          "mean": 38.87123385939742,
+          "median": 36.0,
+          "p90": 62.0
+        },
+        "median_compression_gain": 1.0731707317073171,
+        "neural_regret_vs_exact_best": {
+          "mean": 0.48708751793400284,
+          "median": 0.0,
+          "p90": 3.0
+        },
+        "neural_speedup_vs_exact_scoring": {
+          "mean": 189.85292621235226,
+          "median": 106.00645003367204,
+          "p90": 313.176929191
+        },
+        "neural_top1_eml_dag_nodes": {
+          "mean": 39.35832137733142,
+          "median": 37.0,
+          "p90": 63.0
+        },
+        "percent_matching_exact_best": 64.16786226685797,
+        "processed_count": 2976,
+        "success_count": 2788,
+        "validation_failure_count": 188
+      },
+      "train": {
+        "ast_regret_vs_exact_best": {
+          "mean": 0.6925451807228916,
+          "median": 0.0,
+          "p90": 3.0
+        },
+        "estimated_regret_vs_exact_best": {
+          "mean": 0.5970632530120482,
+          "median": 0.0,
+          "p90": 3.0
+        },
+        "exact_best_eml_dag_nodes": {
+          "mean": 39.32138554216868,
+          "median": 37.0,
+          "p90": 63.0
+        },
+        "median_compression_gain": 1.075,
+        "neural_regret_vs_exact_best": {
+          "mean": 0.5088102409638554,
+          "median": 0.0,
+          "p90": 3.0
+        },
+        "neural_speedup_vs_exact_scoring": {
+          "mean": 201.1208761875811,
+          "median": 109.85892712613722,
+          "p90": 329.40280619457377
+        },
+        "neural_top1_eml_dag_nodes": {
+          "mean": 39.83019578313253,
+          "median": 38.0,
+          "p90": 64.0
+        },
+        "percent_matching_exact_best": 64.66114457831326,
+        "processed_count": 14042,
+        "success_count": 13280,
+        "validation_failure_count": 762
+      },
+      "validation": {
+        "ast_regret_vs_exact_best": {
+          "mean": 0.7381377095968605,
+          "median": 0.0,
+          "p90": 3.0
+        },
+        "estimated_regret_vs_exact_best": {
+          "mean": 0.635390652871923,
+          "median": 0.0,
+          "p90": 3.0
+        },
+        "exact_best_eml_dag_nodes": {
+          "mean": 39.33107384944702,
+          "median": 37.0,
+          "p90": 62.0
+        },
+        "median_compression_gain": 1.0714285714285714,
+        "neural_regret_vs_exact_best": {
+          "mean": 0.5148055654655725,
+          "median": 0.0,
+          "p90": 3.0
+        },
+        "neural_speedup_vs_exact_scoring": {
+          "mean": 188.13066201089006,
+          "median": 109.9728999301286,
+          "p90": 343.1460683028699
+        },
+        "neural_top1_eml_dag_nodes": {
+          "mean": 39.845879414912595,
+          "median": 38.0,
+          "p90": 62.0
+        },
+        "percent_matching_exact_best": 62.2904031394934,
+        "processed_count": 2982,
+        "success_count": 2803,
+        "validation_failure_count": 179
+      }
+    },
+    "success_count": 18871,
+    "validation_failure_count": 1129
+  },
+  "neural_validation_failure_count": 1129,
+  "nontrivial_v1": {
+    "frequent_motif_median_gain_vs_goal3": 7.75,
+    "learned_motif_median_gain_vs_goal3": 7.428571428571429,
+    "macro_median_gain_vs_goal3": 5.375,
+    "neural_median_gain_vs_goal3": 1.0,
+    "neural_percent_matching_exact_best": 62.58971291866029
+  },
+  "processed_counts": {
+    "frequent_motif_expressions": 10000,
+    "goal3_expressions": 10000,
+    "goal4_positive_real_expressions": 10000,
+    "goal4_safe_expressions": 10000,
+    "hierarchical_graph_records": 88257,
+    "learned_motif_expressions": 10000,
+    "macro_graph_expressions": 10000,
+    "neural_egraph_groups": 20000
+  },
+  "question": "Can transparent ML-facing compressed graph representations reduce graph size enough to make later GNN training practical while preserving expandability back to official pure EML?",
+  "reconstruction_failure_count": 0,
+  "stage_status": {
+    "frequent_motifs": {
+      "action": "loaded_existing",
+      "required_paths": [
+        "outputs/v1/goal5_frequent_motif_summary.json",
+        "outputs/v1/goal5_frequent_motif_metrics.csv",
+        "outputs/v1/goal5_frequent_motif_vocab.json"
+      ],
+      "stage": "frequent_motifs"
+    },
+    "hierarchical_export": {
+      "action": "loaded_existing",
+      "required_paths": [
+        "outputs/v1/goal5_hierarchical_export_summary.json",
+        "outputs/v1/goal5_graph_schema.json",
+        "outputs/v1/goal5_graph_splits.json"
+      ],
+      "stage": "hierarchical_export"
+    },
+    "learned_motifs": {
+      "action": "loaded_existing",
+      "required_paths": [
+        "outputs/v1/goal5_learned_motif_summary.json",
+        "outputs/v1/goal5_learned_motif_metrics.csv",
+        "outputs/v1/goal5_learned_motif_vocab.json",
+        "outputs/v1/goal5_learned_motif_train_log.json"
+      ],
+      "stage": "learned_motifs"
+    },
+    "macro_graph": {
+      "action": "loaded_existing",
+      "required_paths": [
+        "outputs/v1/goal5_macro_graph_summary.json",
+        "outputs/v1/goal5_macro_graph_metrics.csv"
+      ],
+      "stage": "macro_graph"
+    },
+    "neural_egraph": {
+      "action": "loaded_existing",
+      "required_paths": [
+        "outputs/v1/goal5_neural_egraph_summary.json",
+        "outputs/v1/goal5_neural_egraph_metrics.csv",
+        "outputs/v1/goal5_neural_egraph_train_log.json"
+      ],
+      "stage": "neural_egraph"
+    }
+  }
+}

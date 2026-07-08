@@ -1,0 +1,1971 @@
+{
+  "candidate_pool_size": 39,
+  "metadata": {
+    "graph_format_neutral": true,
+    "motif_nodes_are_pure_eml": false,
+    "selection_uses_test_set": false
+  },
+  "model_type": "deterministic_linear_motif_scorer",
+  "motifs": [
+    {
+      "coverage": 500962,
+      "edge_count": 4,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "right",
+            "parent_local_id": 0,
+            "slot_index": 1
+          },
+          {
+            "boundary_slot": "boundary_1",
+            "boundary_slot_index": 1,
+            "child_slot": "left",
+            "parent_local_id": 1,
+            "slot_index": 0
+          },
+          {
+            "boundary_slot": "boundary_2",
+            "boundary_slot_index": 2,
+            "child_slot": "right",
+            "parent_local_id": 1,
+            "slot_index": 1
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "left",
+            "parent_local_id": 0,
+            "slot_index": 0
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "eml",
+            "label": "eml",
+            "local_id": 0,
+            "metadata": {}
+          },
+          {
+            "kind": "eml",
+            "label": "eml",
+            "local_id": 1,
+            "metadata": {}
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 182109.54,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 0,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"right\",\"parent\":0,\"slot_index\":1},{\"boundary\":1,\"child_slot\":\"left\",\"parent\":1,\"slot_index\":0},{\"boundary\":2,\"child_slot\":\"right\",\"parent\":1,\"slot_index\":1}],\"graph_type\":\"pure_eml_dag\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"left\",\"parent\":0,\"slot_index\":0}],\"nodes\":[{\"kind\":\"eml\",\"label\":\"eml\",\"local_id\":0,\"metadata\":{}},{\"kind\":\"eml\",\"label\":\"eml\",\"local_id\":1,\"metadata\":{}}]}"
+      },
+      "motif_id": "learned_motif_0000",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "node_savings": 250481,
+      "source_motif_id": "pure_eml_dag_0000",
+      "support_count": 250481,
+      "test_support": 37026,
+      "train_support": 176285,
+      "val_support": 37170
+    },
+    {
+      "coverage": 433124,
+      "edge_count": 4,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "left",
+            "parent_local_id": 0,
+            "slot_index": 0
+          },
+          {
+            "boundary_slot": "boundary_1",
+            "boundary_slot_index": 1,
+            "child_slot": "left",
+            "parent_local_id": 1,
+            "slot_index": 0
+          },
+          {
+            "boundary_slot": "boundary_2",
+            "boundary_slot_index": 2,
+            "child_slot": "right",
+            "parent_local_id": 1,
+            "slot_index": 1
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "right",
+            "parent_local_id": 0,
+            "slot_index": 1
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "eml",
+            "label": "eml",
+            "local_id": 0,
+            "metadata": {}
+          },
+          {
+            "kind": "eml",
+            "label": "eml",
+            "local_id": 1,
+            "metadata": {}
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 157470.63999999998,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 1,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"left\",\"parent\":0,\"slot_index\":0},{\"boundary\":1,\"child_slot\":\"left\",\"parent\":1,\"slot_index\":0},{\"boundary\":2,\"child_slot\":\"right\",\"parent\":1,\"slot_index\":1}],\"graph_type\":\"pure_eml_dag\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"right\",\"parent\":0,\"slot_index\":1}],\"nodes\":[{\"kind\":\"eml\",\"label\":\"eml\",\"local_id\":0,\"metadata\":{}},{\"kind\":\"eml\",\"label\":\"eml\",\"local_id\":1,\"metadata\":{}}]}"
+      },
+      "motif_id": "learned_motif_0001",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "node_savings": 216562,
+      "source_motif_id": "pure_eml_dag_0001",
+      "support_count": 216562,
+      "test_support": 32026,
+      "train_support": 152378,
+      "val_support": 32158
+    },
+    {
+      "coverage": 360048,
+      "edge_count": 2,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "left",
+            "parent_local_id": 0,
+            "slot_index": 0
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "right",
+            "parent_local_id": 0,
+            "slot_index": 1
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "eml",
+            "label": "eml",
+            "local_id": 0,
+            "metadata": {}
+          },
+          {
+            "kind": "constant",
+            "label": "1",
+            "local_id": 1,
+            "metadata": {
+              "value": 1
+            }
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 130863.84,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 2,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"left\",\"parent\":0,\"slot_index\":0}],\"graph_type\":\"pure_eml_dag\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"right\",\"parent\":0,\"slot_index\":1}],\"nodes\":[{\"kind\":\"eml\",\"label\":\"eml\",\"local_id\":0,\"metadata\":{}},{\"kind\":\"constant\",\"label\":\"1\",\"local_id\":1,\"metadata\":{\"value\":1}}]}"
+      },
+      "motif_id": "learned_motif_0002",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "node_savings": 180024,
+      "source_motif_id": "pure_eml_dag_0002",
+      "support_count": 180024,
+      "test_support": 26630,
+      "train_support": 126658,
+      "val_support": 26736
+    },
+    {
+      "coverage": 309350,
+      "edge_count": 2,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "right",
+            "parent_local_id": 0,
+            "slot_index": 1
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "left",
+            "parent_local_id": 0,
+            "slot_index": 0
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "eml",
+            "label": "eml",
+            "local_id": 0,
+            "metadata": {}
+          },
+          {
+            "kind": "constant",
+            "label": "1",
+            "local_id": 1,
+            "metadata": {
+              "value": 1
+            }
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 112438.48000000001,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 3,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"right\",\"parent\":0,\"slot_index\":1}],\"graph_type\":\"pure_eml_dag\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"left\",\"parent\":0,\"slot_index\":0}],\"nodes\":[{\"kind\":\"eml\",\"label\":\"eml\",\"local_id\":0,\"metadata\":{}},{\"kind\":\"constant\",\"label\":\"1\",\"local_id\":1,\"metadata\":{\"value\":1}}]}"
+      },
+      "motif_id": "learned_motif_0003",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "node_savings": 154675,
+      "source_motif_id": "pure_eml_dag_0003",
+      "support_count": 154675,
+      "test_support": 22933,
+      "train_support": 108762,
+      "val_support": 22980
+    },
+    {
+      "coverage": 19934,
+      "edge_count": 2,
+      "expansion_map": {
+        "boundary_child_refs": [],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "left",
+            "parent_local_id": 0,
+            "slot_index": 0
+          },
+          {
+            "child_local_id": 1,
+            "child_slot": "right",
+            "parent_local_id": 0,
+            "slot_index": 1
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "eml",
+            "label": "eml",
+            "local_id": 0,
+            "metadata": {}
+          },
+          {
+            "kind": "constant",
+            "label": "1",
+            "local_id": 1,
+            "metadata": {
+              "value": 1
+            }
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 7241.259999999999,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 4,
+        "source_signature": "{\"boundary_refs\":[],\"graph_type\":\"pure_eml_dag\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"left\",\"parent\":0,\"slot_index\":0},{\"child\":1,\"child_slot\":\"right\",\"parent\":0,\"slot_index\":1}],\"nodes\":[{\"kind\":\"eml\",\"label\":\"eml\",\"local_id\":0,\"metadata\":{}},{\"kind\":\"constant\",\"label\":\"1\",\"local_id\":1,\"metadata\":{\"value\":1}}]}"
+      },
+      "motif_id": "learned_motif_0004",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "node_savings": 9967,
+      "source_motif_id": "pure_eml_dag_0004",
+      "support_count": 9967,
+      "test_support": 1485,
+      "train_support": 6999,
+      "val_support": 1483
+    },
+    {
+      "coverage": 16000,
+      "edge_count": 2,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "left",
+            "parent_local_id": 0,
+            "slot_index": 0
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "right",
+            "parent_local_id": 0,
+            "slot_index": 1
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "eml",
+            "label": "eml",
+            "local_id": 0,
+            "metadata": {}
+          },
+          {
+            "kind": "variable",
+            "label": "x",
+            "local_id": 1,
+            "metadata": {}
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 5814.900000000001,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 5,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"left\",\"parent\":0,\"slot_index\":0}],\"graph_type\":\"pure_eml_dag\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"right\",\"parent\":0,\"slot_index\":1}],\"nodes\":[{\"kind\":\"eml\",\"label\":\"eml\",\"local_id\":0,\"metadata\":{}},{\"kind\":\"variable\",\"label\":\"x\",\"local_id\":1,\"metadata\":{}}]}"
+      },
+      "motif_id": "learned_motif_0005",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "node_savings": 8000,
+      "source_motif_id": "pure_eml_dag_0005",
+      "support_count": 8000,
+      "test_support": 1198,
+      "train_support": 5619,
+      "val_support": 1183
+    },
+    {
+      "coverage": 14848,
+      "edge_count": 2,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "left",
+            "parent_local_id": 0,
+            "slot_index": 0
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "right",
+            "parent_local_id": 0,
+            "slot_index": 1
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "eml",
+            "label": "eml",
+            "local_id": 0,
+            "metadata": {}
+          },
+          {
+            "kind": "variable",
+            "label": "y",
+            "local_id": 1,
+            "metadata": {}
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 5406.5,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 6,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"left\",\"parent\":0,\"slot_index\":0}],\"graph_type\":\"pure_eml_dag\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"right\",\"parent\":0,\"slot_index\":1}],\"nodes\":[{\"kind\":\"eml\",\"label\":\"eml\",\"local_id\":0,\"metadata\":{}},{\"kind\":\"variable\",\"label\":\"y\",\"local_id\":1,\"metadata\":{}}]}"
+      },
+      "motif_id": "learned_motif_0006",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "node_savings": 7424,
+      "source_motif_id": "pure_eml_dag_0006",
+      "support_count": 7424,
+      "test_support": 1090,
+      "train_support": 5223,
+      "val_support": 1111
+    },
+    {
+      "coverage": 9398,
+      "edge_count": 2,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "right",
+            "parent_local_id": 0,
+            "slot_index": 1
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "left",
+            "parent_local_id": 0,
+            "slot_index": 0
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "macro",
+            "label": "eml_add",
+            "local_id": 0,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_add",
+              "expansion_to_pure_eml_available": true
+            }
+          },
+          {
+            "kind": "macro",
+            "label": "eml_variable",
+            "local_id": 1,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_variable",
+              "expansion_to_pure_eml_available": true,
+              "symbol_name": "x"
+            }
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 3431.06,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 7,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"right\",\"parent\":0,\"slot_index\":1}],\"graph_type\":\"macro_graph\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"left\",\"parent\":0,\"slot_index\":0}],\"nodes\":[{\"kind\":\"macro\",\"label\":\"eml_add\",\"local_id\":0,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_add\"}},{\"kind\":\"macro\",\"label\":\"eml_variable\",\"local_id\":1,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_variable\",\"symbol_name\":\"x\"}}]}"
+      },
+      "motif_id": "learned_motif_0007",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "node_savings": 4699,
+      "source_motif_id": "macro_graph_0000",
+      "support_count": 4699,
+      "test_support": 683,
+      "train_support": 3309,
+      "val_support": 707
+    },
+    {
+      "coverage": 9236,
+      "edge_count": 4,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "right",
+            "parent_local_id": 0,
+            "slot_index": 1
+          },
+          {
+            "boundary_slot": "boundary_1",
+            "boundary_slot_index": 1,
+            "child_slot": "left",
+            "parent_local_id": 1,
+            "slot_index": 0
+          },
+          {
+            "boundary_slot": "boundary_2",
+            "boundary_slot_index": 2,
+            "child_slot": "right",
+            "parent_local_id": 1,
+            "slot_index": 1
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "left",
+            "parent_local_id": 0,
+            "slot_index": 0
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "macro",
+            "label": "eml_add",
+            "local_id": 0,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_add",
+              "expansion_to_pure_eml_available": true
+            }
+          },
+          {
+            "kind": "macro",
+            "label": "eml_mul",
+            "local_id": 1,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_mul",
+              "expansion_to_pure_eml_available": true
+            }
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 3365.76,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 8,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"right\",\"parent\":0,\"slot_index\":1},{\"boundary\":1,\"child_slot\":\"left\",\"parent\":1,\"slot_index\":0},{\"boundary\":2,\"child_slot\":\"right\",\"parent\":1,\"slot_index\":1}],\"graph_type\":\"macro_graph\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"left\",\"parent\":0,\"slot_index\":0}],\"nodes\":[{\"kind\":\"macro\",\"label\":\"eml_add\",\"local_id\":0,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_add\"}},{\"kind\":\"macro\",\"label\":\"eml_mul\",\"local_id\":1,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_mul\"}}]}"
+      },
+      "motif_id": "learned_motif_0008",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "node_savings": 4618,
+      "source_motif_id": "macro_graph_0002",
+      "support_count": 4618,
+      "test_support": 662,
+      "train_support": 3266,
+      "val_support": 690
+    },
+    {
+      "coverage": 9270,
+      "edge_count": 2,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "left",
+            "parent_local_id": 0,
+            "slot_index": 0
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "right",
+            "parent_local_id": 0,
+            "slot_index": 1
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "macro",
+            "label": "eml_add",
+            "local_id": 0,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_add",
+              "expansion_to_pure_eml_available": true
+            }
+          },
+          {
+            "kind": "macro",
+            "label": "eml_integer",
+            "local_id": 1,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_int",
+              "expansion_to_pure_eml_available": true,
+              "value": 1
+            }
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 3356.3999999999996,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 9,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"left\",\"parent\":0,\"slot_index\":0}],\"graph_type\":\"macro_graph\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"right\",\"parent\":0,\"slot_index\":1}],\"nodes\":[{\"kind\":\"macro\",\"label\":\"eml_add\",\"local_id\":0,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_add\"}},{\"kind\":\"macro\",\"label\":\"eml_integer\",\"local_id\":1,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_int\",\"value\":1}}]}"
+      },
+      "motif_id": "learned_motif_0009",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "node_savings": 4635,
+      "source_motif_id": "macro_graph_0001",
+      "support_count": 4635,
+      "test_support": 691,
+      "train_support": 3236,
+      "val_support": 708
+    },
+    {
+      "coverage": 8844,
+      "edge_count": 4,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "right",
+            "parent_local_id": 0,
+            "slot_index": 1
+          },
+          {
+            "boundary_slot": "boundary_1",
+            "boundary_slot_index": 1,
+            "child_slot": "left",
+            "parent_local_id": 1,
+            "slot_index": 0
+          },
+          {
+            "boundary_slot": "boundary_2",
+            "boundary_slot_index": 2,
+            "child_slot": "right",
+            "parent_local_id": 1,
+            "slot_index": 1
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "left",
+            "parent_local_id": 0,
+            "slot_index": 0
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "macro",
+            "label": "eml_mul",
+            "local_id": 0,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_mul",
+              "expansion_to_pure_eml_available": true
+            }
+          },
+          {
+            "kind": "macro",
+            "label": "eml_mul",
+            "local_id": 1,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_mul",
+              "expansion_to_pure_eml_available": true
+            }
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 3200.3599999999997,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 10,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"right\",\"parent\":0,\"slot_index\":1},{\"boundary\":1,\"child_slot\":\"left\",\"parent\":1,\"slot_index\":0},{\"boundary\":2,\"child_slot\":\"right\",\"parent\":1,\"slot_index\":1}],\"graph_type\":\"macro_graph\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"left\",\"parent\":0,\"slot_index\":0}],\"nodes\":[{\"kind\":\"macro\",\"label\":\"eml_mul\",\"local_id\":0,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_mul\"}},{\"kind\":\"macro\",\"label\":\"eml_mul\",\"local_id\":1,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_mul\"}}]}"
+      },
+      "motif_id": "learned_motif_0010",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "node_savings": 4422,
+      "source_motif_id": "macro_graph_0003",
+      "support_count": 4422,
+      "test_support": 652,
+      "train_support": 3106,
+      "val_support": 664
+    },
+    {
+      "coverage": 8286,
+      "edge_count": 2,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "right",
+            "parent_local_id": 0,
+            "slot_index": 1
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "left",
+            "parent_local_id": 0,
+            "slot_index": 0
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "eml",
+            "label": "eml",
+            "local_id": 0,
+            "metadata": {}
+          },
+          {
+            "kind": "variable",
+            "label": "y",
+            "local_id": 1,
+            "metadata": {}
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 3020.96,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 11,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"right\",\"parent\":0,\"slot_index\":1}],\"graph_type\":\"pure_eml_dag\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"left\",\"parent\":0,\"slot_index\":0}],\"nodes\":[{\"kind\":\"eml\",\"label\":\"eml\",\"local_id\":0,\"metadata\":{}},{\"kind\":\"variable\",\"label\":\"y\",\"local_id\":1,\"metadata\":{}}]}"
+      },
+      "motif_id": "learned_motif_0011",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "node_savings": 4143,
+      "source_motif_id": "pure_eml_dag_0007",
+      "support_count": 4143,
+      "test_support": 588,
+      "train_support": 2914,
+      "val_support": 641
+    },
+    {
+      "coverage": 7660,
+      "edge_count": 2,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "right",
+            "parent_local_id": 0,
+            "slot_index": 1
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "left",
+            "parent_local_id": 0,
+            "slot_index": 0
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "macro",
+            "label": "eml_mul",
+            "local_id": 0,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_mul",
+              "expansion_to_pure_eml_available": true
+            }
+          },
+          {
+            "kind": "macro",
+            "label": "eml_integer",
+            "local_id": 1,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_int",
+              "expansion_to_pure_eml_available": true,
+              "value": 1
+            }
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 2734.62,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 12,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"right\",\"parent\":0,\"slot_index\":1}],\"graph_type\":\"macro_graph\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"left\",\"parent\":0,\"slot_index\":0}],\"nodes\":[{\"kind\":\"macro\",\"label\":\"eml_mul\",\"local_id\":0,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_mul\"}},{\"kind\":\"macro\",\"label\":\"eml_integer\",\"local_id\":1,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_int\",\"value\":1}}]}"
+      },
+      "motif_id": "learned_motif_0012",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "node_savings": 3830,
+      "source_motif_id": "macro_graph_0004",
+      "support_count": 3830,
+      "test_support": 568,
+      "train_support": 2681,
+      "val_support": 581
+    },
+    {
+      "coverage": 7008,
+      "edge_count": 4,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "left",
+            "parent_local_id": 0,
+            "slot_index": 0
+          },
+          {
+            "boundary_slot": "boundary_1",
+            "boundary_slot_index": 1,
+            "child_slot": "left",
+            "parent_local_id": 1,
+            "slot_index": 0
+          },
+          {
+            "boundary_slot": "boundary_2",
+            "boundary_slot_index": 2,
+            "child_slot": "right",
+            "parent_local_id": 1,
+            "slot_index": 1
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "right",
+            "parent_local_id": 0,
+            "slot_index": 1
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "macro",
+            "label": "eml_mul",
+            "local_id": 0,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_mul",
+              "expansion_to_pure_eml_available": true
+            }
+          },
+          {
+            "kind": "macro",
+            "label": "eml_add",
+            "local_id": 1,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_add",
+              "expansion_to_pure_eml_available": true
+            }
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 2570.7400000000002,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 13,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"left\",\"parent\":0,\"slot_index\":0},{\"boundary\":1,\"child_slot\":\"left\",\"parent\":1,\"slot_index\":0},{\"boundary\":2,\"child_slot\":\"right\",\"parent\":1,\"slot_index\":1}],\"graph_type\":\"macro_graph\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"right\",\"parent\":0,\"slot_index\":1}],\"nodes\":[{\"kind\":\"macro\",\"label\":\"eml_mul\",\"local_id\":0,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_mul\"}},{\"kind\":\"macro\",\"label\":\"eml_add\",\"local_id\":1,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_add\"}}]}"
+      },
+      "motif_id": "learned_motif_0013",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "node_savings": 3504,
+      "source_motif_id": "macro_graph_0005",
+      "support_count": 3504,
+      "test_support": 488,
+      "train_support": 2489,
+      "val_support": 527
+    },
+    {
+      "coverage": 6626,
+      "edge_count": 4,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "left",
+            "parent_local_id": 0,
+            "slot_index": 0
+          },
+          {
+            "boundary_slot": "boundary_1",
+            "boundary_slot_index": 1,
+            "child_slot": "left",
+            "parent_local_id": 1,
+            "slot_index": 0
+          },
+          {
+            "boundary_slot": "boundary_2",
+            "boundary_slot_index": 2,
+            "child_slot": "right",
+            "parent_local_id": 1,
+            "slot_index": 1
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "right",
+            "parent_local_id": 0,
+            "slot_index": 1
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "macro",
+            "label": "eml_add",
+            "local_id": 0,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_add",
+              "expansion_to_pure_eml_available": true
+            }
+          },
+          {
+            "kind": "macro",
+            "label": "eml_add",
+            "local_id": 1,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_add",
+              "expansion_to_pure_eml_available": true
+            }
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 2456.18,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 14,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"left\",\"parent\":0,\"slot_index\":0},{\"boundary\":1,\"child_slot\":\"left\",\"parent\":1,\"slot_index\":0},{\"boundary\":2,\"child_slot\":\"right\",\"parent\":1,\"slot_index\":1}],\"graph_type\":\"macro_graph\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"right\",\"parent\":0,\"slot_index\":1}],\"nodes\":[{\"kind\":\"macro\",\"label\":\"eml_add\",\"local_id\":0,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_add\"}},{\"kind\":\"macro\",\"label\":\"eml_add\",\"local_id\":1,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_add\"}}]}"
+      },
+      "motif_id": "learned_motif_0014",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "node_savings": 3313,
+      "source_motif_id": "macro_graph_0009",
+      "support_count": 3313,
+      "test_support": 469,
+      "train_support": 2377,
+      "val_support": 467
+    },
+    {
+      "coverage": 6778,
+      "edge_count": 4,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "right",
+            "parent_local_id": 0,
+            "slot_index": 1
+          },
+          {
+            "boundary_slot": "boundary_1",
+            "boundary_slot_index": 1,
+            "child_slot": "left",
+            "parent_local_id": 1,
+            "slot_index": 0
+          },
+          {
+            "boundary_slot": "boundary_2",
+            "boundary_slot_index": 2,
+            "child_slot": "right",
+            "parent_local_id": 1,
+            "slot_index": 1
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "left",
+            "parent_local_id": 0,
+            "slot_index": 0
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "macro",
+            "label": "eml_add",
+            "local_id": 0,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_add",
+              "expansion_to_pure_eml_available": true
+            }
+          },
+          {
+            "kind": "macro",
+            "label": "eml_add",
+            "local_id": 1,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_add",
+              "expansion_to_pure_eml_available": true
+            }
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 2455.2000000000003,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 15,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"right\",\"parent\":0,\"slot_index\":1},{\"boundary\":1,\"child_slot\":\"left\",\"parent\":1,\"slot_index\":0},{\"boundary\":2,\"child_slot\":\"right\",\"parent\":1,\"slot_index\":1}],\"graph_type\":\"macro_graph\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"left\",\"parent\":0,\"slot_index\":0}],\"nodes\":[{\"kind\":\"macro\",\"label\":\"eml_add\",\"local_id\":0,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_add\"}},{\"kind\":\"macro\",\"label\":\"eml_add\",\"local_id\":1,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_add\"}}]}"
+      },
+      "motif_id": "learned_motif_0015",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "node_savings": 3389,
+      "source_motif_id": "macro_graph_0006",
+      "support_count": 3389,
+      "test_support": 497,
+      "train_support": 2372,
+      "val_support": 520
+    },
+    {
+      "coverage": 6738,
+      "edge_count": 3,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "left",
+            "parent_local_id": 0,
+            "slot_index": 0
+          },
+          {
+            "boundary_slot": "boundary_1",
+            "boundary_slot_index": 1,
+            "child_slot": "value",
+            "parent_local_id": 1,
+            "slot_index": 0
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "right",
+            "parent_local_id": 0,
+            "slot_index": 1
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "macro",
+            "label": "eml_mul",
+            "local_id": 0,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_mul",
+              "expansion_to_pure_eml_available": true
+            }
+          },
+          {
+            "kind": "macro",
+            "label": "eml_log",
+            "local_id": 1,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_log",
+              "expansion_to_pure_eml_available": true
+            }
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 2442.9,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 16,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"left\",\"parent\":0,\"slot_index\":0},{\"boundary\":1,\"child_slot\":\"value\",\"parent\":1,\"slot_index\":0}],\"graph_type\":\"macro_graph\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"right\",\"parent\":0,\"slot_index\":1}],\"nodes\":[{\"kind\":\"macro\",\"label\":\"eml_mul\",\"local_id\":0,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_mul\"}},{\"kind\":\"macro\",\"label\":\"eml_log\",\"local_id\":1,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_log\"}}]}"
+      },
+      "motif_id": "learned_motif_0016",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "node_savings": 3369,
+      "source_motif_id": "macro_graph_0007",
+      "support_count": 3369,
+      "test_support": 514,
+      "train_support": 2367,
+      "val_support": 488
+    },
+    {
+      "coverage": 6648,
+      "edge_count": 2,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "left",
+            "parent_local_id": 0,
+            "slot_index": 0
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "right",
+            "parent_local_id": 0,
+            "slot_index": 1
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "macro",
+            "label": "eml_mul",
+            "local_id": 0,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_mul",
+              "expansion_to_pure_eml_available": true
+            }
+          },
+          {
+            "kind": "macro",
+            "label": "eml_variable",
+            "local_id": 1,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_variable",
+              "expansion_to_pure_eml_available": true,
+              "symbol_name": "y"
+            }
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 2374.22,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 17,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"left\",\"parent\":0,\"slot_index\":0}],\"graph_type\":\"macro_graph\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"right\",\"parent\":0,\"slot_index\":1}],\"nodes\":[{\"kind\":\"macro\",\"label\":\"eml_mul\",\"local_id\":0,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_mul\"}},{\"kind\":\"macro\",\"label\":\"eml_variable\",\"local_id\":1,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_variable\",\"symbol_name\":\"y\"}}]}"
+      },
+      "motif_id": "learned_motif_0017",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "node_savings": 3324,
+      "source_motif_id": "macro_graph_0008",
+      "support_count": 3324,
+      "test_support": 501,
+      "train_support": 2307,
+      "val_support": 516
+    },
+    {
+      "coverage": 6462,
+      "edge_count": 3,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "left",
+            "parent_local_id": 0,
+            "slot_index": 0
+          },
+          {
+            "boundary_slot": "boundary_1",
+            "boundary_slot_index": 1,
+            "child_slot": "value",
+            "parent_local_id": 1,
+            "slot_index": 0
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "right",
+            "parent_local_id": 0,
+            "slot_index": 1
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "macro",
+            "label": "eml_mul",
+            "local_id": 0,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_mul",
+              "expansion_to_pure_eml_available": true
+            }
+          },
+          {
+            "kind": "macro",
+            "label": "eml_exp",
+            "local_id": 1,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_exp",
+              "expansion_to_pure_eml_available": true
+            }
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 2314.6000000000004,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 18,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"left\",\"parent\":0,\"slot_index\":0},{\"boundary\":1,\"child_slot\":\"value\",\"parent\":1,\"slot_index\":0}],\"graph_type\":\"macro_graph\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"right\",\"parent\":0,\"slot_index\":1}],\"nodes\":[{\"kind\":\"macro\",\"label\":\"eml_mul\",\"local_id\":0,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_mul\"}},{\"kind\":\"macro\",\"label\":\"eml_exp\",\"local_id\":1,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_exp\"}}]}"
+      },
+      "motif_id": "learned_motif_0018",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "node_savings": 3231,
+      "source_motif_id": "macro_graph_0010",
+      "support_count": 3231,
+      "test_support": 485,
+      "train_support": 2238,
+      "val_support": 508
+    },
+    {
+      "coverage": 6198,
+      "edge_count": 3,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "left",
+            "parent_local_id": 0,
+            "slot_index": 0
+          },
+          {
+            "boundary_slot": "boundary_1",
+            "boundary_slot_index": 1,
+            "child_slot": "value",
+            "parent_local_id": 1,
+            "slot_index": 0
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "right",
+            "parent_local_id": 0,
+            "slot_index": 1
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "macro",
+            "label": "eml_add",
+            "local_id": 0,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_add",
+              "expansion_to_pure_eml_available": true
+            }
+          },
+          {
+            "kind": "macro",
+            "label": "eml_exp",
+            "local_id": 1,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_exp",
+              "expansion_to_pure_eml_available": true
+            }
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 2284.12,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 19,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"left\",\"parent\":0,\"slot_index\":0},{\"boundary\":1,\"child_slot\":\"value\",\"parent\":1,\"slot_index\":0}],\"graph_type\":\"macro_graph\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"right\",\"parent\":0,\"slot_index\":1}],\"nodes\":[{\"kind\":\"macro\",\"label\":\"eml_add\",\"local_id\":0,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_add\"}},{\"kind\":\"macro\",\"label\":\"eml_exp\",\"local_id\":1,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_exp\"}}]}"
+      },
+      "motif_id": "learned_motif_0019",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "node_savings": 3099,
+      "source_motif_id": "macro_graph_0011",
+      "support_count": 3099,
+      "test_support": 424,
+      "train_support": 2206,
+      "val_support": 469
+    },
+    {
+      "coverage": 6152,
+      "edge_count": 3,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "left",
+            "parent_local_id": 0,
+            "slot_index": 0
+          },
+          {
+            "boundary_slot": "boundary_1",
+            "boundary_slot_index": 1,
+            "child_slot": "value",
+            "parent_local_id": 1,
+            "slot_index": 0
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "right",
+            "parent_local_id": 0,
+            "slot_index": 1
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "macro",
+            "label": "eml_add",
+            "local_id": 0,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_add",
+              "expansion_to_pure_eml_available": true
+            }
+          },
+          {
+            "kind": "macro",
+            "label": "eml_log",
+            "local_id": 1,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_log",
+              "expansion_to_pure_eml_available": true
+            }
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 2226.24,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 20,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"left\",\"parent\":0,\"slot_index\":0},{\"boundary\":1,\"child_slot\":\"value\",\"parent\":1,\"slot_index\":0}],\"graph_type\":\"macro_graph\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"right\",\"parent\":0,\"slot_index\":1}],\"nodes\":[{\"kind\":\"macro\",\"label\":\"eml_add\",\"local_id\":0,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_add\"}},{\"kind\":\"macro\",\"label\":\"eml_log\",\"local_id\":1,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_log\"}}]}"
+      },
+      "motif_id": "learned_motif_0020",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "node_savings": 3076,
+      "source_motif_id": "macro_graph_0012",
+      "support_count": 3076,
+      "test_support": 468,
+      "train_support": 2158,
+      "val_support": 450
+    },
+    {
+      "coverage": 6114,
+      "edge_count": 2,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "right",
+            "parent_local_id": 0,
+            "slot_index": 1
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "left",
+            "parent_local_id": 0,
+            "slot_index": 0
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "macro",
+            "label": "eml_mul",
+            "local_id": 0,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_mul",
+              "expansion_to_pure_eml_available": true
+            }
+          },
+          {
+            "kind": "macro",
+            "label": "eml_variable",
+            "local_id": 1,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_variable",
+              "expansion_to_pure_eml_available": true,
+              "symbol_name": "x"
+            }
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 2211.98,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 21,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"right\",\"parent\":0,\"slot_index\":1}],\"graph_type\":\"macro_graph\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"left\",\"parent\":0,\"slot_index\":0}],\"nodes\":[{\"kind\":\"macro\",\"label\":\"eml_mul\",\"local_id\":0,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_mul\"}},{\"kind\":\"macro\",\"label\":\"eml_variable\",\"local_id\":1,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_variable\",\"symbol_name\":\"x\"}}]}"
+      },
+      "motif_id": "learned_motif_0021",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "node_savings": 3057,
+      "source_motif_id": "macro_graph_0013",
+      "support_count": 3057,
+      "test_support": 471,
+      "train_support": 2133,
+      "val_support": 453
+    },
+    {
+      "coverage": 5990,
+      "edge_count": 2,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "right",
+            "parent_local_id": 0,
+            "slot_index": 1
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "left",
+            "parent_local_id": 0,
+            "slot_index": 0
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "macro",
+            "label": "eml_add",
+            "local_id": 0,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_add",
+              "expansion_to_pure_eml_available": true
+            }
+          },
+          {
+            "kind": "macro",
+            "label": "eml_variable",
+            "local_id": 1,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_variable",
+              "expansion_to_pure_eml_available": true,
+              "symbol_name": "y"
+            }
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 2167.5600000000004,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 22,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"right\",\"parent\":0,\"slot_index\":1}],\"graph_type\":\"macro_graph\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"left\",\"parent\":0,\"slot_index\":0}],\"nodes\":[{\"kind\":\"macro\",\"label\":\"eml_add\",\"local_id\":0,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_add\"}},{\"kind\":\"macro\",\"label\":\"eml_variable\",\"local_id\":1,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_variable\",\"symbol_name\":\"y\"}}]}"
+      },
+      "motif_id": "learned_motif_0022",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "node_savings": 2995,
+      "source_motif_id": "macro_graph_0014",
+      "support_count": 2995,
+      "test_support": 430,
+      "train_support": 2090,
+      "val_support": 475
+    },
+    {
+      "coverage": 5942,
+      "edge_count": 4,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "right",
+            "parent_local_id": 0,
+            "slot_index": 1
+          },
+          {
+            "boundary_slot": "boundary_1",
+            "boundary_slot_index": 1,
+            "child_slot": "left",
+            "parent_local_id": 1,
+            "slot_index": 0
+          },
+          {
+            "boundary_slot": "boundary_2",
+            "boundary_slot_index": 2,
+            "child_slot": "right",
+            "parent_local_id": 1,
+            "slot_index": 1
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "left",
+            "parent_local_id": 0,
+            "slot_index": 0
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "macro",
+            "label": "eml_mul",
+            "local_id": 0,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_mul",
+              "expansion_to_pure_eml_available": true
+            }
+          },
+          {
+            "kind": "macro",
+            "label": "eml_add",
+            "local_id": 1,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_add",
+              "expansion_to_pure_eml_available": true
+            }
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 2145.58,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 23,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"right\",\"parent\":0,\"slot_index\":1},{\"boundary\":1,\"child_slot\":\"left\",\"parent\":1,\"slot_index\":0},{\"boundary\":2,\"child_slot\":\"right\",\"parent\":1,\"slot_index\":1}],\"graph_type\":\"macro_graph\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"left\",\"parent\":0,\"slot_index\":0}],\"nodes\":[{\"kind\":\"macro\",\"label\":\"eml_mul\",\"local_id\":0,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_mul\"}},{\"kind\":\"macro\",\"label\":\"eml_add\",\"local_id\":1,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_add\"}}]}"
+      },
+      "motif_id": "learned_motif_0023",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "node_savings": 2971,
+      "source_motif_id": "macro_graph_0015",
+      "support_count": 2971,
+      "test_support": 461,
+      "train_support": 2075,
+      "val_support": 435
+    },
+    {
+      "coverage": 5422,
+      "edge_count": 2,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "right",
+            "parent_local_id": 0,
+            "slot_index": 1
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "left",
+            "parent_local_id": 0,
+            "slot_index": 0
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "eml",
+            "label": "eml",
+            "local_id": 0,
+            "metadata": {}
+          },
+          {
+            "kind": "variable",
+            "label": "x",
+            "local_id": 1,
+            "metadata": {}
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 1986.8999999999999,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 24,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"right\",\"parent\":0,\"slot_index\":1}],\"graph_type\":\"pure_eml_dag\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"left\",\"parent\":0,\"slot_index\":0}],\"nodes\":[{\"kind\":\"eml\",\"label\":\"eml\",\"local_id\":0,\"metadata\":{}},{\"kind\":\"variable\",\"label\":\"x\",\"local_id\":1,\"metadata\":{}}]}"
+      },
+      "motif_id": "learned_motif_0024",
+      "motif_type": "pure_eml_dag",
+      "node_count": 2,
+      "node_savings": 2711,
+      "source_motif_id": "pure_eml_dag_0008",
+      "support_count": 2711,
+      "test_support": 397,
+      "train_support": 1917,
+      "val_support": 397
+    },
+    {
+      "coverage": 4182,
+      "edge_count": 3,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "left",
+            "parent_local_id": 1,
+            "slot_index": 0
+          },
+          {
+            "boundary_slot": "boundary_1",
+            "boundary_slot_index": 1,
+            "child_slot": "right",
+            "parent_local_id": 1,
+            "slot_index": 1
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "value",
+            "parent_local_id": 0,
+            "slot_index": 0
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "macro",
+            "label": "eml_exp",
+            "local_id": 0,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_exp",
+              "expansion_to_pure_eml_available": true
+            }
+          },
+          {
+            "kind": "macro",
+            "label": "eml_add",
+            "local_id": 1,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_add",
+              "expansion_to_pure_eml_available": true
+            }
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 1535.68,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 25,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"left\",\"parent\":1,\"slot_index\":0},{\"boundary\":1,\"child_slot\":\"right\",\"parent\":1,\"slot_index\":1}],\"graph_type\":\"macro_graph\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"value\",\"parent\":0,\"slot_index\":0}],\"nodes\":[{\"kind\":\"macro\",\"label\":\"eml_exp\",\"local_id\":0,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_exp\"}},{\"kind\":\"macro\",\"label\":\"eml_add\",\"local_id\":1,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_add\"}}]}"
+      },
+      "motif_id": "learned_motif_0025",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "node_savings": 2091,
+      "source_motif_id": "macro_graph_0016",
+      "support_count": 2091,
+      "test_support": 302,
+      "train_support": 1482,
+      "val_support": 307
+    },
+    {
+      "coverage": 3908,
+      "edge_count": 3,
+      "expansion_map": {
+        "boundary_child_refs": [
+          {
+            "boundary_slot": "boundary_0",
+            "boundary_slot_index": 0,
+            "child_slot": "left",
+            "parent_local_id": 1,
+            "slot_index": 0
+          },
+          {
+            "boundary_slot": "boundary_1",
+            "boundary_slot_index": 1,
+            "child_slot": "right",
+            "parent_local_id": 1,
+            "slot_index": 1
+          }
+        ],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "value",
+            "parent_local_id": 0,
+            "slot_index": 0
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "macro",
+            "label": "eml_exp",
+            "local_id": 0,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_exp",
+              "expansion_to_pure_eml_available": true
+            }
+          },
+          {
+            "kind": "macro",
+            "label": "eml_mul",
+            "local_id": 1,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_mul",
+              "expansion_to_pure_eml_available": true
+            }
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 1400.38,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 26,
+        "source_signature": "{\"boundary_refs\":[{\"boundary\":0,\"child_slot\":\"left\",\"parent\":1,\"slot_index\":0},{\"boundary\":1,\"child_slot\":\"right\",\"parent\":1,\"slot_index\":1}],\"graph_type\":\"macro_graph\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"value\",\"parent\":0,\"slot_index\":0}],\"nodes\":[{\"kind\":\"macro\",\"label\":\"eml_exp\",\"local_id\":0,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_exp\"}},{\"kind\":\"macro\",\"label\":\"eml_mul\",\"local_id\":1,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_mul\"}}]}"
+      },
+      "motif_id": "learned_motif_0026",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "node_savings": 1954,
+      "source_motif_id": "macro_graph_0017",
+      "support_count": 1954,
+      "test_support": 311,
+      "train_support": 1357,
+      "val_support": 286
+    },
+    {
+      "coverage": 3752,
+      "edge_count": 1,
+      "expansion_map": {
+        "boundary_child_refs": [],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "value",
+            "parent_local_id": 0,
+            "slot_index": 0
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "macro",
+            "label": "eml_exp",
+            "local_id": 0,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_exp",
+              "expansion_to_pure_eml_available": true
+            }
+          },
+          {
+            "kind": "macro",
+            "label": "eml_variable",
+            "local_id": 1,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_variable",
+              "expansion_to_pure_eml_available": true,
+              "symbol_name": "y"
+            }
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 1353.6799999999998,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 27,
+        "source_signature": "{\"boundary_refs\":[],\"graph_type\":\"macro_graph\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"value\",\"parent\":0,\"slot_index\":0}],\"nodes\":[{\"kind\":\"macro\",\"label\":\"eml_exp\",\"local_id\":0,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_exp\"}},{\"kind\":\"macro\",\"label\":\"eml_variable\",\"local_id\":1,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_variable\",\"symbol_name\":\"y\"}}]}"
+      },
+      "motif_id": "learned_motif_0027",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "node_savings": 1876,
+      "source_motif_id": "macro_graph_0018",
+      "support_count": 1876,
+      "test_support": 264,
+      "train_support": 1306,
+      "val_support": 306
+    },
+    {
+      "coverage": 3736,
+      "edge_count": 1,
+      "expansion_map": {
+        "boundary_child_refs": [],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "value",
+            "parent_local_id": 0,
+            "slot_index": 0
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "macro",
+            "label": "eml_log",
+            "local_id": 0,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_log",
+              "expansion_to_pure_eml_available": true
+            }
+          },
+          {
+            "kind": "macro",
+            "label": "eml_variable",
+            "local_id": 1,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_variable",
+              "expansion_to_pure_eml_available": true,
+              "symbol_name": "y"
+            }
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 1343.56,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 28,
+        "source_signature": "{\"boundary_refs\":[],\"graph_type\":\"macro_graph\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"value\",\"parent\":0,\"slot_index\":0}],\"nodes\":[{\"kind\":\"macro\",\"label\":\"eml_log\",\"local_id\":0,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_log\"}},{\"kind\":\"macro\",\"label\":\"eml_variable\",\"local_id\":1,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_variable\",\"symbol_name\":\"y\"}}]}"
+      },
+      "motif_id": "learned_motif_0028",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "node_savings": 1868,
+      "source_motif_id": "macro_graph_0019",
+      "support_count": 1868,
+      "test_support": 292,
+      "train_support": 1298,
+      "val_support": 278
+    },
+    {
+      "coverage": 3642,
+      "edge_count": 1,
+      "expansion_map": {
+        "boundary_child_refs": [],
+        "internal_child_refs": [
+          {
+            "child_local_id": 1,
+            "child_slot": "value",
+            "parent_local_id": 0,
+            "slot_index": 0
+          }
+        ],
+        "internal_nodes": [
+          {
+            "kind": "macro",
+            "label": "eml_exp",
+            "local_id": 0,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_exp",
+              "expansion_to_pure_eml_available": true
+            }
+          },
+          {
+            "kind": "macro",
+            "label": "eml_variable",
+            "local_id": 1,
+            "metadata": {
+              "expansion_rule_name": "official_eml_compiler.eml_variable",
+              "expansion_to_pure_eml_available": true,
+              "symbol_name": "x"
+            }
+          }
+        ],
+        "output": "root node replaces the occurrence root",
+        "root_local_node_id": 0
+      },
+      "expansion_valid": true,
+      "learned_score": 1331.66,
+      "metadata": {
+        "is_pure_eml": false,
+        "selection_rank": 29,
+        "source_signature": "{\"boundary_refs\":[],\"graph_type\":\"macro_graph\",\"internal_refs\":[{\"child\":1,\"child_slot\":\"value\",\"parent\":0,\"slot_index\":0}],\"nodes\":[{\"kind\":\"macro\",\"label\":\"eml_exp\",\"local_id\":0,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_exp\"}},{\"kind\":\"macro\",\"label\":\"eml_variable\",\"local_id\":1,\"metadata\":{\"expansion_rule_name\":\"official_eml_compiler.eml_variable\",\"symbol_name\":\"x\"}}]}"
+      },
+      "motif_id": "learned_motif_0029",
+      "motif_type": "macro_graph",
+      "node_count": 2,
+      "node_savings": 1821,
+      "source_motif_id": "macro_graph_0020",
+      "support_count": 1821,
+      "test_support": 263,
+      "train_support": 1285,
+      "val_support": 273
+    }
+  ],
+  "random_baseline_motif_ids": [
+    "macro_graph_0000",
+    "macro_graph_0001",
+    "macro_graph_0003",
+    "macro_graph_0004",
+    "macro_graph_0005",
+    "macro_graph_0006",
+    "macro_graph_0007",
+    "macro_graph_0008",
+    "macro_graph_0009",
+    "macro_graph_0010",
+    "macro_graph_0011",
+    "macro_graph_0012",
+    "macro_graph_0013",
+    "macro_graph_0014",
+    "macro_graph_0015",
+    "macro_graph_0017",
+    "macro_graph_0018",
+    "macro_graph_0020",
+    "macro_graph_0021",
+    "macro_graph_0022",
+    "macro_graph_0023",
+    "macro_graph_0027",
+    "macro_graph_0028",
+    "macro_graph_0029",
+    "pure_eml_dag_0003",
+    "pure_eml_dag_0004",
+    "pure_eml_dag_0005",
+    "pure_eml_dag_0006",
+    "pure_eml_dag_0007",
+    "pure_eml_dag_0008"
+  ],
+  "selected_vocab_size": 30,
+  "selected_weights": {
+    "coverage_bonus": 0.01,
+    "expansion_complexity_penalty": 0.0,
+    "nontrivial_coverage_bonus": 0.02,
+    "vocab_complexity_penalty": 0.0
+  },
+  "trained_final_reasoning_gnn": false,
+  "vocabulary_version": "learned_motifs_v1"
+}

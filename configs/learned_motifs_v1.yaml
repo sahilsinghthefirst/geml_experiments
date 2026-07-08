@@ -1,0 +1,41 @@
+seed: 0
+count: 10000
+max_depth: 4
+operator_set:
+  - add
+  - mul
+  - exp
+  - log
+symbol_names:
+  - x
+  - y
+source_serialization: srepr
+train_fraction: 0.7
+validation_fraction: 0.15
+min_motif_nodes: 1
+max_motif_nodes: 2
+learned_vocab_sizes:
+  - 20
+  - 30
+coverage_bonuses:
+  - 0.0
+  - 0.01
+nontrivial_coverage_bonuses:
+  - 0.0
+  - 0.02
+vocab_complexity_penalties:
+  - 0.0
+  - 0.1
+expansion_complexity_penalties:
+  - 0.0
+  - 0.05
+input_jsonl_path: outputs/v1/dag_compression_inputs.jsonl
+goal3_metrics_csv_path: outputs/v1/dag_compression_metrics.csv
+macro_graph_metrics_csv_path: outputs/v1/goal5_macro_graph_metrics.csv
+frequent_motif_vocab_json_path: outputs/v1/goal5_frequent_motif_vocab.json
+frequent_motif_metrics_csv_path: outputs/v1/goal5_frequent_motif_metrics.csv
+learned_vocab_json_path: outputs/v1/goal5_learned_motif_vocab.json
+metrics_csv_path: outputs/v1/goal5_learned_motif_metrics.csv
+metrics_jsonl_path: outputs/v1/goal5_learned_motif_metrics.jsonl
+summary_json_path: outputs/v1/goal5_learned_motif_summary.json
+train_log_json_path: outputs/v1/goal5_learned_motif_train_log.json

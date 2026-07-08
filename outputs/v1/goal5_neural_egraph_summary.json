@@ -1,0 +1,544 @@
+{
+  "candidate_dataset": {
+    "candidate_count": 171545,
+    "group_count": 20000,
+    "official_label_failure_count": 0,
+    "rule_mode_counts": {
+      "positive_real_formal": 85125,
+      "safe": 86420
+    },
+    "split_counts": {
+      "test": 2976,
+      "train": 14042,
+      "validation": 2982
+    },
+    "valid_labeled_candidate_count": 171545
+  },
+  "completed_at_unix": 1783499940.453682,
+  "compression_gain_vs_goal3_dag": {
+    "ast": {
+      "mean": 1.4967158845334125,
+      "median": 1.0638297872340425,
+      "p90": 1.4444444444444444
+    },
+    "estimated": {
+      "mean": 1.501010959629801,
+      "median": 1.0681818181818181,
+      "p90": 1.4523809523809523
+    },
+    "exact_best": {
+      "mean": 1.5179738801601967,
+      "median": 1.0909090909090908,
+      "p90": 1.4727272727272727
+    },
+    "neural": {
+      "mean": 1.504138071843013,
+      "median": 1.0740740740740742,
+      "p90": 1.457142857142857
+    }
+  },
+  "config": {
+    "beam_size": 12,
+    "candidate_dataset_jsonl_path": "outputs/v1/goal5_neural_egraph_candidate_dataset.jsonl",
+    "count": 10000,
+    "epochs": 12,
+    "goal3_metrics_csv_path": "outputs/v1/dag_compression_metrics.csv",
+    "hidden_size": 12,
+    "input_jsonl_path": "outputs/v1/dag_compression_inputs.jsonl",
+    "l2_penalty": 1e-05,
+    "learning_rate": 0.01,
+    "max_candidate_depth": 7,
+    "max_candidates_evaluated": 12,
+    "max_depth": 4,
+    "max_eclasses": 5000,
+    "max_enodes": 5000,
+    "max_iterations": 4,
+    "max_pairs_per_group": 8,
+    "metrics_csv_path": "outputs/v1/goal5_neural_egraph_metrics.csv",
+    "operator_set": [
+      "add",
+      "mul",
+      "exp",
+      "log"
+    ],
+    "reuse_existing_candidate_dataset": true,
+    "row_timeout_seconds": 2.0,
+    "run_modes": [
+      "safe",
+      "positive_real_formal"
+    ],
+    "saturation_timeout_seconds": 0.5,
+    "seed": 0,
+    "source_serialization": "srepr",
+    "summary_json_path": "outputs/v1/goal5_neural_egraph_summary.json",
+    "symbol_names": [
+      "x",
+      "y"
+    ],
+    "train_fraction": 0.7,
+    "train_log_json_path": "outputs/v1/goal5_neural_egraph_train_log.json",
+    "validation_fraction": 0.15
+  },
+  "elapsed_seconds": 2692.7113931179047,
+  "heldout_test": {
+    "ast_regret_vs_exact_best": {
+      "mean": 0.6814921090387375,
+      "median": 0.0,
+      "p90": 3.0
+    },
+    "estimated_regret_vs_exact_best": {
+      "mean": 0.5613342898134863,
+      "median": 0.0,
+      "p90": 3.0
+    },
+    "exact_best_eml_dag_nodes": {
+      "mean": 38.87123385939742,
+      "median": 36.0,
+      "p90": 62.0
+    },
+    "median_compression_gain": 1.0731707317073171,
+    "neural_regret_vs_exact_best": {
+      "mean": 0.48708751793400284,
+      "median": 0.0,
+      "p90": 3.0
+    },
+    "neural_speedup_vs_exact_scoring": {
+      "mean": 189.85292621235226,
+      "median": 106.00645003367204,
+      "p90": 313.176929191
+    },
+    "neural_top1_eml_dag_nodes": {
+      "mean": 39.35832137733142,
+      "median": 37.0,
+      "p90": 63.0
+    },
+    "percent_matching_exact_best": 64.16786226685797,
+    "processed_count": 2976,
+    "success_count": 2788,
+    "validation_failure_count": 188
+  },
+  "integrity": {
+    "failed_validation_rows_reported": true,
+    "global_optimality_claimed": false,
+    "ground_truth_cost": "official_pure_eml_dag_nodes",
+    "model_performance_claims": false,
+    "modified_official_eml_compiler": false,
+    "neural_model_defines_mathematical_truth": false,
+    "neural_selected_candidates_compile_to_official_eml": true,
+    "trained_final_symbolic_reasoning_gnn": false
+  },
+  "neural_vs_ast_node_cost": {
+    "ast_percent_matching_exact_best": 78.32123363891685,
+    "ast_regret": {
+      "mean": 0.6976842774627736,
+      "median": 0.0,
+      "p90": 3.0
+    },
+    "neural_minus_ast_regret": {
+      "mean": -0.19119283556780245,
+      "median": 0.0,
+      "p90": 0.0
+    },
+    "neural_regret": {
+      "mean": 0.5064914418949711,
+      "median": 0.0,
+      "p90": 3.0
+    }
+  },
+  "neural_vs_estimated_eml_cost": {
+    "estimated_percent_matching_exact_best": 80.50447777012347,
+    "estimated_regret": {
+      "mean": 0.5974776111493827,
+      "median": 0.0,
+      "p90": 3.0
+    },
+    "neural_minus_estimated_regret": {
+      "mean": -0.09098616925441153,
+      "median": 0.0,
+      "p90": 0.0
+    },
+    "neural_regret": {
+      "mean": 0.5064914418949711,
+      "median": 0.0,
+      "p90": 3.0
+    }
+  },
+  "neural_vs_exact_beam": {
+    "exact_best_eml_dag_nodes": {
+      "mean": 39.256319219967146,
+      "median": 37.0,
+      "p90": 63.0
+    },
+    "percent_matching_exact_best": 64.23612951088973,
+    "regret_vs_exact_best": {
+      "mean": 0.5064914418949711,
+      "median": 0.0,
+      "p90": 3.0
+    },
+    "top1_eml_dag_nodes": {
+      "mean": 39.76281066186212,
+      "median": 37.0,
+      "p90": 63.0
+    }
+  },
+  "processed_group_count": 20000,
+  "results_by_rule_mode": {
+    "positive_real_formal": {
+      "ast_regret_vs_exact_best": {
+        "mean": 0.7917422383441801,
+        "median": 0.0,
+        "p90": 3.0
+      },
+      "estimated_regret_vs_exact_best": {
+        "mean": 0.5899925317401046,
+        "median": 0.0,
+        "p90": 3.0
+      },
+      "exact_best_eml_dag_nodes": {
+        "mean": 37.53035314200363,
+        "median": 35.0,
+        "p90": 61.0
+      },
+      "median_compression_gain": 1.1388888888888888,
+      "neural_regret_vs_exact_best": {
+        "mean": 0.49663928304705,
+        "median": 0.0,
+        "p90": 3.0
+      },
+      "neural_speedup_vs_exact_scoring": {
+        "mean": 188.86090114691586,
+        "median": 103.56983663676442,
+        "p90": 316.3841471162782
+      },
+      "neural_top1_eml_dag_nodes": {
+        "mean": 38.02699242505068,
+        "median": 36.0,
+        "p90": 62.0
+      },
+      "percent_matching_exact_best": 63.938973647711514,
+      "processed_count": 10000,
+      "success_count": 9373,
+      "validation_failure_count": 627
+    },
+    "safe": {
+      "ast_regret_vs_exact_best": {
+        "mean": 0.6048641819330385,
+        "median": 0.0,
+        "p90": 3.0
+      },
+      "estimated_regret_vs_exact_best": {
+        "mean": 0.6048641819330385,
+        "median": 0.0,
+        "p90": 3.0
+      },
+      "exact_best_eml_dag_nodes": {
+        "mean": 40.95957043588124,
+        "median": 38.0,
+        "p90": 64.0
+      },
+      "median_compression_gain": 1.0,
+      "neural_regret_vs_exact_best": {
+        "mean": 0.5162139397767951,
+        "median": 0.0,
+        "p90": 3.0
+      },
+      "neural_speedup_vs_exact_scoring": {
+        "mean": 206.07835472916383,
+        "median": 114.70386166658446,
+        "p90": 346.37970057080884
+      },
+      "neural_top1_eml_dag_nodes": {
+        "mean": 41.47578437565803,
+        "median": 39.0,
+        "p90": 65.0
+      },
+      "percent_matching_exact_best": 64.52937460518004,
+      "processed_count": 10000,
+      "success_count": 9498,
+      "validation_failure_count": 502
+    }
+  },
+  "results_by_split": {
+    "test": {
+      "ast_regret_vs_exact_best": {
+        "mean": 0.6814921090387375,
+        "median": 0.0,
+        "p90": 3.0
+      },
+      "estimated_regret_vs_exact_best": {
+        "mean": 0.5613342898134863,
+        "median": 0.0,
+        "p90": 3.0
+      },
+      "exact_best_eml_dag_nodes": {
+        "mean": 38.87123385939742,
+        "median": 36.0,
+        "p90": 62.0
+      },
+      "median_compression_gain": 1.0731707317073171,
+      "neural_regret_vs_exact_best": {
+        "mean": 0.48708751793400284,
+        "median": 0.0,
+        "p90": 3.0
+      },
+      "neural_speedup_vs_exact_scoring": {
+        "mean": 189.85292621235226,
+        "median": 106.00645003367204,
+        "p90": 313.176929191
+      },
+      "neural_top1_eml_dag_nodes": {
+        "mean": 39.35832137733142,
+        "median": 37.0,
+        "p90": 63.0
+      },
+      "percent_matching_exact_best": 64.16786226685797,
+      "processed_count": 2976,
+      "success_count": 2788,
+      "validation_failure_count": 188
+    },
+    "train": {
+      "ast_regret_vs_exact_best": {
+        "mean": 0.6925451807228916,
+        "median": 0.0,
+        "p90": 3.0
+      },
+      "estimated_regret_vs_exact_best": {
+        "mean": 0.5970632530120482,
+        "median": 0.0,
+        "p90": 3.0
+      },
+      "exact_best_eml_dag_nodes": {
+        "mean": 39.32138554216868,
+        "median": 37.0,
+        "p90": 63.0
+      },
+      "median_compression_gain": 1.075,
+      "neural_regret_vs_exact_best": {
+        "mean": 0.5088102409638554,
+        "median": 0.0,
+        "p90": 3.0
+      },
+      "neural_speedup_vs_exact_scoring": {
+        "mean": 201.1208761875811,
+        "median": 109.85892712613722,
+        "p90": 329.40280619457377
+      },
+      "neural_top1_eml_dag_nodes": {
+        "mean": 39.83019578313253,
+        "median": 38.0,
+        "p90": 64.0
+      },
+      "percent_matching_exact_best": 64.66114457831326,
+      "processed_count": 14042,
+      "success_count": 13280,
+      "validation_failure_count": 762
+    },
+    "validation": {
+      "ast_regret_vs_exact_best": {
+        "mean": 0.7381377095968605,
+        "median": 0.0,
+        "p90": 3.0
+      },
+      "estimated_regret_vs_exact_best": {
+        "mean": 0.635390652871923,
+        "median": 0.0,
+        "p90": 3.0
+      },
+      "exact_best_eml_dag_nodes": {
+        "mean": 39.33107384944702,
+        "median": 37.0,
+        "p90": 62.0
+      },
+      "median_compression_gain": 1.0714285714285714,
+      "neural_regret_vs_exact_best": {
+        "mean": 0.5148055654655725,
+        "median": 0.0,
+        "p90": 3.0
+      },
+      "neural_speedup_vs_exact_scoring": {
+        "mean": 188.13066201089006,
+        "median": 109.9728999301286,
+        "p90": 343.1460683028699
+      },
+      "neural_top1_eml_dag_nodes": {
+        "mean": 39.845879414912595,
+        "median": 38.0,
+        "p90": 62.0
+      },
+      "percent_matching_exact_best": 62.2904031394934,
+      "processed_count": 2982,
+      "success_count": 2803,
+      "validation_failure_count": 179
+    }
+  },
+  "results_by_subset_label": {
+    "all_v1": {
+      "ast_regret_vs_exact_best": {
+        "mean": 0.6976842774627736,
+        "median": 0.0,
+        "p90": 3.0
+      },
+      "estimated_regret_vs_exact_best": {
+        "mean": 0.5974776111493827,
+        "median": 0.0,
+        "p90": 3.0
+      },
+      "exact_best_eml_dag_nodes": {
+        "mean": 39.256319219967146,
+        "median": 37.0,
+        "p90": 63.0
+      },
+      "median_compression_gain": 1.0740740740740742,
+      "neural_regret_vs_exact_best": {
+        "mean": 0.5064914418949711,
+        "median": 0.0,
+        "p90": 3.0
+      },
+      "neural_speedup_vs_exact_scoring": {
+        "mean": 197.52665145819725,
+        "median": 109.30469053882588,
+        "p90": 328.80454582297205
+      },
+      "neural_top1_eml_dag_nodes": {
+        "mean": 39.76281066186212,
+        "median": 37.0,
+        "p90": 63.0
+      },
+      "percent_matching_exact_best": 64.23612951088973,
+      "processed_count": 20000,
+      "success_count": 18871,
+      "validation_failure_count": 1129
+    },
+    "identity_heavy_v1": {
+      "ast_regret_vs_exact_best": {
+        "mean": 0.6256258721168841,
+        "median": 0.0,
+        "p90": 3.0
+      },
+      "estimated_regret_vs_exact_best": {
+        "mean": 0.5333661659689731,
+        "median": 0.0,
+        "p90": 3.0
+      },
+      "exact_best_eml_dag_nodes": {
+        "mean": 38.66436838217188,
+        "median": 36.0,
+        "p90": 64.0
+      },
+      "median_compression_gain": 1.1839080459770115,
+      "neural_regret_vs_exact_best": {
+        "mean": 0.45826151194287124,
+        "median": 0.0,
+        "p90": 3.0
+      },
+      "neural_speedup_vs_exact_scoring": {
+        "mean": 196.8719266322738,
+        "median": 106.73034288477474,
+        "p90": 326.0786085208725
+      },
+      "neural_top1_eml_dag_nodes": {
+        "mean": 39.12262989411475,
+        "median": 37.0,
+        "p90": 65.0
+      },
+      "percent_matching_exact_best": 65.13994910941476,
+      "processed_count": 12668,
+      "success_count": 12183,
+      "validation_failure_count": 485
+    },
+    "nontrivial_v1": {
+      "ast_regret_vs_exact_best": {
+        "mean": 0.8289473684210527,
+        "median": 0.0,
+        "p90": 3.0
+      },
+      "estimated_regret_vs_exact_best": {
+        "mean": 0.7142643540669856,
+        "median": 0.0,
+        "p90": 3.0
+      },
+      "exact_best_eml_dag_nodes": {
+        "mean": 40.33462918660287,
+        "median": 38.0,
+        "p90": 60.0
+      },
+      "median_compression_gain": 1.0,
+      "neural_regret_vs_exact_best": {
+        "mean": 0.5943480861244019,
+        "median": 0.0,
+        "p90": 3.0
+      },
+      "neural_speedup_vs_exact_scoring": {
+        "mean": 198.71931182814726,
+        "median": 112.93371004523428,
+        "p90": 334.12534695178573
+      },
+      "neural_top1_eml_dag_nodes": {
+        "mean": 40.92897727272727,
+        "median": 38.0,
+        "p90": 61.0
+      },
+      "percent_matching_exact_best": 62.58971291866029,
+      "processed_count": 7332,
+      "success_count": 6688,
+      "validation_failure_count": 644
+    }
+  },
+  "runtime_tradeoff": {
+    "exact_beam_scoring_seconds": {
+      "mean": 0.0407125283492697,
+      "median": 0.024446752038784325,
+      "p90": 0.07412462402135134
+    },
+    "neural_scoring_seconds": {
+      "mean": 0.00018988989187801502,
+      "median": 0.00024958301219157875,
+      "p90": 0.0002630419912748039
+    },
+    "neural_speedup_vs_exact_scoring": {
+      "mean": 197.52665145819725,
+      "median": 109.30469053882588,
+      "p90": 328.80454582297205
+    },
+    "scope": "candidate cost-scoring only; excludes e-graph saturation/enumeration"
+  },
+  "success_count": 18871,
+  "validation_failure_count": 1129,
+  "validation_split": {
+    "ast_regret_vs_exact_best": {
+      "mean": 0.7381377095968605,
+      "median": 0.0,
+      "p90": 3.0
+    },
+    "estimated_regret_vs_exact_best": {
+      "mean": 0.635390652871923,
+      "median": 0.0,
+      "p90": 3.0
+    },
+    "exact_best_eml_dag_nodes": {
+      "mean": 39.33107384944702,
+      "median": 37.0,
+      "p90": 62.0
+    },
+    "median_compression_gain": 1.0714285714285714,
+    "neural_regret_vs_exact_best": {
+      "mean": 0.5148055654655725,
+      "median": 0.0,
+      "p90": 3.0
+    },
+    "neural_speedup_vs_exact_scoring": {
+      "mean": 188.13066201089006,
+      "median": 109.9728999301286,
+      "p90": 343.1460683028699
+    },
+    "neural_top1_eml_dag_nodes": {
+      "mean": 39.845879414912595,
+      "median": 38.0,
+      "p90": 62.0
+    },
+    "percent_matching_exact_best": 62.2904031394934,
+    "processed_count": 2982,
+    "success_count": 2803,
+    "validation_failure_count": 179
+  }
+}

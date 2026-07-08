@@ -1,0 +1,17 @@
+seed: 0
+count: 10000
+max_depth: 4
+operator_set:
+  - add
+  - mul
+  - exp
+  - log
+symbol_names:
+  - x
+  - y
+source_serialization: srepr
+input_jsonl_path: outputs/v1/dag_compression_inputs.jsonl
+goal3_metrics_csv_path: outputs/v1/dag_compression_metrics.csv
+metrics_csv_path: outputs/v1/goal5_macro_graph_metrics.csv
+metrics_jsonl_path: outputs/v1/goal5_macro_graph_metrics.jsonl
+summary_json_path: outputs/v1/goal5_macro_graph_summary.json

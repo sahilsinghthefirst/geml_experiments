@@ -1,0 +1,377 @@
+{
+  "edge_types": [
+    "ast_child",
+    "ast_to_macro",
+    "macro_child",
+    "macro_expands_to_eml",
+    "eml_child",
+    "motif_instance",
+    "motif_expands_to_eml",
+    "learned_motif_instance",
+    "hierarchy_parent_child"
+  ],
+  "format": "jsonl",
+  "graph_record_model": {
+    "$defs": {
+      "GraphExportEdge": {
+        "description": "One neutral exported graph edge.",
+        "properties": {
+          "child_slot": {
+            "title": "Child Slot",
+            "type": "string"
+          },
+          "edge_id": {
+            "title": "Edge Id",
+            "type": "string"
+          },
+          "edge_type": {
+            "enum": [
+              "ast_child",
+              "ast_to_macro",
+              "macro_child",
+              "macro_expands_to_eml",
+              "eml_child",
+              "motif_instance",
+              "motif_expands_to_eml",
+              "learned_motif_instance",
+              "hierarchy_parent_child"
+            ],
+            "title": "Edge Type",
+            "type": "string"
+          },
+          "graph_id": {
+            "title": "Graph Id",
+            "type": "string"
+          },
+          "metadata": {
+            "additionalProperties": {
+              "$ref": "#/$defs/MetadataValue"
+            },
+            "title": "Metadata",
+            "type": "object"
+          },
+          "slot_index": {
+            "minimum": 0,
+            "title": "Slot Index",
+            "type": "integer"
+          },
+          "source_id": {
+            "title": "Source Id",
+            "type": "string"
+          },
+          "target_id": {
+            "title": "Target Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "edge_id",
+          "graph_id",
+          "source_id",
+          "target_id",
+          "edge_type",
+          "child_slot",
+          "slot_index"
+        ],
+        "title": "GraphExportEdge",
+        "type": "object"
+      },
+      "GraphExportNode": {
+        "description": "One neutral exported graph node.",
+        "properties": {
+          "arity": {
+            "minimum": 0,
+            "title": "Arity",
+            "type": "integer"
+          },
+          "child_slot": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Child Slot"
+          },
+          "expansion_available": {
+            "default": false,
+            "title": "Expansion Available",
+            "type": "boolean"
+          },
+          "expansion_target_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Expansion Target Ids",
+            "type": "array"
+          },
+          "graph_id": {
+            "title": "Graph Id",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "macro_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Macro Name"
+          },
+          "metadata": {
+            "additionalProperties": {
+              "$ref": "#/$defs/MetadataValue"
+            },
+            "title": "Metadata",
+            "type": "object"
+          },
+          "motif_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Motif Id"
+          },
+          "node_id": {
+            "title": "Node Id",
+            "type": "string"
+          },
+          "node_type": {
+            "title": "Node Type",
+            "type": "string"
+          },
+          "pure_eml_valid": {
+            "default": false,
+            "title": "Pure Eml Valid",
+            "type": "boolean"
+          },
+          "representation_mode": {
+            "enum": [
+              "ast_tree_graph",
+              "ast_dag_graph",
+              "pure_eml_dag_graph",
+              "egraph_safe_eml_dag_graph",
+              "egraph_positive_real_eml_dag_graph",
+              "macro_graph",
+              "frequent_motif_graph",
+              "learned_motif_graph",
+              "hierarchical_eml_graph"
+            ],
+            "title": "Representation Mode",
+            "type": "string"
+          },
+          "source_expression_id": {
+            "minimum": 0,
+            "title": "Source Expression Id",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "node_id",
+          "graph_id",
+          "representation_mode",
+          "node_type",
+          "label",
+          "arity",
+          "source_expression_id"
+        ],
+        "title": "GraphExportNode",
+        "type": "object"
+      },
+      "GraphValidationStatus": {
+        "description": "Validation status attached to one exported graph record.",
+        "properties": {
+          "errors": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Errors",
+            "type": "array"
+          },
+          "expansion_valid": {
+            "title": "Expansion Valid",
+            "type": "boolean"
+          },
+          "missing_expansion_count": {
+            "minimum": 0,
+            "title": "Missing Expansion Count",
+            "type": "integer"
+          },
+          "pure_eml_valid": {
+            "title": "Pure Eml Valid",
+            "type": "boolean"
+          },
+          "reconstruction_valid": {
+            "title": "Reconstruction Valid",
+            "type": "boolean"
+          },
+          "schema_valid": {
+            "title": "Schema Valid",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "schema_valid",
+          "expansion_valid",
+          "reconstruction_valid",
+          "missing_expansion_count",
+          "pure_eml_valid"
+        ],
+        "title": "GraphValidationStatus",
+        "type": "object"
+      },
+      "MetadataValue": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "integer"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "items": {},
+            "type": "array"
+          },
+          {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    },
+    "description": "One exported graph in a neutral JSONL schema.",
+    "properties": {
+      "edges": {
+        "items": {
+          "$ref": "#/$defs/GraphExportEdge"
+        },
+        "title": "Edges",
+        "type": "array"
+      },
+      "graph_id": {
+        "title": "Graph Id",
+        "type": "string"
+      },
+      "metadata": {
+        "additionalProperties": {
+          "$ref": "#/$defs/MetadataValue"
+        },
+        "title": "Metadata",
+        "type": "object"
+      },
+      "nodes": {
+        "items": {
+          "$ref": "#/$defs/GraphExportNode"
+        },
+        "title": "Nodes",
+        "type": "array"
+      },
+      "representation_mode": {
+        "enum": [
+          "ast_tree_graph",
+          "ast_dag_graph",
+          "pure_eml_dag_graph",
+          "egraph_safe_eml_dag_graph",
+          "egraph_positive_real_eml_dag_graph",
+          "macro_graph",
+          "frequent_motif_graph",
+          "learned_motif_graph",
+          "hierarchical_eml_graph"
+        ],
+        "title": "Representation Mode",
+        "type": "string"
+      },
+      "root_node_id": {
+        "title": "Root Node Id",
+        "type": "string"
+      },
+      "source_expression_id": {
+        "minimum": 0,
+        "title": "Source Expression Id",
+        "type": "integer"
+      },
+      "split": {
+        "title": "Split",
+        "type": "string"
+      },
+      "subset_label": {
+        "title": "Subset Label",
+        "type": "string"
+      },
+      "validation": {
+        "$ref": "#/$defs/GraphValidationStatus"
+      }
+    },
+    "required": [
+      "graph_id",
+      "source_expression_id",
+      "representation_mode",
+      "root_node_id",
+      "nodes",
+      "edges",
+      "subset_label",
+      "split",
+      "validation"
+    ],
+    "title": "GraphExportRecord",
+    "type": "object"
+  },
+  "integrity_contract": {
+    "compressed_nodes_are_pure_eml": false,
+    "compressed_nodes_require_expansion_targets": true,
+    "contains_gnn_training": false,
+    "contains_hidden_target_labels": false,
+    "safe_and_positive_real_modes_labeled_explicitly": true
+  },
+  "representation_modes": [
+    "ast_tree_graph",
+    "ast_dag_graph",
+    "pure_eml_dag_graph",
+    "egraph_safe_eml_dag_graph",
+    "egraph_positive_real_eml_dag_graph",
+    "macro_graph",
+    "frequent_motif_graph",
+    "learned_motif_graph",
+    "hierarchical_eml_graph"
+  ],
+  "required_node_metadata_fields": [
+    "node_id",
+    "graph_id",
+    "representation_mode",
+    "node_type",
+    "label",
+    "arity",
+    "child_slot",
+    "source_expression_id",
+    "expansion_available",
+    "expansion_target_ids",
+    "pure_eml_valid",
+    "motif_id",
+    "macro_name"
+  ],
+  "schema_version": "goal5_hierarchical_graph_schema_v1"
+}

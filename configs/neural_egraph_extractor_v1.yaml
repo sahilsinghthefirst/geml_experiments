@@ -1,0 +1,37 @@
+seed: 0
+count: 10000
+max_depth: 4
+operator_set:
+  - add
+  - mul
+  - exp
+  - log
+symbol_names:
+  - x
+  - y
+source_serialization: srepr
+train_fraction: 0.7
+validation_fraction: 0.15
+run_modes:
+  - safe
+  - positive_real_formal
+max_iterations: 4
+max_enodes: 5000
+max_eclasses: 5000
+saturation_timeout_seconds: 0.5
+row_timeout_seconds: 2.0
+beam_size: 12
+max_candidate_depth: 7
+max_candidates_evaluated: 12
+hidden_size: 12
+epochs: 12
+learning_rate: 0.01
+max_pairs_per_group: 8
+l2_penalty: 0.00001
+reuse_existing_candidate_dataset: true
+input_jsonl_path: outputs/v1/dag_compression_inputs.jsonl
+goal3_metrics_csv_path: outputs/v1/dag_compression_metrics.csv
+candidate_dataset_jsonl_path: outputs/v1/goal5_neural_egraph_candidate_dataset.jsonl
+metrics_csv_path: outputs/v1/goal5_neural_egraph_metrics.csv
+summary_json_path: outputs/v1/goal5_neural_egraph_summary.json
+train_log_json_path: outputs/v1/goal5_neural_egraph_train_log.json

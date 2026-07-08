@@ -1,0 +1,717 @@
+{
+  "completed_at_unix": 1783484069.3085618,
+  "compression_gain_vs_goal3_eml_dag": {
+    "mean": 5.24252227317617,
+    "median": 5.25,
+    "p90": 6.5
+  },
+  "config": {
+    "count": 10000,
+    "goal3_metrics_csv_path": "outputs/v1/dag_compression_metrics.csv",
+    "input_jsonl_path": "outputs/v1/dag_compression_inputs.jsonl",
+    "max_depth": 4,
+    "metrics_csv_path": "outputs/v1/goal5_macro_graph_metrics.csv",
+    "metrics_jsonl_path": "outputs/v1/goal5_macro_graph_metrics.jsonl",
+    "operator_set": [
+      "add",
+      "mul",
+      "exp",
+      "log"
+    ],
+    "seed": 0,
+    "source_serialization": "srepr",
+    "summary_json_path": "outputs/v1/goal5_macro_graph_summary.json",
+    "symbol_names": [
+      "x",
+      "y"
+    ]
+  },
+  "elapsed_seconds": 48.716397762298584,
+  "expansion_validation_failure_count": 0,
+  "macro_graph_alpha_vs_ast_tree": {
+    "mean": 0.7808760220588453,
+    "median": 0.7777777777777778,
+    "p90": 0.9
+  },
+  "median_compression_gain_vs_goal3_eml_dag": 5.25,
+  "median_macro_graph_alpha": 0.7777777777777778,
+  "median_macro_graph_alpha_vs_ast_dag": 1.0,
+  "median_macro_graph_alpha_vs_ast_tree": 0.7777777777777778,
+  "operator_family_summaries": {
+    "by_dominant_operator_family": [
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 4.930536571803544,
+          "median": 4.9,
+          "p90": 5.833333333333333
+        },
+        "dominant_operator_family": "Add",
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 9.068587535233323,
+          "median": 9.0,
+          "p90": 13.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 4.9,
+        "median_macro_graph_alpha": 0.75,
+        "processed_count": 3193,
+        "success_count": 3193
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 6.140722432801322,
+          "median": 6.083333333333333,
+          "p90": 7.083333333333333
+        },
+        "dominant_operator_family": "Mul",
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 8.909886902590296,
+          "median": 9.0,
+          "p90": 13.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 6.083333333333333,
+        "median_macro_graph_alpha": 0.75,
+        "processed_count": 2741,
+        "success_count": 2741
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 4.16916441894488,
+          "median": 4.25,
+          "p90": 5.333333333333333
+        },
+        "dominant_operator_family": "exp",
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 7.298572996706915,
+          "median": 7.0,
+          "p90": 10.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 4.25,
+        "median_macro_graph_alpha": 0.875,
+        "processed_count": 911,
+        "success_count": 911
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 1.0,
+          "median": 1.0,
+          "p90": 1.0
+        },
+        "dominant_operator_family": "leaf_only",
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 1.0,
+          "median": 1.0,
+          "p90": 1.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 1.0,
+        "median_macro_graph_alpha": 1.0,
+        "processed_count": 3,
+        "success_count": 3
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 4.641210666803552,
+          "median": 4.6,
+          "p90": 5.704761904761906
+        },
+        "dominant_operator_family": "log",
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 7.023715415019763,
+          "median": 7.0,
+          "p90": 10.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 4.6,
+        "median_macro_graph_alpha": 0.875,
+        "processed_count": 253,
+        "success_count": 253
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 5.767361652953715,
+          "median": 5.714285714285714,
+          "p90": 6.5
+        },
+        "dominant_operator_family": "mixed_Add+Mul",
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 9.261462205700123,
+          "median": 9.0,
+          "p90": 13.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 5.714285714285714,
+        "median_macro_graph_alpha": 0.7272727272727273,
+        "processed_count": 807,
+        "success_count": 807
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 5.230162426858855,
+          "median": 5.2,
+          "p90": 6.146753246753247
+        },
+        "dominant_operator_family": "mixed_Add+Mul+exp",
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 7.803571428571429,
+          "median": 8.5,
+          "p90": 11.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 5.2,
+        "median_macro_graph_alpha": 0.8181818181818182,
+        "processed_count": 280,
+        "success_count": 280
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 4.8137664914450635,
+          "median": 4.714285714285714,
+          "p90": 5.666666666666667
+        },
+        "dominant_operator_family": "mixed_Add+Mul+exp+log",
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 6.504464285714286,
+          "median": 6.0,
+          "p90": 7.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 4.714285714285714,
+        "median_macro_graph_alpha": 0.8571428571428571,
+        "processed_count": 224,
+        "success_count": 224
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 5.326260976968524,
+          "median": 5.222222222222222,
+          "p90": 6.375
+        },
+        "dominant_operator_family": "mixed_Add+Mul+log",
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 7.113207547169812,
+          "median": 6.0,
+          "p90": 10.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 5.222222222222222,
+        "median_macro_graph_alpha": 0.8333333333333334,
+        "processed_count": 212,
+        "success_count": 212
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 4.245652434149775,
+          "median": 4.222222222222222,
+          "p90": 5.087121212121212
+        },
+        "dominant_operator_family": "mixed_Add+exp",
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 8.050531914893616,
+          "median": 8.0,
+          "p90": 11.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 4.222222222222222,
+        "median_macro_graph_alpha": 0.8153409090909092,
+        "processed_count": 376,
+        "success_count": 376
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 3.888066378066378,
+          "median": 3.875,
+          "p90": 4.75
+        },
+        "dominant_operator_family": "mixed_Add+exp+log",
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 6.141176470588236,
+          "median": 5.0,
+          "p90": 10.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 3.875,
+        "median_macro_graph_alpha": 0.8888888888888888,
+        "processed_count": 85,
+        "success_count": 85
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 4.542971561267016,
+          "median": 4.555555555555555,
+          "p90": 5.29047619047619
+        },
+        "dominant_operator_family": "mixed_Add+log",
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 7.881818181818182,
+          "median": 8.0,
+          "p90": 11.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 4.555555555555555,
+        "median_macro_graph_alpha": 0.8125,
+        "processed_count": 220,
+        "success_count": 220
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 5.340407452359207,
+          "median": 5.25,
+          "p90": 6.1642857142857155
+        },
+        "dominant_operator_family": "mixed_Mul+exp",
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 8.149122807017545,
+          "median": 8.0,
+          "p90": 11.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 5.25,
+        "median_macro_graph_alpha": 0.8125,
+        "processed_count": 342,
+        "success_count": 342
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 5.0738536155202825,
+          "median": 5.0,
+          "p90": 5.871428571428572
+        },
+        "dominant_operator_family": "mixed_Mul+exp+log",
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 6.388888888888889,
+          "median": 5.0,
+          "p90": 9.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 5.0,
+        "median_macro_graph_alpha": 0.9090909090909091,
+        "processed_count": 90,
+        "success_count": 90
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 5.499465723977919,
+          "median": 5.375,
+          "p90": 6.449999999999999
+        },
+        "dominant_operator_family": "mixed_Mul+log",
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 7.746341463414634,
+          "median": 8.0,
+          "p90": 11.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 5.375,
+        "median_macro_graph_alpha": 0.8571428571428571,
+        "processed_count": 205,
+        "success_count": 205
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 3.6559565913014187,
+          "median": 3.9444444444444446,
+          "p90": 4.6000000000000005
+        },
+        "dominant_operator_family": "mixed_exp+log",
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 7.431034482758621,
+          "median": 7.0,
+          "p90": 9.600000000000009
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 3.9444444444444446,
+        "median_macro_graph_alpha": 1.0,
+        "processed_count": 58,
+        "success_count": 58
+      }
+    ],
+    "by_operator_signature": [
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 5.021388313779618,
+          "median": 4.833333333333333,
+          "p90": 5.800000000000001
+        },
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 5.072463768115942,
+          "median": 5.0,
+          "p90": 7.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 4.833333333333333,
+        "median_macro_graph_alpha": 0.7777777777777778,
+        "operator_signature": "Add",
+        "processed_count": 69,
+        "success_count": 69
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 6.280946585392462,
+          "median": 6.222222222222222,
+          "p90": 7.5
+        },
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 6.958762886597938,
+          "median": 7.0,
+          "p90": 10.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 6.222222222222222,
+        "median_macro_graph_alpha": 0.7142857142857143,
+        "operator_signature": "Add+Mul",
+        "processed_count": 582,
+        "success_count": 582
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 5.432016252918625,
+          "median": 5.428571428571429,
+          "p90": 6.5
+        },
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 8.63717277486911,
+          "median": 8.0,
+          "p90": 12.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 5.428571428571429,
+        "median_macro_graph_alpha": 0.75,
+        "operator_signature": "Add+Mul+exp",
+        "processed_count": 1910,
+        "success_count": 1910
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 5.130529309314934,
+          "median": 5.111111111111111,
+          "p90": 6.111111111111111
+        },
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 10.11887503624239,
+          "median": 10.0,
+          "p90": 14.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 5.111111111111111,
+        "median_macro_graph_alpha": 0.7692307692307693,
+        "operator_signature": "Add+Mul+exp+log",
+        "processed_count": 3449,
+        "success_count": 3449
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 5.628343134818552,
+          "median": 5.6,
+          "p90": 6.6
+        },
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 8.36,
+          "median": 8.0,
+          "p90": 11.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 5.6,
+        "median_macro_graph_alpha": 0.75,
+        "operator_signature": "Add+Mul+log",
+        "processed_count": 1675,
+        "success_count": 1675
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 3.890592750161716,
+          "median": 3.8333333333333335,
+          "p90": 4.666666666666667
+        },
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 6.124137931034483,
+          "median": 6.0,
+          "p90": 8.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 3.8333333333333335,
+        "median_macro_graph_alpha": 0.8333333333333334,
+        "operator_signature": "Add+exp",
+        "processed_count": 290,
+        "success_count": 290
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 3.7562371963616132,
+          "median": 3.7142857142857144,
+          "p90": 4.428571428571429
+        },
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 7.14307931570762,
+          "median": 7.0,
+          "p90": 10.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 3.7142857142857144,
+        "median_macro_graph_alpha": 0.8571428571428571,
+        "operator_signature": "Add+exp+log",
+        "processed_count": 643,
+        "success_count": 643
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 4.432880919585465,
+          "median": 4.2,
+          "p90": 5.014285714285713
+        },
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 6.213636363636364,
+          "median": 6.0,
+          "p90": 8.099999999999994
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 4.2,
+        "median_macro_graph_alpha": 0.8181818181818182,
+        "operator_signature": "Add+log",
+        "processed_count": 220,
+        "success_count": 220
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 7.370039682539683,
+          "median": 7.0,
+          "p90": 9.0
+        },
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 4.766666666666667,
+          "median": 5.0,
+          "p90": 7.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 7.0,
+        "median_macro_graph_alpha": 0.7777777777777778,
+        "operator_signature": "Mul",
+        "processed_count": 60,
+        "success_count": 60
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 5.667279354738638,
+          "median": 5.714285714285714,
+          "p90": 7.0
+        },
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 6.306188925081433,
+          "median": 6.0,
+          "p90": 8.400000000000034
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 5.714285714285714,
+        "median_macro_graph_alpha": 0.8333333333333334,
+        "operator_signature": "Mul+exp",
+        "processed_count": 307,
+        "success_count": 307
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 5.2941864973392505,
+          "median": 5.25,
+          "p90": 6.48888888888889
+        },
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 7.1332149200710475,
+          "median": 7.0,
+          "p90": 9.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 5.25,
+        "median_macro_graph_alpha": 0.875,
+        "operator_signature": "Mul+exp+log",
+        "processed_count": 563,
+        "success_count": 563
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 6.320888030888031,
+          "median": 6.333333333333333,
+          "p90": 7.46
+        },
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 6.205405405405405,
+          "median": 6.0,
+          "p90": 9.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 6.333333333333333,
+        "median_macro_graph_alpha": 0.8333333333333334,
+        "operator_signature": "Mul+log",
+        "processed_count": 185,
+        "success_count": 185
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 1.2138888888888888,
+          "median": 1.225,
+          "p90": 1.4833333333333334
+        },
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 3.5,
+          "median": 3.5,
+          "p90": 5.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 1.225,
+        "median_macro_graph_alpha": 1.0,
+        "operator_signature": "exp",
+        "processed_count": 12,
+        "success_count": 12
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 1.725287356321839,
+          "median": 1.6666666666666667,
+          "p90": 2.0
+        },
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 4.206896551724138,
+          "median": 4.0,
+          "p90": 5.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 1.6666666666666667,
+        "median_macro_graph_alpha": 1.0,
+        "operator_signature": "exp+log",
+        "processed_count": 29,
+        "success_count": 29
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 1.0,
+          "median": 1.0,
+          "p90": 1.0
+        },
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 1.0,
+          "median": 1.0,
+          "p90": 1.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 1.0,
+        "median_macro_graph_alpha": 1.0,
+        "operator_signature": "leaf_only",
+        "processed_count": 3,
+        "success_count": 3
+      },
+      {
+        "compression_gain_vs_goal3_eml_dag": {
+          "mean": 2.3333333333333335,
+          "median": 2.5,
+          "p90": 2.5
+        },
+        "expansion_validation_failure_count": 0,
+        "macro_graph_nodes": {
+          "mean": 2.0,
+          "median": 2.0,
+          "p90": 2.0
+        },
+        "median_compression_gain_vs_goal3_eml_dag": 2.5,
+        "median_macro_graph_alpha": 1.0,
+        "operator_signature": "log",
+        "processed_count": 3,
+        "success_count": 3
+      }
+    ]
+  },
+  "processed_count": 10000,
+  "representation_contract": {
+    "expansion_to_pure_eml_available": true,
+    "is_pure_eml": false,
+    "macro_graph_size_is_not_pure_eml_alpha": true,
+    "representation_mode": "macro_graph_v1",
+    "uses_official_compiler_formulas": true
+  },
+  "results_by_subset_label": {
+    "all_v1": {
+      "compression_gain_vs_goal3_eml_dag": {
+        "mean": 5.24252227317617,
+        "median": 5.25,
+        "p90": 6.5
+      },
+      "expansion_validation_failure_count": 0,
+      "macro_graph_alpha_vs_ast_tree": {
+        "mean": 0.7808760220588453,
+        "median": 0.7777777777777778,
+        "p90": 0.9
+      },
+      "macro_graph_depth": {
+        "mean": 3.5083,
+        "median": 4.0,
+        "p90": 4.0
+      },
+      "macro_graph_nodes": {
+        "mean": 8.5095,
+        "median": 8.0,
+        "p90": 12.0
+      },
+      "median_compression_gain_vs_goal3_eml_dag": 5.25,
+      "median_macro_graph_alpha": 0.7777777777777778,
+      "median_macro_graph_alpha_vs_ast_dag": 1.0,
+      "processed_count": 10000,
+      "success_count": 10000
+    },
+    "identity_heavy_v1": {
+      "compression_gain_vs_goal3_eml_dag": {
+        "mean": 5.13815435280846,
+        "median": 5.166666666666667,
+        "p90": 6.285714285714286
+      },
+      "expansion_validation_failure_count": 0,
+      "macro_graph_alpha_vs_ast_tree": {
+        "mean": 0.7829515958107092,
+        "median": 0.7777777777777778,
+        "p90": 0.9
+      },
+      "macro_graph_depth": {
+        "mean": 3.576255131038838,
+        "median": 4.0,
+        "p90": 4.0
+      },
+      "macro_graph_nodes": {
+        "mean": 8.988159141143038,
+        "median": 9.0,
+        "p90": 13.0
+      },
+      "median_compression_gain_vs_goal3_eml_dag": 5.166666666666667,
+      "median_macro_graph_alpha": 0.7777777777777778,
+      "median_macro_graph_alpha_vs_ast_dag": 1.0,
+      "processed_count": 6334,
+      "success_count": 6334
+    },
+    "nontrivial_v1": {
+      "compression_gain_vs_goal3_eml_dag": {
+        "mean": 5.422845897728563,
+        "median": 5.375,
+        "p90": 6.833333333333333
+      },
+      "expansion_validation_failure_count": 0,
+      "macro_graph_alpha_vs_ast_tree": {
+        "mean": 0.7772899107265198,
+        "median": 0.7777777777777778,
+        "p90": 0.9
+      },
+      "macro_graph_depth": {
+        "mean": 3.3908892525913803,
+        "median": 3.0,
+        "p90": 4.0
+      },
+      "macro_graph_nodes": {
+        "mean": 7.682487725040916,
+        "median": 7.0,
+        "p90": 11.0
+      },
+      "median_compression_gain_vs_goal3_eml_dag": 5.375,
+      "median_macro_graph_alpha": 0.7777777777777778,
+      "median_macro_graph_alpha_vs_ast_dag": 1.0,
+      "processed_count": 3666,
+      "success_count": 3666
+    }
+  },
+  "success_count": 10000
+}
