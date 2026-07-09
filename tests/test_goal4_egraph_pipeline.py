@@ -13,12 +13,19 @@ from geml.experiments.run_goal4_egraph_pipeline import (
     run_goal4_egraph_pipeline,
 )
 
+from tests.goal5_fixture_builders import ensure_goal3_fixture
+
 
 def test_goal4_egraph_pipeline_small_end_to_end(tmp_path: Path) -> None:
-    output_dir = tmp_path / "outputs" / "v1"
+    paths = ensure_goal3_fixture(tmp_path)
+    output_dir = paths.output_dir
     docs_dir = tmp_path / "docs" / "goal4"
     egraph_config = EgraphCompressionStudyConfig(
         count=25,
+        input_jsonl_path=paths.input_jsonl_path,
+        goal3_metrics_csv_path=paths.goal3_metrics_csv_path,
+        goal3_summary_json_path=paths.goal3_summary_json_path,
+        v0_v1_comparison_summary_json_path=None,
         output_dir=output_dir,
         safe_metrics_csv_path=output_dir / "egraph_compression_metrics_safe.csv",
         safe_metrics_jsonl_path=output_dir / "egraph_compression_metrics_safe.jsonl",
@@ -76,6 +83,11 @@ def test_goal4_egraph_pipeline_small_end_to_end(tmp_path: Path) -> None:
     summary = json.loads(config.egraph_config.summary_json_path.read_text(encoding="utf-8"))
     assert summary["rule_modes"]["safe"]["processed_count"] == 25
     assert summary["rule_modes"]["positive_real_formal"]["processed_count"] == 25
+    assert "success_only_after_rate" in summary["rule_modes"]["safe"]
+    assert "all_processed_after_rate" in summary["rule_modes"]["safe"]
+    assert "extraction_failed" in summary["rule_modes"]["safe"]
+    assert "official_compilation_failed" in summary["rule_modes"]["safe"]
+    assert result.percent_below_threshold_after_all_processed_by_mode["safe"] is not None
 
     audit_payload = json.loads(config.semantic_audit_json_path.read_text(encoding="utf-8"))
     assert audit_payload["summary"]["all_structural_purity_valid"] is True
@@ -85,6 +97,8 @@ def test_goal4_egraph_pipeline_small_end_to_end(tmp_path: Path) -> None:
     assert "Goal 4 Question" in final_report
     assert "positive_real_formal" in final_report
     assert "not GNN or neural-model evidence" in final_report
+    assert "Below after success-only" in final_report
+    assert "Below after all processed" in final_report
 
     forbidden_file_terms = ("gnn", "neural", "/models/")
     assert not any(

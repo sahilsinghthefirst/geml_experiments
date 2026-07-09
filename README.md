@@ -1,11 +1,15 @@
 # GEML Experiments
 
+[![CI](https://github.com/sahilsinghthefirst/geml_experiments/actions/workflows/ci.yml/badge.svg)](https://github.com/sahilsinghthefirst/geml_experiments/actions/workflows/ci.yml)
+
 GEML is an experimental benchmark for testing when EML-native symbolic
 representations help or hurt mathematical reasoning.
 
-The current work compares standard expression ASTs against restricted official
-pure EML trees and exact structural DAGs. The main measured tradeoff is whether
-EML's reduced operator vocabulary compensates for its larger structural size.
+The current work compares standard expression ASTs, official pure EML trees and
+DAGs, e-graph optimized EML-DAGs, and transparent ML-facing compressed graph
+representations. The main measured tradeoff is whether EML's reduced operator
+vocabulary and compressed graph views compensate for the larger pure EML
+structure.
 
 ## Current Status
 
@@ -15,11 +19,20 @@ EML's reduced operator vocabulary compensates for its larger structural size.
 - Goal 3: exact structural DAG compression for AST and official pure EML trees.
 - Goal 3R: repaired expression generation and rerun Goal 2/3 studies on a
   stronger v1 corpus.
-- Goal 4: non-ML e-graph compression baseline work must use v1 for any
-  result-bearing run.
-- Goal 5 and Goal 6 ML-facing compression/GNN work must use v1.
+- Goal 4: completed non-ML e-graph compression baselines on v1. Reports now
+  label both success-only and all-processed threshold denominators.
+- Goal 5: completed ML-facing compression infrastructure on v1. Macro graphs
+  are validated/useful, frequent motifs are the strongest simple compression
+  result, learned motif selection does not beat frequent/random baselines at
+  the median, and the neural e-graph ranker is mainly a speed/ranking baseline.
+- Goal 5R: repair pass completed for fresh-clone tests/CI, real motif
+  reconstruction, cyclic e-graph extraction, denominator audits, null-result
+  framing, train-only motif discovery, and reproducibility metadata.
+- Goal 6: future GNN training and evaluation must use v1 and should start only
+  after the Goal 5R repair boundary is verified.
 
-Goal 3R does not implement e-graphs or neural models.
+Goal 3R is the v1 corpus repair boundary; e-graph and ML-facing compression
+results begin in Goals 4 and 5.
 
 ## Baseline Corpus Policy
 
@@ -47,6 +60,24 @@ Use the repo-local virtual environment:
 .venv/bin/python -m ruff check .
 .venv/bin/python -m ruff format . --check
 ```
+
+The default pytest suite is designed to pass on a fresh clone. Goal 4/5 tests
+generate small v1-shaped fixtures under `tmp_path` and do not require local
+production CSV/JSONL artifacts under `outputs/v1`.
+
+Optional full-artifact integration checks are marked `slow` and are not run by
+default:
+
+```bash
+.venv/bin/python -m pytest -m slow
+```
+
+GitHub Actions runs the same default checks on push and pull request: install
+the project, run pytest, run `ruff check`, and run `ruff format --check`.
+
+Run summaries now include reproducibility metadata where available: git commit
+hash, git dirty state, Python version, platform, and package versions for core
+dependencies.
 
 ## Expression Generation
 
@@ -242,18 +273,48 @@ Component commands:
 
 Headline v1 findings from the current 10k artifacts:
 
-- `safe`: 10,000 processed, 9,316 successful extractions, 241 timeouts, 607
-  validation failures, median optimized EML-DAG alpha 3.636, median compression
-  gain 1.045, and threshold pass rate 1.020% after e-graph extraction.
+- `safe`: 10,000 processed, 9,316 successful extractions, 241 timeouts, 471
+  validation-failed rows, 0 extraction failures, 0 official compilation
+  failures, median optimized EML-DAG alpha 3.636, median compression gain 1.045,
+  success-only threshold pass rate 1.020% after e-graph extraction, and
+  all-processed threshold pass rate 0.950%.
 - `positive_real_formal`: 10,000 processed, 8,941 successful extractions, 522
-  timeouts, 878 validation failures, median optimized EML-DAG alpha 3.364,
-  median compression gain 1.169, and threshold pass rate 5.827% after e-graph
-  extraction.
+  timeouts, 583 validation-failed rows, 15 extraction failures, 0 official
+  compilation failures, median optimized EML-DAG alpha 3.364, median compression
+  gain 1.169, success-only threshold pass rate 5.827% after e-graph extraction,
+  and all-processed threshold pass rate 5.210%.
 - `identity_heavy_v1` gains are much larger than `nontrivial_v1` gains, so the
   subset split is required to avoid overstating easy identity simplifications.
 - Final extracted outputs still compile through the official pure EML compiler
   and remain pure EML DAGs. These are structural non-ML compression results, not
   neural model or GNN evidence.
+
+Goal 5 v1 findings:
+
+- Macro graphs are validated transparent compiler-structure graphs with median
+  macro alpha 0.778 and median gain 5.250 vs Goal 3 EML-DAG.
+- Frequent motifs are the strongest simple compression baseline at the median,
+  with median gain 7.400 vs Goal 3.
+- Learned motif selection preserves reconstruction but does not beat the
+  frequent/random motif baselines at the median; learned motif gain vs Goal 3 is
+  mostly due to motif compression itself.
+- The neural e-graph extractor is a learned ranking/cost baseline. Its 109x
+  speedup is scoped to candidate cost scoring only, and it is not a major
+  compression claim.
+- Goal 5 does not train final symbolic-reasoning GNNs and does not claim
+  downstream reasoning improvement.
+
+Goal 5R repair notes:
+
+- Fast tests generate small fixtures and do not depend on gitignored 10k
+  production artifacts.
+- Motif reconstruction is real reconstruction from compressed graph plus motif
+  templates, not a metadata tautology.
+- E-graph candidate enumeration is robust to cyclic/recursive e-classes.
+- Goal 4/5 reports label success-only and all-processed denominator choices.
+- Learned motif candidate discovery uses the train-only motif vocabulary by
+  default; full-corpus motif mining is a comparison baseline only.
+- Goal 5 summaries and train logs carry reproducibility metadata.
 
 ## Goal 1 Sample Pipeline
 
@@ -284,9 +345,11 @@ Optional arguments:
 - Goal 2 docs: `docs/goal2/`
 - Goal 3 docs: `docs/goal3/`
 - Goal 4 docs: `docs/goal4/`
+- Goal 5 docs: `docs/goal5/`
 
 See `docs/goal2/GOAL2_OFFICIAL_EML_COMPILER.md` for the official compiler port,
 `docs/goal2/goal2_representation_semantics.md` for representation-mode policy,
 `docs/goal3/GOAL3_DAG_SEMANTICS.md` for exact DAG semantics, and
 `docs/goal4/GOAL4_NONML_COMPRESSION_STUDY.md` for the final Goal 4 e-graph
-compression report.
+compression report, and `docs/goal5/GOAL5_SUMMARY.md` for the repaired Goal 5
+compression status and limitations.

@@ -15,6 +15,8 @@ from geml.compression.egraph_candidate_dataset import (
     valid_labeled_records,
 )
 from geml.egraph.rule_sets import RuleMode
+from geml.experiments.shared import percent as _percent
+from geml.experiments.shared import safe_divide as _safe_divide
 
 NEURAL_EGRAPH_METRICS_FIELDS = [
     "index",
@@ -428,12 +430,6 @@ def _difference(left: int | float | None, right: int | float | None) -> float | 
     return float(left) - float(right)
 
 
-def _safe_divide(numerator: int | float | None, denominator: int | float | None) -> float | None:
-    if numerator is None or denominator in {None, 0}:
-        return None
-    return float(numerator) / float(denominator)
-
-
 def _distribution(values: Iterable[int | float | None]) -> dict[str, float | None]:
     numeric_values = [
         float(value) for value in values if value is not None and math.isfinite(float(value))
@@ -459,12 +455,6 @@ def _quantile(values: Sequence[float], q: float) -> float:
     lower_value = sorted_values[lower]
     upper_value = sorted_values[upper]
     return lower_value + (upper_value - lower_value) * (position - lower)
-
-
-def _percent(numerator: int, denominator: int) -> float | None:
-    if denominator == 0:
-        return None
-    return 100.0 * float(numerator) / float(denominator)
 
 
 def _csv_value(value: object) -> object:

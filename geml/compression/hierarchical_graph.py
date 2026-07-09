@@ -121,7 +121,7 @@ def build_hierarchical_eml_graph(
         validation=GraphValidationStatus(
             schema_valid=True,
             expansion_valid=True,
-            reconstruction_valid=True,
+            reconstruction_valid=bool(metadata["reconstruction_valid"]),
             missing_expansion_count=0,
             pure_eml_valid=False,
             errors=[],

@@ -10,6 +10,8 @@ from geml.experiments.goal5_macro_graph_baseline import (
     run_goal5_macro_graph_baseline,
 )
 
+from tests.goal5_fixture_builders import ensure_goal3_fixture
+
 
 def test_goal5_macro_graph_small_pipeline_writes_outputs(tmp_path: Path) -> None:
     config = small_config(tmp_path, count=25)
@@ -87,12 +89,14 @@ def test_goal5_macro_graph_config_loads_v1_yaml() -> None:
 
 
 def small_config(tmp_path: Path, *, count: int) -> MacroGraphBaselineConfig:
-    output_dir = tmp_path / "outputs" / "v1"
+    paths = ensure_goal3_fixture(tmp_path)
     return MacroGraphBaselineConfig(
         count=count,
-        metrics_csv_path=output_dir / "goal5_macro_graph_metrics.csv",
-        metrics_jsonl_path=output_dir / "goal5_macro_graph_metrics.jsonl",
-        summary_json_path=output_dir / "goal5_macro_graph_summary.json",
+        input_jsonl_path=paths.input_jsonl_path,
+        goal3_metrics_csv_path=paths.goal3_metrics_csv_path,
+        metrics_csv_path=paths.macro_metrics_csv_path,
+        metrics_jsonl_path=paths.macro_metrics_jsonl_path,
+        summary_json_path=paths.macro_summary_json_path,
     )
 
 

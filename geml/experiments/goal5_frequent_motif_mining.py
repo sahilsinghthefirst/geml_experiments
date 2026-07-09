@@ -17,6 +17,12 @@ import sympy as sp
 import yaml
 
 from geml.compression.macro_graph import build_macro_graph
+from geml.compression.motif_dataset import (
+    SplitConfig,
+    assign_split,
+    build_split_rows,
+    summarize_split_counts,
+)
 from geml.compression.motif_mining import (
     MiningGraph,
     build_motif_vocabulary,
@@ -40,6 +46,13 @@ from geml.data.dataset import (
     parse_generated_expression,
 )
 from geml.experiments.goal5_macro_graph_baseline import subset_label_for_metadata
+from geml.experiments.shared import (
+    build_run_metadata,
+    write_json_object,
+)
+from geml.experiments.shared import (
+    safe_divide as _safe_divide,
+)
 from geml.symbolic.dag_graph import tree_to_dag
 from geml.symbolic.official_eml_compiler import sympy_to_official_eml_tree
 
@@ -47,6 +60,7 @@ type MetadataValue = str | int | float | bool | None | list[Any] | dict[str, Any
 
 MOTIF_METRICS_FIELDS = [
     "index",
+    "split",
     "expression",
     "srepr",
     "subset_label",
@@ -83,9 +97,13 @@ class FrequentMotifMiningConfig:
     max_motif_nodes: int = 2
     min_support: int = 50
     max_vocab_size: int = 90
+    candidate_discovery_split: Literal["all", "train"] = "all"
+    train_fraction: float = 0.7
+    validation_fraction: float = 0.15
     input_jsonl_path: Path = Path("outputs/v1/dag_compression_inputs.jsonl")
     goal3_metrics_csv_path: Path = Path("outputs/v1/dag_compression_metrics.csv")
     macro_graph_metrics_csv_path: Path = Path("outputs/v1/goal5_macro_graph_metrics.csv")
+    full_corpus_metrics_csv_path: Path | None = Path("outputs/v1/goal5_frequent_motif_metrics.csv")
     vocab_json_path: Path = Path("outputs/v1/goal5_frequent_motif_vocab.json")
     metrics_csv_path: Path = Path("outputs/v1/goal5_frequent_motif_metrics.csv")
     metrics_jsonl_path: Path = Path("outputs/v1/goal5_frequent_motif_metrics.jsonl")
@@ -110,11 +128,19 @@ class FrequentMotifMiningConfig:
             raise ValueError("min_support must be positive")
         if self.max_vocab_size <= 0:
             raise ValueError("max_vocab_size must be positive")
+        if self.candidate_discovery_split not in {"all", "train"}:
+            raise ValueError("candidate_discovery_split must be all or train")
+        SplitConfig(
+            seed=self.seed,
+            train_fraction=self.train_fraction,
+            validation_fraction=self.validation_fraction,
+        )
         _assert_no_outputs_v0(
             [
                 self.input_jsonl_path,
                 self.goal3_metrics_csv_path,
                 self.macro_graph_metrics_csv_path,
+                *([self.full_corpus_metrics_csv_path] if self.full_corpus_metrics_csv_path else []),
                 self.vocab_json_path,
                 self.metrics_csv_path,
                 self.metrics_jsonl_path,
@@ -165,6 +191,7 @@ class FrequentMotifMetricRow:
     """One per-expression Goal 5.2 motif compression metric row."""
 
     index: int
+    split: str
     expression: str
     srepr: str
     subset_label: str
@@ -219,15 +246,35 @@ def run_goal5_frequent_motif_mining(
     started_at = time.time()
     bundles = build_graph_bundles(config)
     print(f"Built graph bundles: {len(bundles)}", flush=True)
+    split_config = SplitConfig(
+        seed=config.seed,
+        train_fraction=config.train_fraction,
+        validation_fraction=config.validation_fraction,
+    )
+    split_by_index = {
+        bundle.baseline.index: assign_split(bundle.baseline.index, split_config)
+        for bundle in bundles
+    }
+    mining_bundles = select_candidate_discovery_bundles(
+        bundles,
+        split_by_index=split_by_index,
+        candidate_discovery_split=config.candidate_discovery_split,
+    )
+    if not mining_bundles:
+        raise ValueError("candidate discovery split produced no graph bundles")
+    print(
+        f"Candidate discovery bundles: {len(mining_bundles)} ({config.candidate_discovery_split})",
+        flush=True,
+    )
     subset_labels_by_graph_id = {
-        bundle.pure_graph.graph_id: bundle.subset_label for bundle in bundles
-    } | {bundle.macro_graph.graph_id: bundle.subset_label for bundle in bundles}
+        bundle.pure_graph.graph_id: bundle.subset_label for bundle in mining_bundles
+    } | {bundle.macro_graph.graph_id: bundle.subset_label for bundle in mining_bundles}
     expression_indices_by_graph_id = {
-        bundle.pure_graph.graph_id: bundle.baseline.index for bundle in bundles
-    } | {bundle.macro_graph.graph_id: bundle.baseline.index for bundle in bundles}
+        bundle.pure_graph.graph_id: bundle.baseline.index for bundle in mining_bundles
+    } | {bundle.macro_graph.graph_id: bundle.baseline.index for bundle in mining_bundles}
 
     pure_records = mine_frequent_motifs(
-        [bundle.pure_graph for bundle in bundles],
+        [bundle.pure_graph for bundle in mining_bundles],
         min_motif_nodes=config.min_motif_nodes,
         max_motif_nodes=config.max_motif_nodes,
         min_support=config.min_support,
@@ -237,7 +284,7 @@ def run_goal5_frequent_motif_mining(
     )
     print(f"Mined pure EML-DAG motifs: {len(pure_records)}", flush=True)
     macro_records = mine_frequent_motifs(
-        [bundle.macro_graph for bundle in bundles],
+        [bundle.macro_graph for bundle in mining_bundles],
         min_motif_nodes=config.min_motif_nodes,
         max_motif_nodes=config.max_motif_nodes,
         min_support=config.min_support,
@@ -252,10 +299,30 @@ def run_goal5_frequent_motif_mining(
         max_vocab_size=config.max_vocab_size,
         config=config_to_json_dict(config),
     )
+    vocabulary = vocabulary.model_copy(
+        update={
+            "metadata": {
+                **dict(vocabulary.metadata),
+                **candidate_discovery_metadata(
+                    mining_bundles,
+                    split_by_index=split_by_index,
+                    config=config,
+                ),
+            }
+        }
+    )
     write_motif_vocabulary(vocabulary, config.vocab_json_path)
     print(f"Wrote motif vocabulary: {vocabulary.motif_count}", flush=True)
 
-    rows = tuple(compute_motif_metric_row(bundle, vocabulary, config) for bundle in bundles)
+    rows = tuple(
+        compute_motif_metric_row(
+            bundle,
+            vocabulary,
+            config,
+            split=split_by_index[bundle.baseline.index],
+        )
+        for bundle in bundles
+    )
     print(f"Computed motif compression rows: {len(rows)}", flush=True)
     write_metrics_jsonl(rows, config.metrics_jsonl_path)
     write_metrics_csv(rows, config.metrics_csv_path)
@@ -263,6 +330,8 @@ def run_goal5_frequent_motif_mining(
         rows,
         vocabulary,
         config,
+        split_by_index=split_by_index,
+        mining_bundles=mining_bundles,
         started_at=started_at,
         completed_at=time.time(),
     )
@@ -323,10 +392,53 @@ def build_graph_bundles(config: FrequentMotifMiningConfig) -> tuple[GraphBundle,
     return tuple(bundles)
 
 
+def select_candidate_discovery_bundles(
+    bundles: Sequence[GraphBundle],
+    *,
+    split_by_index: dict[int, str],
+    candidate_discovery_split: str,
+) -> tuple[GraphBundle, ...]:
+    """Return graph bundles allowed for motif candidate discovery."""
+    if candidate_discovery_split == "all":
+        return tuple(bundles)
+    if candidate_discovery_split == "train":
+        return tuple(
+            bundle for bundle in bundles if split_by_index[bundle.baseline.index] == "train"
+        )
+    raise ValueError(f"unknown candidate discovery split: {candidate_discovery_split!r}")
+
+
+def candidate_discovery_metadata(
+    mining_bundles: Sequence[GraphBundle],
+    *,
+    split_by_index: dict[int, str],
+    config: FrequentMotifMiningConfig,
+) -> dict[str, object]:
+    """Return audit metadata for the motif candidate discovery set."""
+    discovery_indices = sorted(bundle.baseline.index for bundle in mining_bundles)
+    discovery_splits = {split_by_index[index] for index in discovery_indices}
+    return {
+        "candidate_discovery_mode": (
+            "train_only" if config.candidate_discovery_split == "train" else "full_corpus"
+        ),
+        "candidate_discovery_split": config.candidate_discovery_split,
+        "candidate_discovery_expression_count": len(discovery_indices),
+        "candidate_discovery_expression_indices": discovery_indices,
+        "candidate_discovery_split_counts": {
+            split: sum(split_by_index[index] == split for index in discovery_indices)
+            for split in ("train", "validation", "test")
+        },
+        "test_set_used_for_candidate_discovery": "test" in discovery_splits,
+        "validation_set_used_for_candidate_discovery": "validation" in discovery_splits,
+    }
+
+
 def compute_motif_metric_row(
     bundle: GraphBundle,
     vocabulary: MotifVocabulary,
     config: FrequentMotifMiningConfig,
+    *,
+    split: str,
 ) -> FrequentMotifMetricRow:
     """Compute one per-expression motif compression metric row."""
     try:
@@ -350,6 +462,7 @@ def compute_motif_metric_row(
         motif_compressed_nodes = selected_result.compressed_node_count
         return FrequentMotifMetricRow(
             index=bundle.baseline.index,
+            split=split,
             expression=str(bundle.sympy_expr),
             srepr=bundle.input_row.srepr or sp.srepr(bundle.sympy_expr),
             subset_label=bundle.subset_label,
@@ -379,6 +492,7 @@ def compute_motif_metric_row(
     except Exception as exc:
         return FrequentMotifMetricRow(
             index=bundle.baseline.index,
+            split=split,
             expression=str(bundle.sympy_expr),
             srepr=bundle.input_row.srepr or sp.srepr(bundle.sympy_expr),
             subset_label=bundle.subset_label,
@@ -406,6 +520,8 @@ def build_summary(
     vocabulary: MotifVocabulary,
     config: FrequentMotifMiningConfig,
     *,
+    split_by_index: dict[int, str],
+    mining_bundles: Sequence[GraphBundle],
     started_at: float,
     completed_at: float,
 ) -> dict[str, object]:
@@ -417,6 +533,23 @@ def build_summary(
         "success_count": len(success_rows),
         "expansion_validation_failure_count": sum(not row.expansion_valid for row in rows),
         "motif_vocab_size": vocabulary.motif_count,
+        "candidate_discovery": {
+            **candidate_discovery_metadata(
+                mining_bundles=mining_bundles,
+                split_by_index=split_by_index,
+                config=config,
+            ),
+            "split_counts": summarize_split_counts(
+                build_split_rows(
+                    sorted(split_by_index),
+                    SplitConfig(
+                        seed=config.seed,
+                        train_fraction=config.train_fraction,
+                        validation_fraction=config.validation_fraction,
+                    ),
+                )
+            ),
+        },
         "motif_counts_by_type": {
             motif_type: len(vocabulary.motifs_by_type(motif_type))
             for motif_type in ("pure_eml_dag", "macro_graph", "mixed_macro_expansion")
@@ -433,6 +566,11 @@ def build_summary(
             label: summarize_subset(rows, label)
             for label in ("all_v1", "nontrivial_v1", "identity_heavy_v1")
         },
+        "results_by_split": {
+            split: summarize_group([row for row in rows if row.split == split])
+            for split in ("train", "validation", "test")
+        },
+        "full_corpus_comparison": build_full_corpus_comparison(rows, config),
         "top_motifs_by_support": [
             motif_to_summary_dict(motif)
             for motif in sorted(vocabulary.motifs, key=lambda item: -item.support_count)[:20]
@@ -468,6 +606,11 @@ def build_summary(
         },
         "elapsed_seconds": completed_at - started_at,
         "completed_at_unix": completed_at,
+        "run_metadata": build_run_metadata(
+            config=config_to_json_dict(config),
+            started_at=started_at,
+            completed_at=completed_at,
+        ),
     }
 
 
@@ -476,11 +619,16 @@ def summarize_subset(rows: Sequence[FrequentMotifMetricRow], label: str) -> dict
     subset_rows = (
         list(rows) if label == "all_v1" else [row for row in rows if row.subset_label == label]
     )
-    success_rows = [row for row in subset_rows if row.expansion_valid and row.error is None]
+    return summarize_group(subset_rows)
+
+
+def summarize_group(rows: Sequence[FrequentMotifMetricRow]) -> dict[str, object]:
+    """Summarize one arbitrary row group."""
+    success_rows = [row for row in rows if row.expansion_valid and row.error is None]
     return {
-        "processed_count": len(subset_rows),
+        "processed_count": len(rows),
         "success_count": len(success_rows),
-        "expansion_validation_failure_count": sum(not row.expansion_valid for row in subset_rows),
+        "expansion_validation_failure_count": sum(not row.expansion_valid for row in rows),
         "motif_coverage_percent": _distribution(row.motif_coverage_percent for row in success_rows),
         "compression_gain_vs_goal3_eml_dag": _distribution(
             row.compression_gain_vs_goal3_eml_dag for row in success_rows
@@ -489,6 +637,105 @@ def summarize_subset(rows: Sequence[FrequentMotifMetricRow], label: str) -> dict
             row.compression_gain_vs_macro_graph for row in success_rows
         ),
     }
+
+
+def build_full_corpus_comparison(
+    train_only_rows: Sequence[FrequentMotifMetricRow],
+    config: FrequentMotifMiningConfig,
+) -> dict[str, object]:
+    """Compare the current motif run against saved full-corpus motif mining metrics."""
+    if config.full_corpus_metrics_csv_path is None:
+        return {"comparison_available": False, "reason": "full_corpus_metrics_csv_path unset"}
+    if config.full_corpus_metrics_csv_path == config.metrics_csv_path:
+        return {"comparison_available": False, "reason": "current metrics are the full baseline"}
+    if not config.full_corpus_metrics_csv_path.exists():
+        return {
+            "comparison_available": False,
+            "reason": f"missing {config.full_corpus_metrics_csv_path}",
+        }
+
+    full_rows = load_motif_metric_comparison_rows(config.full_corpus_metrics_csv_path)
+    paired = [
+        (row, full_rows[row.index])
+        for row in train_only_rows
+        if row.index in full_rows
+        and row.expansion_valid
+        and full_rows[row.index]["expansion_valid"]
+    ]
+    return {
+        "comparison_available": True,
+        "full_corpus_metrics_csv_path": str(config.full_corpus_metrics_csv_path),
+        "matched_row_count": len(paired),
+        "coverage_loss_percent_points": _distribution(
+            full["motif_coverage_percent"] - row.motif_coverage_percent
+            for row, full in paired
+            if row.motif_coverage_percent is not None and full["motif_coverage_percent"] is not None
+        ),
+        "compression_gain_delta_vs_full_corpus": _distribution(
+            row.compression_gain_vs_goal3_eml_dag - full["compression_gain_vs_goal3_eml_dag"]
+            for row, full in paired
+            if row.compression_gain_vs_goal3_eml_dag is not None
+            and full["compression_gain_vs_goal3_eml_dag"] is not None
+        ),
+        "results_by_split": {
+            split: summarize_full_corpus_comparison_group(
+                [(row, full) for row, full in paired if row.split == split]
+            )
+            for split in ("train", "validation", "test")
+        },
+        "results_by_subset_label": {
+            label: summarize_full_corpus_comparison_group(
+                paired
+                if label == "all_v1"
+                else [(row, full) for row, full in paired if row.subset_label == label]
+            )
+            for label in ("all_v1", "nontrivial_v1", "identity_heavy_v1")
+        },
+    }
+
+
+def summarize_full_corpus_comparison_group(
+    paired_rows: Sequence[tuple[FrequentMotifMetricRow, dict[str, object]]],
+) -> dict[str, object]:
+    """Summarize one train-only/full-corpus comparison group."""
+    return {
+        "matched_row_count": len(paired_rows),
+        "train_only_compression_gain_vs_goal3_eml_dag": _distribution(
+            row.compression_gain_vs_goal3_eml_dag for row, _full in paired_rows
+        ),
+        "full_corpus_compression_gain_vs_goal3_eml_dag": _distribution(
+            full["compression_gain_vs_goal3_eml_dag"] for _row, full in paired_rows
+        ),
+        "train_only_motif_coverage_percent": _distribution(
+            row.motif_coverage_percent for row, _full in paired_rows
+        ),
+        "full_corpus_motif_coverage_percent": _distribution(
+            full["motif_coverage_percent"] for _row, full in paired_rows
+        ),
+        "coverage_loss_percent_points": _distribution(
+            full["motif_coverage_percent"] - row.motif_coverage_percent
+            for row, full in paired_rows
+            if row.motif_coverage_percent is not None and full["motif_coverage_percent"] is not None
+        ),
+    }
+
+
+def load_motif_metric_comparison_rows(path: Path) -> dict[int, dict[str, object]]:
+    """Load enough saved motif metrics for train-only/full-corpus comparison."""
+    rows: dict[int, dict[str, object]] = {}
+    with path.open("r", encoding="utf-8", newline="") as csv_file:
+        for raw_row in csv.DictReader(csv_file):
+            index = int(raw_row["index"])
+            rows[index] = {
+                "index": index,
+                "subset_label": raw_row["subset_label"],
+                "motif_coverage_percent": _optional_float(raw_row.get("motif_coverage_percent")),
+                "compression_gain_vs_goal3_eml_dag": _optional_float(
+                    raw_row.get("compression_gain_vs_goal3_eml_dag")
+                ),
+                "expansion_valid": _parse_bool(raw_row["expansion_valid"]),
+            }
+    return rows
 
 
 def load_goal3_baselines(path: Path) -> dict[int, Goal3BaselineRow]:
@@ -549,8 +796,7 @@ def write_metrics_csv(rows: Sequence[FrequentMotifMetricRow], path: Path) -> Non
 
 def write_json(path: Path, data: dict[str, object]) -> None:
     """Write deterministic JSON."""
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_object(path, data)
 
 
 def config_to_json_dict(config: FrequentMotifMiningConfig) -> dict[str, object]:
@@ -566,9 +812,15 @@ def config_to_json_dict(config: FrequentMotifMiningConfig) -> dict[str, object]:
         "max_motif_nodes": config.max_motif_nodes,
         "min_support": config.min_support,
         "max_vocab_size": config.max_vocab_size,
+        "candidate_discovery_split": config.candidate_discovery_split,
+        "train_fraction": config.train_fraction,
+        "validation_fraction": config.validation_fraction,
         "input_jsonl_path": str(config.input_jsonl_path),
         "goal3_metrics_csv_path": str(config.goal3_metrics_csv_path),
         "macro_graph_metrics_csv_path": str(config.macro_graph_metrics_csv_path),
+        "full_corpus_metrics_csv_path": str(config.full_corpus_metrics_csv_path)
+        if config.full_corpus_metrics_csv_path
+        else None,
         "vocab_json_path": str(config.vocab_json_path),
         "metrics_csv_path": str(config.metrics_csv_path),
         "metrics_jsonl_path": str(config.metrics_jsonl_path),
@@ -636,12 +888,6 @@ def _quantile(values: Sequence[float], q: float) -> float:
     return lower_value + (upper_value - lower_value) * (position - lower)
 
 
-def _safe_divide(numerator: int | float | None, denominator: int | float | None) -> float | None:
-    if numerator is None or denominator in {None, 0}:
-        return None
-    return float(numerator) / float(denominator)
-
-
 def _parse_bool(value: str) -> bool:
     if value == "True":
         return True
@@ -650,17 +896,26 @@ def _parse_bool(value: str) -> bool:
     raise ValueError(f"expected boolean string, got {value!r}")
 
 
+def _optional_float(value: object) -> float | None:
+    if value in {None, ""}:
+        return None
+    return float(value)
+
+
 def _coerce_config_value(key: str, value: object) -> object:
     path_keys = {
         "input_jsonl_path",
         "goal3_metrics_csv_path",
         "macro_graph_metrics_csv_path",
+        "full_corpus_metrics_csv_path",
         "vocab_json_path",
         "metrics_csv_path",
         "metrics_jsonl_path",
         "summary_json_path",
     }
     tuple_keys = {"operator_set", "symbol_names"}
+    if key == "full_corpus_metrics_csv_path" and value is None:
+        return None
     if key in path_keys and isinstance(value, str):
         return Path(value)
     if key in tuple_keys and isinstance(value, list):

@@ -47,6 +47,7 @@ from geml.experiments.egraph_compression_study import (
     row_timeout,
     subset_label_for_metadata,
 )
+from geml.experiments.shared import safe_divide as _safe_divide
 
 type MetadataValue = str | int | float | bool | None | list[Any] | dict[str, Any]
 
@@ -600,9 +601,3 @@ def _dataset_matches_config(
 def _join_errors(*errors: str | None) -> str | None:
     joined = "; ".join(error for error in errors if error)
     return joined or None
-
-
-def _safe_divide(numerator: int | float | None, denominator: int | float | None) -> float | None:
-    if numerator is None or denominator in {None, 0}:
-        return None
-    return float(numerator) / float(denominator)

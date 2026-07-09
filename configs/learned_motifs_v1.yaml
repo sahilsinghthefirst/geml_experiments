@@ -32,8 +32,8 @@ expansion_complexity_penalties:
 input_jsonl_path: outputs/v1/dag_compression_inputs.jsonl
 goal3_metrics_csv_path: outputs/v1/dag_compression_metrics.csv
 macro_graph_metrics_csv_path: outputs/v1/goal5_macro_graph_metrics.csv
-frequent_motif_vocab_json_path: outputs/v1/goal5_frequent_motif_vocab.json
-frequent_motif_metrics_csv_path: outputs/v1/goal5_frequent_motif_metrics.csv
+frequent_motif_vocab_json_path: outputs/v1/goal5_frequent_motif_train_only_vocab.json
+frequent_motif_metrics_csv_path: outputs/v1/goal5_frequent_motif_train_only_metrics.csv
 learned_vocab_json_path: outputs/v1/goal5_learned_motif_vocab.json
 metrics_csv_path: outputs/v1/goal5_learned_motif_metrics.csv
 metrics_jsonl_path: outputs/v1/goal5_learned_motif_metrics.jsonl

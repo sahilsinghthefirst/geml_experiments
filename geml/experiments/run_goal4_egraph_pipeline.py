@@ -251,6 +251,7 @@ class Goal4EgraphPipelineResult:
     median_compression_gain_by_mode: dict[str, float | None]
     percent_below_threshold_before_by_mode: dict[str, float | None]
     percent_below_threshold_after_by_mode: dict[str, float | None]
+    percent_below_threshold_after_all_processed_by_mode: dict[str, float | None]
     top_success_family: str | None
     top_failure_family: str | None
     compression_result: EgraphCompressionStudyResult
@@ -318,7 +319,12 @@ def run_goal4_egraph_pipeline(
             mode: int(mode_stats.get(mode, {}).get("timeout_count", 0)) for mode in GOAL4_MODE_ORDER
         },
         validation_failure_count_by_mode={
-            mode: int(mode_stats.get(mode, {}).get("validation_failure_count", 0))
+            mode: int(
+                mode_stats.get(mode, {}).get(
+                    "validation_failed",
+                    mode_stats.get(mode, {}).get("validation_failure_count", 0),
+                )
+            )
             for mode in GOAL4_MODE_ORDER
         },
         median_goal3_alpha_by_mode={
@@ -342,10 +348,10 @@ def run_goal4_egraph_pipeline(
             for mode in GOAL4_MODE_ORDER
         },
         percent_below_threshold_after_by_mode={
-            mode: optional_float(
-                mode_stats.get(mode, {}).get("percent_below_threshold_after_egraph")
-            )
-            for mode in GOAL4_MODE_ORDER
+            mode: success_only_after_rate(mode_stats.get(mode, {})) for mode in GOAL4_MODE_ORDER
+        },
+        percent_below_threshold_after_all_processed_by_mode={
+            mode: all_processed_after_rate(mode_stats.get(mode, {})) for mode in GOAL4_MODE_ORDER
         },
         top_success_family=top_success_family,
         top_failure_family=top_failure_family,
@@ -739,8 +745,8 @@ def goal5_recommendation(
     """Return the Goal 5 recommendation text."""
     positive = summary_mode_stats(summary).get("positive_real_formal", {})
     safe = summary_mode_stats(summary).get("safe", {})
-    safe_after = optional_float(safe.get("percent_below_threshold_after_egraph"))
-    positive_after = optional_float(positive.get("percent_below_threshold_after_egraph"))
+    safe_after = all_processed_after_rate(safe)
+    positive_after = all_processed_after_rate(positive)
     nontrivial_positive = find_subset_row(subset_rows, "positive_real_formal", "nontrivial_v1")
     nontrivial_gain = (
         nontrivial_positive.get("median_compression_gain_vs_goal3_dag")
@@ -750,11 +756,12 @@ def goal5_recommendation(
     return (
         "Non-ML e-graph compression is a useful baseline and should remain in the "
         "evaluation stack, but it is not enough by itself. The threshold pass rate remains "
-        f"low after safe mode (`{format_percent(safe_after)}`) and positive-real mode "
-        f"(`{format_percent(positive_after)}`), while nontrivial positive-real median gain is "
-        f"`{nontrivial_gain}`. Goal 5 should therefore still investigate ML-facing "
-        "motif or macro compression, with honest separation between structural "
-        "compression results and future model-performance claims."
+        "low when failed rows are kept in the denominator: safe mode "
+        f"`{format_percent(safe_after)}` and positive-real mode "
+        f"`{format_percent(positive_after)}`. Nontrivial positive-real median gain is "
+        f"`{nontrivial_gain}`. Goal 5 should therefore still investigate ML-facing motif "
+        "or macro compression, with honest separation between structural compression "
+        "results and future model-performance claims."
     )
 
 
@@ -766,7 +773,10 @@ def markdown_mode_detail(summary: Mapping[str, object], mode: str) -> str:
             f"- processed: `{stats['processed_count']}`",
             f"- success: `{stats['success_count']}`",
             f"- timeout: `{stats['timeout_count']}`",
-            f"- validation failures: `{stats['validation_failure_count']}`",
+            "- validation failed: "
+            f"`{stats.get('validation_failed', stats['validation_failure_count'])}`",
+            f"- extraction failures: `{stats.get('extraction_failed', 'n/a')}`",
+            f"- official compilation failures: `{stats.get('official_compilation_failed', 'n/a')}`",
             f"- median Goal 3 DAG alpha: `{nested_get(stats, 'goal3_dag_alpha', 'median')}`",
             f"- median optimized DAG alpha: `{nested_get(stats, 'optimized_dag_alpha', 'median')}`",
             "- median compression gain vs Goal 3 DAG: "
@@ -776,8 +786,10 @@ def markdown_mode_detail(summary: Mapping[str, object], mode: str) -> str:
             f"- percent worse: `{format_percent(stats.get('percent_worse'))}`",
             "- below threshold before e-graph: "
             f"`{format_percent(stats.get('percent_below_threshold_before_egraph'))}`",
-            "- below threshold after e-graph: "
-            f"`{format_percent(stats.get('percent_below_threshold_after_egraph'))}`",
+            "- below threshold after e-graph, success-only denominator: "
+            f"`{format_percent(success_only_after_rate(stats))}`",
+            "- below threshold after e-graph, all-processed denominator: "
+            f"`{format_percent(all_processed_after_rate(stats))}`",
             "- median runtime per expression: "
             f"`{nested_get(stats, 'runtime_seconds', 'median_per_expression')}` seconds",
         ]
@@ -787,9 +799,12 @@ def markdown_mode_detail(summary: Mapping[str, object], mode: str) -> str:
 def markdown_mode_summary_table(summary: Mapping[str, object]) -> str:
     """Render the two-mode headline metric table."""
     lines = [
-        "| Mode | Processed | Success | Timeout | Validation failures | "
-        "Median Goal 3 alpha | Median optimized alpha | Median gain | Below before | Below after |",
-        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+        "| Mode | Processed | Success | Timeout | Validation failed | "
+        "Extraction failures | Official compile failures | Median Goal 3 alpha | "
+        "Median optimized alpha | Median gain | Below before | Below after success-only | "
+        "Below after all processed |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | "
+        "---: | ---: |",
     ]
     mode_stats = summary_mode_stats(summary)
     for mode in GOAL4_MODE_ORDER:
@@ -798,12 +813,15 @@ def markdown_mode_summary_table(summary: Mapping[str, object]) -> str:
             "| "
             f"`{mode}` | {stats.get('processed_count', 'n/a')} | "
             f"{stats.get('success_count', 'n/a')} | {stats.get('timeout_count', 'n/a')} | "
-            f"{stats.get('validation_failure_count', 'n/a')} | "
+            f"{stats.get('validation_failed', stats.get('validation_failure_count', 'n/a'))} | "
+            f"{stats.get('extraction_failed', 'n/a')} | "
+            f"{stats.get('official_compilation_failed', 'n/a')} | "
             f"{nested_get(stats, 'goal3_dag_alpha', 'median')} | "
             f"{nested_get(stats, 'optimized_dag_alpha', 'median')} | "
             f"{nested_get(stats, 'compression_gain_vs_goal3_dag', 'median')} | "
             f"{format_percent(stats.get('percent_below_threshold_before_egraph'))} | "
-            f"{format_percent(stats.get('percent_below_threshold_after_egraph'))} |"
+            f"{format_percent(success_only_after_rate(stats))} | "
+            f"{format_percent(all_processed_after_rate(stats))} |"
         )
     return "\n".join(lines)
 
@@ -812,10 +830,10 @@ def markdown_subset_table(rows: Sequence[Mapping[str, str]]) -> str:
     """Render subset-specific e-graph summary rows."""
     lines = [
         "| Subset | Mode | Count | Success | Median Goal 3 alpha | Median optimized alpha | "
-        "Median gain | Improved | Unchanged | Worse | Below before | Below after | Timeout | "
-        "Validation failure | Branch-sensitive usage |",
+        "Median gain | Improved | Unchanged | Worse | Below before | Below after success-only | "
+        "Below after all processed | Timeout | Validation failure | Branch-sensitive usage |",
         "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | "
-        "---: | ---: | ---: | ---: |",
+        "---: | ---: | ---: | ---: | ---: |",
     ]
     ordered_rows = sorted(
         rows,
@@ -839,7 +857,8 @@ def markdown_subset_table(rows: Sequence[Mapping[str, str]]) -> str:
             f"{format_percent(row['percent_unchanged'])} | "
             f"{format_percent(row['percent_worse'])} | "
             f"{format_percent(row['percent_below_threshold_before'])} | "
-            f"{format_percent(row['percent_below_threshold_after'])} | "
+            f"{format_percent(row.get('success_only_after_rate'))} | "
+            f"{format_percent(row.get('all_processed_after_rate'))} | "
             f"{format_percent(row['timeout_rate'])} | "
             f"{format_percent(row['validation_failure_rate'])} | "
             f"{format_percent(row['branch_sensitive_rule_usage_rate'])} |"
@@ -1006,7 +1025,7 @@ def select_top_success_family(rows: Sequence[Mapping[str, str]]) -> Mapping[str,
         key=lambda row: (
             parse_optional_float(row.get("median_compression_gain_vs_goal3_dag"), 0.0) * 10.0
             + parse_optional_float(row.get("percent_improved"), 0.0)
-            + parse_optional_float(row.get("percent_below_threshold_after"), 0.0)
+            + parse_optional_float(row.get("all_processed_after_rate"), 0.0)
             - parse_optional_float(row.get("timeout_rate"), 0.0)
             - parse_optional_float(row.get("validation_failure_rate"), 0.0),
             parse_optional_float(row.get("count"), 0.0),
@@ -1080,6 +1099,33 @@ def nested_get(mapping: Mapping[str, object], *keys: str) -> object:
     return value
 
 
+def success_only_after_rate(stats: Mapping[str, object]) -> float | None:
+    """Return the explicitly labeled success-only after-threshold rate."""
+    return first_optional_float(
+        stats.get("success_only_after_rate"),
+        stats.get("percent_below_threshold_after_egraph_success_only"),
+        stats.get("percent_below_threshold_after_egraph"),
+        stats.get("percent_below_threshold_after"),
+    )
+
+
+def all_processed_after_rate(stats: Mapping[str, object]) -> float | None:
+    """Return the after-threshold rate with all processed rows in the denominator."""
+    return first_optional_float(
+        stats.get("all_processed_after_rate"),
+        stats.get("percent_below_threshold_after_egraph_all_processed"),
+    )
+
+
+def first_optional_float(*values: object) -> float | None:
+    """Return the first finite float-like value."""
+    for value in values:
+        number = optional_float(value)
+        if number is not None:
+            return number
+    return None
+
+
 def optional_float(value: object) -> float | None:
     """Return a finite float or None."""
     if value in {None, "", "n/a"}:
@@ -1131,10 +1177,7 @@ def load_optional_json_object(path: Path | None) -> dict[str, object]:
 def load_csv_rows(path: Path) -> list[dict[str, str]]:
     """Load a CSV artifact."""
     with path.open("r", encoding="utf-8", newline="") as csv_file:
-        rows = list(csv.DictReader(csv_file))
-    if not rows:
-        raise ValueError(f"no rows found in {path}")
-    return rows
+        return list(csv.DictReader(csv_file))
 
 
 def count_csv_data_rows(path: Path) -> int:

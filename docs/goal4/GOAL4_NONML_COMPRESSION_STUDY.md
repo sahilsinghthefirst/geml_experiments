@@ -59,7 +59,9 @@ Tie-breaking order:
 - processed: `10000`
 - success: `9316`
 - timeout: `241`
-- validation failures: `607`
+- validation failed: `471`
+- extraction failures: `0`
+- official compilation failures: `0`
 - median Goal 3 DAG alpha: `4.0`
 - median optimized DAG alpha: `3.6363636363636362`
 - median compression gain vs Goal 3 DAG: `1.0454545454545454`
@@ -67,7 +69,8 @@ Tie-breaking order:
 - percent unchanged: `45.298%`
 - percent worse: `1.675%`
 - below threshold before e-graph: `0.220%`
-- below threshold after e-graph: `1.020%`
+- below threshold after e-graph, success-only denominator: `1.020%`
+- below threshold after e-graph, all-processed denominator: `0.950%`
 - median runtime per expression: `0.03714627100271173` seconds
 
 ## 10k V1 Results: Positive-Real Formal Mode
@@ -75,7 +78,9 @@ Tie-breaking order:
 - processed: `10000`
 - success: `8941`
 - timeout: `522`
-- validation failures: `878`
+- validation failed: `583`
+- extraction failures: `15`
+- official compilation failures: `0`
 - median Goal 3 DAG alpha: `4.0`
 - median optimized DAG alpha: `3.3636363636363638`
 - median compression gain vs Goal 3 DAG: `1.1692307692307693`
@@ -83,7 +88,8 @@ Tie-breaking order:
 - percent unchanged: `25.791%`
 - percent worse: `1.275%`
 - below threshold before e-graph: `0.220%`
-- below threshold after e-graph: `5.827%`
+- below threshold after e-graph, success-only denominator: `5.827%`
+- below threshold after e-graph, all-processed denominator: `5.210%`
 - median runtime per expression: `0.04460766648116987` seconds
 
 Positive-real rows are labeled with branch-sensitive assumptions and branch-sensitive rule usage. They are not complex-domain algebra claims.
@@ -92,14 +98,14 @@ Positive-real rows are labeled with branch-sensitive assumptions and branch-sens
 
 The corpus is split by measured triviality features, not guesses. `identity_heavy_v1` contains measured identity or trivial simplification opportunities. `nontrivial_v1` excludes those measured features.
 
-| Subset | Mode | Count | Success | Median Goal 3 alpha | Median optimized alpha | Median gain | Improved | Unchanged | Worse | Below before | Below after | Timeout | Validation failure | Branch-sensitive usage |
-| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| `all_v1` | `safe` | 10000 | 9316 | 4.0 | 3.6363636363636362 | 1.0454545454545454 | 53.027% | 45.298% | 1.675% | 0.220% | 1.020% | 2.410% | 6.840% | 0.000% |
-| `all_v1` | `positive_real_formal` | 10000 | 8941 | 4.0 | 3.3636363636363638 | 1.1692307692307693 | 72.934% | 25.791% | 1.275% | 0.220% | 5.827% | 5.220% | 10.590% | 100.000% |
-| `nontrivial_v1` | `safe` | 3733 | 3428 | 4.111111111111111 | 4.071428571428571 | 1.0 | 25.554% | 71.120% | 3.326% | 0.402% | 0.292% | 0.884% | 8.170% | 0.000% |
-| `nontrivial_v1` | `positive_real_formal` | 3733 | 3359 | 4.111111111111111 | 3.933333333333333 | 1.0 | 37.571% | 59.244% | 3.185% | 0.402% | 0.298% | 1.286% | 10.019% | 100.000% |
-| `identity_heavy_v1` | `safe` | 6267 | 5888 | 4.0 | 3.4166666666666665 | 1.1538461538461537 | 69.022% | 30.265% | 0.713% | 0.112% | 1.444% | 3.319% | 6.048% | 0.000% |
-| `identity_heavy_v1` | `positive_real_formal` | 6267 | 5582 | 4.0 | 3.0444664031620556 | 1.2692307692307692 | 94.214% | 5.661% | 0.125% | 0.112% | 9.154% | 7.563% | 10.930% | 100.000% |
+| Subset | Mode | Count | Success | Median Goal 3 alpha | Median optimized alpha | Median gain | Improved | Unchanged | Worse | Below before | Below after success-only | Below after all processed | Timeout | Validation failure | Branch-sensitive usage |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `all_v1` | `safe` | 10000 | 9316 | 4.0 | 3.6363636363636362 | 1.0454545454545454 | 53.027% | 45.298% | 1.675% | 0.220% | 1.020% | 0.950% | 2.410% | 6.840% | 0.000% |
+| `all_v1` | `positive_real_formal` | 10000 | 8941 | 4.0 | 3.3636363636363638 | 1.1692307692307693 | 72.934% | 25.791% | 1.275% | 0.220% | 5.827% | 5.210% | 5.220% | 10.590% | 100.000% |
+| `nontrivial_v1` | `safe` | 3733 | 3428 | 4.111111111111111 | 4.071428571428571 | 1.0 | 25.554% | 71.120% | 3.326% | 0.402% | 0.292% | 0.268% | 0.884% | 8.170% | 0.000% |
+| `nontrivial_v1` | `positive_real_formal` | 3733 | 3359 | 4.111111111111111 | 3.933333333333333 | 1.0 | 37.571% | 59.244% | 3.185% | 0.402% | 0.298% | 0.268% | 1.286% | 10.019% | 100.000% |
+| `identity_heavy_v1` | `safe` | 6267 | 5888 | 4.0 | 3.4166666666666665 | 1.1538461538461537 | 69.022% | 30.265% | 0.713% | 0.112% | 1.444% | 1.356% | 3.319% | 6.048% | 0.000% |
+| `identity_heavy_v1` | `positive_real_formal` | 6267 | 5582 | 4.0 | 3.0444664031620556 | 1.2692307692307692 | 94.214% | 5.661% | 0.125% | 0.112% | 9.154% | 8.154% | 7.563% | 10.930% | 100.000% |
 
 The median nontrivial compression gain remains much closer to `1.0` than the identity-heavy gain. Goal 4 therefore helps, but easy identity simplifications explain a large share of the aggregate improvement.
 
@@ -249,7 +255,7 @@ Improvements are structural non-ML compression results, not GNN or neural-model 
 
 ## Recommendation For Goal 5
 
-Non-ML e-graph compression is a useful baseline and should remain in the evaluation stack, but it is not enough by itself. The threshold pass rate remains low after safe mode (`1.020%`) and positive-real mode (`5.827%`), while nontrivial positive-real median gain is `1.0`. Goal 5 should therefore still investigate ML-facing motif or macro compression, with honest separation between structural compression results and future model-performance claims.
+Non-ML e-graph compression is a useful baseline and should remain in the evaluation stack, but it is not enough by itself. The threshold pass rate remains low when failed rows are kept in the denominator: safe mode `0.950%` and positive-real mode `5.210%`. Nontrivial positive-real median gain is `1.0`. Goal 5 should therefore still investigate ML-facing motif or macro compression, with honest separation between structural compression results and future model-performance claims.
 
 Prepare ML-facing graph representations for later experiments, but do not start Goal 5 here. The next graph surfaces should keep separate views for source AST trees/DAGs, official pure EML DAGs, e-graph-optimized source ASTs, and e-graph-optimized official pure EML DAGs, with rule mode, assumptions, subset labels, validation status, and rewrite provenance carried as metadata.
 

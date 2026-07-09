@@ -15,4 +15,5 @@ outputs/**/*.pt
 outputs/**/*.pth
 outputs/**/*.ckpt
 outputs/**/*.log
+outputs/**/goal5_graph_splits.json
 !outputs/**/.gitkeep

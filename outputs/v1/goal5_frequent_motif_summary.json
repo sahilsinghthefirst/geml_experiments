@@ -1,5 +1,5 @@
 {
-  "completed_at_unix": 1783487465.8415308,
+  "completed_at_unix": 1783509759.7528782,
   "compression_gain_vs_goal3_eml_dag": {
     "mean": 7.441744999722499,
     "median": 7.4,
@@ -37,8 +37,9 @@
     ],
     "vocab_json_path": "outputs/v1/goal5_frequent_motif_vocab.json"
   },
-  "elapsed_seconds": 334.42300391197205,
+  "elapsed_seconds": 449.03949332237244,
   "expansion_validation_failure_count": 0,
+  "extraction_failed": 0,
   "motif_compressed_nodes": {
     "mean": 6.0409,
     "median": 6.0,
@@ -1191,6 +1192,8 @@
       "total_covered_nodes": 4182
     }
   ],
+  "official_compilation_failed": 0,
+  "processed": 10000,
   "processed_count": 10000,
   "representation_contract": {
     "every_motif_has_expansion_map_to_original_graph": true,
@@ -1260,7 +1263,64 @@
       "success_count": 3666
     }
   },
+  "run_metadata": {
+    "completed_at_unix": 1783509759.7528782,
+    "config": {
+      "count": 10000,
+      "goal3_metrics_csv_path": "outputs/v1/dag_compression_metrics.csv",
+      "input_jsonl_path": "outputs/v1/dag_compression_inputs.jsonl",
+      "macro_graph_metrics_csv_path": "outputs/v1/goal5_macro_graph_metrics.csv",
+      "max_depth": 4,
+      "max_motif_nodes": 2,
+      "max_vocab_size": 90,
+      "metrics_csv_path": "outputs/v1/goal5_frequent_motif_metrics.csv",
+      "metrics_jsonl_path": "outputs/v1/goal5_frequent_motif_metrics.jsonl",
+      "min_motif_nodes": 1,
+      "min_support": 50,
+      "operator_set": [
+        "add",
+        "mul",
+        "exp",
+        "log"
+      ],
+      "seed": 0,
+      "source_serialization": "srepr",
+      "summary_json_path": "outputs/v1/goal5_frequent_motif_summary.json",
+      "symbol_names": [
+        "x",
+        "y"
+      ],
+      "vocab_json_path": "outputs/v1/goal5_frequent_motif_vocab.json"
+    },
+    "elapsed_seconds": 449.03949332237244,
+    "git_commit_hash": "a1a3ecd9ea4fa77c669578c2a2ac72c4111cc783",
+    "git_dirty": true,
+    "package_versions": {
+      "matplotlib": "3.11.0",
+      "pydantic": "2.13.4",
+      "pytest": "9.1.1",
+      "pyyaml": "6.0.3",
+      "ruff": "0.15.20",
+      "sympy": "1.14.0"
+    },
+    "platform": "macOS-26.5-arm64-arm-64bit-Mach-O",
+    "platform_machine": "arm64",
+    "python_executable": "/Users/manu/Documents/GEML/geml_experiments/.venv/bin/python",
+    "python_version": "3.14.2",
+    "started_at_unix": 1783509310.7133849
+  },
+  "status_counts": {
+    "extraction_failed": 0,
+    "failure_count": 0,
+    "official_compilation_failed": 0,
+    "processed": 10000,
+    "success": 10000,
+    "timeout": 0,
+    "validation_failed": 0
+  },
+  "success": 10000,
   "success_count": 10000,
+  "timeout": 0,
   "top_motifs_by_compression_saved": [
     {
       "compression_score": 250481.0,
@@ -2458,5 +2518,6 @@
       "support_graph_count": 3074,
       "total_covered_nodes": 7008
     }
-  ]
+  ],
+  "validation_failed": 0
 }

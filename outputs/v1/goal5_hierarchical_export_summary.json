@@ -1,6 +1,6 @@
 {
   "all_graph_ids_unique": true,
-  "completed_at_unix": 1783501656.0144482,
+  "completed_at_unix": 1783511709.19592,
   "config": {
     "count": 10000,
     "egraph_positive_real_metrics_csv_path": "outputs/v1/egraph_compression_metrics_positive_real.csv",
@@ -34,7 +34,7 @@
     "positive_real_formal": 1059,
     "safe": 684
   },
-  "elapsed_seconds": 476.4326181411743,
+  "elapsed_seconds": 655.107506275177,
   "expansion_validation_rate": 100.0,
   "expected_representation_modes": [
     "ast_tree_graph",
@@ -47,6 +47,7 @@
     "learned_motif_graph",
     "hierarchical_eml_graph"
   ],
+  "extraction_failed": 0,
   "graph_count": 88257,
   "integrity": {
     "compressed_graph_nodes_are_pure_eml": false,
@@ -205,6 +206,8 @@
       "reconstruction_validation_rate": 100.0
     }
   },
+  "official_compilation_failed": 0,
+  "processed": 88257,
   "reconstruction_validation_rate": 100.0,
   "representation_modes_exported": [
     "ast_dag_graph",
@@ -217,6 +220,65 @@
     "macro_graph",
     "pure_eml_dag_graph"
   ],
+  "run_metadata": {
+    "completed_at_unix": 1783511709.19592,
+    "config": {
+      "count": 10000,
+      "egraph_positive_real_metrics_csv_path": "outputs/v1/egraph_compression_metrics_positive_real.csv",
+      "egraph_safe_metrics_csv_path": "outputs/v1/egraph_compression_metrics_safe.csv",
+      "frequent_motif_vocab_json_path": "outputs/v1/goal5_frequent_motif_vocab.json",
+      "graphs_jsonl_path": "outputs/v1/goal5_hierarchical_graphs.jsonl",
+      "input_jsonl_path": "outputs/v1/dag_compression_inputs.jsonl",
+      "learned_motif_vocab_json_path": "outputs/v1/goal5_learned_motif_vocab.json",
+      "max_depth": 4,
+      "max_motif_nodes": 2,
+      "min_motif_nodes": 1,
+      "operator_set": [
+        "add",
+        "mul",
+        "exp",
+        "log"
+      ],
+      "schema_json_path": "outputs/v1/goal5_graph_schema.json",
+      "seed": 0,
+      "source_serialization": "srepr",
+      "splits_json_path": "outputs/v1/goal5_graph_splits.json",
+      "summary_json_path": "outputs/v1/goal5_hierarchical_export_summary.json",
+      "symbol_names": [
+        "x",
+        "y"
+      ],
+      "train_fraction": 0.7,
+      "validation_fraction": 0.15
+    },
+    "elapsed_seconds": 655.107506275177,
+    "git_commit_hash": "a1a3ecd9ea4fa77c669578c2a2ac72c4111cc783",
+    "git_dirty": true,
+    "package_versions": {
+      "matplotlib": "3.11.0",
+      "pydantic": "2.13.4",
+      "pytest": "9.1.1",
+      "pyyaml": "6.0.3",
+      "ruff": "0.15.20",
+      "sympy": "1.14.0"
+    },
+    "platform": "macOS-26.5-arm64-arm-64bit-Mach-O",
+    "platform_machine": "arm64",
+    "python_executable": "/Users/manu/Documents/GEML/geml_experiments/.venv/bin/python",
+    "python_version": "3.14.2",
+    "started_at_unix": 1783511054.0884137
+  },
+  "status_counts": {
+    "extraction_failed": 0,
+    "failure_count": 0,
+    "official_compilation_failed": 0,
+    "processed": 88257,
+    "success": 88257,
+    "timeout": 0,
+    "validation_failed": 0
+  },
+  "success": 88257,
+  "timeout": 0,
   "train_val_test_counts": {
     "test": {
       "expression_count": 1488,
@@ -231,5 +293,6 @@
       "graph_count": 13164
     }
   },
-  "unique_graph_id_count": 88257
+  "unique_graph_id_count": 88257,
+  "validation_failed": 0
 }

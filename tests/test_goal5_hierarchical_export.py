@@ -10,7 +10,11 @@ from geml.compression.graph_export import (
     graph_can_reconstruct_pure_eml_dag,
     graph_record_from_dag,
 )
-from geml.compression.graph_schema import GraphExportRecord, graph_schema_document
+from geml.compression.graph_schema import (
+    GraphExportRecord,
+    graph_schema_document,
+    validate_graph_record,
+)
 from geml.experiments.goal5_hierarchical_export import (
     HierarchicalGraphExportConfig,
     load_config,
@@ -18,6 +22,8 @@ from geml.experiments.goal5_hierarchical_export import (
 )
 from geml.symbolic.ast_graph import sympy_to_ast_tree
 from geml.symbolic.dag_graph import tree_to_dag
+
+from tests.goal5_fixture_builders import ensure_hierarchical_fixture
 
 
 def test_hierarchical_export_small_end_to_end_schema_validates(tmp_path: Path) -> None:
@@ -104,6 +110,30 @@ def test_graph_can_reconstruct_pure_eml_dag(tmp_path: Path) -> None:
     assert all(graph_can_reconstruct_pure_eml_dag(record) for record in records)
 
 
+def test_schema_rejects_missing_reconstruction_validation_metadata() -> None:
+    x = sp.Symbol("x")
+    ast_tree = sympy_to_ast_tree(sp.exp(x))
+    ast_dag = tree_to_dag(ast_tree)
+    record = graph_record_from_dag(
+        ast_dag,
+        graph_id="test:ast_dag",
+        representation_mode="ast_dag_graph",
+        source_expression_id=0,
+        subset_label="nontrivial_v1",
+        split="train",
+        source_label="test_ast_dag",
+    )
+    metadata = dict(record.metadata)
+    metadata.pop("reconstruction_valid")
+    corrupted = record.model_copy(update={"metadata": metadata})
+
+    validation = validate_graph_record(corrupted)
+
+    assert validation.schema_valid is False
+    assert validation.reconstruction_valid is False
+    assert "record metadata is missing reconstruction_valid" in validation.errors
+
+
 def test_no_gnn_training_occurs(tmp_path: Path) -> None:
     config = _small_config(tmp_path, count=3)
     result = run_goal5_hierarchical_export(config)
@@ -123,9 +153,15 @@ def test_hierarchical_export_config_loads_v1_yaml() -> None:
 
 
 def _small_config(tmp_path: Path, *, count: int) -> HierarchicalGraphExportConfig:
-    output_dir = tmp_path / "outputs" / "v1"
+    paths = ensure_hierarchical_fixture(tmp_path)
+    output_dir = paths.output_dir
     return HierarchicalGraphExportConfig(
         count=count,
+        input_jsonl_path=paths.input_jsonl_path,
+        frequent_motif_vocab_json_path=paths.frequent_vocab_json_path,
+        learned_motif_vocab_json_path=paths.learned_vocab_json_path,
+        egraph_safe_metrics_csv_path=paths.egraph_safe_metrics_csv_path,
+        egraph_positive_real_metrics_csv_path=paths.egraph_positive_metrics_csv_path,
         graphs_jsonl_path=output_dir / "goal5_hierarchical_graphs.jsonl",
         splits_json_path=output_dir / "goal5_graph_splits.json",
         schema_json_path=output_dir / "goal5_graph_schema.json",

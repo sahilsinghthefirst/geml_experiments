@@ -6,6 +6,7 @@ import csv
 import json
 from pathlib import Path
 
+import pytest
 from geml.experiments.run_goal5_compression_pipeline import (
     Goal5CompressionPipelineConfig,
     load_config,
@@ -40,6 +41,18 @@ def test_goal5_compression_pipeline_small_end_to_end(tmp_path: Path) -> None:
     assert "Goal 5 asks whether" in final_report
     assert "Final Recommendation for Goal 6" in final_report
     assert "does not train final symbolic-reasoning GNNs" in final_report
+    assert "success_only_after_rate" in final_report
+    assert "all_processed_after_rate" in final_report
+    assert "learned motif gain vs Goal 3 is mostly due to motif compression itself" in final_report
+    assert "109x speedup is scoped to candidate cost scoring only" in final_report
+
+    summary_doc = config.summary_doc_path.read_text(encoding="utf-8")
+    assert (
+        "learned motif selection does not beat frequent/random baselines at the median"
+        in summary_doc
+    )
+    assert "neural e-graph ranker mainly provides speed/ranking utility" in summary_doc
+    assert "test rows used for candidate discovery: False" in summary_doc
 
 
 def test_goal5_compression_pipeline_loads_prior_goal5_artifacts(tmp_path: Path) -> None:
@@ -53,12 +66,14 @@ def test_goal5_compression_pipeline_loads_prior_goal5_artifacts(tmp_path: Path) 
         "goal4",
         "macro_graph",
         "frequent_motifs",
+        "frequent_motifs_train_only",
         "learned_motifs",
         "neural_egraph",
         "hierarchical_export",
     }
     assert set(artifacts.json_artifacts) == {
         "frequent_motif_vocab",
+        "frequent_motif_train_only_vocab",
         "learned_motif_vocab",
         "learned_motif_train_log",
         "neural_egraph_train_log",
@@ -74,8 +89,21 @@ def test_goal5_compression_pipeline_integrity_flags(tmp_path: Path) -> None:
 
     result = run_goal5_compression_pipeline(config)
     integrity = result.summary["integrity"]
+    run_metadata = result.summary["run_metadata"]
 
     assert result.summary["reconstruction_failure_count"] == 0
+    assert "git_commit_hash" in run_metadata
+    assert "python_version" in run_metadata
+    assert "platform" in run_metadata
+    assert "package_versions" in run_metadata
+    assert "denominator_audit" in result.summary
+    assert (
+        result.summary["denominator_audit"]["goal4_threshold_rates"]["safe"][
+            "all_processed_after_rate"
+        ]
+        == 40.0
+    )
+    assert result.summary["null_result_summary"]["learned_vs_random_motif_mean"] == 0.98
     assert integrity["no_missing_expansion_maps"] is True
     assert integrity["no_hidden_pure_eml_violations"] is True
     assert integrity["trained_final_symbolic_reasoning_gnn"] is False
@@ -104,6 +132,14 @@ def test_goal5_compression_pipeline_config_loads_yaml(tmp_path: Path) -> None:
                 f"frequent_motif_summary_json_path: {config.frequent_motif_summary_json_path}",
                 f"frequent_motif_metrics_csv_path: {config.frequent_motif_metrics_csv_path}",
                 f"frequent_motif_vocab_json_path: {config.frequent_motif_vocab_json_path}",
+                "frequent_motif_train_only_config_path: "
+                f"{config.frequent_motif_train_only_config_path}",
+                "frequent_motif_train_only_summary_json_path: "
+                f"{config.frequent_motif_train_only_summary_json_path}",
+                "frequent_motif_train_only_metrics_csv_path: "
+                f"{config.frequent_motif_train_only_metrics_csv_path}",
+                "frequent_motif_train_only_vocab_json_path: "
+                f"{config.frequent_motif_train_only_vocab_json_path}",
                 f"learned_motif_summary_json_path: {config.learned_motif_summary_json_path}",
                 f"learned_motif_metrics_csv_path: {config.learned_motif_metrics_csv_path}",
                 f"learned_motif_vocab_json_path: {config.learned_motif_vocab_json_path}",
@@ -132,6 +168,42 @@ def test_goal5_compression_pipeline_config_loads_yaml(tmp_path: Path) -> None:
     assert loaded.goal3_summary_json_path == config.goal3_summary_json_path
 
 
+@pytest.mark.slow
+def test_goal5_full_v1_artifacts_can_be_loaded_when_present() -> None:
+    """Optional integration check for locally regenerated full v1 artifacts."""
+    config = load_config(Path("configs/goal5_compression_v1.yaml"))
+    required_paths = [
+        config.goal3_summary_json_path,
+        config.goal3_metrics_csv_path,
+        config.goal4_summary_json_path,
+        config.goal4_safe_metrics_csv_path,
+        config.goal4_positive_real_metrics_csv_path,
+        config.macro_summary_json_path,
+        config.macro_metrics_csv_path,
+        config.frequent_motif_summary_json_path,
+        config.frequent_motif_metrics_csv_path,
+        config.frequent_motif_vocab_json_path,
+        config.frequent_motif_train_only_summary_json_path,
+        config.frequent_motif_train_only_metrics_csv_path,
+        config.frequent_motif_train_only_vocab_json_path,
+        config.learned_motif_summary_json_path,
+        config.learned_motif_metrics_csv_path,
+        config.learned_motif_vocab_json_path,
+        config.neural_egraph_summary_json_path,
+        config.neural_egraph_metrics_csv_path,
+        config.hierarchical_summary_json_path,
+        config.hierarchical_schema_json_path,
+        config.hierarchical_splits_json_path,
+    ]
+    missing_paths = [path for path in required_paths if not path.exists()]
+    if missing_paths:
+        pytest.skip("full v1 integration artifacts are not present")
+
+    artifacts = load_goal5_artifacts(config)
+
+    assert artifacts.summaries["macro_graph"]["processed_count"] == 10_000
+
+
 def _write_small_artifacts(tmp_path: Path) -> Goal5CompressionPipelineConfig:
     output_dir = tmp_path / "outputs" / "v1"
     docs_dir = tmp_path / "docs" / "goal5"
@@ -158,6 +230,19 @@ def _write_small_artifacts(tmp_path: Path) -> Goal5CompressionPipelineConfig:
         frequent_motif_metrics_csv_path=output_dir / "goal5_frequent_motif_metrics.csv",
         frequent_motif_metrics_jsonl_path=output_dir / "goal5_frequent_motif_metrics.jsonl",
         frequent_motif_vocab_json_path=output_dir / "goal5_frequent_motif_vocab.json",
+        frequent_motif_train_only_config_path=tmp_path / "configs" / "frequent_train_only.yaml",
+        frequent_motif_train_only_summary_json_path=(
+            output_dir / "goal5_frequent_motif_train_only_summary.json"
+        ),
+        frequent_motif_train_only_metrics_csv_path=(
+            output_dir / "goal5_frequent_motif_train_only_metrics.csv"
+        ),
+        frequent_motif_train_only_metrics_jsonl_path=(
+            output_dir / "goal5_frequent_motif_train_only_metrics.jsonl"
+        ),
+        frequent_motif_train_only_vocab_json_path=(
+            output_dir / "goal5_frequent_motif_train_only_vocab.json"
+        ),
         learned_motif_summary_json_path=output_dir / "goal5_learned_motif_summary.json",
         learned_motif_metrics_csv_path=output_dir / "goal5_learned_motif_metrics.csv",
         learned_motif_metrics_jsonl_path=output_dir / "goal5_learned_motif_metrics.jsonl",
@@ -183,10 +268,18 @@ def _write_small_artifacts(tmp_path: Path) -> Goal5CompressionPipelineConfig:
     _write_json(config.goal4_summary_json_path, _small_goal4_summary())
     _write_json(config.macro_summary_json_path, _small_macro_summary())
     _write_json(config.frequent_motif_summary_json_path, _small_frequent_summary())
+    _write_json(
+        config.frequent_motif_train_only_summary_json_path,
+        _small_frequent_train_only_summary(),
+    )
     _write_json(config.learned_motif_summary_json_path, _small_learned_summary())
     _write_json(config.neural_egraph_summary_json_path, _small_neural_summary())
     _write_json(config.hierarchical_summary_json_path, _small_hierarchical_summary())
     _write_json(config.frequent_motif_vocab_json_path, {"motifs": []})
+    _write_json(
+        config.frequent_motif_train_only_vocab_json_path,
+        {"metadata": {"candidate_discovery_mode": "train_only"}, "motifs": []},
+    )
     _write_json(config.learned_motif_vocab_json_path, {"motifs": []})
     _write_json(config.learned_motif_train_log_json_path, {"trained_final_reasoning_gnn": False})
     _write_json(config.neural_egraph_train_log_json_path, {"trained_final_reasoning_gnn": False})
@@ -198,6 +291,7 @@ def _write_small_artifacts(tmp_path: Path) -> Goal5CompressionPipelineConfig:
         config.goal4_positive_real_metrics_csv_path,
         config.macro_metrics_csv_path,
         config.frequent_motif_metrics_csv_path,
+        config.frequent_motif_train_only_metrics_csv_path,
         config.learned_motif_metrics_csv_path,
         config.neural_egraph_metrics_csv_path,
     ]:
@@ -218,7 +312,20 @@ def _small_egraph_mode_summary(*, nodes: float, gain: float) -> dict[str, object
     return {
         "processed_count": 2,
         "success_count": 2,
+        "timeout_count": 0,
         "validation_failure_count": 0,
+        "processed": 2,
+        "success": 2,
+        "timeout": 0,
+        "validation_failed": 0,
+        "extraction_failed": 0,
+        "official_compilation_failed": 0,
+        "percent_below_threshold_before_egraph": 10.0,
+        "percent_below_threshold_after_egraph": 40.0,
+        "percent_below_threshold_after_egraph_success_only": 40.0,
+        "percent_below_threshold_after_egraph_all_processed": 40.0,
+        "success_only_after_rate": 40.0,
+        "all_processed_after_rate": 40.0,
         "original_eml_dag_nodes": {"median": 42.0},
         "extracted_eml_dag_nodes": {"median": nodes},
         "compression_gain_vs_goal3_dag": {"median": gain},
@@ -288,6 +395,29 @@ def _small_frequent_summary() -> dict[str, object]:
     }
 
 
+def _small_frequent_train_only_summary() -> dict[str, object]:
+    summary = _small_frequent_summary()
+    summary["motif_vocab_size"] = 3
+    summary["candidate_discovery"] = {
+        "candidate_discovery_mode": "train_only",
+        "candidate_discovery_split": "train",
+        "candidate_discovery_expression_count": 1,
+        "candidate_discovery_split_counts": {"train": 1, "validation": 0, "test": 0},
+        "test_set_used_for_candidate_discovery": False,
+        "validation_set_used_for_candidate_discovery": False,
+    }
+    summary["results_by_split"] = {
+        "train": {"processed_count": 1, "success_count": 1},
+        "validation": {"processed_count": 1, "success_count": 1},
+        "test": {"processed_count": 0, "success_count": 0},
+    }
+    summary["full_corpus_comparison"] = {
+        "comparison_available": True,
+        "coverage_loss_percent_points": {"median": 0.0},
+    }
+    return summary
+
+
 def _small_learned_summary() -> dict[str, object]:
     split = {
         "processed_count": 1,
@@ -300,15 +430,24 @@ def _small_learned_summary() -> dict[str, object]:
         "success_count": 2,
         "learned_vocab_size": 3,
         "random_vocab_size": 3,
+        "candidate_discovery": {
+            "candidate_discovery_mode": "train_only",
+            "candidate_discovery_split": "train",
+            "candidate_discovery_expression_count": 1,
+            "candidate_discovery_split_counts": {"train": 1, "validation": 0, "test": 0},
+            "test_set_used_for_candidate_discovery": False,
+            "validation_set_used_for_candidate_discovery": False,
+        },
         "learned_gain_vs_goal3_eml_dag": {"median": 7.1},
-        "learned_vs_frequent_motif_compression": {"median": 1.0},
-        "learned_vs_random_motif_compression": {"median": 1.0},
+        "learned_vs_frequent_motif_compression": {"mean": 0.96, "median": 1.0},
+        "learned_vs_random_motif_compression": {"mean": 0.98, "median": 1.0},
         "random_gain_vs_goal3_eml_dag": {"median": 7.2},
         "reconstruction_failure_count": 0,
         "integrity": {
             "motif_ids_are_pure_eml_nodes": False,
             "modified_official_eml_compiler": False,
             "trained_final_symbolic_reasoning_gnn": False,
+            "test_set_used_for_candidate_discovery": False,
         },
         "results_by_split": {"train": split, "validation": split, "test": split},
         "results_by_subset_label": {
@@ -340,8 +479,16 @@ def _small_neural_summary() -> dict[str, object]:
         "validation_failure_count": 0,
         "neural_vs_exact_beam": {
             "top1_eml_dag_nodes": {"median": 37.0},
-            "regret_vs_exact_best": {"median": 0.0, "p90": 3.0},
+            "regret_vs_exact_best": {"mean": 0.5, "median": 0.0, "p90": 3.0},
             "percent_matching_exact_best": 64.0,
+        },
+        "neural_vs_estimated_eml_cost": {
+            "estimated_percent_matching_exact_best": 80.0,
+            "estimated_regret": {"mean": 0.6, "median": 0.0, "p90": 3.0},
+        },
+        "neural_vs_ast_node_cost": {
+            "ast_percent_matching_exact_best": 78.0,
+            "ast_regret": {"mean": 0.7, "median": 0.0, "p90": 3.0},
         },
         "runtime_tradeoff": {"neural_speedup_vs_exact_scoring": {"median": 100.0}},
         "compression_gain_vs_goal3_dag": {"neural": {"median": 1.07}},

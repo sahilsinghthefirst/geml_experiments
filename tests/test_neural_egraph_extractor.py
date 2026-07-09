@@ -16,7 +16,7 @@ from geml.compression.neural_cost_model import (
 )
 from geml.compression.neural_egraph_extractor import evaluate_candidate_group
 from geml.data.dataset import GeneratedExpressionInput
-from geml.egraph.ir import Const, Mul, Var
+from geml.egraph.ir import Const, Exp, Log, Mul, Var
 from geml.experiments.egraph_compression_study import Goal3BaselineRow
 from pytest import MonkeyPatch
 
@@ -38,6 +38,47 @@ def test_candidate_labels_come_from_official_eml_dag_metrics(
     assert calls["exact_cost"] == len(records)
     assert all(record.official_eml_compiled for record in records)
     assert all(record.true_official_eml_dag_nodes is not None for record in records)
+
+
+def test_candidate_dataset_uses_fixed_egraph_enumerator(
+    monkeypatch: MonkeyPatch,
+) -> None:
+    calls = {"enumerate": 0}
+    original_enumerator = candidate_dataset.enumerate_candidates
+
+    def wrapped_enumerator(*args: object, **kwargs: object) -> object:
+        calls["enumerate"] += 1
+        return original_enumerator(*args, **kwargs)
+
+    monkeypatch.setattr(candidate_dataset, "enumerate_candidates", wrapped_enumerator)
+
+    records = build_candidate_records_for_ir(
+        Log(Exp(Var("x"))),
+        input_row=GeneratedExpressionInput(
+            index=0,
+            expression="log(exp(x))",
+            srepr="log(exp(Symbol('x')))",
+            metadata={"nontriviality": {}},
+        ),
+        baseline=_baseline(),
+        rule_mode="positive_real_formal",
+        config=CandidateGenerationConfig(
+            count=1,
+            run_modes=("positive_real_formal",),
+            max_iterations=3,
+            beam_size=8,
+            max_candidate_depth=5,
+            max_candidates_evaluated=8,
+            saturation_timeout_seconds=5,
+        ),
+        split="train",
+    )
+
+    assert calls["enumerate"] == 1
+    assert records
+    assert all(record.official_eml_compiled for record in records)
+    assert all(record.true_official_eml_dag_nodes is not None for record in records)
+    assert all("candidate_enumeration_failed" not in (record.error or "") for record in records)
 
 
 def test_no_sympy_simplify_shortcut_is_used() -> None:

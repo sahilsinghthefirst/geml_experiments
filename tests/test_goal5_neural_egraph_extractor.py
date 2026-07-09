@@ -12,12 +12,17 @@ from geml.experiments.goal5_neural_egraph_extractor import (
     run_goal5_neural_egraph_extractor,
 )
 
+from tests.goal5_fixture_builders import ensure_goal3_fixture
+
 
 def test_goal5_neural_egraph_extractor_small_end_to_end(tmp_path: Path) -> None:
-    output_dir = tmp_path / "outputs" / "v1"
+    paths = ensure_goal3_fixture(tmp_path)
+    output_dir = paths.output_dir
     config = NeuralEgraphExtractorConfig(
         count=5,
         run_modes=("safe",),
+        input_jsonl_path=paths.input_jsonl_path,
+        goal3_metrics_csv_path=paths.goal3_metrics_csv_path,
         max_iterations=2,
         max_enodes=1_000,
         max_eclasses=1_000,

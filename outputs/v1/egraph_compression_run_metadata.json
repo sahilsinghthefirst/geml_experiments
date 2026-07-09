@@ -43,6 +43,8 @@
     "v0_v1_comparison_summary_json_path": "outputs/v1/v0_v1_comparison_summary.json"
   },
   "elapsed_seconds": 2381.7908701896667,
+  "git_commit_hash": "a1a3ecd9ea4fa77c669578c2a2ac72c4111cc783",
+  "git_dirty": true,
   "input_contract": {
     "count": 10000,
     "max_depth": 4,
@@ -60,6 +62,18 @@
       "y"
     ]
   },
+  "package_versions": {
+    "matplotlib": "3.11.0",
+    "pydantic": "2.13.4",
+    "pytest": "9.1.1",
+    "pyyaml": "6.0.3",
+    "ruff": "0.15.20",
+    "sympy": "1.14.0"
+  },
+  "platform": "macOS-26.5-arm64-arm-64bit-Mach-O",
+  "platform_machine": "arm64",
+  "python_executable": "/Users/manu/Documents/GEML/geml_experiments/.venv/bin/python",
+  "python_version": "3.14.2",
   "resource_limits": {
     "beam_size": 12,
     "max_candidate_depth": 7,

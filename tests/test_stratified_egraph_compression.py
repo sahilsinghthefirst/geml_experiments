@@ -137,6 +137,50 @@ def test_improvement_unchanged_worse_and_failure_rates() -> None:
     assert summary["validation_failure_rate"] == 25.0
 
 
+def test_stratified_after_threshold_denominators_include_failed_rows() -> None:
+    rows = [
+        build_stratified_egraph_row(
+            raw_egraph_row(index="0", below_after="True", extracted_eml_dag_nodes="4")
+        ),
+        build_stratified_egraph_row(
+            raw_egraph_row(index="1", below_after="False", extracted_eml_dag_nodes="8")
+        ),
+        build_stratified_egraph_row(
+            raw_egraph_row(
+                index="2",
+                extraction_status="timeout",
+                validation_status="error",
+                timeout="True",
+                extracted_eml_dag_nodes="",
+                optimized_alpha="",
+                gain="",
+                below_after="",
+            )
+        ),
+        build_stratified_egraph_row(
+            raw_egraph_row(
+                index="3",
+                extraction_status="failed",
+                validation_status="error",
+                extracted_eml_dag_nodes="",
+                optimized_alpha="",
+                gain="",
+                below_after="",
+            )
+        ),
+    ]
+
+    summary = summarize_egraph_group(rows)
+
+    assert summary["processed"] == 4
+    assert summary["success"] == 2
+    assert summary["timeout"] == 1
+    assert summary["extraction_failed"] == 1
+    assert summary["success_only_after_rate"] == 50.0
+    assert summary["all_processed_after_rate"] == 25.0
+    assert summary["percent_below_threshold_after"] == 50.0
+
+
 def test_branch_sensitive_rate_and_subset_aggregates() -> None:
     rows = [
         build_stratified_egraph_row(

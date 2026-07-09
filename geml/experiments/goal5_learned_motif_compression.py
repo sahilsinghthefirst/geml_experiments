@@ -42,12 +42,20 @@ from geml.compression.motif_selection_model import (
     optimize_motif_selection,
     score_motif,
 )
-from geml.compression.motif_vocab import MotifRecord, load_motif_vocabulary
+from geml.compression.motif_vocab import MotifRecord, MotifVocabulary, load_motif_vocabulary
 from geml.experiments.goal5_frequent_motif_mining import (
     FrequentMotifMiningConfig,
     GraphBundle,
     build_graph_bundles,
-    write_json,
+)
+from geml.experiments.shared import (
+    build_run_metadata,
+)
+from geml.experiments.shared import (
+    safe_divide as _safe_divide,
+)
+from geml.experiments.shared import (
+    write_json_object as write_json,
 )
 
 type MetadataValue = str | int | float | bool | None | list[Any] | dict[str, Any]
@@ -214,7 +222,8 @@ def run_goal5_learned_motif_compression(
         bundle.baseline.index: assign_split(bundle.baseline.index, split_config)
         for bundle in bundles
     }
-    candidate_motifs = load_candidate_motifs(config.frequent_motif_vocab_json_path)
+    candidate_vocabulary = load_candidate_motif_vocabulary(config.frequent_motif_vocab_json_path)
+    candidate_motifs = filter_candidate_motifs(candidate_vocabulary)
     candidate_features = compute_candidate_features(
         bundles,
         candidate_motifs,
@@ -259,6 +268,14 @@ def run_goal5_learned_motif_compression(
         candidate_motifs_by_id=candidate_motifs_by_id,
         random_baseline_motif_ids=random_motif_ids,
     )
+    learned_vocabulary = learned_vocabulary.model_copy(
+        update={
+            "metadata": {
+                **dict(learned_vocabulary.metadata),
+                "candidate_discovery": candidate_discovery_payload(candidate_vocabulary),
+            }
+        }
+    )
     write_learned_motif_vocabulary(learned_vocabulary, config.learned_vocab_json_path)
     print(
         f"Selected learned motif vocabulary: {learned_vocabulary.selected_vocab_size}",
@@ -284,22 +301,27 @@ def run_goal5_learned_motif_compression(
     print(f"Computed learned motif rows: {len(rows)}", flush=True)
     write_metrics_jsonl(rows, config.metrics_jsonl_path)
     write_metrics_csv(rows, config.metrics_csv_path)
+    completed_at = time.time()
     train_log = build_train_log(
         config,
         selection_result,
         split_rows=build_split_rows(split_by_index, split_config),
         candidate_features=candidate_features,
+        candidate_vocabulary=candidate_vocabulary,
         random_motif_ids=random_motif_ids,
+        started_at=started_at,
+        completed_at=completed_at,
     )
     write_json(config.train_log_json_path, train_log)
     summary = build_summary(
         rows,
         config,
         selection_result,
+        candidate_vocabulary=candidate_vocabulary,
         learned_vocab_size=learned_vocabulary.selected_vocab_size,
         random_vocab_size=len(random_motif_ids),
         started_at=started_at,
-        completed_at=time.time(),
+        completed_at=completed_at,
     )
     write_json(config.summary_json_path, summary)
     return LearnedMotifCompressionResult(
@@ -316,7 +338,16 @@ def run_goal5_learned_motif_compression(
 
 def load_candidate_motifs(path: Path) -> tuple[MotifRecord, ...]:
     """Load graph-applicable candidate motifs from Goal 5.2."""
-    vocabulary = load_motif_vocabulary(path)
+    return filter_candidate_motifs(load_candidate_motif_vocabulary(path))
+
+
+def load_candidate_motif_vocabulary(path: Path) -> MotifVocabulary:
+    """Load the candidate motif vocabulary with discovery metadata."""
+    return load_motif_vocabulary(path)
+
+
+def filter_candidate_motifs(vocabulary: MotifVocabulary) -> tuple[MotifRecord, ...]:
+    """Return graph-applicable candidate motifs from one vocabulary."""
     candidates = tuple(
         motif
         for motif in vocabulary.motifs
@@ -479,7 +510,10 @@ def build_train_log(
     *,
     split_rows: Sequence[object],
     candidate_features: Sequence[MotifSplitFeature],
+    candidate_vocabulary: MotifVocabulary,
     random_motif_ids: Sequence[str],
+    started_at: float,
+    completed_at: float,
 ) -> dict[str, object]:
     """Build the Goal 5.3 train log artifact."""
     return {
@@ -488,6 +522,7 @@ def build_train_log(
         "trained_final_reasoning_gnn": selection_result.trained_final_reasoning_gnn,
         "split_counts": summarize_split_counts(split_rows),
         "candidate_pool_size": len(candidate_features),
+        "candidate_discovery": candidate_discovery_payload(candidate_vocabulary),
         "selected_vocab_size": selection_result.selected_vocab_size,
         "selected_weights": selection_result.selected_weights,
         "selected_motif_ids": selection_result.selected_motif_ids,
@@ -496,9 +531,21 @@ def build_train_log(
             trial.model_dump(mode="json") for trial in selection_result.trials
         ],
         "selection_policy": (
-            "train scores choose motifs; validation objective chooses hyperparameters"
+            "train scores choose motifs; validation objective chooses hyperparameters; "
+            "candidate discovery should use train-only motif mining for leakage-free results"
         ),
         "test_set_used_for_selection": False,
+        "test_set_used_for_candidate_discovery": bool(
+            candidate_discovery_payload(candidate_vocabulary).get(
+                "test_set_used_for_candidate_discovery",
+                True,
+            )
+        ),
+        "run_metadata": build_run_metadata(
+            config=config_to_json_dict(config),
+            started_at=started_at,
+            completed_at=completed_at,
+        ),
     }
 
 
@@ -507,6 +554,7 @@ def build_summary(
     config: LearnedMotifCompressionConfig,
     selection_result: MotifSelectionResult,
     *,
+    candidate_vocabulary: MotifVocabulary,
     learned_vocab_size: int,
     random_vocab_size: int,
     started_at: float,
@@ -522,6 +570,7 @@ def build_summary(
         "learned_vocab_size": learned_vocab_size,
         "random_vocab_size": random_vocab_size,
         "selected_weights": selection_result.selected_weights,
+        "candidate_discovery": candidate_discovery_payload(candidate_vocabulary),
         "learned_vs_frequent_motif_compression": _distribution(
             row.learned_gain_vs_frequent_motif for row in success_rows
         ),
@@ -556,12 +605,23 @@ def build_summary(
             "motif_ids_are_pure_eml_nodes": False,
             "reconstruction_validity_required": True,
             "test_set_used_for_selection": False,
+            "test_set_used_for_candidate_discovery": bool(
+                candidate_discovery_payload(candidate_vocabulary).get(
+                    "test_set_used_for_candidate_discovery",
+                    True,
+                )
+            ),
             "modified_official_eml_compiler": False,
             "trained_final_symbolic_reasoning_gnn": False,
             "model_performance_claims": False,
         },
         "elapsed_seconds": completed_at - started_at,
         "completed_at_unix": completed_at,
+        "run_metadata": build_run_metadata(
+            config=config_to_json_dict(config),
+            started_at=started_at,
+            completed_at=completed_at,
+        ),
     }
 
 
@@ -588,6 +648,28 @@ def summarize_group(rows: Sequence[LearnedMotifMetricRow]) -> dict[str, object]:
         ),
         "learned_vs_random_motif_compression": _learned_vs_random_distribution(success_rows),
         "motif_coverage_percent": _distribution(row.motif_coverage_percent for row in success_rows),
+    }
+
+
+def candidate_discovery_payload(vocabulary: MotifVocabulary) -> dict[str, object]:
+    """Return candidate discovery metadata used by learned motif selection."""
+    metadata = dict(vocabulary.metadata)
+    return {
+        "candidate_discovery_mode": metadata.get("candidate_discovery_mode", "unknown"),
+        "candidate_discovery_split": metadata.get("candidate_discovery_split", "unknown"),
+        "candidate_discovery_expression_count": metadata.get(
+            "candidate_discovery_expression_count"
+        ),
+        "candidate_discovery_split_counts": metadata.get(
+            "candidate_discovery_split_counts",
+            {},
+        ),
+        "test_set_used_for_candidate_discovery": bool(
+            metadata.get("test_set_used_for_candidate_discovery", True)
+        ),
+        "validation_set_used_for_candidate_discovery": bool(
+            metadata.get("validation_set_used_for_candidate_discovery", True)
+        ),
     }
 
 
@@ -756,12 +838,6 @@ def _quantile(values: Sequence[float], q: float) -> float:
     lower_value = sorted_values[lower]
     upper_value = sorted_values[upper]
     return lower_value + (upper_value - lower_value) * (position - lower)
-
-
-def _safe_divide(numerator: int | float | None, denominator: int | float | None) -> float | None:
-    if numerator is None or denominator in {None, 0}:
-        return None
-    return float(numerator) / float(denominator)
 
 
 def _coerce_config_value(key: str, value: object) -> object:

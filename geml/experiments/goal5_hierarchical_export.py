@@ -45,6 +45,13 @@ from geml.data.dataset import (
     parse_generated_expression,
 )
 from geml.experiments.goal5_macro_graph_baseline import subset_label_for_metadata
+from geml.experiments.shared import (
+    build_run_metadata,
+    write_json_object,
+)
+from geml.experiments.shared import (
+    percent as _percent,
+)
 from geml.symbolic.ast_graph import sympy_to_ast_tree
 from geml.symbolic.dag_graph import tree_to_dag
 from geml.symbolic.official_eml_compiler import sympy_to_official_eml_tree
@@ -292,6 +299,7 @@ def run_goal5_hierarchical_export(
         expression_ids_by_split=expression_ids_by_split,
         path=config.splits_json_path,
     )
+    completed_at = time.time()
     summary = {
         "config": config_to_json_dict(config),
         **accumulator.to_summary(),
@@ -307,8 +315,13 @@ def run_goal5_hierarchical_export(
             "hidden_target_labels_in_graph_records": False,
             "safe_and_positive_real_modes_mixed_without_labels": False,
         },
-        "elapsed_seconds": time.time() - started_at,
-        "completed_at_unix": time.time(),
+        "elapsed_seconds": completed_at - started_at,
+        "completed_at_unix": completed_at,
+        "run_metadata": build_run_metadata(
+            config=config_to_json_dict(config),
+            started_at=started_at,
+            completed_at=completed_at,
+        ),
     }
     write_json(config.summary_json_path, summary)
     return HierarchicalGraphExportResult(
@@ -388,6 +401,13 @@ def build_records_for_expression(
                 **macro_record.metadata,
                 "reconstruction_valid": macro_validation.expansion_valid,
             }
+        }
+    )
+    macro_record = macro_record.model_copy(
+        update={
+            "validation": macro_record.validation.model_copy(
+                update={"reconstruction_valid": macro_validation.expansion_valid}
+            )
         }
     )
     pure_mining = mining_graph_from_dag(
@@ -502,8 +522,7 @@ def load_egraph_export_rows(path: Path, *, rule_mode: str) -> dict[int, EgraphEx
 
 def write_json(path: Path, payload: dict[str, object]) -> None:
     """Write deterministic JSON."""
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_object(path, payload)
 
 
 def config_to_json_dict(config: HierarchicalGraphExportConfig) -> dict[str, object]:
@@ -608,12 +627,6 @@ def _quantile(values: Sequence[float], q: float) -> float:
     if lower == upper:
         return sorted_values[int(position)]
     return sorted_values[lower] + (sorted_values[upper] - sorted_values[lower]) * (position - lower)
-
-
-def _percent(numerator: int, denominator: int) -> float | None:
-    if denominator == 0:
-        return None
-    return 100.0 * float(numerator) / float(denominator)
 
 
 def _coerce_config_value(key: str, value: object) -> object:

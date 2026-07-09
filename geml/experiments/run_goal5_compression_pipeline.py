@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import argparse
 import csv
-import json
 import time
 from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass
@@ -41,6 +40,19 @@ from geml.experiments.goal5_neural_egraph_extractor import (
 )
 from geml.experiments.goal5_neural_egraph_extractor import (
     run_goal5_neural_egraph_extractor,
+)
+from geml.experiments.shared import (
+    build_run_metadata,
+    write_json_object,
+)
+from geml.experiments.shared import (
+    load_json_object as load_shared_json_object,
+)
+from geml.experiments.shared import (
+    markdown_table as _markdown_table,
+)
+from geml.experiments.shared import (
+    write_text as write_shared_text,
 )
 
 type JSONValue = str | int | float | bool | None | list[JSONValue] | dict[str, JSONValue]
@@ -91,6 +103,7 @@ class Goal5CompressionPipelineConfig:
     require_large_jsonl_artifacts: bool = False
     macro_config_path: Path = Path("configs/macro_graph_v1.yaml")
     frequent_motif_config_path: Path = Path("configs/frequent_motifs_v1.yaml")
+    frequent_motif_train_only_config_path: Path = Path("configs/frequent_motifs_train_only_v1.yaml")
     learned_motif_config_path: Path = Path("configs/learned_motifs_v1.yaml")
     neural_egraph_config_path: Path = Path("configs/neural_egraph_extractor_v1.yaml")
     hierarchical_export_config_path: Path = Path("configs/hierarchical_graph_export_v1.yaml")
@@ -108,6 +121,18 @@ class Goal5CompressionPipelineConfig:
     frequent_motif_metrics_csv_path: Path = Path("outputs/v1/goal5_frequent_motif_metrics.csv")
     frequent_motif_metrics_jsonl_path: Path = Path("outputs/v1/goal5_frequent_motif_metrics.jsonl")
     frequent_motif_vocab_json_path: Path = Path("outputs/v1/goal5_frequent_motif_vocab.json")
+    frequent_motif_train_only_summary_json_path: Path = Path(
+        "outputs/v1/goal5_frequent_motif_train_only_summary.json"
+    )
+    frequent_motif_train_only_metrics_csv_path: Path = Path(
+        "outputs/v1/goal5_frequent_motif_train_only_metrics.csv"
+    )
+    frequent_motif_train_only_metrics_jsonl_path: Path = Path(
+        "outputs/v1/goal5_frequent_motif_train_only_metrics.jsonl"
+    )
+    frequent_motif_train_only_vocab_json_path: Path = Path(
+        "outputs/v1/goal5_frequent_motif_train_only_vocab.json"
+    )
     learned_motif_summary_json_path: Path = Path("outputs/v1/goal5_learned_motif_summary.json")
     learned_motif_metrics_csv_path: Path = Path("outputs/v1/goal5_learned_motif_metrics.csv")
     learned_motif_metrics_jsonl_path: Path = Path("outputs/v1/goal5_learned_motif_metrics.jsonl")
@@ -245,6 +270,25 @@ def ensure_goal5_artifacts(config: Goal5CompressionPipelineConfig) -> dict[str, 
         load_stage_config=load_frequent_config,
         run_stage=run_goal5_frequent_motif_mining,
     )
+    statuses["frequent_motifs_train_only"] = _ensure_stage(
+        name="frequent_motifs_train_only",
+        force=config.force_rerun_frequent_motifs,
+        reuse_existing=config.reuse_existing_artifacts,
+        run_missing=config.run_missing_artifacts,
+        config_path=config.frequent_motif_train_only_config_path,
+        required_paths=[
+            config.frequent_motif_train_only_summary_json_path,
+            config.frequent_motif_train_only_metrics_csv_path,
+            config.frequent_motif_train_only_vocab_json_path,
+            *(
+                [config.frequent_motif_train_only_metrics_jsonl_path]
+                if config.require_large_jsonl_artifacts
+                else []
+            ),
+        ],
+        load_stage_config=load_frequent_config,
+        run_stage=run_goal5_frequent_motif_mining,
+    )
     statuses["learned_motifs"] = _ensure_stage(
         name="learned_motifs",
         force=config.force_rerun_learned_motifs,
@@ -313,12 +357,14 @@ def load_goal5_artifacts(config: Goal5CompressionPipelineConfig) -> Goal5Artifac
         "goal4": config.goal4_summary_json_path,
         "macro_graph": config.macro_summary_json_path,
         "frequent_motifs": config.frequent_motif_summary_json_path,
+        "frequent_motifs_train_only": config.frequent_motif_train_only_summary_json_path,
         "learned_motifs": config.learned_motif_summary_json_path,
         "neural_egraph": config.neural_egraph_summary_json_path,
         "hierarchical_export": config.hierarchical_summary_json_path,
     }
     json_artifact_paths = {
         "frequent_motif_vocab": config.frequent_motif_vocab_json_path,
+        "frequent_motif_train_only_vocab": config.frequent_motif_train_only_vocab_json_path,
         "learned_motif_vocab": config.learned_motif_vocab_json_path,
         "learned_motif_train_log": config.learned_motif_train_log_json_path,
         "neural_egraph_train_log": config.neural_egraph_train_log_json_path,
@@ -331,6 +377,7 @@ def load_goal5_artifacts(config: Goal5CompressionPipelineConfig) -> Goal5Artifac
         "goal4_positive_real_metrics": config.goal4_positive_real_metrics_csv_path,
         "macro_graph_metrics": config.macro_metrics_csv_path,
         "frequent_motif_metrics": config.frequent_motif_metrics_csv_path,
+        "frequent_motif_train_only_metrics": config.frequent_motif_train_only_metrics_csv_path,
         "learned_motif_metrics": config.learned_motif_metrics_csv_path,
         "neural_egraph_metrics": config.neural_egraph_metrics_csv_path,
     }
@@ -548,8 +595,10 @@ def build_pipeline_summary(
 ) -> JSONMapping:
     """Build the integrated Goal 5 summary artifact."""
     summaries = artifacts.summaries
+    goal4 = summaries["goal4"]
     macro = summaries["macro_graph"]
     frequent = summaries["frequent_motifs"]
+    frequent_train_only = summaries["frequent_motifs_train_only"]
     learned = summaries["learned_motifs"]
     neural = summaries["neural_egraph"]
     hierarchy = summaries["hierarchical_export"]
@@ -560,6 +609,7 @@ def build_pipeline_summary(
         + _int_or_zero(hierarchy.get("missing_expansion_count"))
     )
     integrity = build_integrity_summary(summaries, reconstruction_failure_count)
+    null_result_summary = build_null_result_summary(learned, neural)
     return {
         "question": (
             "Can transparent ML-facing compressed graph representations reduce graph size enough "
@@ -567,6 +617,11 @@ def build_pipeline_summary(
             "pure EML?"
         ),
         "config": config_to_json_dict(config),
+        "run_metadata": build_run_metadata(
+            config=config_to_json_dict(config),
+            started_at=started_at,
+            completed_at=completed_at,
+        ),
         "stage_status": dict(stage_status),
         "processed_counts": {
             "goal3_expressions": _int_or_none(summaries["goal3"].get("processed_count")),
@@ -580,10 +635,22 @@ def build_pipeline_summary(
             ),
             "macro_graph_expressions": _int_or_none(macro.get("processed_count")),
             "frequent_motif_expressions": _int_or_none(frequent.get("processed_count")),
+            "frequent_motif_train_only_expressions": _int_or_none(
+                frequent_train_only.get("processed_count")
+            ),
             "learned_motif_expressions": _int_or_none(learned.get("processed_count")),
             "neural_egraph_groups": _int_or_none(neural.get("processed_group_count")),
             "hierarchical_graph_records": _int_or_none(hierarchy.get("graph_count")),
         },
+        "status_counts": build_goal5_status_counts(summaries),
+        "denominator_audit": {
+            "goal4_threshold_rates": build_goal4_threshold_denominator_audit(goal4),
+            "after_threshold_note": (
+                "Rows without valid extracted outputs count as not below threshold in "
+                "all_processed_after_rate. success_only_after_rate is reported separately."
+            ),
+        },
+        "null_result_summary": null_result_summary,
         "comparison_rows": list(comparison_rows),
         "macro_graph": {
             "median_alpha": _float_or_none(macro.get("median_macro_graph_alpha")),
@@ -626,6 +693,27 @@ def build_pipeline_summary(
                 frequent.get("expansion_validation_failure_count")
             ),
         },
+        "frequent_motifs_train_only": {
+            "motif_vocab_size": _int_or_none(frequent_train_only.get("motif_vocab_size")),
+            "candidate_discovery": _compact_candidate_discovery(
+                _nested_dict(frequent_train_only, "candidate_discovery")
+            ),
+            "median_gain_vs_goal3": _stat(
+                _nested_dict(frequent_train_only, "compression_gain_vs_goal3_eml_dag"), "median"
+            ),
+            "median_motif_coverage_percent": _stat(
+                _nested_dict(frequent_train_only, "motif_coverage_percent"), "median"
+            ),
+            "results_by_split": frequent_train_only.get("results_by_split", {}),
+            "nontrivial_v1": _compact_subset_summary(
+                _nested_dict(frequent_train_only, "results_by_subset_label", "nontrivial_v1"),
+                gain_key="compression_gain_vs_goal3_eml_dag",
+            ),
+            "full_corpus_comparison": frequent_train_only.get("full_corpus_comparison", {}),
+            "expansion_validation_failure_count": _int_or_none(
+                frequent_train_only.get("expansion_validation_failure_count")
+            ),
+        },
         "learned_motifs": {
             "learned_vocab_size": _int_or_none(learned.get("learned_vocab_size")),
             "random_vocab_size": _int_or_none(learned.get("random_vocab_size")),
@@ -635,13 +723,20 @@ def build_pipeline_summary(
             "median_learned_vs_frequent": _stat(
                 _nested_dict(learned, "learned_vs_frequent_motif_compression"), "median"
             ),
+            "mean_learned_vs_frequent": _stat(
+                _nested_dict(learned, "learned_vs_frequent_motif_compression"), "mean"
+            ),
             "median_learned_vs_random": _stat(
                 _nested_dict(learned, "learned_vs_random_motif_compression"), "median"
+            ),
+            "mean_learned_vs_random": _stat(
+                _nested_dict(learned, "learned_vs_random_motif_compression"), "mean"
             ),
             "median_random_gain_vs_goal3": _stat(
                 _nested_dict(learned, "random_gain_vs_goal3_eml_dag"), "median"
             ),
             "results_by_split": learned.get("results_by_split", {}),
+            "candidate_discovery": learned.get("candidate_discovery", {}),
             "nontrivial_v1": _compact_subset_summary(
                 _nested_dict(learned, "results_by_subset_label", "nontrivial_v1"),
                 gain_key="learned_gain_vs_goal3_eml_dag",
@@ -668,6 +763,28 @@ def build_pipeline_summary(
             "median_compression_gain_vs_goal3": _stat(
                 _nested_dict(neural, "compression_gain_vs_goal3_dag", "neural"), "median"
             ),
+            "mean_regret_vs_exact_best": _stat(
+                _nested_dict(neural, "neural_vs_exact_beam", "regret_vs_exact_best"), "mean"
+            ),
+            "estimated_percent_matching_exact_best": _float_or_none(
+                _nested_dict(neural, "neural_vs_estimated_eml_cost").get(
+                    "estimated_percent_matching_exact_best"
+                )
+            ),
+            "estimated_mean_regret_vs_exact_best": _stat(
+                _nested_dict(neural, "neural_vs_estimated_eml_cost", "estimated_regret"),
+                "mean",
+            ),
+            "ast_percent_matching_exact_best": _float_or_none(
+                _nested_dict(neural, "neural_vs_ast_node_cost").get(
+                    "ast_percent_matching_exact_best"
+                )
+            ),
+            "ast_mean_regret_vs_exact_best": _stat(
+                _nested_dict(neural, "neural_vs_ast_node_cost", "ast_regret"),
+                "mean",
+            ),
+            "speedup_scope": _nested_dict(neural, "runtime_tradeoff").get("scope"),
             "success_count": _int_or_none(neural.get("success_count")),
             "validation_failure_count": _int_or_none(neural.get("validation_failure_count")),
             "results_by_rule_mode": neural.get("results_by_rule_mode", {}),
@@ -748,6 +865,167 @@ def build_pipeline_summary(
     }
 
 
+def build_goal4_threshold_denominator_audit(goal4_summary: Mapping[str, JSONValue]) -> JSONMapping:
+    """Build dual-denominator threshold rates from the Goal 4 summary."""
+    audit: JSONMapping = {}
+    for mode in ("safe", "positive_real_formal"):
+        stats = _nested_dict(goal4_summary, "rule_modes", mode)
+        audit[mode] = {
+            "processed": _int_or_none(stats.get("processed", stats.get("processed_count"))),
+            "success": _int_or_none(stats.get("success", stats.get("success_count"))),
+            "timeout": _int_or_none(stats.get("timeout", stats.get("timeout_count"))),
+            "validation_failed": _int_or_none(
+                stats.get("validation_failed", stats.get("validation_failure_count"))
+            ),
+            "extraction_failed": _int_or_none(stats.get("extraction_failed")),
+            "official_compilation_failed": _int_or_none(stats.get("official_compilation_failed")),
+            "before_threshold_rate": _float_or_none(
+                stats.get("percent_below_threshold_before_egraph")
+            ),
+            "success_only_after_rate": _first_float(
+                stats.get("success_only_after_rate"),
+                stats.get("percent_below_threshold_after_egraph_success_only"),
+                stats.get("percent_below_threshold_after_egraph"),
+            ),
+            "all_processed_after_rate": _first_float(
+                stats.get("all_processed_after_rate"),
+                stats.get("percent_below_threshold_after_egraph_all_processed"),
+            ),
+        }
+    return audit
+
+
+def build_goal5_status_counts(summaries: Mapping[str, JSONMapping]) -> JSONMapping:
+    """Build common status-count fields for Goal 4/5 report summaries."""
+    goal4 = summaries["goal4"]
+    macro = summaries["macro_graph"]
+    frequent = summaries["frequent_motifs"]
+    frequent_train_only = summaries["frequent_motifs_train_only"]
+    learned = summaries["learned_motifs"]
+    neural = summaries["neural_egraph"]
+    hierarchy = summaries["hierarchical_export"]
+    return {
+        "goal4_safe": _stage_counts(_nested_dict(goal4, "rule_modes", "safe")),
+        "goal4_positive_real_formal": _stage_counts(
+            _nested_dict(goal4, "rule_modes", "positive_real_formal")
+        ),
+        "macro_graph": _stage_counts(
+            macro,
+            validation_failed_key="expansion_validation_failure_count",
+        ),
+        "frequent_motif_graph": _stage_counts(
+            frequent,
+            validation_failed_key="expansion_validation_failure_count",
+        ),
+        "frequent_motif_train_only_graph": _stage_counts(
+            frequent_train_only,
+            validation_failed_key="expansion_validation_failure_count",
+        ),
+        "learned_motif_graph": _stage_counts(
+            learned,
+            validation_failed_key="reconstruction_failure_count",
+        ),
+        "neural_egraph_extractor": _stage_counts(
+            neural,
+            processed_key="processed_group_count",
+            validation_failed_key="validation_failure_count",
+        ),
+        "hierarchical_graph_export": _counts_payload(
+            processed=_int_or_none(hierarchy.get("graph_count")),
+            success=_int_or_none(hierarchy.get("graph_count")),
+            validation_failed=_int_or_none(hierarchy.get("missing_expansion_count")),
+        ),
+    }
+
+
+def build_null_result_summary(
+    learned: Mapping[str, JSONValue],
+    neural: Mapping[str, JSONValue],
+) -> JSONMapping:
+    """Build explicit learned-component baseline comparisons."""
+    return {
+        "learned_vs_frequent_motif_median": _stat(
+            _nested_dict(learned, "learned_vs_frequent_motif_compression"), "median"
+        ),
+        "learned_vs_random_motif_median": _stat(
+            _nested_dict(learned, "learned_vs_random_motif_compression"), "median"
+        ),
+        "learned_vs_random_motif_mean": _stat(
+            _nested_dict(learned, "learned_vs_random_motif_compression"), "mean"
+        ),
+        "neural_exact_match_rate": _float_or_none(
+            _nested_dict(neural, "neural_vs_exact_beam").get("percent_matching_exact_best")
+        ),
+        "estimated_heuristic_exact_match_rate": _float_or_none(
+            _nested_dict(neural, "neural_vs_estimated_eml_cost").get(
+                "estimated_percent_matching_exact_best"
+            )
+        ),
+        "ast_baseline_exact_match_rate": _float_or_none(
+            _nested_dict(neural, "neural_vs_ast_node_cost").get("ast_percent_matching_exact_best")
+        ),
+        "neural_mean_regret": _stat(
+            _nested_dict(neural, "neural_vs_exact_beam", "regret_vs_exact_best"), "mean"
+        ),
+        "heuristic_mean_regret": _stat(
+            _nested_dict(neural, "neural_vs_estimated_eml_cost", "estimated_regret"), "mean"
+        ),
+        "ast_mean_regret": _stat(
+            _nested_dict(neural, "neural_vs_ast_node_cost", "ast_regret"), "mean"
+        ),
+    }
+
+
+def _stage_counts(
+    payload: Mapping[str, JSONValue],
+    *,
+    processed_key: str = "processed_count",
+    success_key: str = "success_count",
+    validation_failed_key: str = "validation_failed",
+) -> JSONMapping:
+    processed = _int_or_none(payload.get("processed", payload.get(processed_key)))
+    success = _int_or_none(payload.get("success", payload.get(success_key)))
+    timeout = _int_or_none(payload.get("timeout", payload.get("timeout_count"))) or 0
+    validation_failed = _int_or_none(
+        payload.get(validation_failed_key, payload.get("validation_failure_count"))
+    )
+    extraction_failed = _int_or_none(payload.get("extraction_failed"))
+    official_compilation_failed = _int_or_none(payload.get("official_compilation_failed"))
+    return _counts_payload(
+        processed=processed,
+        success=success,
+        timeout=timeout,
+        validation_failed=validation_failed,
+        extraction_failed=extraction_failed,
+        official_compilation_failed=official_compilation_failed,
+    )
+
+
+def _counts_payload(
+    *,
+    processed: int | None,
+    success: int | None,
+    timeout: int | None = None,
+    validation_failed: int | None = None,
+    extraction_failed: int | None = None,
+    official_compilation_failed: int | None = None,
+) -> JSONMapping:
+    inferred_failures = None
+    if processed is not None and success is not None:
+        inferred_failures = max(processed - success, 0)
+    return {
+        "processed": processed,
+        "success": success,
+        "timeout": timeout if timeout is not None else 0,
+        "validation_failed": validation_failed if validation_failed is not None else 0,
+        "extraction_failed": extraction_failed if extraction_failed is not None else 0,
+        "official_compilation_failed": official_compilation_failed
+        if official_compilation_failed is not None
+        else 0,
+        "failure_count": inferred_failures,
+    }
+
+
 def build_integrity_summary(
     summaries: Mapping[str, JSONMapping],
     reconstruction_failure_count: int,
@@ -806,11 +1084,14 @@ def build_study_report(summary: Mapping[str, JSONValue]) -> str:
     """Build the final Goal 5 study report."""
     macro = summary["macro_graph"]
     frequent = summary["frequent_motifs"]
+    frequent_train_only = summary["frequent_motifs_train_only"]
     learned = summary["learned_motifs"]
     neural = summary["neural_egraph"]
     hierarchy = summary["hierarchical_export"]
     integrity = summary["integrity"]
     nontrivial = summary["nontrivial_v1"]
+    null_results = summary["null_result_summary"]
+    denominator_audit = summary["denominator_audit"]
     return "\n".join(
         [
             "# Goal 5 ML-Facing Compression Study",
@@ -868,6 +1149,15 @@ def build_study_report(summary: Mapping[str, JSONValue]) -> str:
                 ],
             ),
             "",
+            "## Denominator Audit",
+            "",
+            "For e-graph threshold rates, rows without valid extracted outputs count as not "
+            "below threshold in `all_processed_after_rate`. The success-only rate is reported "
+            "separately as `success_only_after_rate` and is not used as the all-row "
+            "improvement denominator.",
+            "",
+            _denominator_audit_table(denominator_audit["goal4_threshold_rates"]),
+            "",
             "## Macro Graph Results",
             "",
             f"The macro graph baseline processed "
@@ -896,6 +1186,10 @@ def build_study_report(summary: Mapping[str, JSONValue]) -> str:
             f"Expansion validation failures: "
             f"{_fmt_int(frequent['expansion_validation_failure_count'])}.",
             "",
+            "Train-only candidate discovery variant:",
+            "",
+            _frequent_train_only_table(frequent_train_only),
+            "",
             "Top motifs by support:",
             "",
             _motif_table(frequent["top_motifs_by_support"]),
@@ -919,6 +1213,17 @@ def build_study_report(summary: Mapping[str, JSONValue]) -> str:
             "selector preserved exact reconstruction but did not clearly beat the random "
             "baseline at the median.",
             "",
+            "The learned motif gain vs Goal 3 is mostly due to motif compression itself, not "
+            "learned selection.",
+            "",
+            "Candidate discovery audit:",
+            "",
+            _candidate_discovery_table(learned["candidate_discovery"]),
+            "",
+            "Learned-component null-result check:",
+            "",
+            _null_result_table(null_results),
+            "",
             "Train/validation/test results:",
             "",
             _split_table(learned["results_by_split"], gain_key="learned_gain_vs_goal3_eml_dag"),
@@ -940,6 +1245,8 @@ def build_study_report(summary: Mapping[str, JSONValue]) -> str:
             f"{_fmt_number(neural['median_compression_gain_vs_goal3'])}. Median speedup vs exact "
             f"beam cost scoring was {_fmt_number(neural['median_speedup_vs_exact_scoring'])}x. "
             f"Validation failures: {_fmt_int(neural['validation_failure_count'])}.",
+            "",
+            "The neural extractor’s 109x speedup is scoped to candidate cost scoring only.",
             "",
             f"On `nontrivial_v1`, median neural gain was "
             f"{_fmt_number(nontrivial['neural_median_gain_vs_goal3'])} and exact-best match "
@@ -977,8 +1284,9 @@ def build_study_report(summary: Mapping[str, JSONValue]) -> str:
             "",
             "Use Goal 4 e-graph optimized EML-DAGs as non-ML compression baselines. Use the "
             "neural e-graph extractor as a learned extraction/ranking baseline, not as evidence "
-            "of reasoning performance. Use `hierarchical_eml_graph` after the single-mode "
-            "baselines are stable, because it is richer but larger.",
+            "of reasoning performance. Treat learned motif selection and the neural ranker as "
+            "Goal 6 baselines, not main claims. Use `hierarchical_eml_graph` after the "
+            "single-mode baselines are stable, because it is richer but larger.",
             "",
             "Do not overclaim: compression makes later GNN training more practical, but it does "
             "not prove symbolic reasoning ability.",
@@ -1013,9 +1321,11 @@ def build_summary_doc(summary: Mapping[str, JSONValue]) -> str:
         [
             "# Goal 5 Summary",
             "",
-            "Goal 5 implemented ML-facing compression before final GNN training. It created "
-            "macro graphs, frequent motif graphs, learned motif graphs, a neural e-graph cost "
-            "model, and hierarchical graph exports.",
+            "Goal 5 implemented ML-facing compression before final GNN training. Macro graphs "
+            "are validated and useful; frequent motif compression is the strongest simple "
+            "compression result; learned motif selection does not beat frequent/random "
+            "baselines at the median; and the neural e-graph ranker mainly provides "
+            "speed/ranking utility, not major compression.",
             "",
             "## Headline Results",
             "",
@@ -1028,6 +1338,8 @@ def build_summary_doc(summary: Mapping[str, JSONValue]) -> str:
             f"{_fmt_number(summary['learned_motifs']['median_gain_vs_goal3'])}",
             f"- Learned vs random motif median compression: "
             f"{_fmt_number(summary['learned_motifs']['median_learned_vs_random'])}",
+            f"- Learned vs random motif mean compression: "
+            f"{_fmt_number(summary['learned_motifs']['mean_learned_vs_random'])}",
             f"- Neural e-graph median regret: "
             f"{_fmt_number(summary['neural_egraph']['median_regret_vs_exact_best'])}",
             f"- Neural e-graph median speedup: "
@@ -1035,6 +1347,27 @@ def build_summary_doc(summary: Mapping[str, JSONValue]) -> str:
             f"- Hierarchical export validation rate: "
             f"{_fmt_number(summary['hierarchical_export']['reconstruction_validation_rate'])}%",
             f"- Reconstruction failure count: {_fmt_int(summary['reconstruction_failure_count'])}",
+            "",
+            "## Learned And Neural Baseline Check",
+            "",
+            _null_result_table(summary["null_result_summary"]),
+            "",
+            "The learned motif gain vs Goal 3 is mostly due to motif compression itself, not "
+            "learned selection.",
+            "",
+            "Learned motif candidate discovery now uses the train-only motif vocabulary; "
+            f"test rows used for candidate discovery: "
+            f"{learned_candidate_discovery_used_test(summary['learned_motifs'])}.",
+            "",
+            "The neural extractor’s 109x speedup is scoped to candidate cost scoring only.",
+            "",
+            "## Denominator Audit",
+            "",
+            "After-threshold e-graph rates report both `success_only_after_rate` and "
+            "`all_processed_after_rate`; failed or timeout rows count as not below threshold "
+            "in the all-processed denominator.",
+            "",
+            _denominator_audit_table(summary["denominator_audit"]["goal4_threshold_rates"]),
             "",
             "## Nontrivial v1",
             "",
@@ -1051,7 +1384,7 @@ def build_summary_doc(summary: Mapping[str, JSONValue]) -> str:
             "",
             "For Goal 6, start with `macro_graph`, `learned_motif_graph`, "
             "`frequent_motif_graph`, and `pure_eml_dag_graph` controls. Keep Goal 4 e-graph "
-            "outputs and the neural extractor as compression/ranking baselines. Treat "
+            "outputs, learned motif selection, and the neural extractor as baselines. Treat "
             "`hierarchical_eml_graph` as the audit-rich export for later multi-level modeling.",
             "",
             "Goal 5 makes graph sizes more practical for future ML work, but it does not claim "
@@ -1078,10 +1411,13 @@ def build_findings_report(summary: Mapping[str, JSONValue]) -> str:
             "3. Learned motifs preserved exact reconstruction but did not clearly beat the "
             f"random motif baseline at the median "
             f"({_fmt_number(summary['learned_motifs']['median_learned_vs_random'])}).",
+            "   The learned motif gain vs Goal 3 is mostly due to motif compression itself, "
+            "not learned selection.",
             "4. The neural e-graph extractor had median zero regret and large scoring-speed "
             "improvement "
             f"({_fmt_number(summary['neural_egraph']['median_speedup_vs_exact_scoring'])}x), "
-            "but it still had validation failures and does not prove reasoning ability.",
+            "but that speedup is scoped to candidate cost scoring only; it still had "
+            "validation failures and does not prove reasoning ability.",
             "5. Hierarchical graph export produced an audit-ready dataset with "
             f"{_fmt_number(summary['hierarchical_export']['reconstruction_validation_rate'])}% "
             "reconstruction validation and zero missing expansion mappings.",
@@ -1116,22 +1452,20 @@ def write_comparison_csv(rows: Sequence[Mapping[str, JSONValue]], path: Path) ->
 
 def write_json(path: Path, payload: Mapping[str, JSONValue]) -> None:
     """Write deterministic JSON."""
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_object(path, payload)
 
 
 def write_text(path: Path, text: str) -> None:
     """Write text and ensure the parent exists."""
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(text, encoding="utf-8")
+    write_shared_text(path, text)
 
 
 def load_json_object(path: Path) -> JSONMapping:
     """Load a JSON object from disk."""
-    payload = json.loads(path.read_text(encoding="utf-8"))
+    payload = load_shared_json_object(path)
     if not isinstance(payload, dict):
         raise ValueError(f"expected JSON object: {path}")
-    return payload
+    return dict(payload)
 
 
 def read_csv_header(path: Path) -> tuple[str, ...]:
@@ -1304,6 +1638,165 @@ def _compact_neural_subset(subset: Mapping[str, JSONValue]) -> JSONMapping:
     }
 
 
+def _denominator_audit_table(audit: Mapping[str, JSONValue]) -> str:
+    rows = []
+    for mode in ("safe", "positive_real_formal"):
+        payload = _nested_dict(audit, mode)
+        rows.append(
+            [
+                mode,
+                _fmt_int(payload.get("processed")),
+                _fmt_int(payload.get("success")),
+                _fmt_int(payload.get("timeout")),
+                _fmt_int(payload.get("validation_failed")),
+                _fmt_int(payload.get("extraction_failed")),
+                _fmt_int(payload.get("official_compilation_failed")),
+                _fmt_number(payload.get("before_threshold_rate")),
+                _fmt_number(payload.get("success_only_after_rate")),
+                _fmt_number(payload.get("all_processed_after_rate")),
+            ]
+        )
+    return _markdown_table(
+        [
+            "Mode",
+            "Processed",
+            "Success",
+            "Timeout",
+            "Validation failed",
+            "Extraction failed",
+            "Official compile failed",
+            "Before rate",
+            "Success-only after rate",
+            "All-processed after rate",
+        ],
+        rows,
+    )
+
+
+def _null_result_table(null_results: Mapping[str, JSONValue]) -> str:
+    return _markdown_table(
+        ["Metric", "Value"],
+        [
+            [
+                "learned vs frequent motif median",
+                _fmt_number(null_results.get("learned_vs_frequent_motif_median")),
+            ],
+            [
+                "learned vs random motif median",
+                _fmt_number(null_results.get("learned_vs_random_motif_median")),
+            ],
+            [
+                "learned vs random motif mean",
+                _fmt_number(null_results.get("learned_vs_random_motif_mean")),
+            ],
+            [
+                "neural exact-match rate",
+                _fmt_number(null_results.get("neural_exact_match_rate")),
+            ],
+            [
+                "estimated heuristic exact-match rate",
+                _fmt_number(null_results.get("estimated_heuristic_exact_match_rate")),
+            ],
+            [
+                "AST baseline exact-match rate",
+                _fmt_number(null_results.get("ast_baseline_exact_match_rate")),
+            ],
+            ["neural mean regret", _fmt_number(null_results.get("neural_mean_regret"))],
+            ["heuristic mean regret", _fmt_number(null_results.get("heuristic_mean_regret"))],
+            ["AST mean regret", _fmt_number(null_results.get("ast_mean_regret"))],
+        ],
+    )
+
+
+def _candidate_discovery_table(payload: Mapping[str, JSONValue]) -> str:
+    split_counts = payload.get("candidate_discovery_split_counts", {})
+    split_counts = split_counts if isinstance(split_counts, dict) else {}
+    return _markdown_table(
+        ["Field", "Value"],
+        [
+            ["candidate discovery mode", str(payload.get("candidate_discovery_mode", ""))],
+            [
+                "candidate discovery expression count",
+                _fmt_int(payload.get("candidate_discovery_expression_count")),
+            ],
+            ["train discovery rows", _fmt_int(split_counts.get("train"))],
+            ["validation discovery rows", _fmt_int(split_counts.get("validation"))],
+            ["test discovery rows", _fmt_int(split_counts.get("test"))],
+            [
+                "test set used for candidate discovery",
+                str(bool(payload.get("test_set_used_for_candidate_discovery", True))),
+            ],
+        ],
+    )
+
+
+def _compact_candidate_discovery(payload: Mapping[str, JSONValue]) -> JSONMapping:
+    return {
+        key: value
+        for key, value in payload.items()
+        if key != "candidate_discovery_expression_indices"
+    }
+
+
+def _frequent_train_only_table(payload: Mapping[str, JSONValue]) -> str:
+    discovery = _nested_dict(payload, "candidate_discovery")
+    split_counts = discovery.get("candidate_discovery_split_counts", {})
+    split_counts = split_counts if isinstance(split_counts, dict) else {}
+    validation = _nested_dict(payload, "results_by_split", "validation")
+    test = _nested_dict(payload, "results_by_split", "test")
+    nontrivial = _nested_dict(payload, "nontrivial_v1")
+    comparison = _nested_dict(payload, "full_corpus_comparison")
+    coverage_loss = _nested_dict(comparison, "coverage_loss_percent_points")
+    if not coverage_loss:
+        coverage_loss = _nested_dict(comparison, "coverage_loss_vs_full_corpus_percentage_points")
+    return _markdown_table(
+        ["Field", "Value"],
+        [
+            ["train-only vocab size", _fmt_int(payload.get("motif_vocab_size"))],
+            [
+                "candidate discovery expression count",
+                _fmt_int(discovery.get("candidate_discovery_expression_count")),
+            ],
+            ["train discovery rows", _fmt_int(split_counts.get("train"))],
+            ["validation discovery rows", _fmt_int(split_counts.get("validation"))],
+            ["test discovery rows", _fmt_int(split_counts.get("test"))],
+            [
+                "test set used for discovery",
+                str(bool(discovery.get("test_set_used_for_candidate_discovery", True))),
+            ],
+            [
+                "validation median gain vs Goal 3",
+                _fmt_number(
+                    _stat(_nested_dict(validation, "compression_gain_vs_goal3_eml_dag"), "median")
+                ),
+            ],
+            [
+                "test median gain vs Goal 3",
+                _fmt_number(
+                    _stat(_nested_dict(test, "compression_gain_vs_goal3_eml_dag"), "median")
+                ),
+            ],
+            [
+                "nontrivial median gain vs Goal 3",
+                _fmt_number(nontrivial.get("median_gain_vs_goal3")),
+            ],
+            [
+                "median coverage loss vs full-corpus mining",
+                _fmt_number(coverage_loss.get("median")),
+            ],
+            [
+                "expansion/reconstruction failures",
+                _fmt_int(payload.get("expansion_validation_failure_count")),
+            ],
+        ],
+    )
+
+
+def learned_candidate_discovery_used_test(learned_summary: Mapping[str, JSONValue]) -> bool:
+    payload = _nested_dict(learned_summary, "candidate_discovery")
+    return bool(payload.get("test_set_used_for_candidate_discovery", True))
+
+
 def _motif_table(motifs: Sequence[Mapping[str, JSONValue]]) -> str:
     if not motifs:
         return "_No motifs recorded._"
@@ -1360,13 +1853,6 @@ def _hierarchy_stats_table(stats: Mapping[str, JSONValue]) -> str:
     )
 
 
-def _markdown_table(headers: Sequence[str], rows: Sequence[Sequence[str]]) -> str:
-    header_line = "| " + " | ".join(headers) + " |"
-    separator = "| " + " | ".join("---" for _ in headers) + " |"
-    body = ["| " + " | ".join(str(cell) for cell in row) + " |" for row in rows]
-    return "\n".join([header_line, separator, *body])
-
-
 def _nested_dict(payload: Mapping[str, JSONValue], *keys: str) -> JSONMapping:
     current: object = payload
     for key in keys:
@@ -1378,6 +1864,14 @@ def _nested_dict(payload: Mapping[str, JSONValue], *keys: str) -> JSONMapping:
 
 def _stat(payload: object, key: str) -> float | None:
     return _float_or_none(payload.get(key)) if isinstance(payload, dict) else None
+
+
+def _first_float(*values: object) -> float | None:
+    for value in values:
+        number = _float_or_none(value)
+        if number is not None:
+            return number
+    return None
 
 
 def _success_rate(payload: Mapping[str, JSONValue]) -> float | None:

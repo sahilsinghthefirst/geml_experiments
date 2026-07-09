@@ -1,5 +1,17 @@
 {
-  "completed_at_unix": 1783495873.562268,
+  "candidate_discovery": {
+    "candidate_discovery_expression_count": 7021,
+    "candidate_discovery_mode": "train_only",
+    "candidate_discovery_split": "train",
+    "candidate_discovery_split_counts": {
+      "test": 0,
+      "train": 7021,
+      "validation": 0
+    },
+    "test_set_used_for_candidate_discovery": false,
+    "validation_set_used_for_candidate_discovery": false
+  },
+  "completed_at_unix": 1783570166.4124632,
   "config": {
     "count": 10000,
     "coverage_bonuses": [
@@ -10,8 +22,8 @@
       0.0,
       0.05
     ],
-    "frequent_motif_metrics_csv_path": "outputs/v1/goal5_frequent_motif_metrics.csv",
-    "frequent_motif_vocab_json_path": "outputs/v1/goal5_frequent_motif_vocab.json",
+    "frequent_motif_metrics_csv_path": "outputs/v1/goal5_frequent_motif_train_only_metrics.csv",
+    "frequent_motif_vocab_json_path": "outputs/v1/goal5_frequent_motif_train_only_vocab.json",
     "goal3_metrics_csv_path": "outputs/v1/dag_compression_metrics.csv",
     "input_jsonl_path": "outputs/v1/dag_compression_inputs.jsonl",
     "learned_vocab_json_path": "outputs/v1/goal5_learned_motif_vocab.json",
@@ -50,47 +62,47 @@
       0.1
     ]
   },
-  "elapsed_seconds": 381.1329848766327,
+  "elapsed_seconds": 413.72708201408386,
   "heldout_generalization": {
     "test": {
       "learned_gain_vs_frequent_motif": {
-        "mean": 0.9605325155728381,
+        "mean": 0.9609002724426111,
         "median": 1.0,
         "p90": 1.0
       },
       "learned_gain_vs_goal3_eml_dag": {
-        "mean": 7.131705902371225,
+        "mean": 7.130190579283321,
         "median": 7.0,
         "p90": 9.0
       },
       "learned_gain_vs_macro_graph": {
-        "mean": 1.3590625604234476,
+        "mean": 1.3588844455275906,
         "median": 1.3333333333333333,
         "p90": 1.5
       },
       "learned_motif_nodes": {
-        "mean": 6.280913978494624,
+        "mean": 6.281586021505376,
         "median": 6.0,
         "p90": 9.0
       },
       "learned_vs_random_motif_compression": {
-        "mean": 0.9853962625636012,
+        "mean": 1.004527942935201,
         "median": 1.0,
-        "p90": 1.125
+        "p90": 1.1428571428571428
       },
       "motif_coverage_percent": {
-        "mean": 51.18953711488105,
+        "mean": 51.16315495199508,
         "median": 50.0,
         "p90": 66.66666666666667
       },
       "processed_count": 1488,
       "random_gain_vs_goal3_eml_dag": {
-        "mean": 7.281342257652741,
-        "median": 7.2,
-        "p90": 9.166666666666666
+        "mean": 7.146315256950337,
+        "median": 7.0,
+        "p90": 9.0
       },
       "random_motif_nodes": {
-        "mean": 6.160618279569892,
+        "mean": 6.273521505376344,
         "median": 6.0,
         "p90": 9.0
       },
@@ -99,43 +111,43 @@
     },
     "validation": {
       "learned_gain_vs_frequent_motif": {
-        "mean": 0.9605723176145711,
+        "mean": 0.9610264130384856,
         "median": 1.0,
         "p90": 1.0
       },
       "learned_gain_vs_goal3_eml_dag": {
-        "mean": 7.107997597082104,
+        "mean": 7.112026605185559,
         "median": 7.0,
         "p90": 9.0
       },
       "learned_gain_vs_macro_graph": {
-        "mean": 1.367314485574043,
+        "mean": 1.3683481285090944,
         "median": 1.3333333333333333,
         "p90": 1.5714285714285714
       },
       "learned_motif_nodes": {
-        "mean": 6.284372904091214,
+        "mean": 6.277665995975855,
         "median": 6.0,
         "p90": 9.0
       },
       "learned_vs_random_motif_compression": {
-        "mean": 0.9864738008098168,
+        "mean": 1.0051761674498092,
         "median": 1.0,
-        "p90": 1.125
+        "p90": 1.1666666666666667
       },
       "motif_coverage_percent": {
-        "mean": 52.1343541411005,
+        "mean": 52.240338774248116,
         "median": 50.0,
         "p90": 72.72727272727273
       },
       "processed_count": 1491,
       "random_gain_vs_goal3_eml_dag": {
-        "mean": 7.243328253086805,
-        "median": 7.2,
-        "p90": 9.0
+        "mean": 7.117420412138722,
+        "median": 7.0,
+        "p90": 8.875
       },
       "random_motif_nodes": {
-        "mean": 6.179745137491617,
+        "mean": 6.277665995975855,
         "median": 6.0,
         "p90": 9.0
       },
@@ -148,83 +160,84 @@
     "modified_official_eml_compiler": false,
     "motif_ids_are_pure_eml_nodes": false,
     "reconstruction_validity_required": true,
+    "test_set_used_for_candidate_discovery": false,
     "test_set_used_for_selection": false,
     "trained_final_symbolic_reasoning_gnn": false
   },
   "learned_gain_vs_goal3_eml_dag": {
-    "mean": 7.128393234820735,
-    "median": 7.125,
+    "mean": 7.124662714785215,
+    "median": 7.111111111111111,
     "p90": 9.0
   },
   "learned_vocab_size": 30,
   "learned_vs_frequent_motif_compression": {
-    "mean": 0.9601495923520924,
+    "mean": 0.9602907203907204,
     "median": 1.0,
     "p90": 1.0
   },
   "learned_vs_macro_graph_baseline": {
-    "mean": 1.363049672272172,
+    "mean": 1.3624741328116328,
     "median": 1.3333333333333333,
     "p90": 1.5
   },
   "learned_vs_random_motif_compression": {
-    "mean": 0.9873656504606504,
+    "mean": 1.0044031093906094,
     "median": 1.0,
-    "p90": 1.125
+    "p90": 1.1666666666666667
   },
   "motif_coverage_percent": {
-    "mean": 51.66964480290951,
+    "mean": 51.610311064752246,
     "median": 50.0,
     "p90": 66.66666666666667
   },
   "processed_count": 10000,
   "random_gain_vs_goal3_eml_dag": {
-    "mean": 7.257385097957598,
-    "median": 7.25,
-    "p90": 9.1
+    "mean": 7.136095796703297,
+    "median": 7.125,
+    "p90": 9.0
   },
   "random_vocab_size": 30,
   "reconstruction_failure_count": 0,
   "results_by_split": {
     "test": {
       "learned_gain_vs_frequent_motif": {
-        "mean": 0.9605325155728381,
+        "mean": 0.9609002724426111,
         "median": 1.0,
         "p90": 1.0
       },
       "learned_gain_vs_goal3_eml_dag": {
-        "mean": 7.131705902371225,
+        "mean": 7.130190579283321,
         "median": 7.0,
         "p90": 9.0
       },
       "learned_gain_vs_macro_graph": {
-        "mean": 1.3590625604234476,
+        "mean": 1.3588844455275906,
         "median": 1.3333333333333333,
         "p90": 1.5
       },
       "learned_motif_nodes": {
-        "mean": 6.280913978494624,
+        "mean": 6.281586021505376,
         "median": 6.0,
         "p90": 9.0
       },
       "learned_vs_random_motif_compression": {
-        "mean": 0.9853962625636012,
+        "mean": 1.004527942935201,
         "median": 1.0,
-        "p90": 1.125
+        "p90": 1.1428571428571428
       },
       "motif_coverage_percent": {
-        "mean": 51.18953711488105,
+        "mean": 51.16315495199508,
         "median": 50.0,
         "p90": 66.66666666666667
       },
       "processed_count": 1488,
       "random_gain_vs_goal3_eml_dag": {
-        "mean": 7.281342257652741,
-        "median": 7.2,
-        "p90": 9.166666666666666
+        "mean": 7.146315256950337,
+        "median": 7.0,
+        "p90": 9.0
       },
       "random_motif_nodes": {
-        "mean": 6.160618279569892,
+        "mean": 6.273521505376344,
         "median": 6.0,
         "p90": 9.0
       },
@@ -233,43 +246,43 @@
     },
     "train": {
       "learned_gain_vs_frequent_motif": {
-        "mean": 0.9599786661138321,
+        "mean": 0.9600053007651641,
         "median": 1.0,
         "p90": 1.0
       },
       "learned_gain_vs_goal3_eml_dag": {
-        "mean": 7.132022439571222,
-        "median": 7.142857142857143,
+        "mean": 7.126174604407762,
+        "median": 7.125,
         "p90": 9.0
       },
       "learned_gain_vs_macro_graph": {
-        "mean": 1.3629889951318523,
+        "mean": 1.3619874965908294,
         "median": 1.3333333333333333,
         "p90": 1.5
       },
       "learned_motif_nodes": {
-        "mean": 6.30878792194844,
+        "mean": 6.313060817547358,
         "median": 6.0,
         "p90": 9.0
       },
       "learned_vs_random_motif_compression": {
-        "mean": 0.9879724296972553,
+        "mean": 1.0042124838556972,
         "median": 1.0,
-        "p90": 1.125
+        "p90": 1.1666666666666667
       },
       "motif_coverage_percent": {
-        "mean": 51.672709696306974,
+        "mean": 51.571284854942284,
         "median": 50.0,
         "p90": 66.66666666666667
       },
       "processed_count": 7021,
       "random_gain_vs_goal3_eml_dag": {
-        "mean": 7.25529287492327,
-        "median": 7.25,
+        "mean": 7.1378958880774865,
+        "median": 7.142857142857143,
         "p90": 9.0
       },
       "random_motif_nodes": {
-        "mean": 6.21449935906566,
+        "mean": 6.309927360774818,
         "median": 6.0,
         "p90": 9.0
       },
@@ -278,43 +291,43 @@
     },
     "validation": {
       "learned_gain_vs_frequent_motif": {
-        "mean": 0.9605723176145711,
+        "mean": 0.9610264130384856,
         "median": 1.0,
         "p90": 1.0
       },
       "learned_gain_vs_goal3_eml_dag": {
-        "mean": 7.107997597082104,
+        "mean": 7.112026605185559,
         "median": 7.0,
         "p90": 9.0
       },
       "learned_gain_vs_macro_graph": {
-        "mean": 1.367314485574043,
+        "mean": 1.3683481285090944,
         "median": 1.3333333333333333,
         "p90": 1.5714285714285714
       },
       "learned_motif_nodes": {
-        "mean": 6.284372904091214,
+        "mean": 6.277665995975855,
         "median": 6.0,
         "p90": 9.0
       },
       "learned_vs_random_motif_compression": {
-        "mean": 0.9864738008098168,
+        "mean": 1.0051761674498092,
         "median": 1.0,
-        "p90": 1.125
+        "p90": 1.1666666666666667
       },
       "motif_coverage_percent": {
-        "mean": 52.1343541411005,
+        "mean": 52.240338774248116,
         "median": 50.0,
         "p90": 72.72727272727273
       },
       "processed_count": 1491,
       "random_gain_vs_goal3_eml_dag": {
-        "mean": 7.243328253086805,
-        "median": 7.2,
-        "p90": 9.0
+        "mean": 7.117420412138722,
+        "median": 7.0,
+        "p90": 8.875
       },
       "random_motif_nodes": {
-        "mean": 6.179745137491617,
+        "mean": 6.277665995975855,
         "median": 6.0,
         "p90": 9.0
       },
@@ -325,43 +338,43 @@
   "results_by_subset_label": {
     "all_v1": {
       "learned_gain_vs_frequent_motif": {
-        "mean": 0.9601495923520924,
+        "mean": 0.9602907203907204,
         "median": 1.0,
         "p90": 1.0
       },
       "learned_gain_vs_goal3_eml_dag": {
-        "mean": 7.128393234820735,
-        "median": 7.125,
+        "mean": 7.124662714785215,
+        "median": 7.111111111111111,
         "p90": 9.0
       },
       "learned_gain_vs_macro_graph": {
-        "mean": 1.363049672272172,
+        "mean": 1.3624741328116328,
         "median": 1.3333333333333333,
         "p90": 1.5
       },
       "learned_motif_nodes": {
-        "mean": 6.301,
+        "mean": 6.3031,
         "median": 6.0,
         "p90": 9.0
       },
       "learned_vs_random_motif_compression": {
-        "mean": 0.9873656504606504,
+        "mean": 1.0044031093906094,
         "median": 1.0,
-        "p90": 1.125
+        "p90": 1.1666666666666667
       },
       "motif_coverage_percent": {
-        "mean": 51.66964480290951,
+        "mean": 51.610311064752246,
         "median": 50.0,
         "p90": 66.66666666666667
       },
       "processed_count": 10000,
       "random_gain_vs_goal3_eml_dag": {
-        "mean": 7.257385097957598,
-        "median": 7.25,
-        "p90": 9.1
+        "mean": 7.136095796703297,
+        "median": 7.125,
+        "p90": 9.0
       },
       "random_motif_nodes": {
-        "mean": 6.2013,
+        "mean": 6.2997,
         "median": 6.0,
         "p90": 9.0
       },
@@ -370,43 +383,43 @@
     },
     "identity_heavy_v1": {
       "learned_gain_vs_frequent_motif": {
-        "mean": 0.9607383126644258,
+        "mean": 0.960641243207552,
         "median": 1.0,
         "p90": 1.0
       },
       "learned_gain_vs_goal3_eml_dag": {
-        "mean": 6.929910978576908,
-        "median": 7.0,
+        "mean": 6.931490937841586,
+        "median": 6.916666666666667,
         "p90": 8.625
       },
       "learned_gain_vs_macro_graph": {
-        "mean": 1.3508291685509872,
+        "mean": 1.3512711900421088,
         "median": 1.3333333333333333,
         "p90": 1.5
       },
       "learned_motif_nodes": {
-        "mean": 6.702557625513104,
+        "mean": 6.7011367224502685,
         "median": 6.0,
         "p90": 10.0
       },
       "learned_vs_random_motif_compression": {
-        "mean": 0.9856022648018228,
+        "mean": 0.9906402078607637,
         "median": 1.0,
-        "p90": 1.125
+        "p90": 1.0
       },
       "motif_coverage_percent": {
-        "mean": 50.51645652980188,
+        "mean": 50.56047495269063,
         "median": 50.0,
         "p90": 66.66666666666667
       },
       "processed_count": 6334,
       "random_gain_vs_goal3_eml_dag": {
-        "mean": 7.0675425511232275,
-        "median": 7.080128205128204,
-        "p90": 8.75
+        "mean": 7.030127255300921,
+        "median": 7.0,
+        "p90": 8.79333333333333
       },
       "random_motif_nodes": {
-        "mean": 6.596147773918535,
+        "mean": 6.625828860119987,
         "median": 6.0,
         "p90": 10.0
       },
@@ -415,49 +428,118 @@
     },
     "nontrivial_v1": {
       "learned_gain_vs_frequent_motif": {
-        "mean": 0.9591324198320924,
+        "mean": 0.9596850980443452,
         "median": 1.0,
         "p90": 1.0
       },
       "learned_gain_vs_goal3_eml_dag": {
-        "mean": 7.471324661729735,
-        "median": 7.428571428571429,
+        "mean": 7.45841886185585,
+        "median": 7.4,
         "p90": 9.5
       },
       "learned_gain_vs_macro_graph": {
-        "mean": 1.384163875919195,
+        "mean": 1.3818302265110776,
         "median": 1.375,
         "p90": 1.6
       },
       "learned_motif_nodes": {
-        "mean": 5.6072013093289685,
+        "mean": 5.615384615384615,
         "median": 5.0,
         "p90": 8.0
       },
       "learned_vs_random_motif_compression": {
-        "mean": 0.9904123729819311,
+        "mean": 1.0281822196715813,
         "median": 1.0,
-        "p90": 1.1111111111111112
+        "p90": 1.2
       },
       "motif_coverage_percent": {
-        "mean": 53.66208738934262,
+        "mean": 53.42418502378067,
         "median": 54.54545454545455,
         "p90": 75.0
       },
       "processed_count": 3666,
       "random_gain_vs_goal3_eml_dag": {
-        "mean": 7.58538910549958,
-        "median": 7.5,
-        "p90": 9.666666666666666
+        "mean": 7.319184924156282,
+        "median": 7.25,
+        "p90": 9.444444444444445
       },
       "random_motif_nodes": {
-        "mean": 5.519094380796508,
+        "mean": 5.736224768139662,
         "median": 5.0,
         "p90": 8.0
       },
       "reconstruction_failure_count": 0,
       "success_count": 3666
     }
+  },
+  "run_metadata": {
+    "completed_at_unix": 1783570166.4124632,
+    "config": {
+      "count": 10000,
+      "coverage_bonuses": [
+        0.0,
+        0.01
+      ],
+      "expansion_complexity_penalties": [
+        0.0,
+        0.05
+      ],
+      "frequent_motif_metrics_csv_path": "outputs/v1/goal5_frequent_motif_train_only_metrics.csv",
+      "frequent_motif_vocab_json_path": "outputs/v1/goal5_frequent_motif_train_only_vocab.json",
+      "goal3_metrics_csv_path": "outputs/v1/dag_compression_metrics.csv",
+      "input_jsonl_path": "outputs/v1/dag_compression_inputs.jsonl",
+      "learned_vocab_json_path": "outputs/v1/goal5_learned_motif_vocab.json",
+      "learned_vocab_sizes": [
+        20,
+        30
+      ],
+      "macro_graph_metrics_csv_path": "outputs/v1/goal5_macro_graph_metrics.csv",
+      "max_depth": 4,
+      "max_motif_nodes": 2,
+      "metrics_csv_path": "outputs/v1/goal5_learned_motif_metrics.csv",
+      "metrics_jsonl_path": "outputs/v1/goal5_learned_motif_metrics.jsonl",
+      "min_motif_nodes": 1,
+      "nontrivial_coverage_bonuses": [
+        0.0,
+        0.02
+      ],
+      "operator_set": [
+        "add",
+        "mul",
+        "exp",
+        "log"
+      ],
+      "seed": 0,
+      "source_serialization": "srepr",
+      "summary_json_path": "outputs/v1/goal5_learned_motif_summary.json",
+      "symbol_names": [
+        "x",
+        "y"
+      ],
+      "train_fraction": 0.7,
+      "train_log_json_path": "outputs/v1/goal5_learned_motif_train_log.json",
+      "validation_fraction": 0.15,
+      "vocab_complexity_penalties": [
+        0.0,
+        0.1
+      ]
+    },
+    "elapsed_seconds": 413.72708201408386,
+    "git_commit_hash": "a1a3ecd9ea4fa77c669578c2a2ac72c4111cc783",
+    "git_dirty": true,
+    "package_versions": {
+      "matplotlib": "3.11.0",
+      "pydantic": "2.13.4",
+      "pytest": "9.1.1",
+      "pyyaml": "6.0.3",
+      "ruff": "0.15.20",
+      "sympy": "1.14.0"
+    },
+    "platform": "macOS-26.5-arm64-arm-64bit-Mach-O",
+    "platform_machine": "arm64",
+    "python_executable": "/Users/manu/Documents/GEML/geml_experiments/.venv/bin/python",
+    "python_version": "3.14.2",
+    "started_at_unix": 1783569752.6853812
   },
   "selected_weights": {
     "coverage_bonus": 0.01,

@@ -170,11 +170,13 @@ def validate_graph_record(record: GraphExportRecord) -> GraphValidationStatus:
         for node in record.nodes
         if node.node_type in COMPRESSED_NODE_TYPES and not node.expansion_target_ids
     )
-    schema_valid = not errors
     expansion_valid = missing_expansion_count == 0 and not any(
         "expansion_available=False" in error for error in errors
     )
-    reconstruction_valid = bool(record.metadata.get("reconstruction_valid", expansion_valid))
+    if "reconstruction_valid" not in record.metadata:
+        errors.append("record metadata is missing reconstruction_valid")
+    schema_valid = not errors
+    reconstruction_valid = bool(record.metadata.get("reconstruction_valid", False))
     pure_eml_valid = bool(record.metadata.get("pure_eml_valid", False))
     return GraphValidationStatus(
         schema_valid=schema_valid,

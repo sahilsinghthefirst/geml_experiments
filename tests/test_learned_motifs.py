@@ -72,7 +72,7 @@ def test_compressed_graphs_reconstruct_exactly_for_learned_motifs() -> None:
     )
 
     assert result.expansion_valid is True
-    assert compressed_graph_expands_to_original(result.compressed_graph) is True
+    assert compressed_graph_expands_to_original(result.compressed_graph, motifs[:1]) is True
 
 
 def test_learned_motif_nodes_store_expansion_maps() -> None:

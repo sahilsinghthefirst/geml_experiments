@@ -36,6 +36,16 @@ The default v1 config mines:
 - `min_support: 50`
 - `max_vocab_size: 90`
 
+Goal 5R.6 adds a leakage-control variant:
+
+- `configs/frequent_motifs_v1.yaml` keeps the original full-corpus mining
+  baseline for comparison.
+- `configs/frequent_motifs_train_only_v1.yaml` mines candidate motifs from the
+  deterministic train split only, then applies that vocabulary to train,
+  validation, and test rows.
+- The train-only vocabulary records the exact candidate-discovery expression
+  indices and reports whether validation/test rows were used for discovery.
+
 ## Greedy Compression Baseline
 
 The baseline sorts motifs by compression score, then selects non-overlapping,
@@ -56,6 +66,13 @@ The v1 run writes:
 - `outputs/v1/goal5_frequent_motif_metrics.csv`
 - `outputs/v1/goal5_frequent_motif_metrics.jsonl`
 - `outputs/v1/goal5_frequent_motif_summary.json`
+
+The train-only candidate-discovery run writes:
+
+- `outputs/v1/goal5_frequent_motif_train_only_vocab.json`
+- `outputs/v1/goal5_frequent_motif_train_only_metrics.csv`
+- `outputs/v1/goal5_frequent_motif_train_only_metrics.jsonl`
+- `outputs/v1/goal5_frequent_motif_train_only_summary.json`
 
 The summary includes top motifs by support, top motifs by compression saved, top
 motifs by `nontrivial_v1` coverage, motifs corresponding to official macros,
@@ -84,12 +101,37 @@ Subset medians:
 | `nontrivial_v1` | 3,666 | 3,666 | 7.75 | 1.4285714285714286 | 60.0% |
 | `identity_heavy_v1` | 6,334 | 6,334 | 7.222222222222222 | 1.4 | 57.142857142857146% |
 
+## Train-Only Candidate Discovery Variant
+
+The Goal 5R.6 train-only run mined candidates from 7,021 train expressions and
+used 0 validation and 0 test expressions for motif discovery. The resulting
+vocabulary still had 70 motifs and reconstructed all 10,000 rows with 0
+expansion validation failures.
+
+Train-only split medians:
+
+| split | processed | median gain vs Goal 3 EML-DAG | median coverage |
+| --- | ---: | ---: | ---: |
+| `train` | 7,021 | 7.428571428571429 | 57.142857142857146% |
+| `validation` | 1,491 | 7.4 | 57.142857142857146% |
+| `test` | 1,488 | 7.333333333333333 | 57.142857142857146% |
+
+Train-only `nontrivial_v1` median gain vs Goal 3 EML-DAG was 7.75 with median
+coverage 60.0%.
+
+Compared with full-corpus motif mining, median coverage loss was 0.0 percentage
+points overall. On test rows, median coverage loss was also 0.0 percentage
+points; median gain was 7.333333333333333 for train-only mining versus
+7.369318181818182 for full-corpus mining. These numbers are compression
+comparisons only, not reasoning-performance claims.
+
 ## Reproducibility
 
 Run:
 
 ```bash
 .venv/bin/python -m geml.experiments.goal5_frequent_motif_mining --config configs/frequent_motifs_v1.yaml
+.venv/bin/python -m geml.experiments.goal5_frequent_motif_mining --config configs/frequent_motifs_train_only_v1.yaml
 .venv/bin/python -m pytest
 .venv/bin/python -m ruff check .
 .venv/bin/python -m ruff format . --check

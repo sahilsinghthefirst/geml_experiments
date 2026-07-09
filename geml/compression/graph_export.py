@@ -21,6 +21,7 @@ from geml.compression.graph_schema import (
 from geml.compression.macro_graph import MacroGraph
 from geml.compression.motif_mining import MiningGraph, MiningNode
 from geml.compression.motif_rewrite import MotifCompressedGraph
+from geml.experiments.shared import percent as _percent
 from geml.symbolic.ast_graph import AstTree
 from geml.symbolic.dag_graph import DagGraph
 
@@ -167,6 +168,9 @@ def graph_record_from_macro_graph(
     pure_eml_target_ids: Sequence[str],
 ) -> GraphExportRecord:
     """Convert a macro graph into a neutral export graph."""
+    reconstruction_valid = bool(pure_eml_target_ids) and all(
+        node.expansion_to_pure_eml_available for node in graph.nodes
+    )
     child_counts = _child_counts(
         (ref.parent_id, ref.child_id, ref.slot_index) for ref in graph.child_refs
     )
@@ -234,7 +238,7 @@ def graph_record_from_macro_graph(
         metadata={
             "source": "goal5_macro_graph_v1",
             "pure_eml_valid": False,
-            "reconstruction_valid": True,
+            "reconstruction_valid": reconstruction_valid,
             "contains_hidden_target_labels": False,
             "is_pure_eml": False,
         },
@@ -285,6 +289,9 @@ def graph_record_from_mining_graph(
         )
         for ref in graph.child_refs
     ]
+    reconstruction_valid = bool(
+        graph.metadata.get("reconstruction_valid", graph.graph_type == "pure_eml_dag")
+    )
     return _record(
         graph_id=graph_id,
         source_expression_id=source_expression_id,
@@ -297,7 +304,7 @@ def graph_record_from_mining_graph(
         metadata={
             "source": graph.metadata.get("source_graph_type", "mining_graph"),
             "pure_eml_valid": graph.graph_type == "pure_eml_dag",
-            "reconstruction_valid": True,
+            "reconstruction_valid": reconstruction_valid,
             "contains_hidden_target_labels": False,
             "graph_type": graph.graph_type,
         },
@@ -393,7 +400,7 @@ def graph_record_from_motif_compressed_graph(
         metadata={
             **mining_record.metadata,
             "source": "motif_compressed_graph_v1",
-            "reconstruction_valid": True,
+            "reconstruction_valid": bool(graph.metadata.get("reconstruction_valid", False)),
             "pure_eml_valid": False,
             "selected_replacement_count": len(graph.motif_replacements),
             "source_graph_type": graph.source_graph_type,
@@ -525,7 +532,7 @@ def _record(
     validation = GraphValidationStatus(
         schema_valid=True,
         expansion_valid=True,
-        reconstruction_valid=True,
+        reconstruction_valid=bool(metadata.get("reconstruction_valid", False)),
         missing_expansion_count=0,
         pure_eml_valid=bool(metadata.get("pure_eml_valid", False)),
         errors=[],
@@ -657,9 +664,3 @@ def _quantile(values: Sequence[float], q: float) -> float:
     if lower == upper:
         return sorted_values[lower]
     return sorted_values[lower] + (sorted_values[upper] - sorted_values[lower]) * (position - lower)
-
-
-def _percent(numerator: int, denominator: int) -> float | None:
-    if denominator == 0:
-        return None
-    return 100.0 * float(numerator) / float(denominator)

@@ -1,6 +1,18 @@
 {
   "candidate_pool_size": 39,
   "metadata": {
+    "candidate_discovery": {
+      "candidate_discovery_expression_count": 7021,
+      "candidate_discovery_mode": "train_only",
+      "candidate_discovery_split": "train",
+      "candidate_discovery_split_counts": {
+        "test": 0,
+        "train": 7021,
+        "validation": 0
+      },
+      "test_set_used_for_candidate_discovery": false,
+      "validation_set_used_for_candidate_discovery": false
+    },
     "graph_format_neutral": true,
     "motif_nodes_are_pure_eml": false,
     "selection_uses_test_set": false
@@ -555,7 +567,7 @@
       "motif_type": "macro_graph",
       "node_count": 2,
       "node_savings": 4618,
-      "source_motif_id": "macro_graph_0002",
+      "source_motif_id": "macro_graph_0001",
       "support_count": 4618,
       "test_support": 662,
       "train_support": 3266,
@@ -617,7 +629,7 @@
       "motif_type": "macro_graph",
       "node_count": 2,
       "node_savings": 4635,
-      "source_motif_id": "macro_graph_0001",
+      "source_motif_id": "macro_graph_0002",
       "support_count": 4635,
       "test_support": 691,
       "train_support": 3236,
@@ -959,7 +971,7 @@
       "motif_type": "macro_graph",
       "node_count": 2,
       "node_savings": 3313,
-      "source_motif_id": "macro_graph_0009",
+      "source_motif_id": "macro_graph_0006",
       "support_count": 3313,
       "test_support": 469,
       "train_support": 2377,
@@ -1034,7 +1046,7 @@
       "motif_type": "macro_graph",
       "node_count": 2,
       "node_savings": 3389,
-      "source_motif_id": "macro_graph_0006",
+      "source_motif_id": "macro_graph_0007",
       "support_count": 3389,
       "test_support": 497,
       "train_support": 2372,
@@ -1102,7 +1114,7 @@
       "motif_type": "macro_graph",
       "node_count": 2,
       "node_savings": 3369,
-      "source_motif_id": "macro_graph_0007",
+      "source_motif_id": "macro_graph_0008",
       "support_count": 3369,
       "test_support": 514,
       "train_support": 2367,
@@ -1164,7 +1176,7 @@
       "motif_type": "macro_graph",
       "node_count": 2,
       "node_savings": 3324,
-      "source_motif_id": "macro_graph_0008",
+      "source_motif_id": "macro_graph_0009",
       "support_count": 3324,
       "test_support": 501,
       "train_support": 2307,

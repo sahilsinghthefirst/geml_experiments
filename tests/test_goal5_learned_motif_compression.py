@@ -4,11 +4,17 @@ import csv
 import json
 from pathlib import Path
 
+from geml.experiments.goal5_frequent_motif_mining import (
+    FrequentMotifMiningConfig,
+    run_goal5_frequent_motif_mining,
+)
 from geml.experiments.goal5_learned_motif_compression import (
     LearnedMotifCompressionConfig,
     load_config,
     run_goal5_learned_motif_compression,
 )
+
+from tests.goal5_fixture_builders import ensure_frequent_fixture, ensure_macro_fixture
 
 
 def test_goal5_learned_motif_small_pipeline_writes_outputs(tmp_path: Path) -> None:
@@ -64,6 +70,60 @@ def test_goal5_learned_motif_metrics_csv_rows_are_not_dropped(tmp_path: Path) ->
     assert {int(row["index"]) for row in rows} == set(range(12))
 
 
+def test_goal5_learned_motif_uses_train_only_candidate_discovery(
+    tmp_path: Path,
+) -> None:
+    paths = ensure_macro_fixture(tmp_path, count=25)
+    train_only_frequent_config = FrequentMotifMiningConfig(
+        count=25,
+        min_support=2,
+        max_vocab_size=30,
+        candidate_discovery_split="train",
+        train_fraction=0.5,
+        validation_fraction=0.25,
+        full_corpus_metrics_csv_path=None,
+        input_jsonl_path=paths.input_jsonl_path,
+        goal3_metrics_csv_path=paths.goal3_metrics_csv_path,
+        macro_graph_metrics_csv_path=paths.macro_metrics_csv_path,
+        vocab_json_path=paths.output_dir / "train_only_vocab.json",
+        metrics_csv_path=paths.output_dir / "train_only_metrics.csv",
+        metrics_jsonl_path=paths.output_dir / "train_only_metrics.jsonl",
+        summary_json_path=paths.output_dir / "train_only_summary.json",
+    )
+    run_goal5_frequent_motif_mining(train_only_frequent_config)
+    config = LearnedMotifCompressionConfig(
+        count=25,
+        train_fraction=0.5,
+        validation_fraction=0.25,
+        learned_vocab_sizes=(5,),
+        coverage_bonuses=(0.0, 0.01),
+        nontrivial_coverage_bonuses=(0.0,),
+        vocab_complexity_penalties=(0.0,),
+        expansion_complexity_penalties=(0.0,),
+        input_jsonl_path=paths.input_jsonl_path,
+        goal3_metrics_csv_path=paths.goal3_metrics_csv_path,
+        macro_graph_metrics_csv_path=paths.macro_metrics_csv_path,
+        frequent_motif_vocab_json_path=train_only_frequent_config.vocab_json_path,
+        frequent_motif_metrics_csv_path=train_only_frequent_config.metrics_csv_path,
+        learned_vocab_json_path=paths.output_dir / "learned_train_only_vocab.json",
+        metrics_csv_path=paths.output_dir / "learned_train_only_metrics.csv",
+        metrics_jsonl_path=paths.output_dir / "learned_train_only_metrics.jsonl",
+        summary_json_path=paths.output_dir / "learned_train_only_summary.json",
+        train_log_json_path=paths.output_dir / "learned_train_only_log.json",
+    )
+
+    result = run_goal5_learned_motif_compression(config)
+
+    train_log = json.loads(config.train_log_json_path.read_text(encoding="utf-8"))
+    assert train_log["candidate_discovery"]["candidate_discovery_mode"] == "train_only"
+    assert train_log["test_set_used_for_candidate_discovery"] is False
+    assert result.summary["integrity"]["test_set_used_for_candidate_discovery"] is False
+    rows = read_jsonl(config.metrics_jsonl_path)
+    heldout_rows = [row for row in rows if row["split"] in {"validation", "test"}]
+    assert {row["split"] for row in heldout_rows} == {"validation", "test"}
+    assert all(row["reconstruction_valid"] is True for row in heldout_rows)
+
+
 def test_goal5_learned_motif_config_loads_v1_yaml() -> None:
     config = load_config(Path("configs/learned_motifs_v1.yaml"))
 
@@ -73,11 +133,12 @@ def test_goal5_learned_motif_config_loads_v1_yaml() -> None:
     assert config.operator_set == ("add", "mul", "exp", "log")
     assert config.symbol_names == ("x", "y")
     assert config.source_serialization == "srepr"
+    assert "train_only" in config.frequent_motif_vocab_json_path.as_posix()
     assert "outputs/v1" in config.metrics_jsonl_path.as_posix()
 
 
 def small_config(tmp_path: Path, *, count: int) -> LearnedMotifCompressionConfig:
-    output_dir = tmp_path / "outputs" / "v1"
+    paths = ensure_frequent_fixture(tmp_path)
     return LearnedMotifCompressionConfig(
         count=count,
         learned_vocab_sizes=(5, 8),
@@ -85,11 +146,16 @@ def small_config(tmp_path: Path, *, count: int) -> LearnedMotifCompressionConfig
         nontrivial_coverage_bonuses=(0.0,),
         vocab_complexity_penalties=(0.0,),
         expansion_complexity_penalties=(0.0,),
-        learned_vocab_json_path=output_dir / "goal5_learned_motif_vocab.json",
-        metrics_csv_path=output_dir / "goal5_learned_motif_metrics.csv",
-        metrics_jsonl_path=output_dir / "goal5_learned_motif_metrics.jsonl",
-        summary_json_path=output_dir / "goal5_learned_motif_summary.json",
-        train_log_json_path=output_dir / "goal5_learned_motif_train_log.json",
+        input_jsonl_path=paths.input_jsonl_path,
+        goal3_metrics_csv_path=paths.goal3_metrics_csv_path,
+        macro_graph_metrics_csv_path=paths.macro_metrics_csv_path,
+        frequent_motif_vocab_json_path=paths.frequent_vocab_json_path,
+        frequent_motif_metrics_csv_path=paths.frequent_metrics_csv_path,
+        learned_vocab_json_path=paths.learned_vocab_json_path,
+        metrics_csv_path=paths.learned_metrics_csv_path,
+        metrics_jsonl_path=paths.learned_metrics_jsonl_path,
+        summary_json_path=paths.learned_summary_json_path,
+        train_log_json_path=paths.learned_train_log_json_path,
     )
 
 

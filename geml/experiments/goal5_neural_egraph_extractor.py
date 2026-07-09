@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import argparse
 import csv
-import json
 import time
 from collections.abc import Sequence
 from dataclasses import dataclass
@@ -31,6 +30,7 @@ from geml.compression.neural_egraph_extractor import (
     summarize_neural_rows,
 )
 from geml.egraph.rule_sets import RuleMode
+from geml.experiments.shared import build_run_metadata, write_json_object
 
 type MetadataValue = str | int | float | bool | None | list[Any] | dict[str, Any]
 
@@ -165,13 +165,14 @@ def run_goal5_neural_egraph_extractor(
     metric_rows = evaluate_neural_egraph_extractor(records, model=train_result.model)
     print(f"Evaluated candidate groups: {len(metric_rows)}", flush=True)
     write_metrics_csv(metric_rows, config.metrics_csv_path)
+    completed_at = time.time()
     summary = build_summary(
         metric_rows,
         config=config,
         candidate_dataset_summary=summarize_candidate_dataset(records),
         trained_final_reasoning_gnn=train_result.model.trained_final_reasoning_gnn,
         started_at=started_at,
-        completed_at=time.time(),
+        completed_at=completed_at,
     )
     write_json(config.summary_json_path, summary)
     train_log = build_train_log(
@@ -180,6 +181,8 @@ def run_goal5_neural_egraph_extractor(
         model_payload=train_result.model.model_dump(mode="json"),
         train_payload=train_result.train_log,
         metric_rows=metric_rows,
+        started_at=started_at,
+        completed_at=completed_at,
     )
     write_json(config.train_log_json_path, train_log)
     return NeuralEgraphExtractorResult(
@@ -217,6 +220,11 @@ def build_summary(
     )
     summary["elapsed_seconds"] = completed_at - started_at
     summary["completed_at_unix"] = completed_at
+    summary["run_metadata"] = build_run_metadata(
+        config=config_to_json_dict(config),
+        started_at=started_at,
+        completed_at=completed_at,
+    )
     return summary
 
 
@@ -227,6 +235,8 @@ def build_train_log(
     model_payload: dict[str, object],
     train_payload: dict[str, MetadataValue],
     metric_rows: Sequence[NeuralEgraphMetricRow],
+    started_at: float,
+    completed_at: float,
 ) -> dict[str, object]:
     """Build a train log with model, split, and validation evidence."""
     return {
@@ -240,6 +250,11 @@ def build_train_log(
         "test_summary": summarize_neural_rows([row for row in metric_rows if row.split == "test"]),
         "test_set_used_for_training": False,
         "trained_final_reasoning_gnn": False,
+        "run_metadata": build_run_metadata(
+            config=config_to_json_dict(config),
+            started_at=started_at,
+            completed_at=completed_at,
+        ),
     }
 
 
@@ -255,8 +270,7 @@ def write_metrics_csv(rows: Sequence[NeuralEgraphMetricRow], path: Path) -> None
 
 def write_json(path: Path, payload: dict[str, object]) -> None:
     """Write a deterministic JSON artifact."""
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_object(path, payload)
 
 
 def config_to_json_dict(config: NeuralEgraphExtractorConfig) -> dict[str, object]:

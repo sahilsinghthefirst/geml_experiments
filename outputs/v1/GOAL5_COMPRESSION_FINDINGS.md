@@ -5,7 +5,8 @@
 1. Macro graphs gave a transparent official-compiler abstraction with median alpha 0.778 and median gain 5.250 vs Goal 3.
 2. Frequent motifs were the strongest simple compression baseline at the median, with gain 7.400 vs Goal 3.
 3. Learned motifs preserved exact reconstruction but did not clearly beat the random motif baseline at the median (1.000).
-4. The neural e-graph extractor had median zero regret and large scoring-speed improvement (109.305x), but it still had validation failures and does not prove reasoning ability.
+   The learned motif gain vs Goal 3 is mostly due to motif compression itself, not learned selection.
+4. The neural e-graph extractor had median zero regret and large scoring-speed improvement (109.305x), but that speedup is scoped to candidate cost scoring only; it still had validation failures and does not prove reasoning ability.
 5. Hierarchical graph export produced an audit-ready dataset with 100.000% reconstruction validation and zero missing expansion mappings.
 
 ## Integrity

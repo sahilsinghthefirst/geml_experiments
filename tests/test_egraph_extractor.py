@@ -4,8 +4,14 @@ from pathlib import Path
 
 import geml.egraph.costs as costs
 from geml.egraph.egraph import EGraph
-from geml.egraph.extractor import ExtractionConfig, ExtractionResult, extract_expression
-from geml.egraph.ir import Add, Const, Exp, Expr, Log, Mul, Sub, Var
+from geml.egraph.extractor import (
+    ExtractionConfig,
+    ExtractionResult,
+    enumerate_candidates,
+    extract_expression,
+    extract_min_ast_size,
+)
+from geml.egraph.ir import Add, Const, Exp, Expr, Log, Mul, Sub, Var, display
 from geml.egraph.rewrites import SaturationLimits, saturate
 from geml.egraph.rule_sets import rules_for_mode
 from geml.egraph.validation import positive_real_numeric_validation
@@ -97,6 +103,76 @@ def test_exp_log_extracts_to_x_only_in_positive_real_formal_mode() -> None:
     assert safe.extracted_expression != "x"
     assert positive.extraction_status == "completed"
     assert positive.extracted_expression == "x"
+
+
+def test_extract_min_ast_size_survives_log_exp_inverse_cycle() -> None:
+    egraph, root_id, _original = log_exp_inverse_cycle_egraph()
+
+    result = extract_min_ast_size(egraph, root_id)
+
+    assert result.status == "completed"
+    assert result.cost == 4
+    assert result.expression is not None
+    assert display(result.expression) == "Add(x,Exp(x))"
+
+
+def test_cyclic_egraph_candidate_enumeration_does_not_fail() -> None:
+    egraph, root_id, _original = log_exp_inverse_cycle_egraph()
+
+    candidates = enumerate_candidates(
+        egraph,
+        root_id,
+        beam_size=16,
+        max_depth=6,
+        mode="exact_eml_dag_beam_cost",
+        config=positive_exact_config(beam_size=16, max_candidate_depth=6),
+    )
+
+    assert candidates
+    assert display(candidates[0].expression) == "Add(x,Exp(x))"
+
+
+def test_cyclic_candidate_count_is_stable_across_repeated_calls() -> None:
+    egraph, root_id, _original = log_exp_inverse_cycle_egraph()
+    config = positive_exact_config(beam_size=16, max_candidate_depth=6)
+
+    first = enumerate_candidates(
+        egraph,
+        root_id,
+        beam_size=16,
+        max_depth=6,
+        mode="exact_eml_dag_beam_cost",
+        config=config,
+    )
+    second = enumerate_candidates(
+        egraph,
+        root_id,
+        beam_size=16,
+        max_depth=6,
+        mode="exact_eml_dag_beam_cost",
+        config=config,
+    )
+
+    assert [display(candidate.expression) for candidate in first] == [
+        display(candidate.expression) for candidate in second
+    ]
+
+
+def test_positive_real_formal_cycle_enumeration_is_not_silently_undercounted() -> None:
+    egraph, root_id, _original = log_exp_inverse_cycle_egraph()
+
+    candidates = enumerate_candidates(
+        egraph,
+        root_id,
+        beam_size=16,
+        max_depth=6,
+        mode="exact_eml_dag_beam_cost",
+        config=positive_exact_config(beam_size=16, max_candidate_depth=6),
+    )
+    expressions = {display(candidate.expression) for candidate in candidates}
+
+    assert len(candidates) > 1
+    assert "Add(Log(Exp(x)),Exp(x))" in expressions
 
 
 def test_ast_node_cost_and_exact_eml_dag_cost_can_choose_different_candidates() -> None:
@@ -203,6 +279,28 @@ def test_timeout_returns_status_row_not_crash() -> None:
     assert result.extraction_timeout is True
 
 
+def test_cyclic_timeout_returns_status_row_not_crash() -> None:
+    egraph, root_id, original = log_exp_inverse_cycle_egraph()
+
+    result = extract_expression(
+        egraph,
+        root_id,
+        original_expression=original,
+        config=ExtractionConfig(
+            extractor_mode="exact_eml_dag_beam_cost",
+            beam_size=16,
+            max_candidate_depth=8,
+            max_candidates_evaluated=16,
+            timeout_seconds=1e-12,
+            allow_positive_real_rules=True,
+            rule_mode="positive_real_formal",
+        ),
+    )
+
+    assert result.extraction_status == "timeout"
+    assert result.extraction_timeout is True
+
+
 def test_extractor_and_costs_do_not_use_sympy_simplify_as_extractor() -> None:
     repo_root = Path(__file__).resolve().parents[1]
     for path in [
@@ -222,6 +320,18 @@ def extract_after_saturation(original: Expr, config: ExtractionConfig) -> Extrac
     else:
         saturate_safe(egraph)
     return extract_expression(egraph, root_id, original_expression=original, config=config)
+
+
+def log_exp_inverse_cycle_egraph() -> tuple[EGraph, int, Expr]:
+    x = Var("x")
+    original = Add(x, Exp(x))
+    egraph = EGraph()
+    root_id = egraph.add_expr(original)
+    x_id = egraph.add_expr(x)
+    log_exp_x_id = egraph.add_expr(Log(Exp(x)))
+    egraph.union(x_id, log_exp_x_id)
+    egraph.rebuild()
+    return egraph, root_id, original
 
 
 def saturate_safe(egraph: EGraph) -> None:

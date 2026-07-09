@@ -29,6 +29,18 @@ from geml.egraph.extractor import ExtractionConfig, extract_expression
 from geml.egraph.ir import from_sympy, to_sympy
 from geml.egraph.rewrites import SaturationLimits, saturate
 from geml.egraph.rule_sets import RuleMode, rules_for_mode
+from geml.experiments.shared import (
+    build_run_metadata as build_reproducibility_metadata,
+)
+from geml.experiments.shared import (
+    percent as _percent,
+)
+from geml.experiments.shared import (
+    safe_divide as _safe_divide,
+)
+from geml.experiments.shared import (
+    write_json_object,
+)
 
 type MetadataValue = str | int | float | bool | None | list[Any] | dict[str, Any]
 
@@ -768,21 +780,26 @@ def build_summary(
 
 def summarize_rows(rows: Sequence[EgraphCompressionRow]) -> dict[str, object]:
     """Summarize one rule mode."""
-    success_rows = [
-        row
-        for row in rows
-        if row.extraction_status == "completed"
-        and row.validation_status == "valid"
-        and row.structural_purity_valid
-    ]
-    timeout_rows = [row for row in rows if row.timeout]
-    validation_failures = [row for row in rows if row.validation_status not in {None, "valid"}]
+    success_rows = [row for row in rows if _is_successful_egraph_row(row)]
+    status_counts = _egraph_status_counts(rows)
     improved, unchanged, worse = _improvement_groups(success_rows)
+    after_threshold_success_count = sum(
+        row.below_threshold_optimized_dag is True for row in success_rows
+    )
+    success_only_after_rate = _percent(after_threshold_success_count, len(success_rows))
+    all_processed_after_rate = _percent(after_threshold_success_count, len(rows))
     return {
         "processed_count": len(rows),
         "success_count": len(success_rows),
-        "timeout_count": len(timeout_rows),
-        "validation_failure_count": len(validation_failures),
+        "timeout_count": status_counts["timeout"],
+        "validation_failure_count": status_counts["validation_failed_legacy"],
+        "processed": status_counts["processed"],
+        "success": status_counts["success"],
+        "timeout": status_counts["timeout"],
+        "validation_failed": status_counts["validation_failed"],
+        "extraction_failed": status_counts["extraction_failed"],
+        "official_compilation_failed": status_counts["official_compilation_failed"],
+        "status_counts": status_counts,
         "original_eml_dag_nodes": _distribution(row.original_eml_dag_nodes for row in rows),
         "extracted_eml_dag_nodes": _distribution(
             row.extracted_eml_dag_nodes for row in success_rows
@@ -801,10 +818,11 @@ def summarize_rows(rows: Sequence[EgraphCompressionRow]) -> dict[str, object]:
             sum(row.below_threshold_goal3_dag for row in rows),
             len(rows),
         ),
-        "percent_below_threshold_after_egraph": _percent(
-            sum(row.below_threshold_optimized_dag is True for row in success_rows),
-            len(success_rows),
-        ),
+        "percent_below_threshold_after_egraph": success_only_after_rate,
+        "percent_below_threshold_after_egraph_success_only": success_only_after_rate,
+        "percent_below_threshold_after_egraph_all_processed": all_processed_after_rate,
+        "success_only_after_rate": success_only_after_rate,
+        "all_processed_after_rate": all_processed_after_rate,
         "runtime_seconds": _runtime_distribution(row.runtime_seconds for row in rows),
         "results_by_subset_label": {
             label: summarize_subset(rows, label)
@@ -822,31 +840,106 @@ def summarize_subset(rows: Sequence[EgraphCompressionRow], label: str) -> dict[s
         return {
             "processed_count": 0,
             "success_count": 0,
+            "processed": 0,
+            "success": 0,
+            "timeout": 0,
+            "validation_failed": 0,
+            "extraction_failed": 0,
+            "official_compilation_failed": 0,
+            "success_only_after_rate": None,
+            "all_processed_after_rate": None,
             "percent_improved": None,
             "optimized_dag_alpha": _distribution(()),
             "compression_gain_vs_goal3_dag": _distribution(()),
         }
-    success_rows = [
-        row
-        for row in subset_rows
-        if row.extraction_status == "completed"
-        and row.validation_status == "valid"
-        and row.structural_purity_valid
-    ]
+    success_rows = [row for row in subset_rows if _is_successful_egraph_row(row)]
+    status_counts = _egraph_status_counts(subset_rows)
     improved, unchanged, worse = _improvement_groups(success_rows)
+    after_threshold_success_count = sum(
+        row.below_threshold_optimized_dag is True for row in success_rows
+    )
+    success_only_after_rate = _percent(after_threshold_success_count, len(success_rows))
+    all_processed_after_rate = _percent(after_threshold_success_count, len(subset_rows))
     return {
         "processed_count": len(subset_rows),
         "success_count": len(success_rows),
-        "timeout_count": sum(row.timeout for row in subset_rows),
+        "timeout_count": status_counts["timeout"],
+        "validation_failure_count": status_counts["validation_failed_legacy"],
+        "processed": status_counts["processed"],
+        "success": status_counts["success"],
+        "timeout": status_counts["timeout"],
+        "validation_failed": status_counts["validation_failed"],
+        "extraction_failed": status_counts["extraction_failed"],
+        "official_compilation_failed": status_counts["official_compilation_failed"],
+        "status_counts": status_counts,
         "percent_improved": _percent(len(improved), len(success_rows)),
         "percent_unchanged": _percent(len(unchanged), len(success_rows)),
         "percent_worse": _percent(len(worse), len(success_rows)),
+        "percent_below_threshold_before_egraph": _percent(
+            sum(row.below_threshold_goal3_dag for row in subset_rows),
+            len(subset_rows),
+        ),
+        "percent_below_threshold_after_egraph": success_only_after_rate,
+        "percent_below_threshold_after_egraph_success_only": success_only_after_rate,
+        "percent_below_threshold_after_egraph_all_processed": all_processed_after_rate,
+        "success_only_after_rate": success_only_after_rate,
+        "all_processed_after_rate": all_processed_after_rate,
         "goal3_dag_alpha": _distribution(row.goal3_dag_alpha_vs_ast_tree for row in subset_rows),
         "optimized_dag_alpha": _distribution(
             row.optimized_dag_alpha_vs_ast_tree for row in success_rows
         ),
         "compression_gain_vs_goal3_dag": _distribution(
             row.compression_gain_vs_goal3_dag for row in success_rows
+        ),
+    }
+
+
+def _is_successful_egraph_row(row: EgraphCompressionRow) -> bool:
+    return (
+        row.extraction_status == "completed"
+        and row.validation_status == "valid"
+        and row.structural_purity_valid
+        and row.extracted_eml_dag_nodes is not None
+    )
+
+
+def _is_timeout_egraph_row(row: EgraphCompressionRow) -> bool:
+    return row.timeout or row.saturation_status == "timeout" or row.extraction_status == "timeout"
+
+
+def _egraph_status_counts(rows: Sequence[EgraphCompressionRow]) -> dict[str, int]:
+    success_count = sum(_is_successful_egraph_row(row) for row in rows)
+    timeout_count = sum(_is_timeout_egraph_row(row) for row in rows)
+    validation_failed = sum(
+        (
+            not _is_timeout_egraph_row(row)
+            and row.extraction_status == "completed"
+            and (row.validation_status not in {None, "valid"} or not row.structural_purity_valid)
+        )
+        for row in rows
+    )
+    extraction_failed = sum(
+        (not _is_timeout_egraph_row(row) and row.extraction_status not in {"completed"})
+        for row in rows
+    )
+    official_compilation_failed = sum(
+        (
+            not _is_timeout_egraph_row(row)
+            and row.extraction_status == "completed"
+            and row.validation_status == "valid"
+            and row.extracted_eml_dag_nodes is None
+        )
+        for row in rows
+    )
+    return {
+        "processed": len(rows),
+        "success": success_count,
+        "timeout": timeout_count,
+        "validation_failed": validation_failed,
+        "extraction_failed": extraction_failed,
+        "official_compilation_failed": official_compilation_failed,
+        "validation_failed_legacy": sum(
+            row.validation_status not in {None, "valid"} for row in rows
         ),
     }
 
@@ -858,33 +951,32 @@ def build_run_metadata(
     completed_at: float | None,
 ) -> dict[str, object]:
     """Build run metadata and resource limits."""
-    metadata: dict[str, object] = {
-        "config": config_to_json_dict(config),
-        "resource_limits": {
-            "max_iterations": config.max_iterations,
-            "max_enodes": config.max_enodes,
-            "max_eclasses": config.max_eclasses,
-            "timeout_seconds": config.timeout_seconds,
-            "row_timeout_seconds": config.row_timeout_seconds,
-            "beam_size": config.beam_size,
-            "max_candidate_depth": config.max_candidate_depth,
-            "max_candidates_evaluated": config.max_candidates_evaluated,
+    return build_reproducibility_metadata(
+        config=config_to_json_dict(config),
+        started_at=started_at,
+        completed_at=completed_at,
+        extra={
+            "resource_limits": {
+                "max_iterations": config.max_iterations,
+                "max_enodes": config.max_enodes,
+                "max_eclasses": config.max_eclasses,
+                "timeout_seconds": config.timeout_seconds,
+                "row_timeout_seconds": config.row_timeout_seconds,
+                "beam_size": config.beam_size,
+                "max_candidate_depth": config.max_candidate_depth,
+                "max_candidates_evaluated": config.max_candidates_evaluated,
+            },
+            "input_contract": {
+                "count": config.count,
+                "seed": config.seed,
+                "max_depth": config.max_depth,
+                "operators": list(config.operator_set),
+                "symbols": list(config.symbol_names),
+                "source_serialization": config.source_serialization,
+                "source": "v1 generator outputs",
+            },
         },
-        "input_contract": {
-            "count": config.count,
-            "seed": config.seed,
-            "max_depth": config.max_depth,
-            "operators": list(config.operator_set),
-            "symbols": list(config.symbol_names),
-            "source_serialization": config.source_serialization,
-            "source": "v1 generator outputs",
-        },
-        "started_at_unix": started_at,
-        "completed_at_unix": completed_at,
-    }
-    if completed_at is not None and started_at is not None:
-        metadata["elapsed_seconds"] = completed_at - started_at
-    return metadata
+    )
 
 
 def config_to_json_dict(config: EgraphCompressionStudyConfig) -> dict[str, object]:
@@ -999,12 +1091,6 @@ def _mode_slug(rule_mode: RuleMode) -> str:
     return "positive_real" if rule_mode == "positive_real_formal" else "safe"
 
 
-def _safe_divide(numerator: int | float | None, denominator: int | float | None) -> float | None:
-    if numerator is None or denominator in {None, 0}:
-        return None
-    return float(numerator) / float(denominator)
-
-
 def _below_threshold(value: float | None, threshold: float) -> bool | None:
     if value is None:
         return None
@@ -1062,12 +1148,6 @@ def _improvement_groups(
         else:
             worse.append(row)
     return improved, unchanged, worse
-
-
-def _percent(numerator: int, denominator: int) -> float | None:
-    if denominator == 0:
-        return None
-    return 100.0 * numerator / denominator
 
 
 def _parse_bool(value: object) -> bool:
@@ -1156,8 +1236,7 @@ def _load_json_object_if_exists(path: Path) -> dict[str, object]:
 
 def write_json(path: Path, data: dict[str, object]) -> None:
     """Write a JSON object."""
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, indent=2, sort_keys=True), encoding="utf-8")
+    write_json_object(path, data)
 
 
 def build_arg_parser() -> argparse.ArgumentParser:

@@ -31,9 +31,18 @@ Integrated reconstruction failure count: 0.
 | Goal 4 positive-real optimized EML-DAG | 10,000 | 8,941 | 34.000 | 1.169 | 1.000 | Non-ML e-graph extraction with positive-real assumptions. |
 | Goal 5 macro graph | 10,000 | 10,000 | 8.000 | 5.250 | 5.375 | Transparent compiler macro nodes; not pure EML alpha. |
 | Goal 5 frequent motif graph | 10,000 | 10,000 | 6.000 | 7.400 | 7.750 | Greedy motif replacement from mined frequent motifs. |
-| Goal 5 learned motif graph | 10,000 | 10,000 | 6.000 | 7.125 | 7.429 | Deterministic learned motif selection; exact reconstruction required. |
+| Goal 5 learned motif graph | 10,000 | 10,000 | 6.000 | 7.111 | 7.400 | Deterministic learned motif selection; exact reconstruction required. |
 | Goal 5 neural e-graph extractor | 20,000 | 18,871 | 37.000 | 1.074 | 1.000 | Learned ranking model; output still compiled to official pure EML-DAG. |
 | Goal 5 hierarchical graph | 88,257 | 88,257 | 73.000 |  |  | Audit/export container spanning AST, macro, EML-DAG, and motif levels. |
+
+## Denominator Audit
+
+For e-graph threshold rates, rows without valid extracted outputs count as not below threshold in `all_processed_after_rate`. The success-only rate is reported separately as `success_only_after_rate` and is not used as the all-row improvement denominator.
+
+| Mode | Processed | Success | Timeout | Validation failed | Extraction failed | Official compile failed | Before rate | Success-only after rate | All-processed after rate |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| safe | 10,000 | 9,316 | 241 | 471 | 0 | 0 | 0.220 | 1.020 | 0.950 |
+| positive_real_formal | 10,000 | 8,941 | 522 | 583 | 15 | 0 | 0.220 | 5.827 | 5.210 |
 
 ## Macro Graph Results
 
@@ -48,6 +57,22 @@ Interpretation: macro graphs are the cleanest transparent abstraction because ea
 The frequent motif baseline selected a vocabulary of 70 motifs. Median compression gain vs Goal 3 was 7.400, with median motif coverage 57.143%.
 
 On `nontrivial_v1`, the median frequent motif gain was 7.750. Expansion validation failures: 0.
+
+Train-only candidate discovery variant:
+
+| Field | Value |
+| --- | --- |
+| train-only vocab size | 70 |
+| candidate discovery expression count | 7,021 |
+| train discovery rows | 7,021 |
+| validation discovery rows | 0 |
+| test discovery rows | 0 |
+| test set used for discovery | False |
+| validation median gain vs Goal 3 | 7.400 |
+| test median gain vs Goal 3 | 7.333 |
+| nontrivial median gain vs Goal 3 | 7.750 |
+| median coverage loss vs full-corpus mining | 0.000 |
+| expansion/reconstruction failures | 0 |
 
 Top motifs by support:
 
@@ -71,25 +96,54 @@ Top motifs by compression saved:
 
 ## Learned Motif Results
 
-The learned motif selector chose 30 motifs and used a random baseline of 30 motifs. Median learned gain vs Goal 3 was 7.125. Median learned-vs-frequent compression was 1.000, and median learned-vs-random compression was 1.000.
+The learned motif selector chose 30 motifs and used a random baseline of 30 motifs. Median learned gain vs Goal 3 was 7.111. Median learned-vs-frequent compression was 1.000, and median learned-vs-random compression was 1.000.
 
-The random vocabulary median gain vs Goal 3 was 7.250. In this v1 run the learned selector preserved exact reconstruction but did not clearly beat the random baseline at the median.
+The random vocabulary median gain vs Goal 3 was 7.125. In this v1 run the learned selector preserved exact reconstruction but did not clearly beat the random baseline at the median.
+
+The learned motif gain vs Goal 3 is mostly due to motif compression itself, not learned selection.
+
+Candidate discovery audit:
+
+| Field | Value |
+| --- | --- |
+| candidate discovery mode | train_only |
+| candidate discovery expression count | 7,021 |
+| train discovery rows | 7,021 |
+| validation discovery rows | 0 |
+| test discovery rows | 0 |
+| test set used for candidate discovery | False |
+
+Learned-component null-result check:
+
+| Metric | Value |
+| --- | --- |
+| learned vs frequent motif median | 1.000 |
+| learned vs random motif median | 1.000 |
+| learned vs random motif mean | 1.004 |
+| neural exact-match rate | 64.236 |
+| estimated heuristic exact-match rate | 80.504 |
+| AST baseline exact-match rate | 78.321 |
+| neural mean regret | 0.506 |
+| heuristic mean regret | 0.597 |
+| AST mean regret | 0.698 |
 
 Train/validation/test results:
 
 | Split | Processed | Success | Median gain | Failures |
 | --- | --- | --- | --- | --- |
-| train | 7,021 | 7,021 | 7.143 | 0 |
+| train | 7,021 | 7,021 | 7.125 | 0 |
 | validation | 1,491 | 1,491 | 7.000 | 0 |
 | test | 1,488 | 1,488 | 7.000 | 0 |
 
-On `nontrivial_v1`, the learned motif median gain was 7.429. Reconstruction failures: 0.
+On `nontrivial_v1`, the learned motif median gain was 7.400. Reconstruction failures: 0.
 
 ## Neural E-Graph Extractor Results
 
 The neural e-graph extractor evaluated 20,000 expression/rule mode groups. Median regret vs exact best was 0.000, p90 regret was 3.000, and exact-best match rate was 64.236%.
 
 Median neural compression gain vs Goal 3 was 1.074. Median speedup vs exact beam cost scoring was 109.305x. Validation failures: 1,129.
+
+The neural extractor’s 109x speedup is scoped to candidate cost scoring only.
 
 On `nontrivial_v1`, median neural gain was 1.000 and exact-best match rate was 62.590%.
 
@@ -125,7 +179,7 @@ Train initial Goal 6 graph models on three clearly separated tracks:
 2. `learned_motif_graph` and `frequent_motif_graph` as compact motif baselines.
 3. `pure_eml_dag_graph` as the required official pure EML control.
 
-Use Goal 4 e-graph optimized EML-DAGs as non-ML compression baselines. Use the neural e-graph extractor as a learned extraction/ranking baseline, not as evidence of reasoning performance. Use `hierarchical_eml_graph` after the single-mode baselines are stable, because it is richer but larger.
+Use Goal 4 e-graph optimized EML-DAGs as non-ML compression baselines. Use the neural e-graph extractor as a learned extraction/ranking baseline, not as evidence of reasoning performance. Treat learned motif selection and the neural ranker as Goal 6 baselines, not main claims. Use `hierarchical_eml_graph` after the single-mode baselines are stable, because it is richer but larger.
 
 Do not overclaim: compression makes later GNN training more practical, but it does not prove symbolic reasoning ability.
 

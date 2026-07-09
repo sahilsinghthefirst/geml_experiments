@@ -38,6 +38,12 @@ TRIVIALITY_FEATURE_NAMES = (
 EGRAPH_GROUP_SUMMARY_FIELDS = [
     "count",
     "success_count",
+    "processed",
+    "success",
+    "timeout",
+    "validation_failed",
+    "extraction_failed",
+    "official_compilation_failed",
     "median_goal3_dag_alpha_vs_ast_tree",
     "median_optimized_dag_alpha_vs_ast_tree",
     "median_compression_gain_vs_goal3_dag",
@@ -47,6 +53,8 @@ EGRAPH_GROUP_SUMMARY_FIELDS = [
     "percent_worse",
     "percent_below_threshold_before",
     "percent_below_threshold_after",
+    "success_only_after_rate",
+    "all_processed_after_rate",
     "timeout_rate",
     "validation_failure_rate",
     "branch_sensitive_rule_usage_rate",
@@ -552,6 +560,12 @@ def summarize_egraph_group(
         return {
             "count": 0,
             "success_count": 0,
+            "processed": 0,
+            "success": 0,
+            "timeout": 0,
+            "validation_failed": 0,
+            "extraction_failed": 0,
+            "official_compilation_failed": 0,
             "median_goal3_dag_alpha_vs_ast_tree": None,
             "median_optimized_dag_alpha_vs_ast_tree": None,
             "median_compression_gain_vs_goal3_dag": None,
@@ -561,12 +575,15 @@ def summarize_egraph_group(
             "percent_worse": None,
             "percent_below_threshold_before": None,
             "percent_below_threshold_after": None,
+            "success_only_after_rate": None,
+            "all_processed_after_rate": None,
             "timeout_rate": None,
             "validation_failure_rate": None,
             "branch_sensitive_rule_usage_rate": None,
         }
 
-    success_rows = [row for row in rows if row.is_success]
+    success_rows = [row for row in rows if _is_successful_egraph_row(row)]
+    status_counts = _egraph_status_counts(rows)
     improved, unchanged, worse = classify_improvement(success_rows)
     compression_gains = sorted(
         row.compression_gain_vs_goal3_dag
@@ -578,9 +595,20 @@ def summarize_egraph_group(
         for row in success_rows
         if row.optimized_dag_alpha_vs_ast_tree is not None
     )
+    after_threshold_success_count = sum(
+        row.below_threshold_optimized_dag is True for row in success_rows
+    )
+    success_only_after_rate = _percent(after_threshold_success_count, len(success_rows))
+    all_processed_after_rate = _percent(after_threshold_success_count, len(rows))
     return {
         "count": len(rows),
         "success_count": len(success_rows),
+        "processed": status_counts["processed"],
+        "success": status_counts["success"],
+        "timeout": status_counts["timeout"],
+        "validation_failed": status_counts["validation_failed"],
+        "extraction_failed": status_counts["extraction_failed"],
+        "official_compilation_failed": status_counts["official_compilation_failed"],
         "median_goal3_dag_alpha_vs_ast_tree": statistics.median(
             sorted(row.goal3_dag_alpha_vs_ast_tree for row in rows)
         ),
@@ -596,10 +624,9 @@ def summarize_egraph_group(
             sum(row.below_threshold_goal3_dag for row in rows),
             len(rows),
         ),
-        "percent_below_threshold_after": _percent(
-            sum(row.below_threshold_optimized_dag is True for row in success_rows),
-            len(success_rows),
-        ),
+        "percent_below_threshold_after": success_only_after_rate,
+        "success_only_after_rate": success_only_after_rate,
+        "all_processed_after_rate": all_processed_after_rate,
         "timeout_rate": _percent(sum(row.timeout for row in rows), len(rows)),
         "validation_failure_rate": _percent(
             sum(row.validation_status != "valid" for row in rows),
@@ -608,6 +635,50 @@ def summarize_egraph_group(
         "branch_sensitive_rule_usage_rate": _percent(
             sum(row.branch_sensitive_rules_used for row in rows),
             len(rows),
+        ),
+    }
+
+
+def _is_successful_egraph_row(row: StratifiedEgraphCompressionRow) -> bool:
+    return (
+        row.extraction_status == "completed"
+        and row.validation_status == "valid"
+        and row.structural_purity_valid
+        and row.extracted_eml_dag_nodes is not None
+    )
+
+
+def _is_timeout_egraph_row(row: StratifiedEgraphCompressionRow) -> bool:
+    return row.timeout or row.saturation_status == "timeout" or row.extraction_status == "timeout"
+
+
+def _egraph_status_counts(rows: Sequence[StratifiedEgraphCompressionRow]) -> dict[str, int]:
+    return {
+        "processed": len(rows),
+        "success": sum(_is_successful_egraph_row(row) for row in rows),
+        "timeout": sum(_is_timeout_egraph_row(row) for row in rows),
+        "validation_failed": sum(
+            (
+                not _is_timeout_egraph_row(row)
+                and row.extraction_status == "completed"
+                and (
+                    row.validation_status not in {None, "valid"} or not row.structural_purity_valid
+                )
+            )
+            for row in rows
+        ),
+        "extraction_failed": sum(
+            (not _is_timeout_egraph_row(row) and row.extraction_status not in {"completed"})
+            for row in rows
+        ),
+        "official_compilation_failed": sum(
+            (
+                not _is_timeout_egraph_row(row)
+                and row.extraction_status == "completed"
+                and row.validation_status == "valid"
+                and row.extracted_eml_dag_nodes is None
+            )
+            for row in rows
         ),
     }
 

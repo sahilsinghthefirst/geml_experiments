@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import time
+from collections.abc import Mapping
 from dataclasses import dataclass
 from itertools import product
 from typing import Literal
@@ -126,8 +127,7 @@ class _ExtractionTimeout(Exception):
 def extract_min_ast_size(egraph: EGraph, root_eclass_id: int) -> ExtractedExpression:
     """Extract the smallest acyclic IR tree by ordinary AST node count."""
     root_id = egraph.find(root_eclass_id)
-    memo: dict[int, tuple[int, Expr] | None] = {}
-    best = _best_expr(egraph, root_id, memo, visiting=set())
+    best = _best_expr(egraph, root_id)
     if best is None:
         return ExtractedExpression(
             status="failed",
@@ -253,41 +253,44 @@ def enumerate_candidates(
     extraction_config = config or ExtractionConfig(extractor_mode=mode)
     started = time.monotonic() if started_at is None else started_at
     root_id = egraph.find(root_eclass_id)
-    memo: dict[tuple[int, int], tuple[_Candidate, ...]] = {}
+    eclass_ids = egraph.eclass_ids()
+    candidates_by_depth: dict[tuple[int, int], tuple[_Candidate, ...]] = {}
 
-    def build(eclass_id: int, depth: int, active: frozenset[int]) -> tuple[_Candidate, ...]:
-        _check_timeout(started, extraction_config)
-        canonical_id = egraph.find(eclass_id)
-        if depth < 0 or canonical_id in active:
-            return ()
-        memo_key = (canonical_id, depth)
-        if memo_key in memo:
-            return memo[memo_key]
-
-        candidates: list[_Candidate] = []
-        next_active = active | {canonical_id}
-        for node in egraph.get_eclass_nodes(canonical_id):
-            child_lists: list[tuple[_Candidate, ...]] = []
-            if node.children:
+    for depth in range(max_depth + 1):
+        for eclass_id in eclass_ids:
+            _check_timeout(started, extraction_config)
+            candidates: list[_Candidate] = []
+            for node in egraph.get_eclass_nodes(eclass_id):
+                if not node.children:
+                    candidates.append(_make_candidate(_expr_from_node(node, []), mode))
+                    continue
                 if depth == 0:
                     continue
+
+                child_lists: list[tuple[_Candidate, ...]] = []
                 for child_id in node.children:
-                    child_candidates = build(child_id, depth - 1, next_active)
+                    child_candidates = candidates_by_depth.get(
+                        (egraph.find(child_id), depth - 1),
+                        (),
+                    )
                     if not child_candidates:
                         break
                     child_lists.append(child_candidates)
                 else:
                     for child_tuple in product(*child_lists):
+                        _check_timeout(started, extraction_config)
                         child_exprs = [candidate.expression for candidate in child_tuple]
                         expr = _expr_from_node(node, child_exprs)
                         candidates.append(_make_candidate(expr, mode))
-            else:
-                candidates.append(_make_candidate(_expr_from_node(node, []), mode))
+                        if len(candidates) > beam_size * 8:
+                            candidates = list(_top_unique_candidates(candidates, beam_size))
 
-        memo[memo_key] = _top_unique_candidates(candidates, beam_size)
-        return memo[memo_key]
+            candidates_by_depth[(eclass_id, depth)] = _top_unique_candidates(
+                candidates,
+                beam_size,
+            )
 
-    return build(root_id, max_depth, frozenset())
+    return candidates_by_depth.get((root_id, max_depth), ())
 
 
 def _extract_exact(
@@ -543,42 +546,35 @@ def _check_timeout(started_at: float, config: ExtractionConfig) -> None:
 def _best_expr(
     egraph: EGraph,
     eclass_id: int,
-    memo: dict[int, tuple[int, Expr] | None],
-    *,
-    visiting: set[int],
 ) -> tuple[int, Expr] | None:
+    """Return the least AST-size expression by monotone fixpoint extraction."""
     root_id = egraph.find(eclass_id)
-    if root_id in memo:
-        return memo[root_id]
-    if root_id in visiting:
-        return None
+    best_by_eclass: dict[int, tuple[int, Expr]] = {}
+    eclass_ids = egraph.eclass_ids()
 
-    visiting.add(root_id)
-    candidates: list[tuple[int, Expr]] = []
-    for node in egraph.get_eclass_nodes(root_id):
-        candidate = _node_candidate(egraph, node, memo, visiting=visiting)
-        if candidate is not None:
-            candidates.append(candidate)
-    visiting.remove(root_id)
-
-    if not candidates:
-        memo[root_id] = None
-        return None
-    best = min(candidates, key=lambda item: (item[0], display(item[1])))
-    memo[root_id] = best
-    return best
+    while True:
+        changed = False
+        for candidate_eclass_id in eclass_ids:
+            for node in egraph.get_eclass_nodes(candidate_eclass_id):
+                candidate = _node_candidate(egraph, node, best_by_eclass)
+                if candidate is None:
+                    continue
+                current = best_by_eclass.get(candidate_eclass_id)
+                if current is None or _best_tuple_key(candidate) < _best_tuple_key(current):
+                    best_by_eclass[candidate_eclass_id] = candidate
+                    changed = True
+        if not changed:
+            return best_by_eclass.get(root_id)
 
 
 def _node_candidate(
     egraph: EGraph,
     node: ENode,
-    memo: dict[int, tuple[int, Expr] | None],
-    *,
-    visiting: set[int],
+    best_by_eclass: Mapping[int, tuple[int, Expr]],
 ) -> tuple[int, Expr] | None:
     child_results: list[tuple[int, Expr]] = []
     for child_id in node.children:
-        child_result = _best_expr(egraph, child_id, memo, visiting=visiting)
+        child_result = best_by_eclass.get(egraph.find(child_id))
         if child_result is None:
             return None
         child_results.append(child_result)
@@ -587,6 +583,11 @@ def _node_candidate(
     child_exprs = [expr for _, expr in child_results]
     expr = _expr_from_node(node, child_exprs)
     return 1 + child_cost, expr
+
+
+def _best_tuple_key(item: tuple[int, Expr]) -> tuple[int, str]:
+    cost, expr = item
+    return cost, display(expr)
 
 
 def _expr_from_node(node: ENode, children: list[Expr]) -> Expr:

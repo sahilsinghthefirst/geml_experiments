@@ -24,6 +24,7 @@ from geml.data.dataset import (
     load_generated_expressions,
     parse_generated_expression,
 )
+from geml.experiments.shared import build_run_metadata, write_json_object
 from geml.experiments.stratified_expansion import (
     count_operator_features,
     dominant_operator_family,
@@ -412,6 +413,11 @@ def build_summary(
         },
         "elapsed_seconds": completed_at - started_at,
         "completed_at_unix": completed_at,
+        "run_metadata": build_run_metadata(
+            config=config_to_json_dict(config),
+            started_at=started_at,
+            completed_at=completed_at,
+        ),
     }
 
 
@@ -514,8 +520,7 @@ def write_metrics_csv(rows: Sequence[MacroGraphBaselineRow], path: Path) -> None
 
 def write_json(path: Path, data: dict[str, object]) -> None:
     """Write a deterministic JSON object."""
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_object(path, data)
 
 
 def config_to_json_dict(config: MacroGraphBaselineConfig) -> dict[str, object]:
